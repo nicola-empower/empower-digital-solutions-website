@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { AppWindow, Wrench, Code, ShieldCheck, Gem, MousePointerClick, ChevronDown, FileDown, LayoutTemplate } from 'lucide-astro';
+---
+
+<Layout title="Web Development & Digital Services | Empower Digital Solutions">
+  
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-6 py-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-[#E5007E]">Digital & Web Solutions</h1>
+      <h2 class="text-xl md:text-2xl text-gray-600 mt-2">Creating Your High-Performing Online Presence</h2>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-12">
+
+    <section class="text-center max-w-4xl mx-auto mb-16">
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Your website is your digital storefront. I provide the technical expertise to build and maintain a
+        professional, high-performing online presence that not only looks great but also solves unique business
+        challenges and drives growth.
+      </p>
+    </section>
+
+    <section id="digital-services">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Our Website & Digital Presence Services</h3>
+        <p class="mt-2 max-w-3xl mx-auto text-gray-600">From a simple site update to a complex custom
+          application, I've got you covered.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100">
+          <AppWindow class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-lg text-gray-800">Custom Web App Building</h4>
+          <p class="text-gray-600 mt-1">Developing bespoke, interactive web applications from scratch using
+            HTML, CSS, and JavaScript to solve unique business challenges that off-the-shelf software can't.
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100">
+          <LayoutTemplate class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-lg text-gray-800">WordPress & WooCommerce Support</h4>
+          <p class="text-gray-600 mt-1">Providing comprehensive management for your WordPress site, including
+            WooCommerce store support, Gutenberg editor utilisation, and content/image optimisation.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100">
+          <Wrench class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-lg text-gray-800">Digital Tool & System Support</h4>
+          <p class="text-gray-600 mt-1">Conducting system audits to provide expert recommendations, alongside
+            setup and basic training for essential digital tools to empower your team.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100">
+          <Code class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-lg text-gray-800">HTML-Based Site Maintenance</h4>
+          <p class="text-gray-600 mt-1">Offering reliable maintenance and updates for non-CMS websites,
+            ensuring your static or HTML-based site remains secure and up-to-date.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-20">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Why a Strong Digital Presence Matters</h3>
+        <p class="mt-2 max-w-3xl mx-auto text-gray-600">In today's market, a professional and functional web
+          presence is non-negotiable. It's the core of your marketing and the first impression for most
+          potential clients.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
+        <div class="p-6">
+          <ShieldCheck class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-xl text-gray-800">Builds Credibility</h4>
+          <p class="text-gray-600 mt-2">A clean, modern website signals that you are a professional and
+            trustworthy business, making potential customers more likely to engage with you.</p>
+        </div>
+        <div class="p-6">
+          <Gem class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-xl text-gray-800">Showcases Your Value</h4>
+          <p class="text-gray-600 mt-2">Your site is the perfect platform to demonstrate your expertise,
+            display your portfolio, and clearly explain the benefits of your unique services.</p>
+        </div>
+        <div class="p-6">
+          <MousePointerClick class="w-10 h-10 text-[#E5007E] mb-3" />
+          <h4 class="font-bold text-xl text-gray-800">Drives Business Growth</h4>
+          <p class="text-gray-600 mt-2">Whether it's generating leads, making sales, or solving internal
+            problems, a well-built website or web app is a powerful tool for growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mt-20 max-w-3xl mx-auto">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Frequently Asked Questions</h3>
+      </div>
+      
+      <details class="group bg-slate-900 border border-slate-800 rounded-xl overflow-hidden transition-all hover:border-purple-500/50">
+        <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+          <span class="font-bold text-lg text-white">Will I lose my Google rankings or email if I switch?</span>
+          <span class="text-purple-400 group-open:rotate-180 transition-transform">
+            <ChevronDown class="w-6 h-6" />
+          </span>
+        </summary>
+        
+        <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+          <p class="mb-4">
+            Absolutely not. We use a "Zero-Risk Migration Protocol" that keeps your email (MX Records) exactly where it is, while simply pointing your domain to our faster servers.
+          </p>
+          
+          <a href="/Empower-DNS-Guide.pdf" download class="inline-flex items-center gap-2 text-sm font-bold text-white bg-purple-900/30 border border-purple-500/30 px-4 py-2 rounded-lg hover:bg-purple-900/50 transition-colors">
+            <FileDown class="w-4 h-4" />
+            Download our Migration Protocol PDF
+          </a>
+        </div>
+      </details>
+    </section>
+
+    <section class="mt-20 bg-gray-800 text-center p-12 rounded-2xl shadow-xl mb-12">
+      <h3 class="text-3xl font-bold text-white">Ready to Build Your Digital Future?</h3>
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-white">Whether you need a brand new web application or expert
+        support for your existing site, let's talk. I'm here to build the digital tools you need to succeed.</p>
+      <a href="/contact"
+        class="mt-8 inline-block bg-white text-gray-800 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-200 transition-colors text-lg">
+        Start Your Project
+      </a>
+    </section>
+
+  </main>
+
+</Layout>

@@ -1,0 +1,71 @@
+---
+import { Facebook, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 text-white pt-16 pb-8 border-t border-slate-800">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <!-- Column 1: Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <img src="/images/logo.jpg" alt="Empower Digital Solutions" class="h-12 w-12 rounded-full border-2 border-empower-pink" />
+          <span class="font-heading font-bold text-xl">Empower Digital Solutions</span>
+        </div>
+        <p class="text-gray-400 mb-6 leading-relaxed">
+          Custom Code & Scale. We engineer bespoke digital solutions that help your business grow, automate, and succeed.
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="bg-slate-800 p-2 rounded-full hover:bg-empower-pink transition-colors group">
+            <Linkedin className="w-5 h-5 text-gray-300 group-hover:text-white" />
+          </a>
+          <a href="mailto:nicola@empowerdigitalsolutions.co.uk" class="bg-slate-800 p-2 rounded-full hover:bg-empower-pink transition-colors group">
+            <Mail className="w-5 h-5 text-gray-300 group-hover:text-white" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div>
+        <h3 class="font-bold text-lg mb-6 text-empower-pink">Quick Links</h3>
+        <ul class="space-y-3">
+          <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+          <li><a href="/services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+          <li><a href="/customwebapps" class="text-gray-400 hover:text-white transition-colors">Custom Apps</a></li>
+          <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Services -->
+      <div>
+        <h3 class="font-bold text-lg mb-6 text-empower-pink">Our Services</h3>
+        <ul class="space-y-3">
+          <li><a href="/services" class="text-gray-400 hover:text-white transition-colors">Bespoke Web Design</a></li>
+          <li><a href="/customwebapps" class="text-gray-400 hover:text-white transition-colors">Custom Web Applications</a></li>
+          <li><a href="/webscraping" class="text-gray-400 hover:text-white transition-colors">Web Scraping & Automation</a></li>
+          <li><a href="/design-process" class="text-gray-400 hover:text-white transition-colors">Our Process</a></li>
+          <li><a href="/services" class="text-gray-400 hover:text-white transition-colors">Digital Consulting</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact -->
+      <div>
+        <h3 class="font-bold text-lg mb-6 text-empower-pink">Contact Us</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3 text-gray-400">
+            <Mail className="w-5 h-5 text-empower-pink mt-1 flex-shrink-0" />
+            <a href="mailto:nicola@empowerdigitalsolutions.co.uk" class="hover:text-white transition-colors">nicola@empowerdigitalsolutions.co.uk</a>
+          </li>
+          <li class="flex items-start gap-3 text-gray-400">
+            <MapPin className="w-5 h-5 text-empower-pink mt-1 flex-shrink-0" />
+            <span>Stenhousemuir, Scotland</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-800 pt-8 text-center text-gray-500 text-sm">
+      <p>&copy; {currentYear} Empower Digital Solutions. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
