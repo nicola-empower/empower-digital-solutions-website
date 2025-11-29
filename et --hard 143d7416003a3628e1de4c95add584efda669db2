@@ -1,0 +1,41 @@
+[33mcommit 8368fad447bffd17e3760b2ddd29ecdc7f7aa18a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 16:36:48 2025 +0000
+
+    update
+
+[33mcommit 143d7416003a3628e1de4c95add584efda669db2[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 16:36:23 2025 +0000
+
+    initial commit: Digital Solutions
+
+[33mcommit 12185debed677564c5e1e2bbed02dcd05d250342[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 13:44:01 2025 +0000
+
+    ignore
+
+[33mcommit cf640d63ffc41b372e62ad677e9f8d428d7b7fcc[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 13:41:07 2025 +0000
+
+    Stop tracking sensitive local environment file.
+
+[33mcommit b23c6d2675ad778eb9255d160bb0d05272f18a0d[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 13:35:31 2025 +0000
+
+    health check
+
+[33mcommit 56b19c71765d16241c454073d89a1de0f7aa9f60[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 13:35:06 2025 +0000
+
+    website health check
+
+[33mcommit 153da262910590289980137df37213db4731d9ff[m
+Author: Nicola Berry <nicola@empowervaservices.co.uk>
+Date:   Sat Nov 29 00:46:30 2025 +0000
+
+    initial commit
