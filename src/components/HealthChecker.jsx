@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Activity, AlertTriangle, CheckCircle, Smartphone, Monitor, ArrowRight, X, Loader2, BarChart3, Globe, Server } from 'lucide-react';
 
 const HealthChecker = () => {
@@ -6,46 +6,43 @@ const HealthChecker = () => {
     const [platform, setPlatform] = useState('wordpress');
     const [siteSize, setSiteSize] = useState('small');
     const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState(null);
+    const [result, setResult] = useState(null); // Single result object
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [strategy, setStrategy] = useState('mobile'); // Default to mobile
+
+    // Detect user's device on mount
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const isDesktop = window.innerWidth >= 1024; // Tailwind lg breakpoint
+            setStrategy(isDesktop ? 'desktop' : 'mobile');
+        }
+    }, []);
 
     const analyzeWebsite = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        setResults(null);
+        setResult(null);
         setProgress(10);
 
         try {
-            // 1. Mobile Analysis
             setProgress(30);
-            const mobileResponse = await fetch('/api/analyze', {
+
+            // Single API Call
+            const response = await fetch('/api/analyze', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url, strategy: 'mobile' }),
+                body: JSON.stringify({ url, strategy }),
             });
-            const mobileData = await mobileResponse.json();
-            if (mobileData.error) throw new Error(`Mobile Scan Failed: ${mobileData.error}`);
 
             setProgress(60);
 
-            // 2. Desktop Analysis
-            const desktopResponse = await fetch('/api/analyze', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url, strategy: 'desktop' }),
-            });
-            const desktopData = await desktopResponse.json();
-            if (desktopData.error) throw new Error(`Desktop Scan Failed: ${desktopData.error}`);
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
 
-            setProgress(90);
-
-            setResults({
-                mobile: mobileData,
-                desktop: desktopData
-            });
+            setResult(data);
             setProgress(100);
 
         } catch (err) {
@@ -63,13 +60,10 @@ const HealthChecker = () => {
         return { name: 'Green Zone Polish', color: 'text-green-500', bg: 'bg-green-500', border: 'border-green-500', range: '90-100' };
     };
 
-    const calculatePackage = (mobileScores, desktopScores) => {
-        // Get lowest score across all categories to determine severity
-        const allScores = [
-            mobileScores.score, mobileScores.seoScore, mobileScores.accessibilityScore,
-            desktopScores.score, desktopScores.seoScore, desktopScores.accessibilityScore
-        ];
-        const minScore = Math.min(...allScores);
+    const calculatePackage = (data) => {
+        // Use the single set of scores
+        const scores = [data.score, data.seoScore, data.accessibilityScore];
+        const minScore = Math.min(...scores);
 
         // Base Package Logic
         let recommendation = {};
@@ -137,7 +131,7 @@ const HealthChecker = () => {
         );
     };
 
-    const recommendation = results ? calculatePackage(results.mobile, results.desktop) : null;
+    const recommendation = result ? calculatePackage(result) : null;
 
     return (
         <div className="w-full max-w-5xl mx-auto p-4 md:p-6">
@@ -150,7 +144,7 @@ const HealthChecker = () => {
                     Website Health Check
                 </h2>
                 <p className="text-center text-slate-500 dark:text-slate-400 mb-8">
-                    Get a comprehensive dual-scan analysis of your site's Performance, SEO, and Accessibility.
+                    Get a comprehensive analysis of your site's Performance, SEO, and Accessibility.
                 </p>
 
                 <form onSubmit={analyzeWebsite} className="space-y-6 max-w-3xl mx-auto">
@@ -219,6 +213,10 @@ const HealthChecker = () => {
                             </>
                         )}
                     </button>
+
+                    <p className="text-center text-xs text-slate-400">
+                        Running {strategy} analysis based on your current device.
+                    </p>
                 </form>
 
                 {/* Progress Bar */}
@@ -245,58 +243,41 @@ const HealthChecker = () => {
             </div>
 
             {/* Results Section */}
-            {results && (
+            {result && (
                 <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 space-y-8">
 
-                    {/* Dual Score Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                        {/* Mobile Results */}
+                    {/* Single Result Card */}
+                    <div className="max-w-4xl mx-auto">
                         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-slate-100 dark:border-slate-700">
                             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
-                                <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
-                                    <Smartphone className="w-6 h-6" />
+                                <div className={`p-3 rounded-lg ${strategy === 'mobile' ? 'bg-blue-50 text-blue-600' : 'bg-purple-50 text-purple-600'}`}>
+                                    {strategy === 'mobile' ? <Smartphone className="w-6 h-6" /> : <Monitor className="w-6 h-6" />}
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-slate-900 dark:text-white">Mobile Analysis</h3>
-                                    <p className="text-xs text-slate-500">Simulated Moto G4 • 4G Network</p>
+                                    <h3 className="font-bold text-lg text-slate-900 dark:text-white capitalize">{strategy} Analysis</h3>
+                                    <p className="text-xs text-slate-500">
+                                        {strategy === 'mobile' ? 'Simulated Moto G4 • 4G Network' : 'Simulated Desktop • Wired Connection'}
+                                    </p>
                                 </div>
                             </div>
+
                             <div className="grid grid-cols-3 gap-4 mb-6">
-                                <ScoreCard title="Speed" score={results.mobile.score} icon={Activity} />
-                                <ScoreCard title="SEO" score={results.mobile.seoScore} icon={Globe} />
-                                <ScoreCard title="UX" score={results.mobile.accessibilityScore} icon={CheckCircle} />
+                                <ScoreCard title="Speed" score={result.score} icon={Activity} />
+                                <ScoreCard title="SEO" score={result.seoScore} icon={Globe} />
+                                <ScoreCard title="UX" score={result.accessibilityScore} icon={CheckCircle} />
                             </div>
 
-                            {/* AI Insight for Mobile */}
-                            {results.mobile.aiInsight && (
+                            {/* AI Insight */}
+                            {result.aiInsight && (
                                 <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                                     <div className="flex items-center gap-2 mb-2 text-empower-pink font-bold text-xs uppercase tracking-wider">
                                         <Monitor className="w-4 h-4" /> AI Insight
                                     </div>
                                     <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                                        "{results.mobile.aiInsight}"
+                                        "{result.aiInsight}"
                                     </p>
                                 </div>
                             )}
-                        </div>
-
-                        {/* Desktop Results */}
-                        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-slate-100 dark:border-slate-700">
-                            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
-                                <div className="p-3 bg-purple-50 text-purple-600 rounded-lg">
-                                    <Monitor className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-lg text-slate-900 dark:text-white">Desktop Analysis</h3>
-                                    <p className="text-xs text-slate-500">Simulated Desktop • Wired Connection</p>
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-3 gap-4">
-                                <ScoreCard title="Speed" score={results.desktop.score} icon={Activity} />
-                                <ScoreCard title="SEO" score={results.desktop.seoScore} icon={Globe} />
-                                <ScoreCard title="UX" score={results.desktop.accessibilityScore} icon={CheckCircle} />
-                            </div>
                         </div>
                     </div>
 
@@ -372,7 +353,7 @@ const HealthChecker = () => {
                                 Enter your email to request the <strong>{recommendation.package}</strong> for <strong>{url}</strong>.
                             </p>
 
-                            <form action="https://formspree.io/f/mblkwkpp" method="POST" className="space-y-4">
+                            <form action="https://formspree.io/f/movngvvy" method="POST" className="space-y-4">
                                 <input type="hidden" name="subject" value={`New Lead: ${recommendation.package}`} />
                                 <input type="hidden" name="url" value={url} />
                                 <input type="hidden" name="platform" value={platform} />

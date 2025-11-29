@@ -51,6 +51,8 @@ export const POST: APIRoute = async ({ request }) => {
         let aiInsight = "AI analysis unavailable at this time.";
         const geminiKey = import.meta.env.GEMINI_API_KEY;
 
+        console.log('Gemini Key present:', !!geminiKey); // Debug log
+
         if (geminiKey) {
             try {
                 const prompt = `Act as a Senior Developer. Explain to a non-technical business owner why these website performance scores are hurting their revenue.
@@ -73,7 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
                 - Do not use "Hello" or generic intros. Start directly with the insight.
                 - Example tone: "A 4.2-second load time on mobile means you are likely losing ~40% of traffic..."`;
 
-                const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+                const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -81,13 +83,20 @@ export const POST: APIRoute = async ({ request }) => {
                     })
                 });
 
-                const geminiData = await geminiResponse.json();
-                if (geminiData.candidates && geminiData.candidates[0].content.parts[0].text) {
-                    aiInsight = geminiData.candidates[0].content.parts[0].text;
+                if (!geminiResponse.ok) {
+                    const errorText = await geminiResponse.text();
+                    console.error('Gemini API Error Response:', errorText);
+                } else {
+                    const geminiData = await geminiResponse.json();
+                    if (geminiData.candidates && geminiData.candidates[0].content.parts[0].text) {
+                        aiInsight = geminiData.candidates[0].content.parts[0].text;
+                    }
                 }
             } catch (error) {
-                console.error('Gemini API Error:', error);
+                console.error('Gemini API Exception:', error);
             }
+        } else {
+            console.warn('Gemini API Key is missing');
         }
 
         return new Response(JSON.stringify({

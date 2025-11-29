@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { ArrowRight, Calendar, Tag } from 'lucide-react';
+
+export const prerender = true;
+
+const posts = (await getCollection('insights')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (date: Date) => {
+	return new Date(date).toLocaleDateString('en-GB', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric',
+	});
+};
+---
+
+<Layout title="Insights | Empower Digital Solutions">
+	<main class="pt-32 pb-20 px-4 md:px-6 bg-slate-50 dark:bg-slate-950 min-h-screen">
+		<div class="max-w-7xl mx-auto">
+			
+			{/* Header */}
+			<div class="text-center mb-16">
+				<h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
+					Digital <span class="text-transparent bg-clip-text bg-linear-to-r from-empower-pink to-purple-600">Insights</span>
+				</h1>
+				<p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+					Expert advice on custom software, automation, and scaling your service business.
+				</p>
+			</div>
+
+			{/* Grid */}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{posts.map((post) => (
+					<a href={`/insights/${post.slug}`} class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-800 hover:-translate-y-1 flex flex-col h-full">
+						
+						{/* Image Placeholder (if no image) */}
+						<div class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden">
+							<div class="absolute inset-0 bg-linear-to-br from-empower-pink/20 to-purple-600/20 group-hover:scale-105 transition-transform duration-500"></div>
+                            {/* We can add actual images later, for now a nice gradient pattern */}
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black to-transparent dark:from-white"></div>
+						</div>
+
+						<div class="p-6 flex flex-col grow">
+							<div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4">
+								<div class="flex items-center gap-1">
+									<Calendar className="w-3 h-3" />
+									{formatDate(post.data.pubDate)}
+								</div>
+                                {post.data.tags && (
+                                    <div class="flex items-center gap-1">
+                                        <Tag className="w-3 h-3" />
+                                        {post.data.tags[0]}
+                                    </div>
+                                )}
+							</div>
+
+							<h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-empower-pink transition-colors line-clamp-2">
+								{post.data.title}
+							</h2>
+							
+							<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3 grow">
+								{post.data.description}
+							</p>
+
+							<div class="flex items-center text-empower-pink font-bold text-sm mt-auto">
+								Read Article <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+
+		</div>
+	</main>
+</Layout>
