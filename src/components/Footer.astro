@@ -65,8 +65,12 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="border-t border-slate-800 pt-8 text-center text-gray-500 text-sm">
+    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
       <p>&copy; {currentYear} Empower Digital Solutions. All rights reserved.</p>
+      <div class="flex gap-6 mt-4 md:mt-0">
+        <a href="/terms" class="hover:text-white transition-colors">Terms & Conditions</a>
+        <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+      </div>
     </div>
   </div>
 </footer>

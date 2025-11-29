@@ -26,3 +26,51 @@
     @apply bg-slate-900 text-gray-100;
   }
 }
+
+@layer utilities {
+  .ds-pink-text {
+    @apply text-empower-pink;
+  }
+
+  .ds-purple-text {
+    @apply text-deep-purple;
+  }
+
+  .ds-dark-purple-text {
+    @apply text-dark-violet dark:text-gray-100;
+  }
+
+  .ds-pink-bg {
+    @apply bg-empower-pink;
+  }
+
+  .ds-dark-purple-bg {
+    @apply bg-dark-violet;
+  }
+
+  .ds-pink-border {
+    @apply border-empower-pink;
+  }
+
+  .empower-gradient-text {
+    @apply bg-gradient-to-r from-deep-purple to-empower-pink bg-clip-text text-transparent;
+  }
+
+  .mid-cta-gradient {
+    @apply bg-gradient-to-r from-deep-purple to-empower-pink;
+  }
+
+  .hero-bg-digital {
+    @apply bg-slate-50 dark:bg-slate-900;
+    background-image: radial-gradient(#e9d5ff 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dark .hero-bg-digital {
+    background-image: radial-gradient(#4c1d95 1px, transparent 1px);
+  }
+
+  .interactive-card {
+    @apply border-2 border-transparent transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-empower-pink dark:bg-slate-800 dark:text-white;
+  }
+}
