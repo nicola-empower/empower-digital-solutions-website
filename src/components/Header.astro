@@ -75,7 +75,10 @@ const links = [
     </div>
 
     <div class="md:hidden flex items-center gap-4">
-      <button class="text-gray-700 dark:text-gray-200 focus:outline-none">
+      <button
+        id="mobile-menu-btn"
+        class="text-gray-700 dark:text-gray-200 focus:outline-none"
+      >
         <svg
           class="w-6 h-6"
           fill="none"
@@ -92,4 +95,40 @@ const links = [
       </button>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800"
+  >
+    <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="text-gray-700 dark:text-gray-200 hover:text-empower-pink dark:hover:text-empower-pink font-semibold transition-colors"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+      <a
+        href="/contact"
+        class="bg-empower-pink text-white font-bold py-2 px-6 rounded-lg hover:bg-vibrant-magenta transition-all shadow-md hover:shadow-lg text-center"
+      >
+        Get a Quote
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
