@@ -1,0 +1,1 @@
+import{s as o}from"./supabase.D2FDowrI.js";const{data:{session:a}}=await o.auth.getSession();a||(window.location.href="/portal");const t=document.getElementById("logout-btn");t&&t.addEventListener("click",async()=>{await o.auth.signOut(),window.location.href="/portal"});
