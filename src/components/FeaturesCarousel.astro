@@ -1,0 +1,81 @@
+---
+interface Props {
+    items: {
+        type: "image" | "video";
+        src: string;
+        alt?: string;
+    }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div
+    class="w-full overflow-hidden bg-slate-100 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl"
+>
+    <div class="relative w-full flex overflow-x-hidden">
+        <div class="animate-marquee whitespace-nowrap flex items-center py-4">
+            {/* First set of items */}
+            {
+                items.map((item) => (
+                    <div class="mx-4 w-64 md:w-80 shrink-0 rounded-lg overflow-hidden shadow-md border border-slate-200 dark:border-slate-600 aspect-video relative bg-slate-200 dark:bg-slate-900">
+                        {item.type === "video" ? (
+                            <video
+                                src={item.src}
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                                class="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <img
+                                src={item.src}
+                                alt={item.alt}
+                                class="w-full h-full object-cover"
+                            />
+                        )}
+                    </div>
+                ))
+            }
+            {/* Duplicate set for seamless loop */}
+            {
+                items.map((item) => (
+                    <div class="mx-4 w-64 md:w-80 shrink-0 rounded-lg overflow-hidden shadow-md border border-slate-200 dark:border-slate-600 aspect-video relative bg-slate-200 dark:bg-slate-900">
+                        {item.type === "video" ? (
+                            <video
+                                src={item.src}
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                                class="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <img
+                                src={item.src}
+                                alt={item.alt}
+                                class="w-full h-full object-cover"
+                            />
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .animate-marquee {
+        animation: marquee 25s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>

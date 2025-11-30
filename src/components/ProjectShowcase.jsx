@@ -18,7 +18,7 @@ const categories = [
         icon: Brain,
         description: 'Generative AI agents and automated workflow scripts.',
         projects: [
-            'ai-wedding-planner', 'project-voyager', 'trade-pro', 'inbox-zero', 'automated-invoice-process'
+            'ai-wedding-planner', 'project-voyager', 'trade-pro'
         ]
     },
     {
@@ -36,7 +36,7 @@ const categories = [
         icon: Palette,
         description: 'Award-winning design, motion graphics, and 100/100 performance.',
         projects: [
-            'cairn-architects', 'zen-den', 'aura', 'urban-stay', 'bistro-44'
+            'virtual-assistant', 'automation-specialist', 'cairn-architects', 'zen-den', 'aura', 'urban-stay', 'bistro-44'
         ]
     }
 ];

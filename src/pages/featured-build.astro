@@ -1,0 +1,484 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FeaturesCarousel from "../components/FeaturesCarousel.astro";
+import {
+  CheckCircle2,
+  ArrowRight,
+  Shield,
+  Zap,
+  Layout as LayoutIcon,
+  FileText,
+  Clock,
+  Users,
+  Rocket,
+  Atom,
+  Palette,
+  Move,
+  Sparkles,
+  Star,
+  Wrench,
+} from "lucide-react";
+
+export const prerender = true;
+
+const adminSuiteItems = [
+  { type: "image", src: "/images/vatriage.png", alt: "Task Triage Board" },
+  { type: "image", src: "/images/vatimekeeper.png", alt: "Timekeeper" },
+  { type: "image", src: "/images/vaonboarding.png", alt: "Onboarding Engine" },
+  { type: "image", src: "/images/vaproposal.png", alt: "Proposal Generator" },
+  { type: "image", src: "/images/vacontract.png", alt: "Contract Generator" },
+  { type: "image", src: "/images/vainvoice.png", alt: "Invoice Generator" },
+];
+
+const marketingItems = [
+  {
+    type: "video",
+    src: "/images/vachaos.mp4",
+    alt: "Chaos to Order Animation",
+  },
+  {
+    type: "image",
+    src: "/images/vacalculator.png",
+    alt: "Overwhelm Calculator",
+  },
+  { type: "image", src: "/images/vasaas.png", alt: "SaaS Dashboard" },
+];
+---
+
+<Layout
+  title="Empower Virtual Assistant Services | Featured Build | Empower Digital Solutions"
+>
+  <!-- Hero Section -->
+  <section class="relative bg-slate-900 text-white py-24 overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-20">
+      <div
+        class="absolute top-0 right-0 w-[600px] h-[600px] bg-empower-pink rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-deep-purple rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"
+      >
+      </div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div
+          class="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm"
+        >
+          <span class="w-2 h-2 bg-empower-pink rounded-full animate-pulse"
+          ></span>
+          Featured Build Case Study
+        </div>
+        <h1
+          class="text-4xl md:text-6xl font-bold font-heading mb-6 leading-tight"
+        >
+          Operational Architecture for the <span
+            class="text-transparent bg-clip-text bg-linear-to-r from-empower-pink to-deep-purple"
+            >Modern Virtual Assistant</span
+          >
+        </h1>
+        <p
+          class="text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed"
+        >
+          A full-stack "Virtual Assistant Operating System" built with Astro,
+          React, and Tailwind CSS. Redefining the portfolio from a brochure to a
+          command center.
+        </p>
+
+        <div class="mt-12 flex flex-wrap justify-center gap-4">
+          <a
+            href="https://virtual-assistant-services-7ynr.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center bg-empower-pink text-white font-bold py-3 px-8 rounded-lg hover:bg-vibrant-magenta transition-all transform hover:scale-105 shadow-lg"
+          >
+            View Live Project <ArrowRight className="ml-2 w-5 h-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Overview -->
+  <section class="py-20 bg-white dark:bg-slate-950">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div
+              class="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-deep-purple dark:text-purple-300"
+            >
+              <Rocket className="w-6 h-6" />
+            </div>
+            <h2 class="text-3xl font-bold text-dark-violet dark:text-white">
+              Project Overview
+            </h2>
+          </div>
+          <p
+            class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6"
+          >
+            This project redefines the Virtual Assistant portfolio. Instead of a
+            simple brochure website, <strong>Empower</strong> is a functional web
+            application that serves as both a marketing platform and an operational
+            command center.
+          </p>
+          <p
+            class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6"
+          >
+            It showcases "Empower" as an <strong
+              >"Operational Architecture"</strong
+            > service, moving away from typical "admin support" branding. The site
+            features a "Modern SaaS" aesthetic, emphasising structure, systems, and
+            efficiency.
+          </p>
+
+          <div
+            class="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border-l-4 border-empower-pink"
+          >
+            <h3 class="font-bold text-dark-violet dark:text-white mb-2">
+              The Virtual Assistant Operating System
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 italic">
+              "Stop paying a dozen subscriptions to manage one business. Your
+              most powerful tool should be the one you own."
+            </p>
+          </div>
+        </div>
+        <div class="relative">
+          <!-- Placeholder for Hero Screenshot -->
+          <div
+            class="aspect-video bg-slate-200 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center border border-slate-300 dark:border-slate-700"
+          >
+            <video
+              src="/images/empowerva.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="w-full h-full object-cover"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="py-20 bg-slate-50 dark:bg-slate-900">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div
+            class="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-deep-purple dark:text-purple-300"
+          >
+            <Star className="w-6 h-6" />
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-bold text-dark-violet dark:text-white"
+          >
+            Key Features
+          </h2>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          More than just a website. A suite of tools designed to automate and
+          organise.
+        </p>
+      </div>
+
+      <div class="space-y-24">
+        <!-- Feature 1: Command Center -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="order-2 md:order-1">
+            <!-- Placeholder for Admin Suite Screenshot -->
+            <!-- Carousel of Features -->
+            <!-- Carousel of Features -->
+            <FeaturesCarousel items={adminSuiteItems} />
+          </div>
+          <div class="order-1 md:order-2">
+            <div
+              class="inline-flex items-center gap-2 text-empower-pink font-bold mb-4"
+            >
+              <LayoutIcon className="w-6 h-6" />
+              <span>The Command Center</span>
+            </div>
+            <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+              Admin Suite & Internal Tools
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex gap-4">
+                <div
+                  class="bg-purple-100 dark:bg-purple-900/30 p-2 rounded-lg h-fit text-deep-purple dark:text-purple-300"
+                >
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Task Triage Board
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Interactive Eisenhower Matrix with drag-and-drop to
+                    prioritise tasks instantly.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div
+                  class="bg-purple-100 dark:bg-purple-900/30 p-2 rounded-lg h-fit text-deep-purple dark:text-purple-300"
+                >
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    The Timekeeper
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Built-in stopwatch and logger that generates professional
+                    PDF timesheets.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div
+                  class="bg-purple-100 dark:bg-purple-900/30 p-2 rounded-lg h-fit text-deep-purple dark:text-purple-300"
+                >
+                  <Users className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Onboarding Engine
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    3-step intake wizard capturing brand identity and generating
+                    client dossiers.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div
+                  class="bg-purple-100 dark:bg-purple-900/30 p-2 rounded-lg h-fit text-deep-purple dark:text-purple-300"
+                >
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Document Generators
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Instant PDF creation for Proposals, Contracts, and Invoices.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Feature 2: Marketing & Conversion -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div
+              class="inline-flex items-center gap-2 text-empower-pink font-bold mb-4"
+            >
+              <Zap className="w-6 h-6" />
+              <span>Marketing & Conversion</span>
+            </div>
+            <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+              Interactive & Engaging
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">
+              Designed to convert by demonstrating value immediately.
+            </p>
+            <ul class="space-y-4">
+              <li class="flex gap-4">
+                <div
+                  class="bg-pink-100 dark:bg-pink-900/30 p-2 rounded-lg h-fit text-empower-pink"
+                >
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Interactive Hero
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Visualises the "Chaos to Order" process with real-time React
+                    animations.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div
+                  class="bg-pink-100 dark:bg-pink-900/30 p-2 rounded-lg h-fit text-empower-pink"
+                >
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    Overwhelm Calculator
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Helps clients calculate the financial cost of doing busy
+                    work themselves.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div
+                  class="bg-pink-100 dark:bg-pink-900/30 p-2 rounded-lg h-fit text-empower-pink"
+                >
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">
+                    SaaS Aesthetic
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Clean, structured design using Inter font and a refined
+                    Teal, Sage, & Slate palette.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <!-- Placeholder for Calculator/Hero Screenshot -->
+            <!-- Carousel of Marketing Features -->
+            <FeaturesCarousel items={marketingItems} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="py-20 bg-white dark:bg-slate-950">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div
+            class="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-deep-purple dark:text-purple-300"
+          >
+            <Wrench className="w-6 h-6" />
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-bold text-dark-violet dark:text-white"
+          >
+            Tech Stack
+          </h2>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Built for performance, scalability, and speed.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto"
+      >
+        <div
+          class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl text-center hover:shadow-lg transition-all group"
+        >
+          <div class="flex justify-center mb-4">
+            <Rocket
+              className="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform"
+            />
+          </div>
+          <div class="font-bold text-slate-900 dark:text-white mb-2">Astro</div>
+          <div class="text-xs text-gray-500">Static Site Generation</div>
+        </div>
+        <div
+          class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl text-center hover:shadow-lg transition-all group"
+        >
+          <div class="flex justify-center mb-4">
+            <Atom
+              className="w-10 h-10 text-blue-500 group-hover:spin-slow transition-transform"
+            />
+          </div>
+          <div class="font-bold text-slate-900 dark:text-white mb-2">React</div>
+          <div class="text-xs text-gray-500">Interactive UI</div>
+        </div>
+        <div
+          class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl text-center hover:shadow-lg transition-all group"
+        >
+          <div class="flex justify-center mb-4">
+            <Palette
+              className="w-10 h-10 text-teal-400 group-hover:scale-110 transition-transform"
+            />
+          </div>
+          <div class="font-bold text-slate-900 dark:text-white mb-2">
+            Tailwind
+          </div>
+          <div class="text-xs text-gray-500">Utility-First CSS</div>
+        </div>
+        <div
+          class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl text-center hover:shadow-lg transition-all group"
+        >
+          <div class="flex justify-center mb-4">
+            <Move
+              className="w-10 h-10 text-purple-500 group-hover:scale-110 transition-transform"
+            />
+          </div>
+          <div class="font-bold text-slate-900 dark:text-white mb-2">
+            Framer Motion
+          </div>
+          <div class="text-xs text-gray-500">Animations</div>
+        </div>
+        <div
+          class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl text-center hover:shadow-lg transition-all group"
+        >
+          <div class="flex justify-center mb-4">
+            <FileText
+              className="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform"
+            />
+          </div>
+          <div class="font-bold text-slate-900 dark:text-white mb-2">
+            React PDF
+          </div>
+          <div class="text-xs text-gray-500">Document Gen</div>
+        </div>
+        <div
+          class="p-6 bg-slate-50 dark:bg-slate-900 rounded-xl text-center hover:shadow-lg transition-all group"
+        >
+          <div class="flex justify-center mb-4">
+            <Sparkles
+              className="w-10 h-10 text-yellow-500 group-hover:scale-110 transition-transform"
+            />
+          </div>
+          <div class="font-bold text-slate-900 dark:text-white mb-2">
+            Lucide
+          </div>
+          <div class="text-xs text-gray-500">Iconography</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section
+    class="py-24 bg-gradient-to-br from-dark-violet to-deep-purple text-white text-center"
+  >
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-8">
+        Ready to Swap Subscriptions for Structure?
+      </h2>
+      <p class="text-xl text-purple-100 max-w-3xl mx-auto mb-12 font-light">
+        You deserve systems that elevate your brand and guarantee your
+        efficiency. The Empower VA OS proves we don't just build websites—we
+        build revenue-generating Operational Architecture.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <a
+          href="/contact"
+          class="bg-white text-deep-purple font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all text-lg"
+        >
+          Architect My Business
+        </a>
+        <a
+          href="https://virtual-assistant-services-7ynr.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-transparent border-2 border-white text-white font-bold py-4 px-10 rounded-full hover:bg-white hover:text-deep-purple transition-all text-lg"
+        >
+          View Live Demo
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

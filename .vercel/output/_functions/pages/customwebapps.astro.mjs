@@ -1,6 +1,6 @@
-import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BhDW_YFo.mjs';
+import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BrvUMNAk.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_ClrL5xxS.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BDQ9EGuR.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { Laptop, Brain, Calculator, Palette, ExternalLink } from 'lucide-react';
@@ -28,9 +28,7 @@ const categories = [
     projects: [
       "ai-wedding-planner",
       "project-voyager",
-      "trade-pro",
-      "inbox-zero",
-      "automated-invoice-process"
+      "trade-pro"
     ]
   },
   {
@@ -52,6 +50,8 @@ const categories = [
     icon: Palette,
     description: "Award-winning design, motion graphics, and 100/100 performance.",
     projects: [
+      "virtual-assistant",
+      "automation-specialist",
       "cairn-architects",
       "zen-den",
       "aura",
@@ -127,7 +127,7 @@ const projects = [
     slug: "vowsuite",
     title: "VowSuite",
     shortTagline: "Full-stack wedding planning ecosystem.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/vowsuitethumbnail.png",
     // Placeholder or use existing if available
     techStack: ["React", "Node.js", "PostgreSQL"],
     year: "2024",
@@ -138,7 +138,7 @@ const projects = [
     slug: "va-assist",
     title: "VAAssist",
     shortTagline: "Task management for virtual assistants.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Vaassistthumbnail.png",
     techStack: ["Vue.js", "Firebase", "Tailwind"],
     year: "2024",
     liveUrl: "/vaassist",
@@ -148,7 +148,7 @@ const projects = [
     slug: "client-portal",
     title: "Empower Client Portal",
     shortTagline: "Frictionless customer onboarding and file sharing.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/clientportalthumbnail.png",
     techStack: ["React", "Supabase", "Stripe"],
     year: "2025",
     liveUrl: "/clientportal",
@@ -158,7 +158,7 @@ const projects = [
     slug: "project-dana",
     title: "Project DANA",
     shortTagline: "Secure legal document automation vault.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Danathumbnail.png",
     techStack: ["Next.js", "AWS", "Python"],
     year: "2025",
     liveUrl: "/digitalplanner",
@@ -188,7 +188,7 @@ const projects = [
     slug: "medi-sync",
     title: "Medi-Sync",
     shortTagline: "HIPAA-compliant health management portal.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Medisyncthumbnail.png",
     techStack: ["React", "Node.js", "MongoDB"],
     year: "2024",
     liveUrl: "#",
@@ -199,7 +199,7 @@ const projects = [
     slug: "ai-wedding-planner",
     title: "AI Wedding Planner",
     shortTagline: "Generative AI for wedding itineraries and vows.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Weddingthumbnail.png",
     techStack: ["OpenAI API", "Python", "React"],
     year: "2025",
     liveUrl: "#",
@@ -209,7 +209,7 @@ const projects = [
     slug: "project-voyager",
     title: "Project Voyager",
     shortTagline: "AI-driven travel itinerary generation.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Voyagerthumbnail.png",
     techStack: ["LangChain", "Next.js", "Mapbox"],
     year: "2025",
     liveUrl: "#",
@@ -219,30 +219,10 @@ const projects = [
     slug: "trade-pro",
     title: "TradePro",
     shortTagline: "AI tools for tradespeople: quoting and scheduling.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Tradeprothumbnail.png",
     techStack: ["React Native", "Firebase", "Stripe"],
     year: "2024",
     liveUrl: "https://empowervaservices.co.uk/uber-for-trades/",
-    status: "live"
-  },
-  {
-    slug: "inbox-zero",
-    title: "Inbox Zero",
-    shortTagline: "Email processing and classification engine.",
-    thumbnail: "/images/project_placeholder.png",
-    techStack: ["Python", "Gmail API", "OpenAI"],
-    year: "2024",
-    liveUrl: "/inbox-zero",
-    status: "internal"
-  },
-  {
-    slug: "automated-invoice-process",
-    title: "AutoInvoice",
-    shortTagline: "End-to-end automated invoicing workflow.",
-    thumbnail: "/images/project_placeholder.png",
-    techStack: ["Zapier", "Python", "Xero API"],
-    year: "2023",
-    liveUrl: "#",
     status: "live"
   },
   // FinTech & Logic
@@ -250,7 +230,7 @@ const projects = [
     slug: "finance-ninja",
     title: "Finance Ninja",
     shortTagline: "Investment portfolio tracking and ROI analysis.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Financeninjathumbnail.png",
     techStack: ["Vue.js", "D3.js", "Plaid API"],
     year: "2024",
     liveUrl: "#",
@@ -260,7 +240,7 @@ const projects = [
     slug: "isa-time-machine",
     title: "ISA Time Machine",
     shortTagline: "Long-term savings projection algorithms.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Isathumbnail.png",
     techStack: ["React", "Chart.js", "Math.js"],
     year: "2024",
     liveUrl: "#",
@@ -270,7 +250,7 @@ const projects = [
     slug: "quote-command",
     title: "Quote Command",
     shortTagline: "Dynamic proposal generation engine.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/quotecommandthumbnail.png",
     techStack: ["Next.js", "Puppeteer", "Stripe"],
     year: "2024",
     liveUrl: "#",
@@ -280,7 +260,7 @@ const projects = [
     slug: "automation-roi-calculator",
     title: "Automation ROI Calc",
     shortTagline: "Calculate the value of automating your workflows.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/autoroithumbnail.png",
     techStack: ["React", "Tailwind"],
     year: "2023",
     liveUrl: "#",
@@ -290,7 +270,7 @@ const projects = [
     slug: "automation-grader",
     title: "Automation Grader",
     shortTagline: "Assess your business automation maturity.",
-    thumbnail: "/images/project_placeholder.png",
+    thumbnail: "/images/Autograderthumbnail.png",
     techStack: ["Typeform", "Zapier", "Notion"],
     year: "2023",
     liveUrl: "#",
@@ -328,13 +308,23 @@ const projects = [
     status: "live"
   },
   {
-    slug: "memory-match-game",
-    title: "Memory Match",
-    shortTagline: "Interactive browser-based game.",
-    thumbnail: "/images/project_placeholder.png",
-    techStack: ["Vanilla JS", "CSS3", "HTML5"],
-    year: "2023",
-    liveUrl: "#",
+    slug: "automation-specialist",
+    title: "Empower Automation",
+    shortTagline: "Custom Google Workspace Automation & Business Process Optimisation*",
+    thumbnail: "/images/empowerautothumbnail.png",
+    techStack: ["Astro", "React", "Tailwind"],
+    year: "2024",
+    liveUrl: "https://empower-automation.vercel.app/",
+    status: "live"
+  },
+  {
+    slug: "virtual-assistant",
+    title: "Empower Virtual Assistant",
+    shortTagline: "Virtual Assistant Operating System.",
+    thumbnail: "/images/empowervathumbnail.png",
+    techStack: ["Astro", "React", "Tailwind"],
+    year: "2024",
+    liveUrl: "https://virtual-assistant-services-7ynr.vercel.app/",
     status: "live"
   }
 ];

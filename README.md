@@ -15,18 +15,25 @@ A modern, high-performance website for **Empower Digital Solutions**, built to s
 
 -   **High Performance:** Static Site Generation (SSG) with Astro for lightning-fast load times.
 -   **Modern Design:** Custom dark/light theme, glassmorphism effects, and responsive layouts.
--   **Fully Responsive:** Optimized for all devices, from mobile phones to large desktops.
+-   **Fully Responsive:** Optimised for all devices, from mobile phones to large desktops.
+-   **Production Ready:**
+    -   **SEO:** Sitemap and Robots.txt configured.
+    -   **Analytics:** Integrated Vercel Analytics.
+    -   **PWA:** Installable as a native app with Web Manifest.
 -   **Custom Components:**
     -   Interactive **Project Showcase** with filtering.
     -   **"Inbox Zero" Terminal Demo** (React).
     -   **Theme Toggle** for dark/light mode preference.
+    -   **Auto-Scrolling Carousels** for feature showcases.
 -   **Dedicated Pages:**
-    -   **Home:** Hero section, portfolio grid, testimonials.
+    -   **Home:** Hero section, portfolio grid, testimonials, and trust signals.
     -   **Services:** Detailed service offerings with FAQ and migration guide.
     -   **Custom Apps:** Showcase of bespoke web applications.
+    -   **Featured Build:** Deep dive into the "Operational Architecture" case study.
     -   **About:** Founder's story and core values.
     -   **Contact:** Integrated contact form.
     -   **Migration Guide:** Digital protocol for domain migration (Web & PDF).
+    -   **404:** Custom "Lost in the Digital Void" error page.
 
 ##  Project Structure
 

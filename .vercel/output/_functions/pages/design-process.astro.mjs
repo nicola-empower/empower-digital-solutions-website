@@ -1,11 +1,11 @@
-import { c as createComponent, a as createAstro, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BhDW_YFo.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BrvUMNAk.mjs';
 import 'piccolore';
 import { Search, CheckCircle, LayoutTemplate, Code, Rocket, Atom, Palette, FileCode, Server, Cloud, ArrowRight } from 'lucide-react';
-import { $ as $$Layout } from '../chunks/Layout_ClrL5xxS.mjs';
-import { $ as $$TechStackCard } from '../chunks/TechStackCard_BrDA2MaZ.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BDQ9EGuR.mjs';
+import { $ as $$TechStackCard } from '../chunks/TechStackCard_BKmAzVKO.mjs';
 export { renderers } from '../renderers.mjs';
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$DesignProcess = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$DesignProcess;

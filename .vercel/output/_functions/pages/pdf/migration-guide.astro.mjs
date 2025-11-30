@@ -1,33 +1,33 @@
-import { c as createComponent, a as createAstro, r as renderComponent, b as renderTemplate, m as maybeRenderHead, i as renderHead } from '../../chunks/astro/server_BhDW_YFo.mjs';
+import { c as createComponent, b as createAstro, r as renderComponent, a as renderTemplate, m as maybeRenderHead, i as renderHead } from '../../chunks/astro/server_BrvUMNAk.mjs';
 import 'piccolore';
 /* empty css                                    */
 /* empty css                                              */
-import { $ as $$ } from '../../chunks/.Layout_B-ocv1Hb.mjs';
-import { $ as $$ShieldCheck } from '../../chunks/ShieldCheck_CbJ04cRT.mjs';
+import { $ as $$ } from '../../chunks/.Layout_FbZUncEH.mjs';
+import { $ as $$ShieldCheck } from '../../chunks/ShieldCheck_coNIlItC.mjs';
 export { renderers } from '../../renderers.mjs';
 
-const $$Astro$3 = createAstro();
+const $$Astro$3 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$AlertTriangle = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$AlertTriangle;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "triangle-alert", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path> <path d="M12 9v4"></path> <path d="M12 17h.01"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/AlertTriangle.astro", void 0);
 
-const $$Astro$2 = createAstro();
+const $$Astro$2 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Mail = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$Mail;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "mail", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path> <rect x="2" y="4" width="20" height="16" rx="2"></rect> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Mail.astro", void 0);
 
-const $$Astro$1 = createAstro();
+const $$Astro$1 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Printer = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$Printer;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "printer", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path> <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path> <rect x="6" y="14" width="12" height="8" rx="1"></rect> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Printer.astro", void 0);
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Server = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Server;

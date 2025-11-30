@@ -1,0 +1,78 @@
+---
+import { Quote } from "lucide-react";
+
+const testimonials = [
+    {
+        name: "Sarah Jenkins",
+        role: "CEO, TechFlow",
+        content:
+            "Empower Digital Solutions completely transformed our internal workflows. The custom dashboard they built saved us 20+ hours a week.",
+        initials: "SJ",
+        color: "bg-purple-100 text-purple-600",
+    },
+    {
+        name: "David Ross",
+        role: "Founder, Ross Architecture",
+        content:
+            "The attention to detail is unmatched. Our new website isn't just beautiful; it's a lead generation machine. Highly recommended.",
+        initials: "DR",
+        color: "bg-pink-100 text-pink-600",
+    },
+    {
+        name: "Elena Rodriguez",
+        role: "Operations Director, Swift Logistics",
+        content:
+            "We needed a complex automation system, and they delivered beyond expectations. Professional, fast, and incredibly skilled.",
+        initials: "ER",
+        color: "bg-blue-100 text-blue-600",
+    },
+];
+---
+
+<section class="py-20 bg-white dark:bg-slate-900">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2
+                class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+            >
+                Trusted by Visionaries
+            </h2>
+            <p
+                class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto"
+            >
+                We partner with ambitious leaders to build digital solutions
+                that drive real results.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            {
+                testimonials.map((testimonial) => (
+                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-2xl relative group hover:-translate-y-1 transition-transform duration-300">
+                        <Quote className="w-10 h-10 text-empower-pink/20 absolute top-6 right-6" />
+
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${testimonial.color}`}
+                            >
+                                {testimonial.initials}
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white">
+                                    {testimonial.name}
+                                </h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">
+                                    {testimonial.role}
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            "{testimonial.content}"
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
