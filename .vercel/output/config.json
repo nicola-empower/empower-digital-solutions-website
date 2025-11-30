@@ -24,10 +24,6 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^/customwebapps/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/design-process/?$",
 			"dest": "_render"
 		},
