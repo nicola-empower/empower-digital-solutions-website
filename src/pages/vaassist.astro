@@ -1,4 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
 
+<Layout title="VA Assist Demo | Empower Digital Solutions">
+  <style>
     .va-demo-wrapper {
         font-family: 'Inter', sans-serif;
         /* This gradient is key to the "glass" effect */
@@ -806,23 +811,25 @@
             const sinceEl = document.getElementById('client-drawer-since');
             const notesEl = document.getElementById('client-drawer-notes');
 
-            if (nameEl) nameEl.textContent = data.name;
-            if (initialsEl) initialsEl.textContent = data.initials;
-            if (emailEl) emailEl.textContent = data.email;
-            if (phoneEl) phoneEl.textContent = data.phone;
-            if (companyEl) companyEl.textContent = data.company;
-            if (industryEl) industryEl.textContent = data.industry;
-            if (sinceEl) sinceEl.textContent = data.since;
-            if (notesEl) notesEl.textContent = data.notes;
+            if (nameEl) nameEl.innerText = data.name;
+            if (initialsEl) initialsEl.innerText = data.initials;
+            if (emailEl) emailEl.innerText = data.email;
+            if (phoneEl) phoneEl.innerText = data.phone;
+            if (companyEl) companyEl.innerText = data.company;
+            if (industryEl) industryEl.innerText = data.industry;
+            if (sinceEl) sinceEl.innerText = data.since;
+            if (notesEl) notesEl.innerText = data.notes;
 
             // Show
             drawer.classList.add('open');
             drawerOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         };
 
         const closeDrawer = () => {
             if (drawer) drawer.classList.remove('open');
             if (drawerOverlay) drawerOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
         };
 
         clientCards.forEach(card => {
@@ -834,7 +841,6 @@
 
         if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
         if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
-
 
         // --- Time Tracker Logic ---
         let timerInterval: any;
@@ -849,10 +855,10 @@
         const toggleText = document.getElementById('timer-toggle-text');
 
         const formatTime = (totalSeconds: number) => {
-            const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
-            const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
-            const s = (totalSeconds % 60).toString().padStart(2, '0');
-            return `${h}:${m}:${s}`;
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         };
 
         if (timerToggleBtn) {
@@ -863,7 +869,7 @@
                     isRunning = false;
                     if (playIcon) playIcon.classList.remove('hidden');
                     if (pauseIcon) pauseIcon.classList.add('hidden');
-                    if (toggleText) toggleText.textContent = 'Resume Timer';
+                    if (toggleText) toggleText.innerText = 'Resume Timer';
                     timerToggleBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
                     timerToggleBtn.classList.add('bg-brand-green', 'hover:bg-emerald-600');
                 } else {
@@ -871,13 +877,13 @@
                     isRunning = true;
                     if (playIcon) playIcon.classList.add('hidden');
                     if (pauseIcon) pauseIcon.classList.remove('hidden');
-                    if (toggleText) toggleText.textContent = 'Stop Timer';
+                    if (toggleText) toggleText.innerText = 'Stop Timer';
                     timerToggleBtn.classList.remove('bg-brand-green', 'hover:bg-emerald-600');
                     timerToggleBtn.classList.add('bg-red-500', 'hover:bg-red-600');
 
                     timerInterval = setInterval(() => {
                         seconds++;
-                        if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
+                        if (timerDisplay) timerDisplay.innerText = formatTime(seconds);
                     }, 1000);
                 }
             });
@@ -888,16 +894,17 @@
                 clearInterval(timerInterval);
                 isRunning = false;
                 seconds = 0;
-                if (timerDisplay) timerDisplay.textContent = '00:00:00';
+                if (timerDisplay) timerDisplay.innerText = "00:00:00";
                 if (playIcon) playIcon.classList.remove('hidden');
                 if (pauseIcon) pauseIcon.classList.add('hidden');
-                if (toggleText) toggleText.textContent = 'Start Timer';
+                if (toggleText) toggleText.innerText = 'Start Timer';
                 if (timerToggleBtn) {
                     timerToggleBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
                     timerToggleBtn.classList.add('bg-brand-green', 'hover:bg-emerald-600');
                 }
             });
         }
+
     });
   </script>
 </Layout>

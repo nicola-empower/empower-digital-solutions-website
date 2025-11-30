@@ -1,11 +1,21 @@
+---
+import { 
   Cloud, 
   Search, 
   Users, 
   LayoutTemplate, 
   Code, 
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Rocket,
+  Atom,
+  Palette,
+  FileCode,
+  Server
 } from 'lucide-react';
+
+import Layout from '../layouts/Layout.astro';
+import TechStackCard from '../components/TechStackCard.astro';
 
 const timeline = [
   {
@@ -110,37 +120,145 @@ const faqs = [
       <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-purple-200 transform -translate-x-1/2"></div>
 
       <div class="space-y-12 md:space-y-24">
-        {timeline.map((item, index) => (
-          <div class={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-            
-            <!-- Icon/Marker -->
-            <div class="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-empower-pink text-white shadow-lg border-4 border-white">
-              <item.icon className="w-6 h-6" />
-            </div>
-
-            <!-- Content Box -->
-            <div class="w-full md:w-1/2 p-6 md:p-12">
-              <div class={`bg-white p-8 rounded-2xl shadow-lg border-t-4 border-empower-pink hover:-translate-y-1 transition-transform duration-300 ${index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'}`}>
-                <span class="text-sm font-bold text-empower-pink uppercase tracking-wider mb-2 block">{item.phase}</span>
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">"{item.title}"</h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">
-                  {item.desc}
-                </p>
-                <ul class="space-y-2">
-                  {item.details.map((detail) => (
-                    <li class="flex items-start text-sm text-slate-700">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <!-- Empty Space for alternating layout -->
-            <div class="w-full md:w-1/2"></div>
+        <!-- Phase 1 -->
+        <div class="relative flex flex-col md:flex-row items-center md:flex-row-reverse">
+          <div class="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-empower-pink text-white shadow-lg border-4 border-white">
+            <Search className="w-6 h-6" />
           </div>
-        ))}
+          <div class="w-full md:w-1/2 p-6 md:p-12">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-empower-pink hover:-translate-y-1 transition-transform duration-300 md:mr-12">
+              <span class="text-sm font-bold text-empower-pink uppercase tracking-wider mb-2 block">Phase 1: Discovery & Strategy</span>
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">"The Blueprint"</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">
+                Before opening a code editor, we sit down to understand your business. We don't just ask what you want it to look like; we ask what you need it to do.
+              </p>
+              <ul class="space-y-2">
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Competitor Analysis & Market Research
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  SEO Audit of your current presence
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Definition of User Personas
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Sitemap & Information Architecture planning
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2"></div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="relative flex flex-col md:flex-row items-center">
+          <div class="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-empower-pink text-white shadow-lg border-4 border-white">
+            <LayoutTemplate className="w-6 h-6" />
+          </div>
+          <div class="w-full md:w-1/2 p-6 md:p-12">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-empower-pink hover:-translate-y-1 transition-transform duration-300 md:ml-12">
+              <span class="text-sm font-bold text-empower-pink uppercase tracking-wider mb-2 block">Phase 2: Design & Prototyping</span>
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">"The Visuals"</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">
+                We move into high-fidelity design using modern tools like Figma. You will see exactly how your site will look on mobile, tablet, and desktop before a single line of code is written.
+              </p>
+              <ul class="space-y-2">
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Wireframing (The skeleton of the site)
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  High-Fidelity UI Design
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Interactive Prototypes
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Feedback Loops & Revisions
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2"></div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="relative flex flex-col md:flex-row items-center md:flex-row-reverse">
+          <div class="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-empower-pink text-white shadow-lg border-4 border-white">
+            <Code className="w-6 h-6" />
+          </div>
+          <div class="w-full md:w-1/2 p-6 md:p-12">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-empower-pink hover:-translate-y-1 transition-transform duration-300 md:mr-12">
+              <span class="text-sm font-bold text-empower-pink uppercase tracking-wider mb-2 block">Phase 3: Development & Engineering</span>
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">"The Engine Room"</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">
+                This is where we differ from the rest. We don't rely on bloated drag-and-drop builders. We hand-code your site using modern frameworks to ensure it is lightning fast, secure, and accessible.
+              </p>
+              <ul class="space-y-2">
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Custom Development (HTML5, Tailwind CSS, Astro/React)
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Performance Optimization (Targeting 100/100 Google Lighthouse scores)
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Accessibility Compliance (WCAG 2.1)
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  CMS Integration
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2"></div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="relative flex flex-col md:flex-row items-center">
+          <div class="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-empower-pink text-white shadow-lg border-4 border-white">
+            <Rocket className="w-6 h-6" />
+          </div>
+          <div class="w-full md:w-1/2 p-6 md:p-12">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-empower-pink hover:-translate-y-1 transition-transform duration-300 md:ml-12">
+              <span class="text-sm font-bold text-empower-pink uppercase tracking-wider mb-2 block">Phase 4: Launch & Growth</span>
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">"The Liftoff"</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">
+                Launch day is just the beginning. We rigorously test across devices and browsers to ensure a flawless experience. Once live, we hand you the keys and the training manual.
+              </p>
+              <ul class="space-y-2">
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Cross-browser & Mobile Testing
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Search Engine Indexing
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Security Headers & SSL Setup
+                </li>
+                <li class="flex items-start text-sm text-slate-700">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  Client Training Session & Handoff
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2"></div>
+        </div>
       </div>
 
     </div>
