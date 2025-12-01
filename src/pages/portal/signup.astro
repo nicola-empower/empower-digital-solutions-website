@@ -48,6 +48,22 @@ import Layout from "../../layouts/Layout.astro";
                     />
                 </div>
 
+                <div class="flex items-center gap-2">
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                        class="w-4 h-4 bg-slate-800 border border-slate-700 rounded text-purple-600 focus:ring-purple-500"
+                    />
+                    <label for="terms" class="text-sm text-slate-400">
+                        I agree to the <a
+                            href="/terms"
+                            class="text-purple-400 hover:text-purple-300 underline"
+                            >Terms and Conditions</a
+                        >
+                    </label>
+                </div>
+
                 <button
                     type="submit"
                     class="w-full bg-purple-600 text-white font-bold py-2 rounded-lg hover:bg-purple-700 transition-colors"

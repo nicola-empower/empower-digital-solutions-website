@@ -1,13 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import InvoiceGenerator from './admin/InvoiceGenerator';
 
 export default function AdminDashboard() {
+    interface Client {
+        id: string;
+        full_name: string;
+        email: string;
+    }
+
+    interface Project {
+        id: string;
+        created_at: string;
+        client_id: string;
+        name: string;
+        workflow_type: string;
+        status: string;
+        progress: number;
+        profiles?: {
+            full_name: string;
+            company_name: string;
+        };
+    }
+
+    interface ActivityLog {
+        id: string;
+        created_at: string;
+        message: string;
+        projects?: {
+            name: string;
+        };
+    }
+
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState('dashboard');
     const [stats, setStats] = useState({ clients: 0, activeProjects: 0, pendingActions: 0 });
-    const [projects, setProjects] = useState([]);
-    const [activities, setActivities] = useState([]);
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [activities, setActivities] = useState<ActivityLog[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [clients, setClients] = useState([]);
+    const [clients, setClients] = useState<Client[]>([]);
     const [formData, setFormData] = useState({
         clientId: '',
         name: '',
@@ -66,7 +97,7 @@ export default function AdminDashboard() {
         setShowModal(true);
     };
 
-    const handleCreateProject = async (e) => {
+    const handleCreateProject = async (e: React.FormEvent) => {
         e.preventDefault();
         const { error } = await supabase.from('projects').insert({
             client_id: formData.clientId,
@@ -98,85 +129,105 @@ export default function AdminDashboard() {
                         <p className="text-slate-400">Welcome back, Administrator.</p>
                     </div>
                     <div className="flex gap-4">
+                        <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-800">
+                            <button
+                                onClick={() => setActiveTab('dashboard')}
+                                className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'dashboard' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
+                            >
+                                Dashboard
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('invoices')}
+                                className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'invoices' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
+                            >
+                                Invoice Generator
+                            </button>
+                        </div>
                         <button onClick={handleLogout} className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700 transition-colors">Logout</button>
                         <button onClick={openNewClientModal} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-bold">+ New Client</button>
                     </div>
                 </div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                        <h3 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Total Clients</h3>
-                        <p className="text-4xl font-bold text-white">{stats.clients}</p>
-                    </div>
-                    <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                        <h3 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Active Projects</h3>
-                        <p className="text-4xl font-bold text-white">{stats.activeProjects}</p>
-                    </div>
-                    <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                        <h3 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Pending Actions</h3>
-                        <p className="text-4xl font-bold text-white">{stats.pendingActions}</p>
-                    </div>
-                </div>
+                {activeTab === 'dashboard' ? (
+                    <>
+                        {/* Stats Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                                <h3 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Total Clients</h3>
+                                <p className="text-4xl font-bold text-white">{stats.clients}</p>
+                            </div>
+                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                                <h3 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Active Projects</h3>
+                                <p className="text-4xl font-bold text-white">{stats.activeProjects}</p>
+                            </div>
+                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                                <h3 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Pending Actions</h3>
+                                <p className="text-4xl font-bold text-white">{stats.pendingActions}</p>
+                            </div>
+                        </div>
 
-                {/* Portfolios Table */}
-                <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
-                    <div className="p-6 border-b border-slate-800">
-                        <h2 className="text-xl font-bold text-white">All Portfolios</h2>
-                    </div>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className="bg-slate-950/50 text-slate-400 text-xs uppercase tracking-wider">
-                                    <th className="p-6 font-medium">Client</th>
-                                    <th className="p-6 font-medium">Workflow</th>
-                                    <th className="p-6 font-medium">Progress</th>
-                                    <th className="p-6 font-medium">Status</th>
-                                    <th className="p-6 font-medium text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-800">
-                                {projects.map((project) => (
-                                    <tr key={project.id} className="hover:bg-slate-800/50 transition-colors">
-                                        <td className="p-6">
-                                            <div className="font-bold text-white">{project.profiles?.full_name || 'Unknown'}</div>
-                                            <div className="text-sm text-slate-400">{project.profiles?.company_name || 'No Company'}</div>
-                                        </td>
-                                        <td className="p-6">
-                                            <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded-full text-xs border border-slate-700">
-                                                {project.workflow_type || 'General'}
-                                            </span>
-                                        </td>
-                                        <td className="p-6">
-                                            <div className="flex items-center gap-3">
-                                                <div className="flex-1 h-2 bg-slate-800 rounded-full w-24 overflow-hidden">
-                                                    <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${project.progress}%` }}></div>
-                                                </div>
-                                                <span className="text-sm text-slate-400">{project.progress}%</span>
-                                            </div>
-                                        </td>
-                                        <td className="p-6">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${project.status === 'Active' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' :
-                                                    project.status === 'Pending' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' :
-                                                        'bg-slate-800 text-slate-400'
-                                                }`}>
-                                                {project.status}
-                                            </span>
-                                        </td>
-                                        <td className="p-6 text-right">
-                                            <a href={`/admin/project/${project.id}`} className="text-purple-400 hover:text-purple-300 font-medium text-sm">Manage &rarr;</a>
-                                        </td>
-                                    </tr>
-                                ))}
-                                {projects.length === 0 && (
-                                    <tr>
-                                        <td colSpan={5} className="p-8 text-center text-slate-500">No active projects found.</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                        {/* Portfolios Table */}
+                        <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+                            <div className="p-6 border-b border-slate-800">
+                                <h2 className="text-xl font-bold text-white">All Portfolios</h2>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead>
+                                        <tr className="bg-slate-950/50 text-slate-400 text-xs uppercase tracking-wider">
+                                            <th className="p-6 font-medium">Client</th>
+                                            <th className="p-6 font-medium">Workflow</th>
+                                            <th className="p-6 font-medium">Progress</th>
+                                            <th className="p-6 font-medium">Status</th>
+                                            <th className="p-6 font-medium text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-800">
+                                        {projects.map((project) => (
+                                            <tr key={project.id} className="hover:bg-slate-800/50 transition-colors">
+                                                <td className="p-6">
+                                                    <div className="font-bold text-white">{project.profiles?.full_name || 'Unknown'}</div>
+                                                    <div className="text-sm text-slate-400">{project.profiles?.company_name || 'No Company'}</div>
+                                                </td>
+                                                <td className="p-6">
+                                                    <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded-full text-xs border border-slate-700">
+                                                        {project.workflow_type || 'General'}
+                                                    </span>
+                                                </td>
+                                                <td className="p-6">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="flex-1 h-2 bg-slate-800 rounded-full w-24 overflow-hidden">
+                                                            <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${project.progress}%` }}></div>
+                                                        </div>
+                                                        <span className="text-sm text-slate-400">{project.progress}%</span>
+                                                    </div>
+                                                </td>
+                                                <td className="p-6">
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${project.status === 'Active' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' :
+                                                        project.status === 'Pending' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' :
+                                                            'bg-slate-800 text-slate-400'
+                                                        }`}>
+                                                        {project.status}
+                                                    </span>
+                                                </td>
+                                                <td className="p-6 text-right">
+                                                    <a href={`/admin/project/${project.id}`} className="text-purple-400 hover:text-purple-300 font-medium text-sm">Manage &rarr;</a>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        {projects.length === 0 && (
+                                            <tr>
+                                                <td colSpan={5} className="p-8 text-center text-slate-500">No active projects found.</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <InvoiceGenerator />
+                )}
             </div>
 
             {/* Live Updates Sidebar */}
