@@ -2,21 +2,21 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Client Portal | Empower Digital Solutions">
+<Layout title="Sign Up | Client Portal">
     <div
         class="min-h-screen flex items-center justify-center bg-slate-950 px-4"
     >
         <div
             class="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-2xl w-full max-w-md"
         >
-            <h1 class="text-2xl font-bold text-white mb-6 text-center">
-                Client Portal
+            <h1 class="text-2xl font-bold text-white mb-2 text-center">
+                Create Account
             </h1>
             <p class="text-slate-400 text-center mb-8">
-                Login to view your project status and documents.
+                Join the Empower Client Portal to track your project.
             </p>
 
-            <form id="portal-login-form" class="space-y-4">
+            <form id="signup-form" class="space-y-4">
                 <div>
                     <label
                         for="email"
@@ -28,6 +28,7 @@ import Layout from "../../layouts/Layout.astro";
                         id="email"
                         required
                         class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                        placeholder="you@company.com"
                     />
                 </div>
 
@@ -41,7 +42,9 @@ import Layout from "../../layouts/Layout.astro";
                         type="password"
                         id="password"
                         required
+                        minlength="6"
                         class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                        placeholder="••••••••"
                     />
                 </div>
 
@@ -49,26 +52,21 @@ import Layout from "../../layouts/Layout.astro";
                     type="submit"
                     class="w-full bg-purple-600 text-white font-bold py-2 rounded-lg hover:bg-purple-700 transition-colors"
                 >
-                    Access Portal
+                    Sign Up
                 </button>
             </form>
 
             <div class="mt-6 text-center">
                 <p class="text-slate-400 text-sm">
-                    New client?
+                    Already have an account?
                     <a
-                        href="/portal/signup"
-                        class="text-purple-400 hover:text-purple-300 font-bold"
-                        >Create an account</a
+                        href="/portal"
+                        class="text-purple-400 hover:text-purple-300">Login</a
                     >
                 </p>
             </div>
 
-            <p
-                id="error-msg"
-                class="text-red-400 text-sm mt-4 text-center hidden"
-            >
-            </p>
+            <p id="msg" class="text-sm mt-4 text-center hidden"></p>
         </div>
     </div>
 </Layout>
@@ -76,8 +74,8 @@ import Layout from "../../layouts/Layout.astro";
 <script>
     import { supabase } from "../../lib/supabase";
 
-    const form = document.getElementById("portal-login-form");
-    const errorMsg = document.getElementById("error-msg");
+    const form = document.getElementById("signup-form");
+    const msg = document.getElementById("msg");
 
     if (form) {
         form.addEventListener("submit", async (e) => {
@@ -88,18 +86,24 @@ import Layout from "../../layouts/Layout.astro";
                 document.getElementById("password") as HTMLInputElement
             ).value;
 
-            const { data, error } = await supabase.auth.signInWithPassword({
+            const { data, error } = await supabase.auth.signUp({
                 email,
                 password,
             });
 
-            if (error) {
-                if (errorMsg) {
-                    errorMsg.textContent = error.message;
-                    errorMsg.classList.remove("hidden");
+            if (msg) {
+                msg.classList.remove("hidden");
+                if (error) {
+                    msg.textContent = error.message;
+                    msg.classList.add("text-red-400");
+                } else {
+                    msg.textContent =
+                        "Account created! Redirecting to onboarding...";
+                    msg.classList.add("text-green-400");
+                    setTimeout(() => {
+                        window.location.href = "/portal/onboarding";
+                    }, 1500);
                 }
-            } else {
-                window.location.href = "/portal/dashboard";
             }
         });
     }

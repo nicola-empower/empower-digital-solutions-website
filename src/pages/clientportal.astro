@@ -1,85 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import ClientDashboard from "../components/ClientDashboard";
 
 export const prerender = true;
 ---
 
-<Layout title="Custom Client Portals | Automated Onboarding Demo | Empower VA Services">
+<Layout title="Client Portal Demo | Empower Digital Solutions">
   <style>
-    .checkbox-custom {
-      appearance: none;
-      background-color: #fff;
-      border: 2px solid #cbd5e1;
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 0.375rem;
-      display: inline-block;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .checkbox-custom:checked {
-      background-color: #82a784;
-      border-color: #82a784;
-      transform: scale(1.1);
-    }
-
-    .checkbox-custom:checked::after {
-      content: '✓';
-      font-size: 1.25rem;
-      color: white;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      line-height: 1;
-    }
-
-    .view-container {
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .view-hidden {
-      opacity: 0;
-      transform: translateY(20px) scale(0.98);
-      height: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .progress-bar {
-      transition: width 0.8s ease-out;
-    }
-
-    .completion-item {
-      transition: all 0.4s ease;
-    }
-
-    .completion-item.completed {
-      background: linear-gradient(135deg, #82a784 0%, #9686a9 100%);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(130, 167, 132, 0.3);
-    }
-
-    .airbnb-style-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      border: 1px solid #e2e8f0;
-      transition: all 0.3s ease;
-    }
-
-    .airbnb-style-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .demo-badge {
-      background: linear-gradient(135deg, #82a784 0%, #9686a9 100%);
-    }
-
     .hero-gradient {
-      background: linear-gradient(135deg, #0c4b54 0%, #82a784 50%, #9686a9 100%);
+      background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #581c87 50%,
+        #e5007e 100%
+      );
       background-size: 200% 200%;
       animation: gradient-x 15s ease infinite;
     }
@@ -90,64 +24,64 @@ export const prerender = true;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .use-case-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      transition: all 0.4s ease;
-    }
-
-    .use-case-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    @keyframes gradient-x {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
   </style>
 
-  <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
-    <div class="absolute top-20 left-20 w-20 h-20 bg-white/10 rounded-full animate-float"></div>
-    <div class="absolute bottom-32 right-16 w-16 h-16 bg-white/10 rounded-full animate-float" style="animation-delay: -2s;"></div>
-    <div class="absolute top-1/3 right-1/4 w-12 h-12 bg-white/10 rounded-full animate-float" style="animation-delay: -4s;"></div>
-
+  <section
+    class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden"
+  >
     <div class="text-center text-white px-6 max-w-5xl mx-auto">
-      <div class="glass-effect inline-flex items-center px-4 py-2 rounded-full mb-8">
-        <span class="w-2 h-2 bg-white rounded-full mr-2 animate-bounce-subtle"></span>
-        <span class="text-sm font-semibold">Transform Your Client Experience</span>
+      <div
+        class="glass-effect inline-flex items-center px-4 py-2 rounded-full mb-8"
+      >
+        <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+        <span class="text-sm font-semibold"
+          >Experience the Future of Agency Collaboration</span
+        >
       </div>
 
       <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-        Client Onboarding<br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
-          as Simple as
-        </span><br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
-          Airbnb Check-in
+        Your Project,<br />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-empower-pink"
+        >
+          Crystal Clear.
         </span>
       </h1>
 
-      <p class="text-xl md:text-2xl mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed">
-        Stop losing clients to confusing onboarding. Create a branded portal that guides them through every step automatically.
+      <p
+        class="text-xl md:text-2xl mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed"
+      >
+        No more email chains or lost files. We provide a dedicated, secure
+        portal for every client to track progress, share assets, and stay in the
+        loop.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-        <a href="#demo" class="bg-white text-[#0c4b54] px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105">
+      <div
+        class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+      >
+        <a
+          href="#demo"
+          class="bg-white text-[#E5007E] px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105"
+        >
           Try the Interactive Demo
         </a>
-        <a href="/contact" class="glass-effect text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all">
-          Book a Consultation
+        <a
+          href="/portal/signup"
+          class="glass-effect text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
+        >
+          Create Your Account
         </a>
-      </div>
-
-      <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-        <div class="text-center">
-          <div class="text-3xl font-bold mb-2">87%</div>
-          <div class="text-sm text-gray-300">Faster Onboarding</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold mb-2">0</div>
-          <div class="text-sm text-gray-300">Lost Files</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold mb-2">24/7</div>
-          <div class="text-sm text-gray-300">Client Access</div>
-        </div>
       </div>
     </div>
   </section>
@@ -155,458 +89,96 @@ export const prerender = true;
   <section class="py-20 bg-white dark:bg-slate-900">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-[#0c4b54] dark:text-white mb-6">What Is a Custom Client Portal?</h2>
+        <h2
+          class="text-4xl md:text-5xl font-bold text-[#E5007E] dark:text-white mb-6"
+        >
+          Why We Built This
+        </h2>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Think of it as your own private Airbnb for business relationships. A branded, automated hub where clients complete onboarding, access resources, and stay updated on their project.
+          We believe in radical transparency. You shouldn't have to chase us for
+          updates.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white dark:from-slate-800 dark:to-slate-700 shadow-lg">
-          <div class="text-5xl mb-6">🏠</div>
-          <h3 class="text-2xl font-bold text-[#0c4b54] dark:text-white mb-4">Your Branded Space</h3>
-          <p class="text-gray-600 dark:text-gray-300">Custom design, your colours, your logo. Clients feel like they're in your premium workspace, not using generic software.</p>
+        <div
+          class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
+        >
+          <div class="text-5xl mb-6">📂</div>
+          <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
+            Centralised Files
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            All your contracts, brand assets, and deliverables in one secure
+            place. Never lose a file again.
+          </p>
         </div>
 
-        <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white dark:from-slate-800 dark:to-slate-700 shadow-lg">
-          <div class="text-5xl mb-6">🤖</div>
-          <h3 class="text-2xl font-bold text-[#0c4b54] dark:text-white mb-4">Smart Automation</h3>
-          <p class="text-gray-600 dark:text-gray-300">Forms auto-save, files organise themselves, progress updates automatically. Like having a virtual assistant for every client.</p>
+        <div
+          class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
+        >
+          <div class="text-5xl mb-6">✅</div>
+          <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
+            Real-time Progress
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            See exactly what we're working on with live checklists and status
+            updates.
+          </p>
         </div>
 
-        <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white dark:from-slate-800 dark:to-slate-700 shadow-lg">
-          <div class="text-5xl mb-6">📱</div>
-          <h3 class="text-2xl font-bold text-[#0c4b54] dark:text-white mb-4">Always Accessible</h3>
-          <p class="text-gray-600 dark:text-gray-300">Works perfectly on phone, tablet, or desktop. Clients can check progress, upload files, or complete tasks anytime, anywhere.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-[#f1f5f9] dark:bg-slate-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-[#0c4b54] dark:text-white mb-6">What It Does For You</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Eliminates the chaos of email chains, lost files, and confused clients. Everything happens in one beautiful, organised space.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-8">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">1</div>
-            <div>
-              <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-2">Eliminates Back-and-Forth</h3>
-              <p class="text-gray-600 dark:text-gray-300">No more "Did you get my email?" or "Which version is current?" Everything is organised and accessible in one place.</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">2</div>
-            <div>
-              <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-2">Automates Admin Tasks</h3>
-              <p class="text-gray-600 dark:text-gray-300">Forms auto-populate, reminders send themselves, progress tracking happens automatically. Focus on the work, not the paperwork.</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">3</div>
-            <div>
-              <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-2">Creates a Premium Experience</h3>
-              <p class="text-gray-600 dark:text-gray-300">Clients feel special and important. They can see exactly what's happening and when, building trust and reducing anxiety.</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">4</div>
-            <div>
-              <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-2">Scales Your Business</h3>
-              <p class="text-gray-600 dark:text-gray-300">Handle 5x more clients without 5x more work. The portal does the heavy lifting while you focus on delivery.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative">
-          <div class="bg-white dark:bg-slate-700 p-8 rounded-2xl shadow-2xl">
-            <div class="text-center mb-6">
-              <h4 class="font-bold text-[#0c4b54] dark:text-white text-lg">Before vs After</h4>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                <span class="text-sm text-red-700 dark:text-red-300">😫 15+ emails per client</span>
-                <span class="text-sm text-green-700 dark:text-green-300">→ 2-3 emails total</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                <span class="text-sm text-red-700 dark:text-red-300">😫 Lost files & versions</span>
-                <span class="text-sm text-green-700 dark:text-green-300">→ Everything organised</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                <span class="text-sm text-red-700 dark:text-red-300">😫 Confused clients</span>
-                <span class="text-sm text-green-700 dark:text-green-300">→ Clear progress tracking</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                <span class="text-sm text-red-700 dark:text-red-300">😫 Manual follow-ups</span>
-                <span class="text-sm text-green-700 dark:text-green-300">→ Automated reminders</span>
-              </div>
-            </div>
-          </div>
+        <div
+          class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
+        >
+          <div class="text-5xl mb-6">🔒</div>
+          <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
+            Secure & Private
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Your data is protected with enterprise-grade security. Only you and
+            our team have access.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-[#0c4b54] dark:text-white mb-6">A Hub for Any Process</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          This isn't just for client onboarding. This intuitive UI can be adapted to streamline any guided process, creating a bespoke experience for anyone you work with.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="use-case-card p-8 rounded-2xl shadow-lg dark:bg-slate-800 dark:from-slate-800 dark:to-slate-700">
-          <div class="text-4xl mb-6">🎓</div>
-          <h3 class="text-xl font-bold text-[#0c4b54] dark:text-white mb-4">Online Course Delivery</h3>
-          <p class="text-gray-600 dark:text-gray-300">Guide students through modules, quizzes, and resource downloads in a structured, easy-to-follow path.</p>
-        </div>
-        <div class="use-case-card p-8 rounded-2xl shadow-lg dark:bg-slate-800 dark:from-slate-800 dark:to-slate-700">
-          <div class="text-4xl mb-6">💼</div>
-          <h3 class="text-xl font-bold text-[#0c4b54] dark:text-white mb-4">New Employee Onboarding</h3>
-          <p class="text-gray-600 dark:text-gray-300">Automate HR paperwork, IT setup requests, and training schedules for new hires to get them productive faster.</p>
-        </div>
-        <div class="use-case-card p-8 rounded-2xl shadow-lg dark:bg-slate-800 dark:from-slate-800 dark:to-slate-700">
-          <div class="text-4xl mb-6">🎉</div>
-          <h3 class="text-xl font-bold text-[#0c4b54] dark:text-white mb-4">Event & Wedding Planning</h3>
-          <p class="text-gray-600 dark:text-gray-300">Give your clients a central place to manage vendors, guest lists, payments, and timelines, reducing stress.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="demo" class="py-20 bg-[#f1f5f9] dark:bg-slate-800">
-    <div class="max-w-4xl mx-auto px-6">
+  <section id="demo" class="py-20 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold text-[#0c4b54] dark:text-white mb-6">See It In Action</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          This is what your clients will experience. Click through the demo to see how smooth it really is.
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          See It In Action
+        </h2>
+        <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+          This is the actual dashboard you'll use. Feel free to click around!
         </p>
       </div>
 
-      <div class="w-full max-w-2xl mx-auto">
-        <div class="text-center mb-6">
-          <div class="demo-badge inline-flex items-center px-4 py-2 rounded-full text-white text-sm font-semibold shadow-lg">
-            <span class="w-2 h-2 bg-white rounded-full mr-2 animate-bounce-subtle"></span>
-            Interactive Demo - Try it yourself!
-          </div>
-        </div>
-        <div class="bg-white dark:bg-slate-700 rounded-2xl shadow-2xl overflow-hidden">
-
-          <div class="bg-gray-100 dark:bg-slate-600 h-2">
-            <div id="progress-bar" class="progress-bar bg-gradient-to-r from-[#82a784] to-[#9686a9] h-full rounded-r-full" style="width: 25%;"></div>
-          </div>
-
-          <div id="initial-view" class="view-container">
-            <div class="p-8">
-              <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-[#0c4b54] dark:text-white mb-2">Welcome, Sarah! 👋</h1>
-                <p class="text-gray-600 dark:text-gray-300 text-lg">Your project onboarding is as simple as an Airbnb check-in.</p>
-                <p class="text-sm text-[#9686a9] mt-2 font-medium">Just check off each step to get started →</p>
-              </div>
-              <div id="onboarding-checklist" class="space-y-4">
-                <label class="airbnb-style-card flex items-center p-5 rounded-xl cursor-pointer group dark:bg-slate-800 dark:border-slate-600">
-                  <input type="checkbox" class="checkbox-custom" id="contract-checkbox">
-                  <div class="ml-4 flex-1">
-                    <span class="text-xl text-[#2d3436] dark:text-white font-semibold block">📄 Sign Your Contract</span>
-                    <span class="text-sm text-gray-500 dark:text-gray-400 mt-1 block">Quick e-signature, no printing needed</span>
-                  </div>
-                  <div class="text-[#82a784] opacity-0 group-hover:opacity-100 transition-opacity">→</div>
-                </label>
-
-                <div class="airbnb-style-card p-5 rounded-xl text-gray-400 opacity-50 dark:bg-slate-800 dark:border-slate-600">
-                  <div class="flex items-center">
-                    <div class="w-6 h-6 bg-gray-200 dark:bg-slate-600 rounded-md mr-4"></div>
-                    <div class="flex-1"><span class="text-xl font-semibold block">📝 Complete Onboarding Form</span><span class="text-sm mt-1 block">5 minutes to tell us about your project</span></div>
-                  </div>
-                </div>
-                <div class="airbnb-style-card p-5 rounded-xl text-gray-400 opacity-50 dark:bg-slate-800 dark:border-slate-600">
-                  <div class="flex items-center">
-                    <div class="w-6 h-6 bg-gray-200 dark:bg-slate-600 rounded-md mr-4"></div>
-                    <div class="flex-1"><span class="text-xl font-semibold block">📁 Upload Project Files</span><span class="text-sm mt-1 block">Drag & drop your assets securely</span></div>
-                  </div>
-                </div>
-                <div class="airbnb-style-card p-5 rounded-xl text-gray-400 opacity-50 dark:bg-slate-800 dark:border-slate-600">
-                  <div class="flex items-center">
-                    <div class="w-6 h-6 bg-gray-200 dark:bg-slate-600 rounded-md mr-4"></div>
-                    <div class="flex-1"><span class="text-xl font-semibold block">📅 Book Your Kick-off Call</span><span class="text-sm mt-1 block">Pick a time that works for you</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="portal-view" class="view-container view-hidden">
-            <div class="p-8">
-              <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-[#0c4b54] dark:text-white mb-2">Your Project Dashboard</h1>
-                <p class="text-gray-600 dark:text-gray-300 text-lg">Everything in one place, updated in real-time</p>
-                <div class="mt-4 inline-flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
-                  <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span><span id="completion-text">1 of 4 steps completed</span>
-                </div>
-              </div>
-              <div id="dashboard-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div id="contract-status"></div>
-                <div id="form-status"></div>
-                <div id="files-status"></div>
-                <div id="call-status"></div>
-              </div>
-              <div class="bg-gradient-to-r from-[#82a784] to-[#9686a9] p-6 rounded-xl">
-                <h3 class="text-white font-semibold text-lg mb-3">Quick Actions</h3>
-                <div class="flex flex-wrap gap-3">
-                  <button id="continue-form-btn" class="bg-white text-[#0c4b54] px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all transform hover:scale-105">Continue Form</button>
-                  <button class="bg-white/20 text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">Upload Files</button>
-                  <button class="bg-white/20 text-white px-4 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">View Timeline</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="form-view" class="view-container view-hidden">
-            <div class="p-8">
-              <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-[#0c4b54] dark:text-white mb-2">Quick Project Details</h1>
-                <p class="text-gray-600 dark:text-gray-300">Just a few questions to personalise your experience</p>
-              </div>
-              <div class="space-y-6">
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">What's your main goal for this project?</label>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <label class="airbnb-style-card flex items-center p-4 rounded-lg cursor-pointer dark:bg-slate-800 dark:border-slate-600"><input type="radio" name="goal" class="mr-3"><span>🚀 Launch new product</span></label>
-                    <label class="airbnb-style-card flex items-center p-4 rounded-lg cursor-pointer dark:bg-slate-800 dark:border-slate-600"><input type="radio" name="goal" class="mr-3"><span>📈 Improve existing</span></label>
-                    <label class="airbnb-style-card flex items-center p-4 rounded-lg cursor-pointer dark:bg-slate-800 dark:border-slate-600"><input type="radio" name="goal" class="mr-3"><span>🎯 Rebrand/redesign</span></label>
-                    <label class="airbnb-style-card flex items-center p-4 rounded-lg cursor-pointer dark:bg-slate-800 dark:border-slate-600"><input type="radio" name="goal" class="mr-3"><span>🤔 Not sure yet</span></label>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">When do you need this completed?</label>
-                  <select class="w-full p-4 border border-gray-200 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-[#82a784] focus:border-transparent dark:bg-slate-800 dark:text-white">
-                    <option>ASAP (Rush job)</option>
-                    <option>Within 2-4 weeks</option>
-                    <option>Within 1-2 months</option>
-                    <option>No specific deadline</option>
-                  </select>
-                </div>
-                <div class="flex gap-4 pt-4">
-                  <button id="back-to-dashboard" class="flex-1 bg-gray-100 dark:bg-slate-600 text-gray-700 dark:text-white py-3 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-slate-500 transition-colors">← Back to Dashboard</button>
-                  <button id="complete-form" class="flex-1 bg-gradient-to-r from-[#82a784] to-[#9686a9] text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all transform hover:scale-105">Complete Form ✓</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-r from-[#0c4b54] via-[#82a784] to-[#9686a9] text-center p-8">
-            <h2 class="text-white font-bold text-2xl mb-2">Onboarding as smooth as Airbnb check-in</h2>
-            <p class="text-gray-200 mb-6">No more email chains, missing files, or confusion. Everything automated in your branded portal.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="/contact" class="bg-white text-[#0c4b54] px-10 py-4 rounded-lg font-bold hover:shadow-xl transition-all transform animate-pulse-gentle">
-                Build My Portal
-              </a>
-              <button id="restart-demo" class="text-white underline hover:no-underline transition-all">
-                ↻ Try the demo again
-              </button>
-            </div>
-          </div>
-        </div>
+      <div
+        class="border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+      >
+        <ClientDashboard client:visible demoMode={true} />
       </div>
-    </div>
-  </section>
 
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-[#0c4b54] dark:text-white mb-6">How You Use It</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We build it, you use it. Simple as that. Here's how easy it is to transform your client experience.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">1</div>
-          <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-4">We Build Your Portal</h3>
-          <p class="text-gray-600 dark:text-gray-300">Custom designed with your branding, automated workflows, and all the features you need.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">2</div>
-          <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-4">You Send the Link</h3>
-          <p class="text-gray-600 dark:text-gray-300">New client? Just send them your portal link. No setup, no training, no confusion.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">3</div>
-          <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-4">They Complete Everything</h3>
-          <p class="text-gray-600 dark:text-gray-300">Contracts, forms, file uploads, scheduling - all guided step-by-step automatically.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-[#82a784] to-[#9686a9] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">4</div>
-          <h3 class="font-bold text-xl text-[#2d3436] dark:text-white mb-4">You Get Notified</h3>
-          <p class="text-gray-600 dark:text-gray-300">Instant alerts when tasks are complete. All client data organised and ready for you.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-[#f1f5f9] dark:bg-slate-800">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <div class="inline-flex items-center bg-gradient-to-r from-purple-100 to-blue-100 px-4 py-2 rounded-full mb-6">
-          <span class="text-2xl mr-2">🤖</span>
-          <span class="text-sm font-semibold text-purple-700">The Future is Now</span>
-        </div>
-        <h2 class="text-4xl md:text-5xl font-bold text-[#0c4b54] dark:text-white mb-6">What If It Had AI?</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          A great portal automates tasks. An intelligent portal automates thinking. We're already building these AI features for select clients.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="use-case-card p-8 rounded-2xl shadow-lg dark:bg-slate-700 dark:from-slate-700 dark:to-slate-600">
-          <div class="text-4xl mb-6">🧠</div>
-          <h3 class="text-xl font-bold text-[#0c4b54] dark:text-white mb-4">Pre-fill Forms</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">AI finds your client's public info to pre-populate forms with 80% accuracy before they even see them.</p>
-          <div class="text-sm text-purple-600 dark:text-purple-400 font-medium">"Just confirm these details..."</div>
-        </div>
-        <div class="use-case-card p-8 rounded-2xl shadow-lg dark:bg-slate-700 dark:from-slate-700 dark:to-slate-600">
-          <div class="text-4xl mb-6">💬</div>
-          <h3 class="text-xl font-bold text-[#0c4b54] dark:text-white mb-4">Provide 24/7 AI Support</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">An AI assistant trained on your business answers client questions about pricing, timelines, and policies instantly.</p>
-          <div class="text-sm text-purple-600 dark:text-purple-400 font-medium">"When will my logo be ready?" → Instant, accurate timeline</div>
-        </div>
-        <div class="use-case-card p-8 rounded-2xl shadow-lg dark:bg-slate-700 dark:from-slate-700 dark:to-slate-600">
-          <div class="text-4xl mb-6">🎯</div>
-          <h3 class="text-xl font-bold text-[#0c4b54] dark:text-white mb-4">Route Workflows</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">AI reads project briefs to automatically create custom timelines and assign the right team members.</p>
-          <div class="text-sm text-purple-600 dark:text-purple-400 font-medium">E-commerce site → Developer + Designer queued</div>
-        </div>
-      </div>
       <div class="mt-16 text-center">
-        <a href="/contact" class="bg-gradient-to-r from-[#82a784] to-[#9686a9] text-white px-10 py-4 rounded-lg font-bold hover:shadow-xl transition-all transform animate-pulse-gentle">
-          Enquire About AI Features
-        </a>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          Ready to get started?
+        </h3>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/portal/signup"
+            class="bg-[#E5007E] text-white px-8 py-4 rounded-lg font-bold hover:bg-pink-700 transition-colors"
+          >
+            Sign Up for Portal
+          </a>
+          <a
+            href="/contact"
+            class="bg-slate-800 text-white px-8 py-4 rounded-lg font-bold hover:bg-slate-700 transition-colors"
+          >
+            Contact Sales
+          </a>
+        </div>
       </div>
     </div>
   </section>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const initialView = document.getElementById('initial-view');
-      const portalView = document.getElementById('portal-view');
-      const formView = document.getElementById('form-view');
-
-      const contractCheckbox = document.getElementById('contract-checkbox');
-      const progressBar = document.getElementById('progress-bar');
-      const completionText = document.getElementById('completion-text');
-
-      const backToDashboardBtn = document.getElementById('back-to-dashboard');
-      const completeFormBtn = document.getElementById('complete-form');
-      const restartDemoBtn = document.getElementById('restart-demo');
-      const dashboardCards = document.getElementById('dashboard-cards');
-
-      const initialDashboardHTML = {
-        contract: `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl flex items-center">✅ Contract Status</h2><span class="text-sm opacity-90">Just now</span></div><p class="text-lg font-semibold">Signed & Secured</p><p class="text-sm opacity-90 mt-1">Contract #2024-0892</p>`,
-        form: `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl text-[#0c4b54] flex items-center">📝 Onboarding Form</h2><span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">Pending</span></div><p class="text-gray-600">Ready to complete</p><p class="text-sm text-[#9686a9] mt-1 font-medium">Click to start →</p>`,
-        files: `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl text-[#0c4b54] flex items-center">📁 Project Files</h2><span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">Waiting</span></div><p class="text-gray-600">Upload area ready</p><p class="text-sm text-gray-400 mt-1">Max 100MB per file</p>`,
-        call: `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl text-[#0c4b54] flex items-center">📅 Kick-off Call</h2><span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">Waiting</span></div><p class="text-gray-600">Schedule when ready</p><p class="text-sm text-gray-400 mt-1">30-45 minutes</p>`
-      };
-
-      let completedSteps = 1;
-      const totalSteps = 4;
-
-      const updateProgress = () => {
-        const percentage = (completedSteps / totalSteps) * 100;
-        if (progressBar) progressBar.style.width = `${percentage}%`;
-        if (completionText) {
-            completionText.textContent = `${completedSteps} of ${totalSteps} steps completed`;
-            if (completedSteps === totalSteps) {
-                completionText.parentElement.classList.remove('bg-green-50', 'text-green-700');
-                completionText.parentElement.classList.add('bg-blue-100', 'text-blue-700');
-                completionText.textContent = 'Onboarding Complete! 🎉';
-            } else {
-                completionText.parentElement.classList.add('bg-green-50', 'text-green-700');
-                completionText.parentElement.classList.remove('bg-blue-100', 'text-blue-700');
-            }
-        }
-      };
-
-      const showView = (viewToShow) => [initialView, portalView, formView].forEach(view => {
-        if (view) view.classList.toggle('view-hidden', view !== viewToShow);
-      });
-
-      const setupCard = (id, html, classes) => {
-        const card = document.getElementById(id);
-        if (card) {
-            card.innerHTML = html;
-            card.className = `completion-item p-6 rounded-xl ${classes}`;
-        }
-      };
-
-      const resetDemo = () => {
-        completedSteps = 1;
-        if (contractCheckbox) contractCheckbox.checked = false;
-        setupCard('contract-status', '', 'bg-gray-50 dark:bg-slate-700');
-        setupCard('form-status', initialDashboardHTML.form, 'bg-gray-50 dark:bg-slate-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-600');
-        setupCard('files-status', initialDashboardHTML.files, 'bg-gray-50 dark:bg-slate-700');
-        setupCard('call-status', initialDashboardHTML.call, 'bg-gray-50 dark:bg-slate-700');
-        updateProgress();
-        showView(initialView);
-      };
-
-      const completeStep = (stepNumber) => {
-        if (completedSteps >= stepNumber) return;
-        completedSteps = stepNumber;
-        updateProgress();
-
-        switch (stepNumber) {
-          case 2: // Form
-            setupCard('form-status', `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl flex items-center">✅ Onboarding Form</h2><span class="text-sm opacity-90">Just now</span></div><p class="text-lg font-semibold">Form Completed</p><p class="text-sm opacity-90 mt-1">All details captured</p>`, 'completed');
-            setTimeout(() => completeStep(3), 1500);
-            break;
-          case 3: // Files
-            setupCard('files-status', `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl flex items-center">✅ Project Files</h2><span class="text-sm opacity-90">A moment ago</span></div><p class="text-lg font-semibold">3 Files Uploaded</p><p class="text-sm opacity-90 mt-1">Logo, brand guide, content</p>`, 'completed');
-            setupCard('call-status', `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl text-[#0c4b54] flex items-center">📅 Book Kick-off Call</h2></div><p class="text-gray-600">Final step!</p><p class="text-sm text-[#9686a9] mt-1 font-medium">Click to book →</p>`, 'bg-gray-50 dark:bg-slate-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-600 interactive-step');
-            break;
-          case 4: // Call
-            setupCard('call-status', `<div class="flex items-center justify-between mb-3"><h2 class="font-bold text-xl flex items-center">✅ Kick-off Call</h2><span class="text-sm opacity-90">Just now</span></div><p class="text-lg font-semibold">Booked for 5th Aug, 10am</p><p class="text-sm opacity-90 mt-1">Check your calendar!</p>`, 'completed');
-            break;
-        }
-      };
-
-      if (contractCheckbox) {
-        contractCheckbox.addEventListener('change', () => {
-          if (contractCheckbox.checked) {
-            setTimeout(() => {
-              resetDemo();
-              setupCard('contract-status', initialDashboardHTML.contract, 'completed');
-              showView(portalView);
-            }, 300);
-          }
-        });
-      }
-
-      if (dashboardCards) {
-        dashboardCards.addEventListener('click', (e) => {
-          if (e.target.closest('#form-status:not(.completed)')) showView(formView);
-          if (e.target.closest('#call-status.interactive-step')) completeStep(4);
-        });
-      }
-
-      if (backToDashboardBtn) backToDashboardBtn.addEventListener('click', () => showView(portalView));
-      if (completeFormBtn) {
-        completeFormBtn.addEventListener('click', () => {
-          completeStep(2);
-          showView(portalView);
-        });
-      }
-      if (restartDemoBtn) restartDemoBtn.addEventListener('click', resetDemo);
-
-      resetDemo();
-    });
-  </script>
 </Layout>
