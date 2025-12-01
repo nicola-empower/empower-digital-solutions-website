@@ -389,7 +389,7 @@ const HealthChecker = () => {
                             </form>
                         </div>
                         <div className="bg-slate-50 dark:bg-slate-900/50 p-4 text-center text-xs text-slate-400 border-t border-slate-100 dark:border-slate-700">
-                            We'll analyze your report and get back to you within 24 hours.
+                            We'll analyse your report and get back to you within 24 hours.
                         </div>
                     </div>
                 </div>
