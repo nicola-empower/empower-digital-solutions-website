@@ -1,0 +1,448 @@
+---
+import {
+    Banknote,
+    BrainCircuit,
+    HelpCircle,
+    Check,
+    FileText,
+    Calendar,
+    MessageSquare,
+    BarChart3,
+    Utensils,
+    ArrowRight,
+    Mail,
+} from "lucide-react";
+---
+
+<section class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+    <!-- Hero Section -->
+    <div
+        class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 text-white relative overflow-hidden"
+    >
+        <div
+            class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"
+        >
+        </div>
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+        >
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                Stop Paying for<br />
+                <span class="text-empower-pink">Software That Sucks</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                I build custom web apps that actually solve your problems. No
+                monthly fees. No feature limitations. Just systems that work the
+                way <em>you</em> work.
+            </p>
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            >
+                <a
+                    href="#demos"
+                    class="bg-white text-purple-900 px-8 py-4 rounded-lg font-bold hover:shadow-lg hover:scale-105 transition-all"
+                >
+                    Show Me How It Works
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <div class="py-16 bg-gray-50 dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Sound Familiar?
+                </h2>
+                <p
+                    class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+                >
+                    After 3 years as a Virtual Assistant, I kept seeing the same
+                    expensive problems...
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="text-center p-6 bg-white dark:bg-slate-700 rounded-xl shadow-sm"
+                >
+                    <div
+                        class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                        <Banknote className="w-8 h-8 text-red-500" />
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Subscription Hell
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Calendly, Dubsado, DocuSign, Dropbox... £200+ per month
+                        for tools that don't even talk to each other.
+                    </p>
+                </div>
+                <div
+                    class="text-center p-6 bg-white dark:bg-slate-700 rounded-xl shadow-sm"
+                >
+                    <div
+                        class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                        <BrainCircuit className="w-8 h-8 text-red-500" />
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Client Confusion</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "Click this link for contracts, this one for files, this
+                        one for booking..." Your clients are getting lost.
+                    </p>
+                </div>
+                <div
+                    class="text-center p-6 bg-white dark:bg-slate-700 rounded-xl shadow-sm"
+                >
+                    <div
+                        class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+                    >
+                        <HelpCircle className="w-8 h-8 text-red-500" />
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Generic Solutions
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Your business is unique. Why are you using the same
+                        tools as everyone else?
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div class="py-16 bg-white dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    What If Your Business Had Its Own App?
+                </h2>
+                <p
+                    class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+                >
+                    One login. One dashboard. One monthly fee (zero). Everything
+                    your clients need in one professional, branded space.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div
+                                class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center mr-4 mt-1 shrink-0"
+                            >
+                                <Check className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">
+                                    Eliminate Monthly Subscriptions
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Build once, own forever. No more £200+
+                                    monthly bills eating your profits.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-6 h-6 bg-empower-pink rounded-full flex items-center justify-center mr-4 mt-1 shrink-0"
+                            >
+                                <Check className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">
+                                    Your Brand, Your Rules
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Every pixel reflects your business. No more
+                                    "Powered by [Insert Generic Tool]" footers.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div
+                                class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center mr-4 mt-1 shrink-0"
+                            >
+                                <Check className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">
+                                    Actually Built for Your Workflow
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Not "close enough" - exactly right. Because
+                                    I understand how real businesses actually
+                                    work.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-800 dark:to-slate-700 rounded-xl p-8"
+                >
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6"
+                    >
+                        <div class="flex items-center mb-4">
+                            <div
+                                class="w-8 h-8 bg-purple-600 rounded-full mr-3"
+                            >
+                            </div>
+                            <h4 class="font-semibold">Your Client Portal</h4>
+                        </div>
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-800 rounded"
+                            >
+                                <span
+                                    class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2"
+                                >
+                                    <FileText className="w-4 h-4" /> Project Contract
+                                </span>
+                                <span
+                                    class="text-xs text-green-600 dark:text-green-400 font-bold"
+                                    >Signed ✓</span
+                                >
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-800 rounded"
+                            >
+                                <span
+                                    class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2"
+                                >
+                                    <Calendar className="w-4 h-4" /> Next Meeting
+                                </span>
+                                <span
+                                    class="text-xs text-purple-600 dark:text-purple-400 font-bold"
+                                    >Tomorrow 2pm</span
+                                >
+                            </div>
+                            <div
+                                class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-800 rounded"
+                            >
+                                <span
+                                    class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2"
+                                >
+                                    <MessageSquare className="w-4 h-4" /> New Message
+                                </span>
+                                <span
+                                    class="text-xs text-empower-pink font-bold"
+                                    >2 mins ago</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Section -->
+    <div id="demos" class="py-16 bg-gray-50 dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+        <a
+            href="#contact"
+            class="inline-block bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-all font-bold"
+        >
+            Let's Build Your Demo
+        </a>
+    </div>
+</section>
+
+<!-- Process Section -->
+<div id="how-it-works" class="py-16 bg-white dark:bg-slate-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                How We Make This Happen
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300">
+                No technical jargon. No surprises. Just a clear path to your
+                custom solution.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div
+                    class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                    <span class="text-white font-bold text-xl">1</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">Discovery Call</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    We chat about your current setup, pain points, and what
+                    "perfect" looks like for your business.
+                </p>
+            </div>
+            <div class="text-center">
+                <div
+                    class="w-16 h-16 bg-empower-pink rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                    <span class="text-white font-bold text-xl">2</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">Custom Demo</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    I build a working demo with your branding and workflow. You
+                    see exactly what you're getting.
+                </p>
+            </div>
+            <div class="text-center">
+                <div
+                    class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                    <span class="text-white font-bold text-xl">3</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">Build & Test</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    I build your system in phases. You test each part, give
+                    feedback, and we refine as we go.
+                </p>
+            </div>
+            <div class="text-center">
+                <div
+                    class="w-16 h-16 bg-empower-pink rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                    <span class="text-white font-bold text-xl">4</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">Launch & Support</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Your system goes live. I stick around to make sure
+                    everything works perfectly.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Investment Section -->
+<div id="pricing" class="py-16 bg-gray-50 dark:bg-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Your Investment</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300">
+                Custom doesn't mean expensive. It means exactly right for your
+                business.
+            </p>
+        </div>
+        <div class="bg-white dark:bg-slate-700 rounded-xl shadow-lg p-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">
+                        Simple Business Systems
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Quote calculators, client portals, booking systems,
+                        simple dashboards.
+                    </p>
+                    <div
+                        class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2"
+                    >
+                        £5,000 - £15,000
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                        One-time investment. No monthly fees. Ever.
+                    </p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> Custom design
+                            & branding
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> Mobile-responsive
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> Secure hosting
+                            included
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> 3 months support
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">
+                        Complex Business Systems
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Full client management, automation workflows,
+                        integrations, multi-user systems.
+                    </p>
+                    <div
+                        class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2"
+                    >
+                        £15,000 - £35,000
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                        Compare to £200+/month subscriptions = ROI in year 1
+                    </p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> Everything
+                            in Simple, plus:
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> Advanced automation
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> Third-party
+                            integrations
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-500 mr-2">✓</span> 6 months support
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="text-center mt-8 pt-8 border-t border-gray-200 dark:border-gray-600"
+            >
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Not sure which fits your needs?
+                </p>
+                <a
+                    href="/contact"
+                    class="inline-block bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all font-bold"
+                >
+                    Let's Figure It Out Together
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div
+    id="contact"
+    class="py-16 bg-gradient-to-r from-slate-900 to-purple-900 text-white"
+>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Stop Paying for Software That Sucks?
+        </h2>
+        <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            Let's have a chat about your business. No sales pitch - just a
+            conversation about what's possible.
+        </p>
+        <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+            <a
+                href="/contact"
+                class="bg-white text-purple-900 px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all transform hover:scale-105"
+            >
+                Book a Discovery Call
+            </a>
+            <p class="text-gray-300 text-sm flex items-center gap-2">
+                Or email: <a
+                    href="mailto:nicola@empowerdigitalsolutions.co.uk"
+                    class="text-white hover:underline"
+                    >nicola@empowerdigitalsolutions.co.uk</a
+                >
+            </p>
+        </div>
+    </div>
+</div>

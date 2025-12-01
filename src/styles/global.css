@@ -53,11 +53,11 @@
   }
 
   .empower-gradient-text {
-    @apply bg-gradient-to-r from-deep-purple to-empower-pink bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-deep-purple to-empower-pink bg-clip-text text-transparent;
   }
 
   .mid-cta-gradient {
-    @apply bg-gradient-to-r from-deep-purple to-empower-pink;
+    @apply bg-linear-to-r from-deep-purple to-empower-pink;
   }
 
   .hero-bg-digital {
