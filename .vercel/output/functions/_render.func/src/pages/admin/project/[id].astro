@@ -1,0 +1,41 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+export const prerender = false;
+
+const { id } = Astro.params;
+---
+
+<Layout title={`Manage Project ${id} | Empower Admin`}>
+    <div class="min-h-screen bg-slate-950 text-white p-8">
+        <div class="max-w-4xl mx-auto">
+            <a
+                href="/admin/dashboard"
+                class="inline-flex items-center text-slate-400 hover:text-white mb-6 transition-colors"
+            >
+                &larr; Back to Dashboard
+            </a>
+
+            <div class="bg-slate-900 rounded-xl border border-slate-800 p-8">
+                <h1 class="text-3xl font-bold mb-4">Manage Project</h1>
+                <p class="text-slate-400 mb-8">
+                    Project ID: <span
+                        class="font-mono bg-slate-800 px-2 py-1 rounded text-emerald-400"
+                        >{id}</span
+                    >
+                </p>
+
+                <div
+                    class="bg-slate-950/50 border border-slate-800 rounded-lg p-12 text-center"
+                >
+                    <p class="text-xl text-slate-300 font-semibold mb-2">
+                        Project Management Interface
+                    </p>
+                    <p class="text-slate-500">
+                        This feature is currently under development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
