@@ -1,0 +1,23 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import ProjectManager from "../../../components/admin/ProjectManager";
+
+export const prerender = false;
+
+const { id } = Astro.params;
+---
+
+<Layout title={`Manage Project | Empower Admin`}>
+    <div class="min-h-screen bg-slate-950 text-white p-8">
+        <div class="max-w-5xl mx-auto">
+            <a
+                href="/admin/dashboard"
+                class="inline-flex items-center text-slate-400 hover:text-white mb-6 transition-colors"
+            >
+                &larr; Back to Dashboard
+            </a>
+
+            <ProjectManager client:load projectId={id || ""} />
+        </div>
+    </div>
+</Layout>

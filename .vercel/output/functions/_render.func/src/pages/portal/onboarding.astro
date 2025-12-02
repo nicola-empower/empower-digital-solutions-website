@@ -1,0 +1,168 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Onboarding | Client Portal">
+    <div
+        class="min-h-screen flex items-center justify-center bg-slate-950 px-4"
+    >
+        <div
+            class="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-2xl w-full max-w-lg"
+        >
+            <h1 class="text-2xl font-bold text-white mb-2">
+                Welcome to Empower! 🚀
+            </h1>
+            <p class="text-slate-400 mb-8">
+                Let's get your profile set up so we can start your project.
+            </p>
+
+            <form id="onboarding-form" class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label
+                            for="full_name"
+                            class="block text-sm font-medium text-slate-400 mb-1"
+                            >Full Name</label
+                        >
+                        <input
+                            type="text"
+                            id="full_name"
+                            required
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            placeholder="e.g. Sarah Johnson"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            for="company_name"
+                            class="block text-sm font-medium text-slate-400 mb-1"
+                            >Company Name</label
+                        >
+                        <input
+                            type="text"
+                            id="company_name"
+                            required
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            placeholder="e.g. Bloom & Wild"
+                        />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label
+                            for="phone"
+                            class="block text-sm font-medium text-slate-400 mb-1"
+                            >Phone Number</label
+                        >
+                        <input
+                            type="tel"
+                            id="phone"
+                            required
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            placeholder="07700 900000"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            for="address"
+                            class="block text-sm font-medium text-slate-400 mb-1"
+                            >Registered Address (UK)</label
+                        >
+                        <textarea
+                            id="address"
+                            required
+                            rows="1"
+                            class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            placeholder="123 High St, London, SW1A 1AA"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        for="legal_requirements"
+                        class="block text-sm font-medium text-slate-400 mb-1"
+                        >Additional Invoice Details</label
+                    >
+                    <p class="text-xs text-slate-500 mb-2">
+                        Any specific PO numbers or billing contacts?
+                    </p>
+                    <textarea
+                        id="legal_requirements"
+                        rows="2"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                        placeholder="PO Required: #12345"></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                    Complete Setup
+                </button>
+            </form>
+        </div>
+
+        <p id="error-msg" class="text-red-400 text-sm mt-4 text-center hidden">
+        </p>
+    </div>
+</Layout>
+
+<script>
+    import { supabase } from "../../lib/supabase";
+
+    // 1. Check if user is logged in
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+    if (!session) {
+        window.location.href = "/portal/signup";
+    }
+
+    const form = document.getElementById("onboarding-form");
+    const errorMsg = document.getElementById("error-msg");
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const fullName = (
+                document.getElementById("full_name") as HTMLInputElement
+            ).value;
+            const companyName = (
+                document.getElementById("company_name") as HTMLInputElement
+            ).value;
+            const phone = (document.getElementById("phone") as HTMLInputElement)
+                .value;
+            const address = (
+                document.getElementById("address") as HTMLTextAreaElement
+            ).value;
+            const legalRequirements = (
+                document.getElementById(
+                    "legal_requirements",
+                ) as HTMLTextAreaElement
+            ).value;
+
+            // 2. Upsert into 'profiles' table (Insert or Update)
+            const { error } = await supabase.from("profiles").upsert({
+                id: session?.user.id,
+                email: session?.user.email,
+                full_name: fullName,
+                company_name: companyName,
+                phone: phone,
+                address: address,
+                legal_requirements: legalRequirements,
+            });
+
+            if (error) {
+                if (errorMsg) {
+                    errorMsg.textContent = error.message;
+                    errorMsg.classList.remove("hidden");
+                }
+            } else {
+                // Success! Go to dashboard
+                window.location.href = "/portal/dashboard";
+            }
+        });
+    }
+</script>

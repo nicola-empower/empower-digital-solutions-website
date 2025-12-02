@@ -1,0 +1,209 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { Mic, Headphones, ArrowDown, ArrowLeft } from "lucide-astro";
+---
+
+<Layout title="Echo Chamber | The Artisan Vault">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@300;400;600&display=swap");
+
+        .font-serif-artisan {
+            font-family: "Lora", serif;
+        }
+        .font-sans-artisan {
+            font-family: "Nunito", sans-serif;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+    </style>
+
+    <div class="grain-overlay"></div>
+
+    <main
+        class="bg-[#2d241e] text-[#e6dccf] min-h-screen selection:bg-[#d97706] selection:text-white relative overflow-hidden"
+    >
+        <!-- Navigation -->
+        <nav
+            class="absolute top-0 left-0 w-full p-6 z-50 flex justify-between items-center"
+        >
+            <a
+                href="/studio/artisan"
+                class="flex items-center gap-2 font-sans-artisan text-sm uppercase tracking-widest hover:text-[#d97706] transition-colors"
+            >
+                <ArrowLeft class="w-4 h-4" /> Back to Vault
+            </a>
+            <div class="font-sans-artisan text-xs opacity-50 tracking-[0.2em]">
+                ECHO CHAMBER
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section
+            class="relative h-screen w-full flex items-center justify-center"
+        >
+            <!-- Background Circles -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#e6dccf]/5 rounded-full pointer-events-none animate-[spin_60s_linear_infinite]"
+            >
+            </div>
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#e6dccf]/5 rounded-full pointer-events-none animate-[spin_45s_linear_infinite_reverse]"
+            >
+            </div>
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#e6dccf]/5 rounded-full pointer-events-none animate-[spin_30s_linear_infinite]"
+            >
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10 px-6">
+                <div
+                    class="flex items-center justify-center gap-3 mb-8 text-[#d97706]"
+                >
+                    <Mic class="w-6 h-6 animate-pulse" />
+                    <span
+                        class="font-sans-artisan tracking-widest text-sm uppercase"
+                        >Now Recording</span
+                    >
+                </div>
+
+                <h1
+                    class="font-serif-artisan text-6xl md:text-8xl mb-8 leading-tight"
+                >
+                    Stories That<br />Linger.
+                </h1>
+
+                <p
+                    class="font-sans-artisan text-lg md:text-xl opacity-80 mb-12 leading-relaxed max-w-2xl mx-auto"
+                >
+                    An independent network for audio documentaries. Put on your
+                    headphones and drift away into worlds you never knew
+                    existed.
+                </p>
+
+                <button
+                    class="flex items-center justify-center gap-3 bg-[#e6dccf] text-[#2d241e] px-8 py-4 rounded-lg font-sans-artisan font-bold hover:bg-white transition-colors mx-auto"
+                >
+                    <Headphones class="w-5 h-5" /> Start Listening
+                </button>
+            </div>
+        </section>
+
+        <!-- EPISODES -->
+        <section class="py-24 px-6 bg-[#261f1a]">
+            <div class="max-w-5xl mx-auto">
+                <div
+                    class="flex items-end justify-between mb-12 border-b border-[#e6dccf]/10 pb-6"
+                >
+                    <h2 class="font-serif-artisan text-4xl">Latest Episodes</h2>
+                    <a
+                        href="#"
+                        class="font-sans-artisan text-sm uppercase tracking-widest hover:text-[#d97706] transition-colors"
+                        >View All</a
+                    >
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Episode 1 -->
+                    <div
+                        class="bg-[#3e3229] p-8 rounded-xl border border-[#e6dccf]/10 hover:border-[#d97706]/50 transition-colors group cursor-pointer"
+                    >
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="font-sans-artisan text-xs uppercase tracking-widest opacity-50"
+                                >Ep. 01</span
+                            >
+                            <span
+                                class="font-serif-artisan italic text-[#d97706]"
+                                >45 min</span
+                            >
+                        </div>
+                        <h3
+                            class="font-serif-artisan text-2xl mb-4 group-hover:text-[#d97706] transition-colors"
+                        >
+                            The Silent City
+                        </h3>
+                        <p class="font-sans-artisan text-sm opacity-60 mb-6">
+                            An exploration of acoustic ecology in urban spaces.
+                            What happens when the noise stops?
+                        </p>
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#2d241e] flex items-center justify-center group-hover:bg-[#d97706] group-hover:text-white transition-colors"
+                        >
+                            <ArrowDown class="w-4 h-4 -rotate-90" />
+                        </div>
+                    </div>
+
+                    <!-- Episode 2 -->
+                    <div
+                        class="bg-[#3e3229] p-8 rounded-xl border border-[#e6dccf]/10 hover:border-[#d97706]/50 transition-colors group cursor-pointer"
+                    >
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="font-sans-artisan text-xs uppercase tracking-widest opacity-50"
+                                >Ep. 02</span
+                            >
+                            <span
+                                class="font-serif-artisan italic text-[#d97706]"
+                                >52 min</span
+                            >
+                        </div>
+                        <h3
+                            class="font-serif-artisan text-2xl mb-4 group-hover:text-[#d97706] transition-colors"
+                        >
+                            Midnight Train
+                        </h3>
+                        <p class="font-sans-artisan text-sm opacity-60 mb-6">
+                            Stories from the last train home. Encounters,
+                            farewells, and the space between stations.
+                        </p>
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#2d241e] flex items-center justify-center group-hover:bg-[#d97706] group-hover:text-white transition-colors"
+                        >
+                            <ArrowDown class="w-4 h-4 -rotate-90" />
+                        </div>
+                    </div>
+
+                    <!-- Episode 3 -->
+                    <div
+                        class="bg-[#3e3229] p-8 rounded-xl border border-[#e6dccf]/10 hover:border-[#d97706]/50 transition-colors group cursor-pointer"
+                    >
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="font-sans-artisan text-xs uppercase tracking-widest opacity-50"
+                                >Ep. 03</span
+                            >
+                            <span
+                                class="font-serif-artisan italic text-[#d97706]"
+                                >38 min</span
+                            >
+                        </div>
+                        <h3
+                            class="font-serif-artisan text-2xl mb-4 group-hover:text-[#d97706] transition-colors"
+                        >
+                            Analog Hearts
+                        </h3>
+                        <p class="font-sans-artisan text-sm opacity-60 mb-6">
+                            Finding love in a digital vacuum. Letters, mixtapes,
+                            and the art of waiting.
+                        </p>
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#2d241e] flex items-center justify-center group-hover:bg-[#d97706] group-hover:text-white transition-colors"
+                        >
+                            <ArrowDown class="w-4 h-4 -rotate-90" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

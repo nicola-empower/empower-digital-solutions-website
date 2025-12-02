@@ -1,0 +1,353 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Zap, Cpu, ArrowDown, Type, Palette, ArrowRight } from "lucide-astro";
+---
+
+<Layout title="The Disruptor | Aesthetic Vault">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap");
+
+        .font-disruptor-header {
+            font-family: "Syne", sans-serif;
+        }
+        .font-disruptor-body {
+            font-family: "Space Mono", monospace;
+        }
+    </style>
+
+    <main
+        class="bg-[#050505] text-[#F0F0F0] min-h-screen selection:bg-[#BF00FF] selection:text-white"
+    >
+        <!-- HERO SECTION -->
+        <section
+            class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#050505]"
+        >
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img
+                    src="/images/nexus-hero.png"
+                    alt="Cyberpunk City"
+                    class="w-full h-full object-cover opacity-40 grayscale contrast-125"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent"
+                >
+                </div>
+                <div class="absolute inset-0 bg-[#BF00FF]/10 mix-blend-overlay">
+                </div>
+            </div>
+
+            <!-- Grid Overlay -->
+            <div
+                class="absolute inset-0 z-0 opacity-20"
+                style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;"
+            >
+            </div>
+
+            <!-- Content -->
+            <div
+                class="relative z-10 text-center text-white p-6 max-w-5xl mx-auto"
+            >
+                <div
+                    class="inline-block border border-[#CCFF00] px-4 py-1 text-[#CCFF00] text-xs font-disruptor-body tracking-widest uppercase mb-8 bg-black/50 backdrop-blur-sm"
+                >
+                    Aesthetic Vault No. 05
+                </div>
+                <h1
+                    class="font-disruptor-header font-extrabold text-7xl md:text-9xl mb-6 tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 drop-shadow-[0_0_15px_rgba(191,0,255,0.5)]"
+                >
+                    THE DISRUPTOR
+                </h1>
+                <p
+                    class="font-disruptor-body text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 border-l-2 border-[#BF00FF] pl-6 text-left md:text-center"
+                >
+                    Cyberpunk. Hype. Glitch. <br />
+                    For brands that break the rules and live on the bleeding edge.
+                </p>
+
+                <a
+                    href="#showcase"
+                    class="inline-flex flex-col items-center gap-2 text-gray-500 hover:text-[#CCFF00] transition-colors animate-bounce"
+                >
+                    <span
+                        class="text-xs font-disruptor-body uppercase tracking-widest"
+                        >Jack In</span
+                    >
+                    <ArrowDown class="w-6 h-6" />
+                </a>
+            </div>
+        </section>
+
+        <!-- VIBE DNA -->
+        <section class="py-20 px-6 border-b border-[#333] bg-[#0a0a0a]">
+            <div
+                class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12"
+            >
+                <div class="md:col-span-1">
+                    <h2
+                        class="font-disruptor-header font-bold text-4xl mb-4 text-white"
+                    >
+                        VIBE DNA
+                    </h2>
+                    <p
+                        class="font-disruptor-body text-sm text-gray-400 leading-relaxed"
+                    >
+                        High-contrast chaos. This aesthetic uses aggressive
+                        typography, neon accents against deep blacks, and glitch
+                        effects. It evokes speed, rebellion, and digital
+                        scarcity.
+                    </p>
+                </div>
+                <div
+                    class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8"
+                >
+                    <!-- Typography -->
+                    <div
+                        class="bg-[#111] p-8 border border-[#333] relative overflow-hidden group"
+                    >
+                        <div
+                            class="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-100 transition-opacity"
+                        >
+                            <Type class="w-12 h-12 text-[#BF00FF]" />
+                        </div>
+                        <div class="space-y-6 relative z-10">
+                            <div>
+                                <span
+                                    class="font-disruptor-header font-extrabold text-5xl text-white"
+                                    >Syne</span
+                                >
+                                <p
+                                    class="text-xs font-disruptor-body text-[#BF00FF] mt-2"
+                                >
+                                    Primary Header
+                                </p>
+                            </div>
+                            <div>
+                                <span
+                                    class="font-disruptor-body text-xl text-gray-300"
+                                    >Space Mono</span
+                                >
+                                <p
+                                    class="text-xs font-disruptor-body text-[#CCFF00] mt-2"
+                                >
+                                    Body Text
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Palette -->
+                    <div
+                        class="bg-[#111] p-8 border border-[#333] relative overflow-hidden"
+                    >
+                        <div class="absolute top-0 right-0 p-2 opacity-20">
+                            <Palette class="w-12 h-12 text-[#CCFF00]" />
+                        </div>
+                        <div class="flex gap-4 relative z-10">
+                            <div class="text-center">
+                                <div
+                                    class="w-12 h-12 bg-[#050505] mb-3 border border-[#333]"
+                                >
+                                </div>
+                                <span
+                                    class="text-[10px] font-disruptor-body text-gray-500 block"
+                                    >#050505</span
+                                >
+                                <span
+                                    class="text-[10px] font-disruptor-body text-gray-600 uppercase"
+                                    >Void</span
+                                >
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    class="w-12 h-12 bg-[#BF00FF] mb-3 shadow-[0_0_10px_#BF00FF]"
+                                >
+                                </div>
+                                <span
+                                    class="text-[10px] font-disruptor-body text-gray-500 block"
+                                    >#BF00FF</span
+                                >
+                                <span
+                                    class="text-[10px] font-disruptor-body text-gray-600 uppercase"
+                                    >Electric</span
+                                >
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    class="w-12 h-12 bg-[#CCFF00] mb-3 shadow-[0_0_10px_#CCFF00]"
+                                >
+                                </div>
+                                <span
+                                    class="text-[10px] font-disruptor-body text-gray-500 block"
+                                    >#CCFF00</span
+                                >
+                                <span
+                                    class="text-[10px] font-disruptor-body text-gray-600 uppercase"
+                                    >Acid</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHOWCASE: NEXUS -->
+        <section id="showcase" class="py-32 px-6 relative bg-[#050505]">
+            <div class="max-w-7xl mx-auto">
+                <div
+                    class="flex flex-col md:flex-row items-center justify-between mb-16"
+                >
+                    <div>
+                        <span
+                            class="font-disruptor-body text-[#CCFF00] tracking-widest text-xs uppercase"
+                            >Design Sample 01</span
+                        >
+                        <h2
+                            class="font-disruptor-header font-extrabold text-5xl md:text-6xl mt-2 text-white"
+                        >
+                            NEXUS
+                        </h2>
+                    </div>
+                    <div class="mt-6 md:mt-0 max-w-md text-right md:text-left">
+                        <p class="font-disruptor-body text-sm text-gray-400">
+                            A Web3 streetwear brand. Focus on exclusivity, AR
+                            integration, and dark mode aesthetics.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mockup Container -->
+                <a
+                    href="/studio/disruptor/nexus"
+                    class="block bg-[#0a0a0a] border border-[#333] hover:border-[#BF00FF] transition-colors group relative overflow-hidden"
+                >
+                    <!-- Mock Browser Header -->
+                    <div
+                        class="bg-[#111] px-4 py-3 flex items-center gap-2 border-b border-[#333]"
+                    >
+                        <div class="w-3 h-3 rounded-full bg-[#333]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#333]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#333]"></div>
+                        <div
+                            class="ml-4 bg-[#000] px-3 py-1 text-xs text-[#CCFF00] font-disruptor-body flex-grow max-w-md text-center"
+                        >
+                            nexus.eth
+                        </div>
+                    </div>
+
+                    <!-- Live Preview Area -->
+                    <div
+                        class="relative h-[600px] bg-[#050505] overflow-hidden"
+                    >
+                        <!-- Background Image -->
+                        <div
+                            class="absolute inset-0 z-0 opacity-60 group-hover:scale-105 transition-transform duration-700"
+                        >
+                            <img
+                                src="/images/nexus-hero.png"
+                                alt="NEXUS"
+                                class="w-full h-full object-cover grayscale contrast-125"
+                            />
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[#BF00FF]/10 mix-blend-overlay"
+                        >
+                        </div>
+
+                        <!-- Content Overlay -->
+                        <div
+                            class="absolute inset-0 z-10 flex items-center justify-center p-12"
+                        >
+                            <div class="text-center text-white max-w-3xl">
+                                <div
+                                    class="inline-flex items-center gap-2 border border-[#CCFF00] px-3 py-1 text-[#CCFF00] text-xs font-disruptor-body uppercase tracking-widest mb-8 bg-black/80 backdrop-blur-sm"
+                                >
+                                    <span
+                                        class="w-2 h-2 bg-[#CCFF00] animate-pulse"
+                                    ></span>
+                                    Drop 001 Live
+                                </div>
+                                <h1
+                                    class="font-disruptor-header font-extrabold text-6xl md:text-8xl mb-6 leading-[0.8] tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500"
+                                >
+                                    WEAR<br />THE<br />GLITCH.
+                                </h1>
+                                <button
+                                    class="mt-8 bg-[#CCFF00] text-black px-8 py-4 font-disruptor-header font-bold text-xl uppercase hover:bg-[#b3e600] transition-colors inline-flex items-center gap-2"
+                                >
+                                    [ ENTER ] <ArrowRight class="w-5 h-5" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Strip -->
+                    <div
+                        class="bg-[#111] p-8 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[#333]"
+                    >
+                        <div class="flex items-center gap-4">
+                            <Zap class="w-6 h-6 text-[#BF00FF]" />
+                            <div>
+                                <h4
+                                    class="font-disruptor-header font-bold text-sm text-white uppercase"
+                                >
+                                    NFC Verified
+                                </h4>
+                                <p
+                                    class="text-xs text-gray-500 font-disruptor-body"
+                                >
+                                    Blockchain Auth
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <Cpu class="w-6 h-6 text-[#CCFF00]" />
+                            <div>
+                                <h4
+                                    class="font-disruptor-header font-bold text-sm text-white uppercase"
+                                >
+                                    AR Ready
+                                </h4>
+                                <p
+                                    class="text-xs text-gray-500 font-disruptor-body"
+                                >
+                                    3D Integration
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <ArrowDown class="w-6 h-6 text-white" />
+                            <div>
+                                <h4
+                                    class="font-disruptor-header font-bold text-sm text-white uppercase"
+                                >
+                                    Limited
+                                </h4>
+                                <p
+                                    class="text-xs text-gray-500 font-disruptor-body"
+                                >
+                                    500 Units
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-24 text-center bg-[#050505] border-t border-[#333]">
+            <h2
+                class="font-disruptor-header font-extrabold text-4xl md:text-5xl mb-8 text-white"
+            >
+                DISRUPT THE MARKET.
+            </h2>
+            <a
+                href="/contact"
+                class="inline-block border border-[#BF00FF] text-[#BF00FF] px-12 py-4 font-disruptor-body font-bold text-sm uppercase hover:bg-[#BF00FF] hover:text-white transition-colors"
+            >
+                Start Your Project
+            </a>
+        </section>
+    </main>
+</Layout>
