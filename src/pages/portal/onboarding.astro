@@ -143,8 +143,8 @@ import Layout from "../../layouts/Layout.astro";
                 ) as HTMLTextAreaElement
             ).value;
 
-            // 2. Insert into 'profiles' table
-            const { error } = await supabase.from("profiles").insert({
+            // 2. Upsert into 'profiles' table (Insert or Update)
+            const { error } = await supabase.from("profiles").upsert({
                 id: session?.user.id,
                 email: session?.user.email,
                 full_name: fullName,

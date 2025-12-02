@@ -1,0 +1,311 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import {
+    TrendingUp,
+    Shield,
+    Lock,
+    ArrowRight,
+    ArrowLeft,
+    PieChart,
+} from "lucide-astro";
+---
+
+<Layout title="Apex Capital | The Titan Vault">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap");
+
+        .font-titan-header {
+            font-family: "Roboto", sans-serif;
+        }
+        .font-titan-body {
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
+
+    <main
+        class="bg-gray-50 text-[#00205B] min-h-screen selection:bg-[#00205B] selection:text-white relative overflow-hidden"
+    >
+        <!-- Navigation -->
+        <nav
+            class="absolute top-0 left-0 w-full p-6 z-50 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-gray-200"
+        >
+            <a
+                href="/studio/titan"
+                class="flex items-center gap-2 font-titan-header font-bold text-sm uppercase tracking-widest hover:text-[#DC2626] transition-colors"
+            >
+                <ArrowLeft class="w-4 h-4" /> Back to Vault
+            </a>
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-[#00205B] flex items-center justify-center text-white font-black rounded-sm"
+                >
+                    A
+                </div>
+                <div
+                    class="font-titan-header font-black text-lg tracking-tighter"
+                >
+                    APEX CAPITAL
+                </div>
+            </div>
+            <button
+                class="bg-[#00205B] text-white px-6 py-2 rounded-sm font-titan-header font-bold text-sm uppercase hover:bg-blue-900 transition-colors"
+            >
+                Client Login
+            </button>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section
+            class="relative h-screen w-full flex items-center justify-center bg-[#00205B]"
+        >
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0 opacity-50">
+                <img
+                    src="/images/apex-hero.png"
+                    alt="Modern Architecture"
+                    class="w-full h-full object-cover"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-[#00205B] via-[#00205B]/60 to-transparent"
+                >
+                </div>
+            </div>
+
+            <div
+                class="max-w-7xl mx-auto w-full px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            >
+                <div class="text-white">
+                    <h1
+                        class="font-titan-header font-black text-6xl md:text-8xl mb-6 leading-none tracking-tight"
+                    >
+                        COMPOUND<br />YOUR<br />LEGACY.
+                    </h1>
+
+                    <p
+                        class="font-titan-body text-xl md:text-2xl text-gray-300 mb-10 max-w-xl leading-relaxed"
+                    >
+                        Wealth management for the digital age. Secure,
+                        transparent, and built for generational growth.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="bg-white text-[#00205B] px-8 py-4 rounded-sm font-titan-header font-bold text-lg uppercase hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                        >
+                            Open Account <ArrowRight class="w-5 h-5" />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dashboard Mockup -->
+                <div
+                    class="hidden lg:block bg-white rounded-sm shadow-2xl p-8 max-w-md ml-auto border-t-4 border-[#00205B]"
+                >
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <p
+                                class="font-titan-header font-bold text-xs uppercase text-gray-400"
+                            >
+                                Total Balance
+                            </p>
+                            <h3
+                                class="font-titan-header font-black text-4xl text-[#00205B]"
+                            >
+                                $4,281,904.00
+                            </h3>
+                        </div>
+                        <div
+                            class="bg-green-100 text-green-700 px-2 py-1 rounded-sm text-xs font-bold flex items-center gap-1"
+                        >
+                            <TrendingUp class="w-3 h-3" /> +12.4%
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div
+                            class="flex items-center justify-between p-4 bg-gray-50 rounded-sm border border-gray-100"
+                        >
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 bg-[#00205B] rounded-full flex items-center justify-center text-white text-xs font-bold"
+                                >
+                                    S
+                                </div>
+                                <div>
+                                    <p
+                                        class="font-titan-header font-bold text-sm"
+                                    >
+                                        S&P 500 ETF
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Vanguard
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-titan-header font-bold text-sm">
+                                    $1,204,000
+                                </p>
+                                <p class="text-xs text-green-600 font-bold">
+                                    +8.2%
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 bg-gray-50 rounded-sm border border-gray-100"
+                        >
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 bg-[#DC2626] rounded-full flex items-center justify-center text-white text-xs font-bold"
+                                >
+                                    T
+                                </div>
+                                <div>
+                                    <p
+                                        class="font-titan-header font-bold text-sm"
+                                    >
+                                        Tech Growth
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        Managed Fund
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-titan-header font-bold text-sm">
+                                    $840,500
+                                </p>
+                                <p class="text-xs text-green-600 font-bold">
+                                    +15.4%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div
+            class="bg-gray-100 text-[#00205B] py-4 overflow-hidden border-y border-gray-200"
+        >
+            <div
+                class="animate-[marquee_40s_linear_infinite] whitespace-nowrap font-titan-header font-bold text-xl uppercase tracking-widest flex items-center gap-12 opacity-60"
+            >
+                <span>S&P 500</span>
+                <span>•</span>
+                <span>NASDAQ</span>
+                <span>•</span>
+                <span>FTSE 100</span>
+                <span>•</span>
+                <span>Crypto Assets</span>
+                <span>•</span>
+                <span>Real Estate</span>
+                <span>•</span>
+                <span>Bonds</span>
+                <span>•</span>
+                <span>S&P 500</span>
+                <span>•</span>
+                <span>NASDAQ</span>
+                <span>•</span>
+                <span>FTSE 100</span>
+                <span>•</span>
+                <span>Crypto Assets</span>
+                <span>•</span>
+            </div>
+        </div>
+
+        <!-- FEATURES -->
+        <section class="py-24 px-6 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <!-- Feature 1 -->
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-gray-100 text-[#00205B] flex items-center justify-center mb-6 rounded-full mx-auto"
+                        >
+                            <Shield class="w-8 h-8" />
+                        </div>
+                        <h3 class="font-titan-header font-black text-2xl mb-4">
+                            BANK-GRADE SECURITY
+                        </h3>
+                        <p
+                            class="font-titan-body text-gray-600 leading-relaxed"
+                        >
+                            256-bit encryption and multi-factor authentication
+                            protect your assets at all times.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-gray-100 text-[#00205B] flex items-center justify-center mb-6 rounded-full mx-auto"
+                        >
+                            <PieChart class="w-8 h-8" />
+                        </div>
+                        <h3 class="font-titan-header font-black text-2xl mb-4">
+                            AI ADVISORY
+                        </h3>
+                        <p
+                            class="font-titan-body text-gray-600 leading-relaxed"
+                        >
+                            Our algorithms analyze millions of data points to
+                            optimize your portfolio allocation 24/7.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-gray-100 text-[#00205B] flex items-center justify-center mb-6 rounded-full mx-auto"
+                        >
+                            <Lock class="w-8 h-8" />
+                        </div>
+                        <h3 class="font-titan-header font-black text-2xl mb-4">
+                            ZERO HIDDEN FEES
+                        </h3>
+                        <p
+                            class="font-titan-body text-gray-600 leading-relaxed"
+                        >
+                            Transparent pricing structure. You keep more of your
+                            returns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="py-24 bg-[#00205B] text-white text-center">
+            <div
+                class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12"
+            >
+                <div>
+                    <div
+                        class="font-titan-header font-black text-6xl md:text-7xl mb-2"
+                    >
+                        $4B+
+                    </div>
+                    <div
+                        class="font-titan-header font-bold text-sm uppercase tracking-widest opacity-70"
+                    >
+                        Assets Under Management
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="font-titan-header font-black text-6xl md:text-7xl mb-2"
+                    >
+                        0%
+                    </div>
+                    <div
+                        class="font-titan-header font-bold text-sm uppercase tracking-widest opacity-70"
+                    >
+                        Commission Fees
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

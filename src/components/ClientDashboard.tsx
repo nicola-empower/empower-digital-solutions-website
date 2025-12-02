@@ -1,12 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { FileText, Upload, CheckCircle, Circle, Download, Folder } from 'lucide-react';
+import { FileText, Upload, CheckCircle, Circle, Download, Folder, ExternalLink } from 'lucide-react';
+
+interface Task {
+    id: number;
+    title: string;
+    is_completed: boolean;
+    type: string;
+}
+
+interface Document {
+    id: number | string;
+    name: string;
+    size?: string;
+    created_at: string;
+    url: string;
+    type?: string;
+    status?: string;
+    signed_at?: string;
+}
+
+interface Project {
+    id: string;
+    name: string;
+    status: string;
+    progress: number;
+}
 
 export default function ClientDashboard({ demoMode = false }) {
     const [loading, setLoading] = useState(!demoMode);
-    const [project, setProject] = useState(null);
-    const [tasks, setTasks] = useState([]);
-    const [documents, setDocuments] = useState([]);
+    const [project, setProject] = useState<Project | null>(null);
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [documents, setDocuments] = useState<Document[]>([]);
     const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'documents'
     const [uploading, setUploading] = useState(false);
 
@@ -163,13 +188,147 @@ export default function ClientDashboard({ demoMode = false }) {
         }
     };
 
+    const [signModalOpen, setSignModalOpen] = useState(false);
+    const [signingDoc, setSigningDoc] = useState(null);
+    const [signatureName, setSignatureName] = useState('');
+
+    // ... (existing useEffect and fetchProjectData)
+
+    // ... (existing handleLogout, handleFileUpload, toggleTask)
+
+    const handleSignDocument = async (e) => {
+        e.preventDefault();
+        if (!signingDoc || !signatureName) return;
+
+        try {
+            const { error } = await supabase
+                .from('documents')
+                .update({
+                    status: 'signed',
+                    signed_at: new Date().toISOString()
+                })
+                .eq('id', signingDoc.id);
+
+            if (error) throw error;
+
+            // Log Activity
+            await supabase.from('activity_logs').insert({
+                project_id: project.id,
+                message: `Client digitally signed: ${signingDoc.name}`
+            });
+
+            alert('Document signed successfully!');
+            setSignModalOpen(false);
+            setSigningDoc(null);
+            setSignatureName('');
+            fetchProjectData();
+        } catch (error) {
+            alert('Error signing document: ' + error.message);
+        }
+    };
+
+    const openSignModal = (doc) => {
+        setSigningDoc(doc);
+        setSignModalOpen(true);
+    };
+
     if (loading) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">Loading Project...</div>;
 
+    const [profileData, setProfileData] = useState({
+        full_name: '',
+        company_name: '',
+        phone: ''
+    });
+
+    useEffect(() => {
+        if (!project && !loading) {
+            fetchProfile();
+        }
+    }, [project, loading]);
+
+    const fetchProfile = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+            const { data } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+            if (data) {
+                setProfileData({
+                    full_name: data.full_name || '',
+                    company_name: data.company_name || '',
+                    phone: data.phone || ''
+                });
+            }
+        }
+    };
+
+    const handleUpdateProfile = async (e) => {
+        e.preventDefault();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
+
+        const { error } = await supabase.from('profiles').update({
+            full_name: profileData.full_name,
+            company_name: profileData.company_name,
+            phone: profileData.phone
+        }).eq('id', user.id);
+
+        if (error) {
+            alert("Error updating profile: " + error.message);
+        } else {
+            alert("Profile updated successfully!");
+        }
+    };
+
     if (!project) return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white flex-col gap-4">
-            <h1 className="text-2xl font-bold">No Active Project Found</h1>
-            <p className="text-slate-400">Please contact Nicola to initialize your project.</p>
-            <button onClick={handleLogout} className="text-purple-400 hover:text-purple-300">Logout</button>
+        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+            <div className="max-w-md w-full bg-slate-900 rounded-2xl border border-slate-800 p-8 shadow-2xl">
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-bold text-white mb-2">Welcome to Empower! 🚀</h1>
+                    <p className="text-slate-400">We're getting your dashboard ready. In the meantime, please complete your profile so we can set up your project correctly.</p>
+                </div>
+
+                <form onSubmit={handleUpdateProfile} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-1">Full Name</label>
+                        <input
+                            type="text"
+                            required
+                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            value={profileData.full_name}
+                            onChange={e => setProfileData({ ...profileData, full_name: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-1">Company Name</label>
+                        <input
+                            type="text"
+                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            placeholder="e.g. Acme Corp"
+                            value={profileData.company_name}
+                            onChange={e => setProfileData({ ...profileData, company_name: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-400 mb-1">Phone Number</label>
+                        <input
+                            type="tel"
+                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                            value={profileData.phone}
+                            onChange={e => setProfileData({ ...profileData, phone: e.target.value })}
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors mt-4"
+                    >
+                        Save Details
+                    </button>
+                </form>
+
+                <div className="mt-8 pt-6 border-t border-slate-800 text-center">
+                    <p className="text-sm text-slate-500 mb-4">Need to sign out?</p>
+                    <button onClick={handleLogout} className="text-slate-400 hover:text-white transition-colors text-sm">Logout</button>
+                </div>
+            </div>
         </div>
     );
 
@@ -179,7 +338,7 @@ export default function ClientDashboard({ demoMode = false }) {
     return (
         <div className="min-h-screen bg-slate-950 pt-12 px-6 pb-12">
             <div className="container mx-auto max-w-6xl">
-                {/* Header */}
+                {/* ... Header & Tabs ... */}
                 <div className="flex justify-between items-center mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-white">{project.name}</h1>
@@ -188,7 +347,6 @@ export default function ClientDashboard({ demoMode = false }) {
                     <button onClick={handleLogout} className="text-slate-400 hover:text-white transition-colors">Logout</button>
                 </div>
 
-                {/* Tabs */}
                 <div className="flex gap-8 border-b border-slate-800 mb-8">
                     <button
                         onClick={() => setActiveTab('overview')}
@@ -206,7 +364,7 @@ export default function ClientDashboard({ demoMode = false }) {
 
                 {activeTab === 'overview' && (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {/* My Action Plan (Read Only for Client) */}
+                        {/* My Action Plan */}
                         <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="p-2 bg-amber-500/10 rounded-lg text-amber-500">
@@ -225,7 +383,7 @@ export default function ClientDashboard({ demoMode = false }) {
                             </div>
                         </div>
 
-                        {/* Client Requirements (Interactive) */}
+                        {/* Client Requirements */}
                         <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="p-2 bg-purple-500/10 rounded-lg text-purple-500">
@@ -281,17 +439,37 @@ export default function ClientDashboard({ demoMode = false }) {
                                 {documents.map(doc => (
                                     <div key={doc.id} className="flex items-center justify-between p-4 bg-slate-950/50 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors">
                                         <div className="flex items-center gap-3">
-                                            <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400">
-                                                <Folder className="w-5 h-5" />
+                                            <div className={`p-2 rounded-lg ${doc.type === 'link' ? 'bg-blue-500/10 text-blue-400' : 'bg-purple-500/10 text-purple-400'}`}>
+                                                {doc.type === 'link' ? <ExternalLink className="w-5 h-5" /> : <Folder className="w-5 h-5" />}
                                             </div>
                                             <div>
-                                                <p className="text-white font-medium text-sm">{doc.name}</p>
-                                                <p className="text-xs text-slate-500">{doc.size} • {new Date(doc.created_at).toLocaleDateString()}</p>
+                                                <div className="flex items-center gap-2">
+                                                    <p className="text-white font-medium text-sm">{doc.name}</p>
+                                                    {doc.status === 'pending_signature' && (
+                                                        <span className="text-[10px] bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded border border-amber-500/20 uppercase font-bold">Sign Req.</span>
+                                                    )}
+                                                    {doc.status === 'signed' && (
+                                                        <span className="text-[10px] bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded border border-emerald-500/20 uppercase font-bold">Signed</span>
+                                                    )}
+                                                </div>
+                                                <p className="text-xs text-slate-500">
+                                                    {doc.type === 'link' ? 'External Link' : doc.size} • {new Date(doc.created_at).toLocaleDateString()}
+                                                </p>
                                             </div>
                                         </div>
-                                        <a href={doc.url} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
-                                            <Download className="w-4 h-4" />
-                                        </a>
+                                        <div className="flex items-center gap-2">
+                                            {doc.status === 'pending_signature' && (
+                                                <button
+                                                    onClick={() => openSignModal(doc)}
+                                                    className="px-3 py-1 bg-amber-500 text-black text-xs font-bold rounded hover:bg-amber-400 transition-colors"
+                                                >
+                                                    Sign
+                                                </button>
+                                            )}
+                                            <a href={doc.url} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
+                                                {doc.type === 'link' ? <ExternalLink className="w-4 h-4" /> : <Download className="w-4 h-4" />}
+                                            </a>
+                                        </div>
                                     </div>
                                 ))}
                                 {documents.length === 0 && <p className="text-slate-500 italic">No documents shared yet.</p>}
@@ -300,6 +478,47 @@ export default function ClientDashboard({ demoMode = false }) {
                     </div>
                 )}
             </div>
+
+            {/* Signature Modal */}
+            {signModalOpen && signingDoc && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+                    <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 w-full max-w-md">
+                        <h3 className="text-xl font-bold text-white mb-2">Digital Acceptance</h3>
+                        <p className="text-slate-400 text-sm mb-6">
+                            By signing this document ({signingDoc.name}), you agree to the terms and conditions outlined within it.
+                        </p>
+                        <form onSubmit={handleSignDocument} className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Type Full Name to Sign</label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 font-mono"
+                                    placeholder="e.g. Jane Doe"
+                                    value={signatureName}
+                                    onChange={e => setSignatureName(e.target.value)}
+                                />
+                            </div>
+                            <div className="flex justify-end gap-3 pt-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setSignModalOpen(false)}
+                                    className="px-4 py-2 text-slate-400 hover:text-white transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-bold"
+                                >
+                                    Confirm & Sign
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
+
 }
