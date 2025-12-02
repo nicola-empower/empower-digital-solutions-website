@@ -1,171 +1,170 @@
 ---
-        #e5007e 100%
-      );
-      background-size: 200% 200%;
-      animation: gradient-x 15s ease infinite;
+import Layout from "../layouts/Layout.astro";
+import ClientDashboard from "../components/ClientDashboard";
+---
+
+<style>
+  .hero-gradient {
+    background: linear-gradient(-45deg, #1e293b, #0f172a, #3b0764, #e5007e);
+    background-size: 400% 400%;
+    animation: gradient-x 15s ease infinite;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  @keyframes gradient-x {
+    0% {
+      background-position: 0% 50%;
     }
-
-    .glass-effect {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    50% {
+      background-position: 100% 50%;
     }
-
-    @keyframes gradient-x {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    100% {
+      background-position: 0% 50%;
     }
-  </style>
+  }
+</style>
 
-  <section
-    class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden"
-  >
-    <div class="text-center text-white px-6 max-w-5xl mx-auto">
-      <div
-        class="glass-effect inline-flex items-center px-4 py-2 rounded-full mb-8"
+<section
+  class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden"
+>
+  <div class="text-center text-white px-6 max-w-5xl mx-auto">
+    <div
+      class="glass-effect inline-flex items-center px-4 py-2 rounded-full mb-8"
+    >
+      <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+      <span class="text-sm font-semibold"
+        >Experience the Future of Agency Collaboration</span
       >
-        <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-        <span class="text-sm font-semibold"
-          >Experience the Future of Agency Collaboration</span
-        >
-      </div>
-
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-        Your Project,<br />
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-empower-pink"
-        >
-          Crystal Clear.
-        </span>
-      </h1>
-
-      <p
-        class="text-xl md:text-2xl mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed"
-      >
-        No more email chains or lost files. We provide a dedicated, secure
-        portal for every client to track progress, share assets, and stay in the
-        loop.
-      </p>
-
-      <div
-        class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
-      >
-        <a
-          href="#demo"
-          class="bg-white text-[#E5007E] px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105"
-        >
-          Try the Interactive Demo
-        </a>
-        <a
-          href="/portal/signup"
-          class="glass-effect text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
-        >
-          Create Your Account
-        </a>
-      </div>
     </div>
-  </section>
 
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl md:text-5xl font-bold text-[#E5007E] dark:text-white mb-6"
-        >
-          Why We Built This
-        </h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We believe in radical transparency. You shouldn't have to chase us for
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+      Your Project,<br />
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-empower-pink"
+      >
+        Crystal Clear.
+      </span>
+    </h1>
+
+    <p
+      class="text-xl md:text-2xl mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed"
+    >
+      No more email chains or lost files. We provide a dedicated, secure portal
+      for every client to track progress, share assets, and stay in the loop.
+    </p>
+
+    <div
+      class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+    >
+      <a
+        href="#demo"
+        class="bg-white text-[#E5007E] px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105"
+      >
+        Try the Interactive Demo
+      </a>
+      <a
+        href="/portal/signup"
+        class="glass-effect text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
+      >
+        Create Your Account
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 bg-white dark:bg-slate-900">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2
+        class="text-4xl md:text-5xl font-bold text-[#E5007E] dark:text-white mb-6"
+      >
+        Why We Built This
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        We believe in radical transparency. You shouldn't have to chase us for
+        updates.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div
+        class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
+      >
+        <div class="text-5xl mb-6">📂</div>
+        <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
+          Centralised Files
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          All your contracts, brand assets, and deliverables in one secure
+          place. Never lose a file again.
+        </p>
+      </div>
+
+      <div
+        class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
+      >
+        <div class="text-5xl mb-6">✅</div>
+        <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
+          Real-time Progress
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          See exactly what we're working on with live checklists and status
           updates.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <div
-          class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
-        >
-          <div class="text-5xl mb-6">📂</div>
-          <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
-            Centralised Files
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            All your contracts, brand assets, and deliverables in one secure
-            place. Never lose a file again.
-          </p>
-        </div>
-
-        <div
-          class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
-        >
-          <div class="text-5xl mb-6">✅</div>
-          <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
-            Real-time Progress
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            See exactly what we're working on with live checklists and status
-            updates.
-          </p>
-        </div>
-
-        <div
-          class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
-        >
-          <div class="text-5xl mb-6">🔒</div>
-          <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
-            Secure & Private
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            Your data is protected with enterprise-grade security. Only you and
-            our team have access.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="demo" class="py-20 bg-slate-950">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          See It In Action
-        </h2>
-        <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-          This is the actual dashboard you'll use. Feel free to click around!
+      <div
+        class="text-center p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 shadow-lg"
+      >
+        <div class="text-5xl mb-6">🔒</div>
+        <h3 class="text-2xl font-bold text-[#E5007E] dark:text-white mb-4">
+          Secure & Private
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          Your data is protected with enterprise-grade security. Only you and
+          our team have access.
         </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div
-        class="border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
-      >
-        <ClientDashboard client:visible demoMode={true} />
-      </div>
+<section id="demo" class="py-20 bg-slate-950">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        See It In Action
+      </h2>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+        This is the actual dashboard you'll use. Feel free to click around!
+      </p>
+    </div>
 
-      <div class="mt-16 text-center">
-        <h3 class="text-2xl font-bold text-white mb-4">
-          Ready to get started?
-        </h3>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/portal/signup"
-            class="bg-[#E5007E] text-white px-8 py-4 rounded-lg font-bold hover:bg-pink-700 transition-colors"
-          >
-            Sign Up for Portal
-          </a>
-          <a
-            href="/contact"
-            class="bg-slate-800 text-white px-8 py-4 rounded-lg font-bold hover:bg-slate-700 transition-colors"
-          >
-            Contact Sales
-          </a>
-        </div>
+    <div class="border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+      <ClientDashboard client:visible demoMode={true} />
+    </div>
+
+    <div class="mt-16 text-center">
+      <h3 class="text-2xl font-bold text-white mb-4">Ready to get started?</h3>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/portal/signup"
+          class="bg-[#E5007E] text-white px-8 py-4 rounded-lg font-bold hover:bg-pink-700 transition-colors"
+        >
+          Sign Up for Portal
+        </a>
+        <a
+          href="/contact"
+          class="bg-slate-800 text-white px-8 py-4 rounded-lg font-bold hover:bg-slate-700 transition-colors"
+        >
+          Contact Sales
+        </a>
       </div>
     </div>
-  </section>
-</Layout>
+  </div>
+</section>
