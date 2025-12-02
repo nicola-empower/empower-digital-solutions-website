@@ -1,29 +1,34 @@
-import { c as createComponent, b as createAstro, r as renderComponent, m as maybeRenderHead, a as renderTemplate } from '../chunks/astro/server_BWfhTkDV.mjs';
+import { c as createComponent, b as createAstro, r as renderComponent, m as maybeRenderHead, a as renderTemplate } from '../chunks/astro/server_CsB7TRoA.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_DxiAvFAF.mjs';
-import { $ as $$Zap } from '../chunks/Zap_DusnH4HQ.mjs';
-import { $ as $$Shield } from '../chunks/Shield_q3aIGj8n.mjs';
-import { $ as $$Search } from '../chunks/Search_u2Xe0AB_.mjs';
-import { $ as $$ } from '../chunks/.Layout_DUhDXnwl.mjs';
-import { $ as $$Lock } from '../chunks/Lock_jiRof3Om.mjs';
-import { $ as $$CheckCircle2 } from '../chunks/CheckCircle2_ZCjskG-S.mjs';
-import { $ as $$Gauge } from '../chunks/Gauge_B4_o9BSW.mjs';
-import { $ as $$ArrowRight } from '../chunks/ArrowRight_BxApZKdg.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B8ewbZHj.mjs';
+import { a as $$Zap, $ as $$Shield } from '../chunks/Zap_C6m3207Q.mjs';
+import { $ as $$Search } from '../chunks/Search_CKdTTtLs.mjs';
+import { $ as $$ } from '../chunks/.Layout_DL66U752.mjs';
+import { $ as $$CheckCircle2 } from '../chunks/CheckCircle2_vd_DPFBn.mjs';
+import { $ as $$Gauge } from '../chunks/Gauge_C-iSKhd-.mjs';
+import { $ as $$ArrowRight } from '../chunks/ArrowRight_BmtYR66u.mjs';
 export { renderers } from '../renderers.mjs';
 
-const $$Astro$3 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$4 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Database = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
   Astro2.self = $$Database;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "database", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse> <path d="M3 5V19A9 3 0 0 0 21 19V5"></path> <path d="M3 12A9 3 0 0 0 21 12"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Database.astro", void 0);
 
-const $$Astro$2 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$3 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Layers = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$Layers;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "layers", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path> <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path> <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Layers.astro", void 0);
+
+const $$Astro$2 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Lock = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  Astro2.self = $$Lock;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "lock", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect> <path d="M7 11V7a5 5 0 0 1 10 0v4"></path> ` })}`;
+}, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Lock.astro", void 0);
 
 const $$Astro$1 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$XCircle = createComponent(($$result, $$props, $$slots) => {

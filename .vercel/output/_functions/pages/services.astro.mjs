@@ -1,61 +1,67 @@
-import { c as createComponent, b as createAstro, r as renderComponent, m as maybeRenderHead, a as renderTemplate } from '../chunks/astro/server_BWfhTkDV.mjs';
+import { c as createComponent, b as createAstro, r as renderComponent, m as maybeRenderHead, a as renderTemplate } from '../chunks/astro/server_CsB7TRoA.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_DxiAvFAF.mjs';
-import { $ as $$ } from '../chunks/.Layout_DUhDXnwl.mjs';
-import { $ as $$ArrowRight } from '../chunks/ArrowRight_BxApZKdg.mjs';
-import { $ as $$Palette } from '../chunks/Palette_Dx8soAjy.mjs';
-import { $ as $$ShieldCheck } from '../chunks/ShieldCheck_DhSny3Zs.mjs';
-import { $ as $$MousePointerClick } from '../chunks/MousePointerClick_9ooUrN0J.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B8ewbZHj.mjs';
+import { $ as $$ } from '../chunks/.Layout_DL66U752.mjs';
+import { $ as $$ArrowRight } from '../chunks/ArrowRight_BmtYR66u.mjs';
+import { $ as $$ShieldCheck } from '../chunks/ShieldCheck_D9gERRbv.mjs';
+import { $ as $$MousePointerClick } from '../chunks/MousePointerClick_DDcP3fLe.mjs';
 export { renderers } from '../renderers.mjs';
 
-const $$Astro$7 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$8 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$AppWindow = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$7, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$8, $$props, $$slots);
   Astro2.self = $$AppWindow;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "app-window", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<rect x="2" y="4" width="20" height="16" rx="2"></rect> <path d="M10 4v4"></path> <path d="M2 8h20"></path> <path d="M6 4v4"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/AppWindow.astro", void 0);
 
-const $$Astro$6 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$7 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$CheckCircle = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$6, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$7, $$props, $$slots);
   Astro2.self = $$CheckCircle;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "circle-check-big", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M21.801 10A10 10 0 1 1 17 3.335"></path> <path d="m9 11 3 3L22 4"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/CheckCircle.astro", void 0);
 
-const $$Astro$5 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$6 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$ChevronDown = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$5, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$6, $$props, $$slots);
   Astro2.self = $$ChevronDown;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "chevron-down", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="m6 9 6 6 6-6"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/ChevronDown.astro", void 0);
 
-const $$Astro$4 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$5 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Code = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$5, $$props, $$slots);
   Astro2.self = $$Code;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "code", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="m16 18 6-6-6-6"></path> <path d="m8 6-6 6 6 6"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Code.astro", void 0);
 
-const $$Astro$3 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$4 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$FileDown = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
   Astro2.self = $$FileDown;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "file-down", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path> <path d="M14 2v5a1 1 0 0 0 1 1h5"></path> <path d="M12 18v-6"></path> <path d="m9 15 3 3 3-3"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/FileDown.astro", void 0);
 
-const $$Astro$2 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$3 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Gem = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$Gem;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "gem", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M10.5 3 8 9l4 13 4-13-2.5-6"></path> <path d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z"></path> <path d="M2 9h20"></path> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Gem.astro", void 0);
 
-const $$Astro$1 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Astro$2 = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$LayoutTemplate = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$LayoutTemplate;
   return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "layout-template", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<rect width="18" height="7" x="3" y="3" rx="1"></rect> <rect width="9" height="7" x="3" y="14" rx="1"></rect> <rect width="5" height="7" x="16" y="14" rx="1"></rect> ` })}`;
 }, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/LayoutTemplate.astro", void 0);
+
+const $$Astro$1 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Palette = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  Astro2.self = $$Palette;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "palette", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path> <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle> <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle> <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle> <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle> ` })}`;
+}, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Palette.astro", void 0);
 
 const $$Astro = createAstro("https://empowerdigitalsolutions.co.uk");
 const $$Wrench = createComponent(($$result, $$props, $$slots) => {
@@ -94,7 +100,7 @@ I have an existing site or process that isn't working. I need an
 </li> <li class="flex items-center gap-3"> ${renderComponent($$result2, "CheckCircle", $$CheckCircle, { "class": "w-5 h-5 text-blue-500" })} Workflow Automation
 </li> <li class="flex items-center gap-3"> ${renderComponent($$result2, "CheckCircle", $$CheckCircle, { "class": "w-5 h-5 text-blue-500" })} Strategic Consulting
 </li> </ul> </div> <div class="relative z-10 mt-auto"> <span class="inline-flex items-center text-blue-500 font-bold text-lg group-hover:translate-x-2 transition-transform">
-Explore Consulting ${renderComponent($$result2, "ArrowRight", $$ArrowRight, { "class": "w-5 h-5 ml-2" })} </span> </div> </a> <!-- Option 3: The Aesthetic Vault --> <a href="/studio" class="group relative bg-slate-900 rounded-3xl p-10 border border-slate-800 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20 flex flex-col h-full md:col-span-2 lg:col-span-1"> <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div> <div class="relative z-10 flex-1"> <div class="bg-purple-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300"> ${renderComponent($$result2, "Palette", $$Palette, { "class": "w-10 h-10 text-purple-500" })} </div> <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-purple-500 transition-colors">
+Explore Consulting ${renderComponent($$result2, "ArrowRight", $$ArrowRight, { "class": "w-5 h-5 ml-2" })} </span> </div> </a> <!-- Option 3: The Aesthetic Vault --> <a href="/aesthetic-vault" class="group relative bg-slate-900 rounded-3xl p-10 border border-slate-800 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20 flex flex-col h-full md:col-span-2 lg:col-span-1"> <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div> <div class="relative z-10 flex-1"> <div class="bg-purple-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300"> ${renderComponent($$result2, "Palette", $$Palette, { "class": "w-10 h-10 text-purple-500" })} </div> <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-purple-500 transition-colors">
 Looking for inspiration?
 </h3> <p class="text-slate-400 text-lg leading-relaxed mb-8">
 Explore our curated collection of design systems and brand

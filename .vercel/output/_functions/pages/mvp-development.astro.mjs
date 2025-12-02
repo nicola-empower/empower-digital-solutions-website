@@ -1,4 +1,4 @@
-import { c as createComponent, m as maybeRenderHead, r as renderComponent, a as renderTemplate } from '../chunks/astro/server_BWfhTkDV.mjs';
+import { c as createComponent, m as maybeRenderHead, r as renderComponent, a as renderTemplate } from '../chunks/astro/server_CsB7TRoA.mjs';
 import 'piccolore';
 import { LayoutDashboard, ListChecks, ShieldHalf, ClipboardList, CalendarCheck, Package, BarChart3, UserCog, LogIn, Stars, Smartphone, Globe, ShoppingCart, Users, Scale, Zap, Table, Sparkles, Sheet, Lightbulb, Palette, Code, FlaskConical, Rocket, CheckCircle, Layout, Server, Cloud, Link, Clock, Shield, Mail } from 'lucide-react';
 /* empty css                                           */
