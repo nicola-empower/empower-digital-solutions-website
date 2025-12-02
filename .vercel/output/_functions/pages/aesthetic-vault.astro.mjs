@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, d as addAttribute } from '../chunks/astro/server_CsB7TRoA.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_B8ewbZHj.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BTdPXDjx.mjs';
 import { Box, PenTool, Building2, Coffee, Zap } from 'lucide-react';
 export { renderers } from '../renderers.mjs';
 
