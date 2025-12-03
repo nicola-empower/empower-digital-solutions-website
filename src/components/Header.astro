@@ -5,7 +5,6 @@ const links = [
   { name: "Services", href: "/services" },
   { name: "Insights", href: "/insights" },
   { name: "Custom Apps", href: "/customwebapps" },
-  { name: "Aesthetic Vault", href: "/aesthetic-vault" },
   { name: "Portfolio", href: "https://portfolio-nicola-berry.vercel.app/" },
   { name: "Contact", href: "/contact" },
 ];
@@ -49,11 +48,10 @@ const links = [
         class="text-gray-700 dark:text-gray-200 hover:text-empower-pink dark:hover:text-empower-pink font-semibold transition-colors"
         >Insights</a
       >
-      <a>Custom Apps</a>
       <a
-        href="/aesthetic-vault"
+        href="/customwebapps"
         class="text-gray-700 dark:text-gray-200 hover:text-empower-pink dark:hover:text-empower-pink font-semibold transition-colors"
-        >Aesthetic Vault</a
+        >Custom Apps</a
       >
       <a
         href="https://portfolio-nicola-berry.vercel.app/"
@@ -75,54 +73,54 @@ const links = [
         Get a Quote
       </a>
     </div>
-
-    <div class="md:hidden flex items-center gap-4">
-      <button
-        id="mobile-menu-btn"
-        class="text-gray-700 dark:text-gray-200 focus:outline-none"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
   </nav>
 
-  <!-- Mobile Menu -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800"
-  >
-    <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
-      {
-        links.map((link) => (
-          <a
-            href={link.href}
-            class="text-gray-700 dark:text-gray-200 hover:text-empower-pink dark:hover:text-empower-pink font-semibold transition-colors"
-          >
-            {link.name}
-          </a>
-        ))
-      }
-      <a
-        href="/contact"
-        class="bg-empower-pink text-white font-bold py-2 px-6 rounded-lg hover:bg-vibrant-magenta transition-all shadow-md hover:shadow-lg text-center"
+  <div class="md:hidden flex items-center gap-4">
+    <button
+      id="mobile-menu-btn"
+      class="text-gray-700 dark:text-gray-200 focus:outline-none"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        Get a Quote
-      </a>
-    </div>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
   </div>
 </header>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800"
+>
+  <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="text-gray-700 dark:text-gray-200 hover:text-empower-pink dark:hover:text-empower-pink font-semibold transition-colors"
+        >
+          {link.name}
+        </a>
+      ))
+    }
+    <a
+      href="/contact"
+      class="bg-empower-pink text-white font-bold py-2 px-6 rounded-lg hover:bg-vibrant-magenta transition-all shadow-md hover:shadow-lg text-center"
+    >
+      Get a Quote
+    </a>
+  </div>
+</div>
 
 <script>
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");

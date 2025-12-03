@@ -1,6 +1,6 @@
 import { c as createComponent, m as maybeRenderHead, r as renderComponent, a as renderTemplate } from '../chunks/astro/server_CsB7TRoA.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_BTdPXDjx.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CE1yIfM6.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { Laptop, Brain, Calculator, Palette, ExternalLink, Banknote, BrainCircuit, HelpCircle, Check, FileText, Calendar, MessageSquare } from 'lucide-react';

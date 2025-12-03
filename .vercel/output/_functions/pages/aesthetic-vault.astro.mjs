@@ -1,8 +1,37 @@
-import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, d as addAttribute } from '../chunks/astro/server_CsB7TRoA.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, m as maybeRenderHead, a as renderTemplate, d as addAttribute } from '../chunks/astro/server_CsB7TRoA.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_BTdPXDjx.mjs';
-import { Box, PenTool, Building2, Coffee, Zap } from 'lucide-react';
+import { $ as $$Layout } from '../chunks/Layout_CE1yIfM6.mjs';
+import { $ as $$ } from '../chunks/.Layout_DL66U752.mjs';
+import { $ as $$Zap } from '../chunks/Zap_S509Wn5w.mjs';
 export { renderers } from '../renderers.mjs';
+
+const $$Astro$3 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Box = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
+  Astro2.self = $$Box;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "box", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path> <path d="m3.3 7 8.7 5 8.7-5"></path> <path d="M12 22V12"></path> ` })}`;
+}, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Box.astro", void 0);
+
+const $$Astro$2 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Building2 = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  Astro2.self = $$Building2;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "building-2", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M10 12h4"></path> <path d="M10 8h4"></path> <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path> <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path> <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path> ` })}`;
+}, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Building2.astro", void 0);
+
+const $$Astro$1 = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$Coffee = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  Astro2.self = $$Coffee;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "coffee", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M10 2v2"></path> <path d="M14 2v2"></path> <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path> <path d="M6 2v2"></path> ` })}`;
+}, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/Coffee.astro", void 0);
+
+const $$Astro = createAstro("https://empowerdigitalsolutions.co.uk");
+const $$PenTool = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$PenTool;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "pen-tool", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"></path> <path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"></path> <path d="m2.3 2.3 7.286 7.286"></path> <circle cx="11" cy="11" r="2"></circle> ` })}`;
+}, "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/lucide-astro/dist/PenTool.astro", void 0);
 
 const $$AestheticVault = createComponent(($$result, $$props, $$slots) => {
   const vibes = [
@@ -10,7 +39,7 @@ const $$AestheticVault = createComponent(($$result, $$props, $$slots) => {
       title: "THE ARCHITECT",
       slug: "architect",
       description: "Raw Code. Monospaced. Terminal Green. Function over form.",
-      icon: Box,
+      icon: $$Box,
       color: "text-green-500",
       border: "border-green-500/20 hover:border-green-500",
       bg: "hover:bg-green-500/5"
@@ -19,7 +48,7 @@ const $$AestheticVault = createComponent(($$result, $$props, $$slots) => {
       title: "THE CURATOR",
       slug: "curator",
       description: "Modern Luxury. Massive Whitespace. Serif Headers. Silence.",
-      icon: PenTool,
+      icon: $$PenTool,
       color: "text-stone-400",
       border: "border-stone-200 hover:border-stone-400",
       bg: "hover:bg-stone-50"
@@ -28,7 +57,7 @@ const $$AestheticVault = createComponent(($$result, $$props, $$slots) => {
       title: "THE TITAN",
       slug: "titan",
       description: "Corporate Trust. Helvetica. Navy Blue. Too big to fail.",
-      icon: Building2,
+      icon: $$Building2,
       color: "text-blue-700",
       border: "border-blue-200 hover:border-blue-700",
       bg: "hover:bg-blue-50"
@@ -37,7 +66,7 @@ const $$AestheticVault = createComponent(($$result, $$props, $$slots) => {
       title: "THE ARTISAN",
       slug: "artisan",
       description: "Warm Analog. Soft Serifs. Cream & Grain. Made by human hands.",
-      icon: Coffee,
+      icon: $$Coffee,
       color: "text-orange-600",
       border: "border-orange-200 hover:border-orange-600",
       bg: "hover:bg-orange-50"
@@ -46,7 +75,7 @@ const $$AestheticVault = createComponent(($$result, $$props, $$slots) => {
       title: "THE DISRUPTOR",
       slug: "disruptor",
       description: "Cyberpunk. Hype. Neon. Break the rules.",
-      icon: Zap,
+      icon: $$Zap,
       color: "text-purple-500",
       border: "border-purple-500/20 hover:border-purple-500",
       bg: "hover:bg-purple-500/5"
@@ -65,10 +94,10 @@ const $$file = "C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/e
 const $$url = "/aesthetic-vault";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    default: $$AestheticVault,
-    file: $$file,
-    url: $$url
+	__proto__: null,
+	default: $$AestheticVault,
+	file: $$file,
+	url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
