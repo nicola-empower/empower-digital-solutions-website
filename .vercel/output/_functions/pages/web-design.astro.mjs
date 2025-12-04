@@ -1,6 +1,6 @@
 import { c as createComponent, b as createAstro, r as renderComponent, m as maybeRenderHead, a as renderTemplate } from '../chunks/astro/server_BVdSWecw.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_DAze6MJw.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BWhIpZcS.mjs';
 import { $ as $$Zap } from '../chunks/Zap_Dc9_lAWE.mjs';
 import { $ as $$Shield } from '../chunks/Shield_CoUr9I_l.mjs';
 import { $ as $$Search } from '../chunks/Search_CHt6SgPu.mjs';
