@@ -99,6 +99,13 @@ const projects = [
     href: "https://aura-nine-ochre.vercel.app/",
     image: "/images/aurathumbnail.png",
   },
+  {
+    title: "The Aesthetic Vault",
+    category: "Design Systems",
+    href: "/aesthetic-vault",
+    image: "/vault/echo-chamber.png",
+    linkText: "View More Designs",
+  },
 ];
 ---
 
@@ -477,6 +484,7 @@ const projects = [
                 category={project.category}
                 href={project.href}
                 image={project.image}
+                linkText={project.linkText}
               />
             </div>
           ))
