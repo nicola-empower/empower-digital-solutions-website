@@ -163,17 +163,19 @@ import {
       </section>
 
       <!-- Aesthetic Vault Section -->
-      <section class="mb-24 relative rounded-3xl overflow-hidden">
-        <div class="absolute inset-0 bg-slate-900">
+      <section class="mb-24 relative rounded-3xl overflow-hidden group">
+        <div
+          class="absolute inset-0 bg-slate-900 border border-purple-500/20 rounded-3xl transition-colors duration-500"
+        >
           <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-purple-900/40 via-slate-900 to-slate-900"
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-purple-900/40 via-slate-950 to-slate-950"
           >
           </div>
         </div>
 
         <div class="relative z-10 p-12 md:p-20 text-center">
           <div
-            class="inline-flex items-center justify-center p-4 bg-purple-500/10 rounded-2xl mb-8"
+            class="inline-flex items-center justify-center p-4 bg-purple-500/10 rounded-2xl mb-8 backdrop-blur-sm border border-purple-500/20"
           >
             <Palette class="w-12 h-12 text-purple-400" />
           </div>
@@ -213,7 +215,7 @@ import {
 
           <a
             href="/aesthetic-vault"
-            class="inline-flex items-center bg-white text-slate-900 font-bold py-4 px-10 rounded-full hover:bg-purple-50 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-purple-500/20"
+            class="inline-flex items-center bg-linear-to-r from-purple-600 to-pink-600 text-white font-bold py-4 px-10 rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-purple-500/25"
           >
             Enter The Vault <ArrowRight class="w-5 h-5 ml-2" />
           </a>
