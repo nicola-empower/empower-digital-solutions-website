@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import InvoiceGenerator from './admin/InvoiceGenerator';
+import DocumentGenerator from './admin/DocumentGenerator';
 
 export default function AdminDashboard() {
     interface Client {
@@ -12,7 +12,7 @@ export default function AdminDashboard() {
     interface Project {
         id: string;
         created_at: string;
-        client_id: string;
+        client_id: string | null;
         name: string;
         workflow_type: string;
         status: string;
@@ -32,11 +32,22 @@ export default function AdminDashboard() {
         };
     }
 
+    interface GeneratedDocument {
+        id: string;
+        client_name: string;
+        document_type: string;
+        total_amount: number;
+        created_at: string;
+        client_id?: string;
+    }
+
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState('dashboard');
     const [stats, setStats] = useState({ clients: 0, activeProjects: 0, pendingActions: 0 });
     const [projects, setProjects] = useState<Project[]>([]);
     const [activities, setActivities] = useState<ActivityLog[]>([]);
+    const [recentDocs, setRecentDocs] = useState<GeneratedDocument[]>([]);
+    const [assigningDocId, setAssigningDocId] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [clients, setClients] = useState<Client[]>([]);
     const [formData, setFormData] = useState({
@@ -45,6 +56,9 @@ export default function AdminDashboard() {
         workflow_type: 'Social Media',
         status: 'Pending'
     });
+    const [showAssignModal, setShowAssignModal] = useState(false);
+    const [selectedProjectToAssign, setSelectedProjectToAssign] = useState<string | null>(null);
+    const [assignClientId, setAssignClientId] = useState('');
 
     useEffect(() => {
         checkAuthAndFetchData();
@@ -83,7 +97,78 @@ export default function AdminDashboard() {
             .limit(5);
         setActivities(activityData || []);
 
+        // Fetch Recent Documents
+        const { data: docsData } = await supabase
+            .from('generated_documents')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(5);
+        setRecentDocs(docsData || []);
+
+        // Fetch Clients for Assignment
+        const { data: profiles } = await supabase.from('profiles').select('id, full_name, email');
+        setClients(profiles || []);
         setLoading(false);
+    };
+
+    const handleAssignDocument = async (docId: string, clientId: string) => {
+        if (!clientId) return;
+
+        const { error } = await supabase
+            .from('generated_documents')
+            .update({ client_id: clientId })
+            .eq('id', docId);
+
+        if (error) {
+            alert('Error assigning document: ' + error.message);
+        } else {
+            // 2. Find Client's Active Project to share the file to
+            const { data: projects } = await supabase
+                .from('projects')
+                .select('id')
+                .eq('client_id', clientId)
+                .order('created_at', { ascending: false })
+                .limit(1);
+
+            if (projects && projects.length > 0) {
+                const projectId = projects[0].id;
+
+                // Fetch the document details to copy
+                const { data: docData } = await supabase
+                    .from('generated_documents')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+
+                if (docData && docData.file_url) {
+                    // Determine if signature is required based on type
+                    const needsSignature = ['Quote', 'Proposal', 'Contract'].includes(docData.document_type);
+
+                    // Get public URL
+                    const { data: { publicUrl } } = supabase.storage.from('portal-files').getPublicUrl(docData.file_url);
+
+                    // Insert into documents table for Client Portal
+                    await supabase.from('documents').insert({
+                        project_id: projectId,
+                        name: `${docData.document_type} - ${docData.client_name}.pdf`,
+                        url: publicUrl,
+                        type: 'file',
+                        is_signature_required: needsSignature,
+                        status: needsSignature ? 'pending_signature' : 'shared',
+                        uploaded_by: (await supabase.auth.getUser()).data.user?.id
+                    });
+                }
+            }
+
+            // Refresh docs
+            const { data: docsData } = await supabase
+                .from('generated_documents')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(5);
+            setRecentDocs(docsData || []);
+            setAssigningDocId(null);
+        }
     };
 
     const handleLogout = async () => {
@@ -100,7 +185,7 @@ export default function AdminDashboard() {
     const handleCreateProject = async (e: React.FormEvent) => {
         e.preventDefault();
         const { error } = await supabase.from('projects').insert({
-            client_id: formData.clientId,
+            client_id: formData.clientId || null,
             name: formData.name,
             workflow_type: formData.workflow_type,
             status: formData.status,
@@ -118,11 +203,39 @@ export default function AdminDashboard() {
         }
     };
 
+    const openAssignModal = (projectId: string) => {
+        setSelectedProjectToAssign(projectId);
+        setAssignClientId('');
+        setShowAssignModal(true);
+    };
+
+    const handleAssignProject = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!selectedProjectToAssign || !assignClientId) return;
+
+        const { error } = await supabase
+            .from('projects')
+            .update({ client_id: assignClientId })
+            .eq('id', selectedProjectToAssign);
+
+        if (error) {
+            alert("Error assigning project: " + error.message);
+        } else {
+            await supabase.from('activity_logs').insert({
+                message: "Admin assigned project to client."
+            });
+            setShowAssignModal(false);
+            setSelectedProjectToAssign(null);
+            checkAuthAndFetchData();
+        }
+    };
+
     if (loading) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">Loading Dashboard...</div>;
 
     return (
         <div className="min-h-screen bg-slate-950 flex">
             <div className="flex-1 p-8 overflow-y-auto">
+                {/* ... Header ... */}
                 <div className="flex justify-between items-center mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-white">Client Portal</h1>
@@ -137,10 +250,10 @@ export default function AdminDashboard() {
                                 Dashboard
                             </button>
                             <button
-                                onClick={() => setActiveTab('invoices')}
-                                className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'invoices' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
+                                onClick={() => setActiveTab('documents')}
+                                className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'documents' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
                             >
-                                Invoice Generator
+                                Document Generator
                             </button>
                         </div>
                         <button onClick={handleLogout} className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700 transition-colors">Logout</button>
@@ -166,6 +279,85 @@ export default function AdminDashboard() {
                             </div>
                         </div>
 
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                            {/* Recent Documents */}
+                            <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+                                <div className="p-6 border-b border-slate-800 flex justify-between items-center">
+                                    <h2 className="text-xl font-bold text-white">Recent Documents</h2>
+                                    <button onClick={() => setActiveTab('documents')} className="text-sm text-purple-400 hover:text-purple-300">Create New &rarr;</button>
+                                </div>
+                                <div className="p-4 space-y-3">
+                                    {recentDocs.length === 0 ? (
+                                        <p className="text-slate-500 text-center py-4">No documents generated yet.</p>
+                                    ) : (
+                                        recentDocs.map(doc => (
+                                            <div key={doc.id} className="flex justify-between items-center bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+                                                <div>
+                                                    <div className="font-bold text-white">{doc.client_name}</div>
+                                                    <div className="text-xs text-slate-400 flex gap-2">
+                                                        <span className="capitalize">{doc.document_type}</span>
+                                                        <span>•</span>
+                                                        <span>{new Date(doc.created_at).toLocaleDateString()}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-4">
+                                                    <div className="font-bold text-emerald-500">
+                                                        £{doc.total_amount?.toLocaleString()}
+                                                    </div>
+                                                    {doc.client_id ? (
+                                                        <span className="text-xs bg-emerald-500/10 text-emerald-500 px-2 py-1 rounded border border-emerald-500/20">Assigned</span>
+                                                    ) : (
+                                                        assigningDocId === doc.id ? (
+                                                            <select
+                                                                autoFocus
+                                                                className="bg-slate-800 text-white text-xs rounded px-2 py-1 border border-slate-700 focus:outline-none focus:border-purple-500"
+                                                                onChange={(e) => handleAssignDocument(doc.id, e.target.value)}
+                                                                onBlur={() => setAssigningDocId(null)}
+                                                                defaultValue=""
+                                                            >
+                                                                <option value="" disabled>Select Client...</option>
+                                                                {clients.map(c => (
+                                                                    <option key={c.id} value={c.id}>{c.full_name}</option>
+                                                                ))}
+                                                            </select>
+                                                        ) : (
+                                                            <button
+                                                                onClick={() => setAssigningDocId(doc.id)}
+                                                                className="text-xs bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded transition-colors"
+                                                            >
+                                                                Assign
+                                                            </button>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Recent Activity */}
+                            <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+                                <div className="p-6 border-b border-slate-800">
+                                    <h2 className="text-xl font-bold text-white">System Activity</h2>
+                                </div>
+                                <div className="p-4 space-y-3">
+                                    {activities.map((log) => (
+                                        <div key={log.id} className="bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+                                            <div className="flex justify-between items-start mb-1">
+                                                <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">System Alert</span>
+                                                <span className="text-xs text-slate-500">{new Date(log.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                            </div>
+                                            <p className="text-sm text-slate-300 leading-relaxed">{log.message}</p>
+                                        </div>
+                                    ))}
+                                    {activities.length === 0 && (
+                                        <p className="text-slate-500 text-sm text-center py-4">No recent activity.</p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
                         {/* Portfolios Table */}
                         <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
                             <div className="p-6 border-b border-slate-800">
@@ -186,8 +378,10 @@ export default function AdminDashboard() {
                                         {projects.map((project) => (
                                             <tr key={project.id} className="hover:bg-slate-800/50 transition-colors">
                                                 <td className="p-6">
-                                                    <div className="font-bold text-white">{project.profiles?.full_name || 'Unknown'}</div>
-                                                    <div className="text-sm text-slate-400">{project.profiles?.company_name || 'No Company'}</div>
+                                                    <div className="font-bold text-white">
+                                                        {project.profiles?.full_name || <span className="text-slate-500 italic">Unassigned (Draft)</span>}
+                                                    </div>
+                                                    <div className="text-sm text-slate-400">{project.profiles?.company_name || ''}</div>
                                                 </td>
                                                 <td className="p-6">
                                                     <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded-full text-xs border border-slate-700">
@@ -211,7 +405,15 @@ export default function AdminDashboard() {
                                                     </span>
                                                 </td>
                                                 <td className="p-6 text-right">
-                                                    <a href={`/admin/project/${project.id}`} className="text-purple-400 hover:text-purple-300 font-medium text-sm">Manage &rarr;</a>
+                                                    <a href={`/admin/project/${project.id}`} className="text-purple-400 hover:text-purple-300 font-medium text-sm mr-4">Manage &rarr;</a>
+                                                    {!project.client_id && (
+                                                        <button
+                                                            onClick={() => openAssignModal(project.id)}
+                                                            className="text-emerald-400 hover:text-emerald-300 font-medium text-sm"
+                                                        >
+                                                            Assign User
+                                                        </button>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))}
@@ -226,7 +428,7 @@ export default function AdminDashboard() {
                         </div>
                     </>
                 ) : (
-                    <InvoiceGenerator />
+                    <DocumentGenerator />
                 )}
             </div>
 
@@ -263,12 +465,11 @@ export default function AdminDashboard() {
                             <div>
                                 <label className="block text-sm font-medium text-slate-400 mb-1">Select Client</label>
                                 <select
-                                    required
                                     className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
                                     value={formData.clientId}
                                     onChange={(e) => setFormData({ ...formData, clientId: e.target.value })}
                                 >
-                                    <option value="">Select a client...</option>
+                                    <option value="">Unassigned (Draft)</option>
                                     {clients.map(client => (
                                         <option key={client.id} value={client.id}>{client.full_name} ({client.email})</option>
                                     ))}
@@ -314,6 +515,35 @@ export default function AdminDashboard() {
                             <div className="flex gap-4 pt-4">
                                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-700 transition-colors">Abort</button>
                                 <button type="submit" className="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition-colors">Initialise</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Assign Project Modal */}
+            {showAssignModal && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
+                    <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 w-full max-w-lg shadow-2xl">
+                        <h2 className="text-2xl font-bold text-white mb-6">Assign Project to Client</h2>
+                        <form onSubmit={handleAssignProject} className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Select Client</label>
+                                <select
+                                    required
+                                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                                    value={assignClientId}
+                                    onChange={(e) => setAssignClientId(e.target.value)}
+                                >
+                                    <option value="">Select a client...</option>
+                                    {clients.map(client => (
+                                        <option key={client.id} value={client.id}>{client.full_name} ({client.email})</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="flex gap-4 pt-4">
+                                <button type="button" onClick={() => setShowAssignModal(false)} className="flex-1 bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-700 transition-colors">Cancel</button>
+                                <button type="submit" className="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition-colors">Assign</button>
                             </div>
                         </form>
                     </div>

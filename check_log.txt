@@ -1,0 +1,725 @@
+[2m14:28:25[22m [34m[content][39m Syncing content
+[2m14:28:25[22m [34m[content][39m Synced content
+[2m14:28:25[22m [34m[types][39m Generated [2m5.16s[22m
+[2m14:28:25[22m [34m[check][39m Getting diagnostics for Astro files in C:\Users\nicol\OneDrive\Desktop\the websites\digital solutions\empower-digital-solutions...
+[96mastro.config.mjs[0m:[93m13[0m:[93m19[0m - [91merror[0m[90m ts(2322): [0mType 'Plugin<any>[]' is not assignable to type 'PluginOption'.
+  Type 'Plugin<any>[]' is not assignable to type 'PluginOption[]'.
+    Type 'Plugin<any>' is not assignable to type 'PluginOption'.
+      Type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").Plugin<any>' is not assignable to type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").Plugin<any>'.
+        Types of property 'hotUpdate' are incompatible.
+          Type 'ObjectHook<(this: MinimalPluginContext & { environment: DevEnvironment; }, options: HotUpdateOptions) => void | EnvironmentModuleNode[] | Promise<...>>' is not assignable to type 'ObjectHook<(this: HotUpdatePluginContext, options: HotUpdateOptions) => void | EnvironmentModuleNode[] | Promise<void | EnvironmentModuleNode[]>>'.
+            Type '(this: MinimalPluginContext & { environment: DevEnvironment; }, options: HotUpdateOptions) => void | EnvironmentModuleNode[] | Promise<...>' is not assignable to type 'ObjectHook<(this: HotUpdatePluginContext, options: HotUpdateOptions) => void | EnvironmentModuleNode[] | Promise<void | EnvironmentModuleNode[]>>'.
+              Type '(this: MinimalPluginContext & { environment: DevEnvironment; }, options: HotUpdateOptions) => void | EnvironmentModuleNode[] | Promise<...>' is not assignable to type '(this: HotUpdatePluginContext, options: HotUpdateOptions) => void | EnvironmentModuleNode[] | Promise<void | EnvironmentModuleNode[]>'.
+                Types of parameters 'options' and 'options' are incompatible.
+                  Type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").HotUpdateOptions' is not assignable to type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").HotUpdateOptions'.
+                    The types of 'server.config.builder' are incompatible between these types.
+                      Type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").BuilderOptions & Required<...>' is not assignable to type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").BuilderOptions & Required<import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").BuilderOptions>'.
+                        Type 'BuilderOptions & Required<BuilderOptions>' is not assignable to type 'BuilderOptions'.
+                          Types of property 'buildApp' are incompatible.
+                            Type '(builder: import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").ViteBuilder) => Promise<...>' is not assignable to type '(builder: import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").ViteBuilder) => Promise<void>'.
+                              Types of parameters 'builder' and 'builder' are incompatible.
+                                Type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").ViteBuilder' is not assignable to type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").ViteBuilder'.
+                                  Types of property 'environments' are incompatible.
+                                    Type 'Record<string, import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").BuildEnvironment>' is not assignable to type 'Record<string, import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").BuildEnvironment>'.
+                                      'string' index signatures are incompatible.
+                                        Property 'options' is missing in type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/vite/dist/node/index").BuildEnvironment' but required in type 'import("C:/Users/nicol/OneDrive/Desktop/the websites/digital solutions/empower-digital-solutions/node_modules/astro/node_modules/vite/dist/node/index").BuildEnvironment'.
+
+[7m13[0m         plugins: [tailwindcss()]
+[7m  [0m [91m                  ~~~~~~~~~~~~~[0m
+
+[96mlist_models.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m ts(2307): [0mCannot find module 'dotenv' or its corresponding type declarations.
+
+[7m1[0m import { config } from 'dotenv';
+[7m [0m [91m                       ~~~~~~~~[0m
+[96mlist_models.ts[0m:[93m23[0m:[93m33[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'model' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m23[0m             data.models.forEach(model => {
+[7m  [0m [93m                                ~~~~~[0m
+
+[96msrc/components/AdminLogin.tsx[0m:[93m9[0m:[93m12[0m - [93mwarning[0m[90m ts(6133): [0m'ready' is declared but its value is never read.
+
+[7m9[0m     const [ready, setReady] = useState(false);
+[7m [0m [93m           ~~~~~[0m
+
+[96msrc/components/ClientDashboard.tsx[0m:[93m263[0m:[93m40[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'e' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m263[0m     const handleUpdateProfile = async (e) => {
+[7m   [0m [93m                                       ~[0m
+[96msrc/components/ClientDashboard.tsx[0m:[93m230[0m:[93m28[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'doc' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m230[0m     const openSignModal = (doc) => {
+[7m   [0m [93m                           ~~~[0m
+[96msrc/components/ClientDashboard.tsx[0m:[93m199[0m:[93m39[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'e' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m199[0m     const handleSignDocument = async (e) => {
+[7m   [0m [93m                                      ~[0m
+[96msrc/components/ClientDashboard.tsx[0m:[93m163[0m:[93m39[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'currentStatus' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m163[0m     const toggleTask = async (taskId, currentStatus) => {
+[7m   [0m [93m                                      ~~~~~~~~~~~~~[0m
+[96msrc/components/ClientDashboard.tsx[0m:[93m163[0m:[93m31[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'taskId' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m163[0m     const toggleTask = async (taskId, currentStatus) => {
+[7m   [0m [93m                              ~~~~~~[0m
+[96msrc/components/ClientDashboard.tsx[0m:[93m111[0m:[93m37[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'e' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m111[0m     const handleFileUpload = async (e) => {
+[7m   [0m [93m                                    ~[0m
+[96msrc/components/ClientDashboard.tsx[0m:[93m1[0m:[93m8[0m - [93mwarning[0m[90m ts(6133): [0m'React' is declared but its value is never read.
+
+[7m1[0m import React, { useEffect, useState } from 'react';
+[7m [0m [93m       ~~~~~[0m
+
+[96msrc/components/EmpowerSystemsSales.astro[0m:[93m13[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'Mail' is declared but its value is never read.
+
+[7m13[0m     Mail,
+[7m  [0m [93m    ~~~~[0m
+[96msrc/components/EmpowerSystemsSales.astro[0m:[93m12[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'ArrowRight' is declared but its value is never read.
+
+[7m12[0m     ArrowRight,
+[7m  [0m [93m    ~~~~~~~~~~[0m
+[96msrc/components/EmpowerSystemsSales.astro[0m:[93m11[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'Utensils' is declared but its value is never read.
+
+[7m11[0m     Utensils,
+[7m  [0m [93m    ~~~~~~~~[0m
+[96msrc/components/EmpowerSystemsSales.astro[0m:[93m10[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'BarChart3' is declared but its value is never read.
+
+[7m10[0m     BarChart3,
+[7m  [0m [93m    ~~~~~~~~~[0m
+
+[96msrc/components/Footer.astro[0m:[93m39[0m:[93m14[0m - [93mwarning[0m[90m ts(6385): [0m'Linkedin' is deprecated.
+
+[7m39[0m             <Linkedin
+[7m  [0m [93m             ~~~~~~~~[0m
+[96msrc/components/Footer.astro[0m:[93m7[0m:[93m3[0m - [93mwarning[0m[90m ts(6133): [0m'Phone' is declared but its value is never read.
+
+[7m7[0m   Phone,
+[7m [0m [93m  ~~~~~[0m
+[96msrc/components/Footer.astro[0m:[93m4[0m:[93m3[0m - [93mwarning[0m[90m ts(6385): [0m'Linkedin' is deprecated.
+
+[7m4[0m   Linkedin,
+[7m [0m [93m  ~~~~~~~~[0m
+[96msrc/components/Footer.astro[0m:[93m3[0m:[93m3[0m - [93mwarning[0m[90m ts(6133): [0m'Facebook' is declared but its value is never read.
+
+[7m3[0m   Facebook,
+[7m [0m [93m  ~~~~~~~~[0m
+[96msrc/components/Footer.astro[0m:[93m3[0m:[93m3[0m - [93mwarning[0m[90m ts(6385): [0m'Facebook' is deprecated.
+
+[7m3[0m   Facebook,
+[7m [0m [93m  ~~~~~~~~[0m
+[96msrc/components/Footer.astro[0m:[93m214[0m:[93m50[0m - [93mwarning[0m[90m ts(6133): [0m'e' is declared but its value is never read.
+
+[7m214[0m         installButton.addEventListener("click", (e) => {
+[7m   [0m [93m                                                 ~[0m
+
+[96msrc/components/HealthChecker.jsx[0m:[93m1[0m:[93m8[0m - [93mwarning[0m[90m ts(6133): [0m'React' is declared but its value is never read.
+
+[7m1[0m import React, { useState, useEffect } from 'react';
+[7m [0m [93m       ~~~~~[0m
+
+[96msrc/components/InboxZeroDemo.jsx[0m:[93m2[0m:[93m40[0m - [93mwarning[0m[90m ts(6133): [0m'CheckCircle' is declared but its value is never read.
+
+[7m2[0m import { Play, Loader2, AlertTriangle, CheckCircle, Mail, Clock, Filter } from 'lucide-react';
+[7m [0m [93m                                       ~~~~~~~~~~~[0m
+[96msrc/components/InboxZeroDemo.jsx[0m:[93m1[0m:[93m27[0m - [93mwarning[0m[90m ts(6133): [0m'useEffect' is declared but its value is never read.
+
+[7m1[0m import React, { useState, useEffect } from 'react';
+[7m [0m [93m                          ~~~~~~~~~[0m
+[96msrc/components/InboxZeroDemo.jsx[0m:[93m1[0m:[93m8[0m - [93mwarning[0m[90m ts(6133): [0m'React' is declared but its value is never read.
+
+[7m1[0m import React, { useState, useEffect } from 'react';
+[7m [0m [93m       ~~~~~[0m
+
+[96msrc/components/ProjectShowcase.jsx[0m:[93m2[0m:[93m60[0m - [93mwarning[0m[90m ts(6133): [0m'ArrowRight' is declared but its value is never read.
+
+[7m2[0m import { Laptop, Brain, Calculator, Palette, ExternalLink, ArrowRight } from 'lucide-react';
+[7m [0m [93m                                                           ~~~~~~~~~~[0m
+[96msrc/components/ProjectShowcase.jsx[0m:[93m1[0m:[93m8[0m - [93mwarning[0m[90m ts(6133): [0m'React' is declared but its value is never read.
+
+[7m1[0m import React, { useState } from 'react';
+[7m [0m [93m       ~~~~~[0m
+
+[96msrc/components/StickyBanner.tsx[0m:[93m1[0m:[93m8[0m - [93mwarning[0m[90m ts(6133): [0m'React' is declared but its value is never read.
+
+[7m1[0m import React, { useState, useEffect } from 'react';
+[7m [0m [93m       ~~~~~[0m
+
+[96msrc/components/admin/DocumentGenerator.jsx[0m:[93m57[0m:[93m73[0m - [93mwarning[0m[90m ts(6385): [0m'(from: number, length?: number): string' is deprecated.
+
+[7m57[0m         setCart([...cart, { ...item, cartId: Math.random().toString(36).substr(2, 9) }]);
+[7m  [0m [93m                                                                        ~~~~~~[0m
+[96msrc/components/admin/DocumentGenerator.jsx[0m:[93m53[0m:[93m22[0m - [93mwarning[0m[90m ts(6133): [0m'setSolution' is declared but its value is never read.
+
+[7m53[0m     const [solution, setSolution] = useState('');
+[7m  [0m [93m                     ~~~~~~~~~~~[0m
+[96msrc/components/admin/DocumentGenerator.jsx[0m:[93m52[0m:[93m21[0m - [93mwarning[0m[90m ts(6133): [0m'setProblem' is declared but its value is never read.
+
+[7m52[0m     const [problem, setProblem] = useState('');
+[7m  [0m [93m                    ~~~~~~~~~~[0m
+[96msrc/components/admin/DocumentGenerator.jsx[0m:[93m48[0m:[93m26[0m - [93mwarning[0m[90m ts(6133): [0m'setPaymentTerms' is declared but its value is never read.
+
+[7m48[0m     const [paymentTerms, setPaymentTerms] = useState('50% Upfront, 50% Completion');
+[7m  [0m [93m                         ~~~~~~~~~~~~~~~[0m
+[96msrc/components/admin/DocumentGenerator.jsx[0m:[93m47[0m:[93m22[0m - [93mwarning[0m[90m ts(6133): [0m'setValidity' is declared but its value is never read.
+
+[7m47[0m     const [validity, setValidity] = useState('30 Days');
+[7m  [0m [93m                     ~~~~~~~~~~~[0m
+[96msrc/components/admin/DocumentGenerator.jsx[0m:[93m1[0m:[93m8[0m - [93mwarning[0m[90m ts(6133): [0m'React' is declared but its value is never read.
+
+[7m1[0m import React, { useState } from 'react';
+[7m [0m [93m       ~~~~~[0m
+
+[96msrc/components/admin/ProjectManager.tsx[0m:[93m106[0m:[93m45[0m - [93mwarning[0m[90m ts(6133): [0m'path' is declared but its value is never read.
+
+[7m106[0m     const handleDelete = async (id: string, path?: string) => {
+[7m   [0m [93m                                            ~~~~[0m
+
+[96msrc/layouts/Layout.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'ClientRouter' is declared but its value is never read.
+
+[7m2[0m import { ClientRouter } from "astro:transitions";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/booking.astro[0m:[93m26[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'scrolling' is deprecated.
+
+[7m26[0m           scrolling="no"
+[7m  [0m [93m          ~~~~~~~~~[0m
+[96msrc/pages/booking.astro[0m:[93m25[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'frameborder' is deprecated.
+
+[7m25[0m           frameborder="0"
+[7m  [0m [93m          ~~~~~~~~~~~[0m
+
+[96msrc/pages/clientportal.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'Layout' is declared but its value is never read.
+
+[7m2[0m import Layout from "../layouts/Layout.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/consulting.astro[0m:[93m219[0m:[93m3[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Layout'.
+
+[7m219[0m </Layout>
+[7m   [0m [91m  ~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m193[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Section'.
+
+[7m193[0m     <!-- CTA Section -->
+[7m   [0m [91m             ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m193[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CTA'.
+
+[7m193[0m     <!-- CTA Section -->
+[7m   [0m [91m         ~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m183[0m:[93m38[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Activity'.
+
+[7m183[0m                                     <Activity class="w-4 h-4" /> Optimised
+[7m   [0m [91m                                     ~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m175[0m:[93m38[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Activity'.
+
+[7m175[0m                                     <Activity class="w-4 h-4" /> -15hrs/week
+[7m   [0m [91m                                     ~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m165[0m:[93m38[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Activity'.
+
+[7m165[0m                                     <Activity class="w-4 h-4" /> +40%
+[7m   [0m [91m                                     ~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m143[0m:[93m30[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m143[0m                             <CheckCircle2 class="w-5 h-5 text-blue-500" />
+[7m   [0m [91m                             ~~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m139[0m:[93m30[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m139[0m                             <CheckCircle2 class="w-5 h-5 text-blue-500" />
+[7m   [0m [91m                             ~~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m135[0m:[93m30[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m135[0m                             <CheckCircle2 class="w-5 h-5 text-blue-500" />
+[7m   [0m [91m                             ~~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m27[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Section'.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m                          ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m18[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Solution'.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m                 ~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Problem'.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m         ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m6[0m - [91merror[0m[90m ts(2362): [0mThe left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m     ~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m104[0m:[93m26[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'BrainCircuit'.
+
+[7m104[0m                         <BrainCircuit class="w-8 h-8 text-pink-400" />
+[7m   [0m [91m                         ~~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m85[0m:[93m26[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Workflow'.
+
+[7m85[0m                         <Workflow class="w-8 h-8 text-purple-400" />
+[7m  [0m [91m                         ~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m66[0m:[93m26[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Search'.
+
+[7m66[0m                         <Search class="w-8 h-8 text-blue-400" />
+[7m  [0m [91m                         ~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m55[0m:[93m27[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Section'.
+
+[7m55[0m     <!-- The "What We Do" Section -->
+[7m  [0m [91m                          ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m55[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'The'.
+
+[7m55[0m     <!-- The "What We Do" Section -->
+[7m  [0m [91m         ~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m53[0m:[93m7[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'section'.
+
+[7m53[0m     </section>
+[7m  [0m [91m      ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m48[0m:[93m22[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Activity'.
+
+[7m48[0m                     <Activity class="w-5 h-5" />
+[7m  [0m [91m                     ~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m12[0m:[93m22[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'BrainCircuit'.
+
+[7m12[0m                     <BrainCircuit class="w-5 h-5 text-blue-400" />
+[7m  [0m [91m                     ~~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m219[0m:[93m1[0m - [91merror[0m[90m ts(1128): [0mDeclaration or statement expected.
+
+[7m219[0m </Layout>
+[7m   [0m [91m~~[0m
+[96msrc/pages/consulting.astro[0m:[93m193[0m:[93m14[0m - [91merror[0m[90m ts(1005): [0m';' expected.
+
+[7m193[0m     <!-- CTA Section -->
+[7m   [0m [91m             ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m193[0m:[93m6[0m - [91merror[0m[90m ts(1005): [0m';' expected.
+
+[7m193[0m     <!-- CTA Section -->
+[7m   [0m [91m     ~[0m
+[96msrc/pages/consulting.astro[0m:[93m193[0m:[93m6[0m - [91merror[0m[90m ts(1003): [0mIdentifier expected.
+
+[7m193[0m     <!-- CTA Section -->
+[7m   [0m [91m     ~[0m
+[96msrc/pages/consulting.astro[0m:[93m120[0m:[93m5[0m - [91merror[0m[90m ts(2657): [0mJSX expressions must have one parent element.
+
+[7m120[0m     <section class="py-24 px-6 bg-slate-900">
+[7m   [0m [91m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m121[0m         <div class="max-w-5xl mx-auto">
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m192[0m 
+[7m   [0m [91m[0m
+[7m193[0m     <!-- CTA Section -->
+[7m   [0m [91m~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m27[0m - [91merror[0m[90m ts(1005): [0m';' expected.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m                          ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m6[0m - [91merror[0m[90m ts(1005): [0m';' expected.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m     ~[0m
+[96msrc/pages/consulting.astro[0m:[93m119[0m:[93m6[0m - [91merror[0m[90m ts(1003): [0mIdentifier expected.
+
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m     ~[0m
+[96msrc/pages/consulting.astro[0m:[93m97[0m:[93m34[0m - [91merror[0m[90m ts(1382): [0mUnexpected token. Did you mean `{'>'}` or `&gt;`?
+
+[7m97[0m                 <!-- Service 3 -->
+[7m  [0m [91m                                 ~[0m
+[96msrc/pages/consulting.astro[0m:[93m97[0m:[93m18[0m - [91merror[0m[90m ts(1003): [0mIdentifier expected.
+
+[7m97[0m                 <!-- Service 3 -->
+[7m  [0m [91m                 ~[0m
+[96msrc/pages/consulting.astro[0m:[93m78[0m:[93m34[0m - [91merror[0m[90m ts(1382): [0mUnexpected token. Did you mean `{'>'}` or `&gt;`?
+
+[7m78[0m                 <!-- Service 2 -->
+[7m  [0m [91m                                 ~[0m
+[96msrc/pages/consulting.astro[0m:[93m78[0m:[93m18[0m - [91merror[0m[90m ts(1003): [0mIdentifier expected.
+
+[7m78[0m                 <!-- Service 2 -->
+[7m  [0m [91m                 ~[0m
+[96msrc/pages/consulting.astro[0m:[93m59[0m:[93m34[0m - [91merror[0m[90m ts(1382): [0mUnexpected token. Did you mean `{'>'}` or `&gt;`?
+
+[7m59[0m                 <!-- Service 1 -->
+[7m  [0m [91m                                 ~[0m
+[96msrc/pages/consulting.astro[0m:[93m59[0m:[93m18[0m - [91merror[0m[90m ts(1003): [0mIdentifier expected.
+
+[7m59[0m                 <!-- Service 1 -->
+[7m  [0m [91m                 ~[0m
+[96msrc/pages/consulting.astro[0m:[93m56[0m:[93m5[0m - [91merror[0m[90m ts(2657): [0mJSX expressions must have one parent element.
+
+[7m 56[0m     <section class="py-24 px-6 bg-slate-950">
+[7m   [0m [91m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m 57[0m         <div class="max-w-6xl mx-auto">
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m118[0m 
+[7m   [0m [91m[0m
+[7m119[0m     <!-- Problem/Solution Section -->
+[7m   [0m [91m~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m55[0m:[93m27[0m - [91merror[0m[90m ts(1005): [0m';' expected.
+
+[7m55[0m     <!-- The "What We Do" Section -->
+[7m  [0m [91m                          ~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m55[0m:[93m14[0m - [91merror[0m[90m ts(1005): [0m';' expected.
+
+[7m55[0m     <!-- The "What We Do" Section -->
+[7m  [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/consulting.astro[0m:[93m55[0m:[93m5[0m - [91merror[0m[90m ts(1109): [0mExpression expected.
+
+[7m55[0m     <!-- The "What We Do" Section -->
+[7m  [0m [91m    ~[0m
+[96msrc/pages/consulting.astro[0m:[93m53[0m:[93m5[0m - [91merror[0m[90m ts(1128): [0mDeclaration or statement expected.
+
+[7m53[0m     </section>
+[7m  [0m [91m    ~~[0m
+[96msrc/pages/consulting.astro[0m:[93m2[0m:[93m9[0m - [91merror[0m[90m ts(2657): [0mJSX expressions must have one parent element.
+
+[7m  2[0m         <div
+[7m   [0m [91m        ~~~~[0m
+[7m  3[0m             class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-950 to-slate-950 pointer-events-none"
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m 51[0m             </div>
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~[0m
+[7m 52[0m         </div>
+[7m   [0m [91m~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/design-process.astro[0m:[93m20[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'timeline' is declared but its value is never read.
+
+[7m20[0m const timeline = [
+[7m  [0m [93m      ~~~~~~~~[0m
+[96msrc/pages/design-process.astro[0m:[93m5[0m:[93m3[0m - [93mwarning[0m[90m ts(6133): [0m'Users' is declared but its value is never read.
+
+[7m5[0m   Users,
+[7m [0m [93m  ~~~~~[0m
+
+[96msrc/pages/digitalplanner.astro[0m:[93m324[0m:[93m21[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Chart'.
+
+[7m324[0m                 new Chart(ctx, {
+[7m   [0m [91m                    ~~~~~[0m
+[96msrc/pages/digitalplanner.astro[0m:[93m323[0m:[93m31[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Chart'.
+
+[7m323[0m             if (ctx && typeof Chart !== 'undefined') {
+[7m   [0m [91m                              ~~~~~[0m
+[96msrc/pages/digitalplanner.astro[0m:[93m262[0m:[93m32[0m - [93mwarning[0m[90m ts(7044): [0mParameter 'hash' implicitly has an 'any' type, but a better type may be inferred from usage.
+
+[7m262[0m         function updateContent(hash) {
+[7m   [0m [93m                               ~~~~[0m
+
+[96msrc/pages/featured-build.astro[0m:[93m7[0m:[93m3[0m - [93mwarning[0m[90m ts(6133): [0m'Shield' is declared but its value is never read.
+
+[7m7[0m   Shield,
+[7m [0m [93m  ~~~~~~[0m
+
+[96msrc/pages/index.astro[0m:[93m37[0m:[93m7[0m - [93mwarning[0m[90m ts(6133): [0m'solutions' is declared but its value is never read.
+
+[7m37[0m const solutions = [
+[7m  [0m [93m      ~~~~~~~~~[0m
+
+[96msrc/pages/mvp-development.astro[0m:[93m29[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'TrendingUp' is declared but its value is never read.
+
+[7m29[0m     TrendingUp,
+[7m  [0m [93m    ~~~~~~~~~~[0m
+[96msrc/pages/mvp-development.astro[0m:[93m28[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'Wallet' is declared but its value is never read.
+
+[7m28[0m     Wallet,
+[7m  [0m [93m    ~~~~~~[0m
+[96msrc/pages/mvp-development.astro[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'Layout' is declared but its value is never read.
+
+[7m2[0m import Layout from "../layouts/Layout.astro";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/services.astro[0m:[93m358[0m:[93m30[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m358[0m                 <CheckCircle class="w-5 h-5 text-empower-pink" />
+[7m   [0m [91m                             ~~~~~[0m
+[96msrc/pages/services.astro[0m:[93m354[0m:[93m30[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m354[0m                 <CheckCircle class="w-5 h-5 text-empower-pink" />
+[7m   [0m [91m                             ~~~~~[0m
+[96msrc/pages/services.astro[0m:[93m350[0m:[93m30[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m350[0m                 <CheckCircle class="w-5 h-5 text-empower-pink" />
+[7m   [0m [91m                             ~~~~~[0m
+[96msrc/pages/services.astro[0m:[93m243[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Rocket'.
+
+[7m243[0m             <Rocket
+[7m   [0m [91m             ~~~~~~[0m
+[96msrc/pages/services.astro[0m:[93m74[0m:[93m18[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Rocket'.
+
+[7m74[0m                 <Rocket className="w-10 h-10 text-empower-pink" />
+[7m  [0m [91m                 ~~~~~~[0m
+
+[96msrc/pages/vaassist.astro[0m:[93m734[0m:[93m29[0m - [91merror[0m[90m ts(2551): [0mProperty 'reset' does not exist on type 'HTMLElement'. Did you mean 'onreset'?
+
+[7m734[0m                 addTaskForm.reset();
+[7m   [0m [91m                            ~~~~~[0m
+[96msrc/pages/vaassist.astro[0m:[93m679[0m:[93m15[0m - [93mwarning[0m[90m ts(6133): [0m'modals' is declared but its value is never read.
+
+[7m679[0m         const modals = document.querySelectorAll('.modal');
+[7m   [0m [93m              ~~~~~~[0m
+
+[96msrc/pages/web-design.astro[0m:[93m403[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m403[0m             <CheckCircle2 class="w-6 h-6 text-green-600 dark:text-green-400" />
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m392[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m392[0m             <CheckCircle2 class="w-6 h-6 text-green-600 dark:text-green-400" />
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m383[0m:[93m38[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'ArrowRight'.
+
+[7m383[0m         Download Migration Protocol <ArrowRight class="w-4 h-4 ml-2" />
+[7m   [0m [91m                                     ~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m281[0m:[93m2[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'TechComparison'.
+
+[7m281[0m <TechComparison />
+[7m   [0m [91m ~~~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m265[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m265[0m             <CheckCircle2 class="w-4 h-4 text-purple-500 mr-2" /> "Scrollytelling"
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m260[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m260[0m             <CheckCircle2 class="w-4 h-4 text-purple-500 mr-2" /> 3D Elements
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m255[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m255[0m             <CheckCircle2 class="w-4 h-4 text-purple-500 mr-2" /> Video Backgrounds
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m250[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m250[0m             <CheckCircle2 class="w-4 h-4 text-purple-500 mr-2" /> Framer Motion Animations
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m216[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m216[0m             <CheckCircle2 class="w-4 h-4 text-empower-pink mr-2" /> Custom Animations
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m211[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m211[0m             <CheckCircle2 class="w-4 h-4 text-empower-pink mr-2" /> SEO Architecture
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m205[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m205[0m             <CheckCircle2 class="w-4 h-4 text-empower-pink mr-2" /> Lead Magnets &
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m199[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m199[0m             <CheckCircle2 class="w-4 h-4 text-empower-pink mr-2" /> CMS for Blog/Case
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m159[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m159[0m             <CheckCircle2 class="w-4 h-4 text-green-500 mr-2" /> Hosting Setup
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m154[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m154[0m             <CheckCircle2 class="w-4 h-4 text-green-500 mr-2" /> Speed Optimization
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m149[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m149[0m             <CheckCircle2 class="w-4 h-4 text-green-500 mr-2" /> Contact Form & Map
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m144[0m:[93m14[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'CheckCircle2'.
+
+[7m144[0m             <CheckCircle2 class="w-4 h-4 text-green-500 mr-2" /> Brand Identity Integration
+[7m   [0m [91m             ~~~~~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m93[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Database'.
+
+[7m93[0m         <Database class="w-10 h-10 text-empower-pink mb-4" />
+[7m  [0m [91m         ~~~~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m81[0m:[93m15[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'class' does not exist on type 'IntrinsicAttributes'.
+
+[7m81[0m         <Lock class="w-10 h-10 text-empower-pink mb-4" />
+[7m  [0m [91m              ~~~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m70[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Zap'.
+
+[7m70[0m         <Zap class="w-10 h-10 text-empower-pink mb-4" />
+[7m  [0m [91m         ~~~[0m
+[96msrc/pages/web-design.astro[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Gauge'.
+
+[7m12[0m         <Gauge class="w-5 h-5 text-green-400" />
+[7m  [0m [91m         ~~~~~[0m
+
+[96msrc/pages/website-health-checker.astro[0m:[93m96[0m:[93m34[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m96[0m               <MousePointerClick class="w-8 h-8" />
+[7m  [0m [91m                                 ~~~~~[0m
+[96msrc/pages/website-health-checker.astro[0m:[93m77[0m:[93m29[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m77[0m               <CheckCircle2 class="w-8 h-8" />
+[7m  [0m [91m                            ~~~~~[0m
+[96msrc/pages/website-health-checker.astro[0m:[93m56[0m:[93m22[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m56[0m               <Gauge class="w-8 h-8" />
+[7m  [0m [91m                     ~~~~~[0m
+
+[96msrc/pages/portal/index.astro[0m:[93m91[0m:[93m21[0m - [93mwarning[0m[90m ts(6133): [0m'data' is declared but its value is never read.
+
+[7m91[0m             const { data, error } = await supabase.auth.signInWithPassword({
+[7m  [0m [93m                    ~~~~[0m
+
+[96msrc/pages/portal/signup.astro[0m:[93m105[0m:[93m21[0m - [93mwarning[0m[90m ts(6133): [0m'data' is declared but its value is never read.
+
+[7m105[0m             const { data, error } = await supabase.auth.signUp({
+[7m   [0m [93m                    ~~~~[0m
+
+[96msrc/pages/studio/architect.astro[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'from'.
+
+[7m12[0m } from "lucide-react";
+[7m  [0m [91m  ~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m11[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Grid'.
+
+[7m11[0m     Grid,
+[7m  [0m [91m    ~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m10[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Box'.
+
+[7m10[0m     Box,
+[7m  [0m [91m    ~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m9[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Layers'.
+
+[7m9[0m     Layers,
+[7m [0m [91m    ~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m7[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Zap'.
+
+[7m7[0m     Zap,
+[7m [0m [91m    ~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m6[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Database'.
+
+[7m6[0m     Database,
+[7m [0m [91m    ~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m5[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Activity'.
+
+[7m5[0m     Activity,
+[7m [0m [91m    ~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m4[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Cpu'.
+
+[7m4[0m     Cpu,
+[7m [0m [91m    ~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m  3[0m     Terminal,
+[7m   [0m [91m    ~~~~~~~~~[0m
+[7m  4[0m     Cpu,
+[7m   [0m [91m~~~~~~~~[0m
+[7m...[0m 
+[7m 10[0m     Box,
+[7m   [0m [91m~~~~~~~~[0m
+[7m 11[0m     Grid,
+[7m   [0m [91m~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m  3[0m     Terminal,
+[7m   [0m [91m    ~~~~~~~~~[0m
+[7m  4[0m     Cpu,
+[7m   [0m [91m~~~~~~~~[0m
+[7m...[0m 
+[7m  9[0m     Layers,
+[7m   [0m [91m~~~~~~~~~~~[0m
+[7m 10[0m     Box,
+[7m   [0m [91m~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m  3[0m     Terminal,
+[7m   [0m [91m    ~~~~~~~~~[0m
+[7m  4[0m     Cpu,
+[7m   [0m [91m~~~~~~~~[0m
+[7m...[0m 
+[7m  8[0m     Lock,
+[7m   [0m [91m~~~~~~~~~[0m
+[7m  9[0m     Layers,
+[7m   [0m [91m~~~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m  3[0m     Terminal,
+[7m   [0m [91m    ~~~~~~~~~[0m
+[7m  4[0m     Cpu,
+[7m   [0m [91m~~~~~~~~[0m
+[7m...[0m 
+[7m  7[0m     Zap,
+[7m   [0m [91m~~~~~~~~[0m
+[7m  8[0m     Lock,
+[7m   [0m [91m~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m  3[0m     Terminal,
+[7m   [0m [91m    ~~~~~~~~~[0m
+[7m  4[0m     Cpu,
+[7m   [0m [91m~~~~~~~~[0m
+[7m...[0m 
+[7m  6[0m     Database,
+[7m   [0m [91m~~~~~~~~~~~~~[0m
+[7m  7[0m     Zap,
+[7m   [0m [91m~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m3[0m     Terminal,
+[7m [0m [91m    ~~~~~~~~~[0m
+[7m4[0m     Cpu,
+[7m [0m [91m~~~~~~~~[0m
+[7m5[0m     Activity,
+[7m [0m [91m~~~~~~~~~~~~~[0m
+[7m6[0m     Database,
+[7m [0m [91m~~~~~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m3[0m     Terminal,
+[7m [0m [91m    ~~~~~~~~~[0m
+[7m4[0m     Cpu,
+[7m [0m [91m~~~~~~~~[0m
+[7m5[0m     Activity,
+[7m [0m [91m~~~~~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m3[0m     Terminal,
+[7m [0m [91m    ~~~~~~~~~[0m
+[7m4[0m     Cpu,
+[7m [0m [91m~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2695): [0mLeft side of comma operator is unused and has no side effects.
+
+[7m3[0m     Terminal,
+[7m [0m [91m    ~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m3[0m:[93m5[0m - [91merror[0m[90m ts(2304): [0mCannot find name 'Terminal'.
+
+[7m3[0m     Terminal,
+[7m [0m [91m    ~~~~~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m ts(1434): [0mUnexpected keyword or identifier.
+
+[7m12[0m } from "lucide-react";
+[7m  [0m [91m  ~~~~[0m
+[96msrc/pages/studio/architect.astro[0m:[93m12[0m:[93m1[0m - [91merror[0m[90m ts(1109): [0mExpression expected.
+
+[7m12[0m } from "lucide-react";
+[7m  [0m [91m~[0m
+
+[96msrc/pages/studio/disruptor/nexus.astro[0m:[93m260[0m:[93m38[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m260[0m                         <ShoppingBag class="w-10 h-10 text-[#BF00FF] mb-6" />
+[7m   [0m [91m                                     ~~~~~[0m
+[96msrc/pages/studio/disruptor/nexus.astro[0m:[93m241[0m:[93m29[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m241[0m                             class="w-10 h-10 text-[#CCFF00] mb-6 group-hover:animate-spin"
+[7m   [0m [91m                            ~~~~~[0m
+[96msrc/pages/studio/disruptor/nexus.astro[0m:[93m221[0m:[93m29[0m - [91merror[0m[90m ts(2322): [0mType '{ class: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'class' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'. Did you mean 'className'?
+
+[7m221[0m                             class="w-10 h-10 text-[#BF00FF] mb-6 group-hover:animate-pulse"
+[7m   [0m [91m                            ~~~~~[0m
+[96msrc/pages/studio/disruptor/nexus.astro[0m:[93m7[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'ArrowRight' is declared but its value is never read.
+
+[7m7[0m     ArrowRight,
+[7m [0m [93m    ~~~~~~~~~~[0m
+
+[96msrc/pages/studio/titan/north-star.astro[0m:[93m3[0m:[93m17[0m - [93mwarning[0m[90m ts(6133): [0m'Truck' is declared but its value is never read.
+
+[7m3[0m import { Globe, Truck, Anchor, ArrowRight, ArrowLeft, Box } from "lucide-react";
+[7m [0m [93m                ~~~~~[0m
+
+Result (68 files): 
+- 97 errors
+- 0 warnings
+- 50 hints
+

@@ -1,0 +1,441 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ArrowRight, X, Palette, Type, Fingerprint } from "lucide-astro";
+
+const vibes = [
+    {
+        slug: "alchemy-digital",
+        title: "Alchemy Digital",
+        image: "/vault/alchemy-digital.png",
+        description: "A journey from the void to the light.",
+        vibeDNA: ["Mystic", "Transformative", "Deep", "Modern Noir"],
+        hex: "#0C0420",
+        palette: [
+            "#0C0420",
+            "#5D3C64",
+            "#7B466A",
+            "#9F6496",
+            "#D391B0",
+            "#BA6E8F",
+        ],
+        typography: "Cinzel Decorative / Raleway",
+    },
+    {
+        slug: "apex",
+        title: "Apex",
+        image: "/vault/apex.png",
+        description: "Wealth Management 2.0. Compound your legacy.",
+        vibeDNA: ["Wealth", "Secure", "Transparent", "Luxury"],
+        hex: "#064E3B",
+        palette: ["#064E3B", "#D97706", "#F8FAFC"],
+        typography: "Montserrat / Inter",
+    },
+    {
+        slug: "cloud-nine",
+        title: "Cloud Nine",
+        image: "/vault/cloud-nine.png",
+        description: "A weightless aesthetic for the TikTok generation.",
+        vibeDNA: ["Fresh", "Digital-Native", "Fun", "Soft Life"],
+        hex: "#CCA1C9",
+        palette: ["#CCA1C9", "#FFD3DD", "#F3A0AD", "#BED1E3", "#92A1C3"],
+        typography: "Outfit / DM Sans",
+    },
+    {
+        slug: "cosmic-code",
+        title: "Cosmic Code",
+        image: "/vault/cosmic-code.png",
+        description: "A portfolio for the space age.",
+        vibeDNA: ["Interstellar", "Cyber-Future", "Technical", "High-Tech"],
+        hex: "#7B2CBF",
+        palette: ["#0B0B15", "#7B2CBF", "#240046", "#E0AAFF", "#4CC9F0"],
+        typography: "Space Grotesk / JetBrains Mono",
+    },
+    {
+        slug: "echo-chamber",
+        title: "Echo Chamber",
+        image: "/vault/echo-chamber.png",
+        description: "Stories that linger. An independent network.",
+        vibeDNA: [
+            "Audio Documentaries",
+            "Stories",
+            "Independent",
+            "Modern Noir",
+        ],
+        hex: "#0A0A12",
+        palette: ["#0A0A12", "#E0E0E0", "#FF3366"],
+        typography: "DM Serif Display / Space Grotesk",
+    },
+    {
+        slug: "galentines",
+        title: "Galentines",
+        image: "/vault/galentines.png",
+        description: "A sticker-covered party for one.",
+        vibeDNA: ["Bold", "Flirty", "Unapologetically Feminine", "Soft Life"],
+        hex: "#F7DAE7",
+        palette: ["#F7DAE7", "#E2B4C1", "#D38C9D", "#A55166"],
+        typography: "Chicle / Courier Prime",
+    },
+    {
+        slug: "little-cloud",
+        title: "Little Cloud",
+        image: "/vault/little-cloud.png",
+        description: "A cloud-like experience for parents and babies.",
+        vibeDNA: ["Gentle", "Soft", "Innocent", "Soft Life"],
+        hex: "#F1C6D9",
+        palette: ["#F1C6D9", "#EEB3C9", "#DAC2E2", "#C7D7E8", "#9CB6CF"],
+        typography: "Nunito / Quicksand",
+    },
+    {
+        slug: "meridian",
+        title: "Meridian",
+        image: "/vault/meridian.png",
+        description: "Pure old money luxury.",
+        vibeDNA: [
+            "Impeccably Professional",
+            "Nautical",
+            "Authoritative",
+            "Luxury",
+        ],
+        hex: "#112250",
+        palette: ["#112250", "#3C5070", "#E0C58F", "#F5F0E9", "#D9CBC2"],
+        typography: "Cinzel / Lato",
+    },
+    {
+        slug: "nexus",
+        title: "Nexus",
+        image: "/vault/nexus.png",
+        description: "Cyberpunk streetwear for the digital age.",
+        vibeDNA: ["High-contrast", "Tactical", "Futuristic", "High-Tech"],
+        hex: "#00F3FF",
+        palette: ["#050505", "#00F3FF", "#BC13FE"],
+        typography: "Orbitron / Rajdhani",
+    },
+    {
+        slug: "north-star",
+        title: "North Star",
+        image: "/vault/north-star.png",
+        description:
+            "Navigation for the lost. Find your true north. Moving the world.",
+        vibeDNA: ["Navigation", "True North", "Global", "Luxury"],
+        hex: "#00205B",
+        palette: ["#00205B", "#E5E7EB", "#DC2626"],
+        typography: "Roboto / Open Sans",
+    },
+    {
+        slug: "oritani",
+        title: "Oritani",
+        image: "/vault/oritani.png",
+        description: "Quiet luxury for the discerning few.",
+        vibeDNA: [
+            "Preserving Legacy",
+            "Building Futures",
+            "Quiet Luxury",
+            "Luxury",
+        ],
+        hex: "#071739",
+        palette: ["#071739", "#E3C39D", "#CDD5DB"],
+        typography: "Cinzel / Manrope",
+    },
+    {
+        slug: "pastel-whisk",
+        title: "Pastel Whisk",
+        image: "/vault/pastel-whisk.png",
+        description:
+            "Intricate macarons, wedding favours, and elegant afternoon teas.",
+        vibeDNA: ["Handcrafted", "Intricate", "Elegant", "Soft Life"],
+        hex: "#EDD9BE",
+        palette: ["#EDD9BE", "#F283AE", "#4A4046"],
+        typography: "Lora / Lato",
+    },
+    {
+        slug: "silver-sound",
+        title: "Silver Sound",
+        image: "/vault/silver-sound.png",
+        description: "Silence is golden, silver is better.",
+        vibeDNA: [
+            "Precision Engineered",
+            "Aerodynamic",
+            "Golden Silence",
+            "High-Tech",
+        ],
+        hex: "#121524",
+        palette: ["#121524", "#384C65", "#485F88", "#9DACCC", "#C0C9DB"],
+        typography: "Montserrat / Share Tech Mono",
+    },
+    {
+        slug: "slow-roast",
+        title: "Slow Roast",
+        image: "/vault/slow-roast.png",
+        description: "Small batch coffee for people who sit down to drink it.",
+        vibeDNA: ["Mornings", "Reclaimed", "Small Batch", "Organic"],
+        hex: "#4A3B32",
+        palette: ["#F5F0EB", "#4A3B32", "#C06C47"],
+        typography: "Fraunces / Outfit",
+    },
+    {
+        slug: "sunday-sanctuary",
+        title: "Sunday Sanctuary",
+        image: "/vault/sunday-sanctuary.png",
+        description: "A deep exhale in digital form.",
+        vibeDNA: ["Soft", "Calming", "Floaty", "Soft Life"],
+        hex: "#A37E84",
+        palette: ["#A37E84", "#CDADAB", "#EBD7CE", "#917F88", "#836871"],
+        typography: "Fraunces / Quicksand",
+    },
+    {
+        slug: "urban-canvas",
+        title: "Urban Canvas",
+        image: "/vault/urban-canvas.png",
+        description: "A portfolio for the street artist coder.",
+        vibeDNA: ["Underground", "Rebellious", "Artistic", "Modern Noir"],
+        hex: "#39ff14",
+        palette: ["#1a1a1a", "#2d2d2d", "#39ff14", "#ff0099", "#00f3ff"],
+        typography: "Permanent Marker / Roboto Mono",
+    },
+];
+---
+
+<Layout title="The Aesthetic Vault | Empower Digital Solutions">
+    <div class="bg-slate-950 min-h-screen text-white">
+        <!-- Header -->
+        <div class="container mx-auto px-6 pt-32 pb-12 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 font-heading">
+                The <span
+                    class="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600"
+                    >Aesthetic Vault</span
+                >
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Curated design systems ready to be deployed. Choose your vibe.
+            </p>
+        </div>
+
+        <!-- Grid -->
+        <div class="container mx-auto px-6 pb-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    vibes.map((vibe) => (
+                        <button
+                            onclick={`openModal('${vibe.slug}')`}
+                            class="group block bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20 text-left"
+                        >
+                            <div class="relative aspect-video overflow-hidden bg-slate-800">
+                                <img
+                                    src={vibe.image}
+                                    alt={vibe.title}
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div class="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+
+                                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                    <span class="inline-flex items-center text-sm font-bold text-white bg-purple-600/90 backdrop-blur-md px-3 py-1 rounded-full">
+                                        View Vibe DNA{" "}
+                                        <ArrowRight class="w-4 h-4 ml-1" />
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                                    {vibe.title}
+                                </h3>
+                                <div class="flex flex-wrap gap-2">
+                                    {vibe.vibeDNA.map((dna) => (
+                                        <span class="text-xs font-medium text-slate-400 bg-slate-800 px-2 py-1 rounded-md border border-slate-700">
+                                            {dna}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <dialog
+        id="vibe-modal"
+        class="bg-transparent p-0 backdrop:bg-black/90 w-full max-w-5xl m-auto rounded-3xl shadow-2xl open:animate-fade-in backdrop:open:animate-fade-in"
+    >
+        <div
+            class="bg-slate-950 border border-slate-800 text-white rounded-3xl overflow-hidden relative max-h-[90vh] flex flex-col md:flex-row"
+        >
+            <button
+                onclick="closeModal()"
+                class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-white/20 rounded-full text-white transition-colors backdrop-blur-sm"
+            >
+                <X class="w-6 h-6" />
+            </button>
+
+            <!-- Visual Side -->
+            <div
+                class="md:w-1/2 relative min-h-[300px] md:min-h-full bg-slate-900 overflow-hidden group"
+            >
+                <img
+                    id="modal-image"
+                    src=""
+                    alt=""
+                    class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                />
+                <div
+                    class="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/50 to-transparent"
+                >
+                </div>
+
+                <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+                    <div
+                        class="flex items-center gap-2 mb-4 text-purple-400 font-mono text-sm tracking-wider uppercase"
+                    >
+                        <Fingerprint class="w-4 h-4" />
+                        <span>Vibe DNA Analysis</span>
+                    </div>
+                    <h2
+                        id="modal-title"
+                        class="text-4xl md:text-5xl font-bold mb-4 leading-tight"
+                    >
+                    </h2>
+                    <p
+                        id="modal-desc"
+                        class="text-lg text-slate-300 leading-relaxed"
+                    >
+                    </p>
+                </div>
+            </div>
+
+            <!-- Details Side -->
+            <div
+                class="md:w-1/2 p-8 md:p-12 bg-slate-950 flex flex-col justify-center border-l border-slate-800"
+            >
+                <div class="space-y-10">
+                    <!-- Palette Section -->
+                    <div>
+                        <div
+                            class="flex items-center gap-2 mb-4 text-slate-500 font-bold text-sm tracking-wider uppercase"
+                        >
+                            <Palette class="w-4 h-4" />
+                            <span>Color Palette</span>
+                        </div>
+                        <div class="flex gap-4" id="modal-palette">
+                            <!-- Swatches injected here -->
+                        </div>
+                    </div>
+
+                    <div class="h-px bg-slate-800 w-full"></div>
+
+                    <!-- Typography Section -->
+                    <div>
+                        <div
+                            class="flex items-center gap-2 mb-4 text-slate-500 font-bold text-sm tracking-wider uppercase"
+                        >
+                            <Type class="w-4 h-4" />
+                            <span>Typography</span>
+                        </div>
+                        <div
+                            class="bg-slate-900 p-6 rounded-xl border border-slate-800"
+                        >
+                            <p
+                                id="modal-typography-sample"
+                                class="text-3xl mb-2"
+                            >
+                                Aa Bb Cc
+                            </p>
+                            <p
+                                id="modal-typography-name"
+                                class="text-sm text-slate-500 font-mono"
+                            >
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="h-px bg-slate-800 w-full"></div>
+
+                    <button
+                        class="w-full py-4 bg-white text-slate-950 font-bold rounded-xl hover:bg-purple-50 transition-colors shadow-lg hover:shadow-purple-500/20 flex items-center justify-center gap-2"
+                    >
+                        <span>Claim This Vibe</span>
+                        <ArrowRight class="w-4 h-4" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+</Layout>
+
+<script is:inline define:vars={{ vibes }}>
+    const modal = document.getElementById("vibe-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+    const modalImage = document.getElementById("modal-image");
+    const modalPalette = document.getElementById("modal-palette");
+    const modalTypographySample = document.getElementById(
+        "modal-typography-sample",
+    );
+    const modalTypographyName = document.getElementById(
+        "modal-typography-name",
+    );
+
+    window.openModal = (slug) => {
+        const vibe = vibes.find((v) => v.slug === slug);
+        if (!vibe) return;
+
+        modalTitle.innerText = vibe.title;
+        modalDesc.innerText = vibe.description;
+        modalImage.src = vibe.image;
+        modalTypographyName.innerText = vibe.typography;
+
+        // Clear and populate palette
+        modalPalette.innerHTML = "";
+        vibe.palette.forEach((color) => {
+            const swatch = document.createElement("div");
+            swatch.className =
+                "w-16 h-16 rounded-full border-2 border-white/10 shadow-lg transform hover:scale-110 transition-transform";
+            swatch.style.backgroundColor = color;
+            swatch.title = color;
+            modalPalette.appendChild(swatch);
+        });
+
+        modal.showModal();
+        document.body.style.overflow = "hidden";
+    };
+
+    window.closeModal = () => {
+        modal.close();
+        document.body.style.overflow = "";
+    };
+
+    modal.addEventListener("click", (e) => {
+        const dialogDimensions = modal.getBoundingClientRect();
+        if (
+            e.clientX < dialogDimensions.left ||
+            e.clientX > dialogDimensions.right ||
+            e.clientY < dialogDimensions.top ||
+            e.clientY > dialogDimensions.bottom
+        ) {
+            closeModal();
+        }
+    });
+</script>
+
+<style>
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+</style>
