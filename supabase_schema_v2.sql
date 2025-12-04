@@ -102,3 +102,26 @@ create policy "Admin manage logs" on public.activity_logs for all using (auth.em
 -- Policy for 'portal-files' bucket:
 -- INSERT: Authenticated users can upload
 -- SELECT: Authenticated users can download
+-- 6. Generated Documents (Log of Quotes, Proposals, Invoices)
+create table public.generated_documents (
+  id uuid default gen_random_uuid() primary key,
+  client_name text not null,
+  document_type text not null, -- 'Quote', 'Proposal', 'Invoice'
+  total_amount numeric,
+  client_id uuid references public.profiles(id), -- Link to registered client
+  file_url text, -- Path to file in storage
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Update documents table for File Sharing & E-Signatures
+alter table public.documents 
+add column if not exists type text default 'file', -- 'file' or 'link'
+add column if not exists is_signature_required boolean default false,
+add column if not exists signed_at timestamp with time zone,
+add column if not exists status text default 'shared'; -- 'shared', 'pending_signature', 'signed'
+
+-- Enable RLS
+alter table public.generated_documents enable row level security;
+
+-- Policies
+create policy "Admin manage generated docs" on public.generated_documents for all using (auth.email() = 'nicola@empowerdigitalsolutions.co.uk');
