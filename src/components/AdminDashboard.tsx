@@ -121,6 +121,40 @@ export default function AdminDashboard() {
         setLoading(false);
     };
 
+    // Real-time Subscriptions
+    useEffect(() => {
+        const channel = supabase
+            .channel('admin-dashboard-live')
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'activity_logs' }, async (payload) => {
+                const newLog = payload.new as ActivityLog;
+                setActivities(prev => [newLog, ...prev]);
+            })
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'profiles' }, (payload) => {
+                const newClient = payload.new as Client;
+                setStats(prev => ({ ...prev, clients: prev.clients + 1 }));
+                setActivities(prev => [{
+                    id: `new-client-${Date.now()}`,
+                    created_at: new Date().toISOString(),
+                    message: `🎉 New Client Signup: ${newClient.full_name || newClient.email || 'Unknown User'}`,
+                    projects: { name: 'System Event' }
+                }, ...prev]);
+            })
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
+                const newMsg = payload.new;
+                setActivities(prev => [{
+                    id: `new-msg-${Date.now()}`,
+                    created_at: new Date().toISOString(),
+                    message: `📩 New Message received via Client Portal.`,
+                    projects: { name: 'Inbox' }
+                }, ...prev]);
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, []);
+
     const handleAssignDocument = async (docId: string, clientId: string) => {
         if (!clientId) return;
 
@@ -280,13 +314,34 @@ export default function AdminDashboard() {
         e.preventDefault();
         if (!editingClient) return;
 
-        const { error } = await supabase.from('profiles').update(clientForm).eq('id', editingClient.id);
+        console.log('Updating client:', editingClient.id, clientForm);
+
+        const { data, error } = await supabase
+            .from('profiles')
+            .update({
+                full_name: clientForm.full_name,
+                company_name: clientForm.company_name,
+                email: clientForm.email,
+                phone: clientForm.phone,
+                address: clientForm.address
+            })
+            .eq('id', editingClient.id)
+            .select()
+            .single();
 
         if (error) {
+            console.error('Update error:', error);
             alert("Error updating client: " + error.message);
         } else {
+            console.log('Update success:', data);
+
+            // Optimistic update of local state to prevent "revert" visual bug
+            setClients(clients.map(c => c.id === editingClient.id ? { ...c, ...data } : c));
+
             setShowClientModal(false);
             setEditingClient(null);
+
+            // Still re-fetch to be safe
             checkAuthAndFetchData();
         }
     };

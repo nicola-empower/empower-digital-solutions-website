@@ -34,6 +34,7 @@ export default function ClientDashboard({ demoMode = false }) {
     const [documents, setDocuments] = useState<Document[]>([]);
     const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'messages', 'credentials', 'documents'
     const [uploading, setUploading] = useState(false);
+    const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
     // Messaging
     const [messages, setMessages] = useState<any[]>([]);
@@ -114,6 +115,11 @@ export default function ClientDashboard({ demoMode = false }) {
         if (projects && projects.length > 0) {
             const currentProject = projects[0];
             setProject(currentProject);
+            setCurrentUserId(session.user.id);
+
+            // Update Last Viewed (Tracking)
+            // We don't await this to avoid blocking UI
+            supabase.from('projects').update({ last_viewed_at: new Date().toISOString() }).eq('id', currentProject.id).then();
 
             // 2. Get Tasks
             const { data: projectTasks } = await supabase
@@ -160,20 +166,23 @@ export default function ClientDashboard({ demoMode = false }) {
         e.preventDefault();
         if (!newMessage.trim() || !project) return;
 
-        // Optimistic UI updates
+        // Optimistic UI updates (using currentUserId to avoid async delay)
+        const tempId = Math.random();
         const tempMsg = {
-            id: Math.random(),
+            id: tempId,
             content: newMessage,
-            sender_id: (await supabase.auth.getUser()).data.user?.id,
+            sender_id: currentUserId, // Use state
             created_at: new Date().toISOString()
         };
+
         setMessages(prev => [...prev, tempMsg]);
-        scrollToBottom();
+        setNewMessage(''); // Clear immediately
+        setTimeout(scrollToBottom, 50);
 
         const { error } = await supabase.from('messages').insert({
             project_id: project.id,
-            sender_id: (await supabase.auth.getUser()).data.user?.id,
-            content: newMessage,
+            sender_id: currentUserId,
+            content: newMessage, // Use captured variable, strict logic
             is_read: false
         });
 
@@ -390,39 +399,66 @@ export default function ClientDashboard({ demoMode = false }) {
     };
 
     if (!project && !demoMode) {
-        // Simple profile setup view if they have no project yet (or just after signup)
         return (
             <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-                <div className="max-w-md w-full bg-slate-900 rounded-2xl border border-slate-800 p-8 shadow-2xl">
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold text-white mb-2">Welcome to Empower! 🚀</h1>
-                        <p className="text-slate-400">We're getting your dashboard ready. Please ensure your profile is up to date.</p>
+                <div className="max-w-md w-full bg-slate-900 rounded-2xl border border-slate-800 p-8 shadow-2xl relative overflow-hidden">
+                    {/* Background Glow */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+
+                    <div className="text-center mb-8 relative z-10">
+                        <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-purple-500/20">
+                            <Folder className="w-8 h-8 text-purple-500" />
+                        </div>
+                        <h1 className="text-2xl font-bold text-white mb-2">Welcome to Empower! 🚀</h1>
+                        <p className="text-slate-400 text-sm">
+                            Your account is active. We are currently preparing your project workspace.
+                        </p>
                     </div>
-                    <form onSubmit={handleUpdateProfile} className="space-y-4">
-                        {/* Simplified form for brevity in this state */}
+
+                    <div className="bg-slate-950/50 rounded-xl p-4 border border-slate-800 mb-6">
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                            <span className="text-amber-500 font-bold text-xs uppercase tracking-wider">Status: Pending Assignment</span>
+                        </div>
+                        <p className="text-xs text-slate-500">
+                            An administrator needs to link your project before you can access the dashboard.
+                        </p>
+                    </div>
+
+                    <form onSubmit={handleUpdateProfile} className="space-y-4 relative z-10">
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Complete Your Profile</div>
                         <input
                             type="text"
                             required
-                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white"
+                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
                             placeholder="Full Name"
                             value={profileData.full_name}
                             onChange={e => setProfileData({ ...profileData, full_name: e.target.value })}
                         />
                         <input
                             type="text"
-                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white"
+                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
                             placeholder="Company Name"
                             value={profileData.company_name}
                             onChange={e => setProfileData({ ...profileData, company_name: e.target.value })}
                         />
+                        <input
+                            type="tel"
+                            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                            placeholder="Phone Number"
+                            value={profileData.phone}
+                            onChange={e => setProfileData({ ...profileData, phone: e.target.value })}
+                        />
                         <button
                             type="submit"
-                            className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors mt-4"
+                            className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors shadow-lg hover:shadow-purple-500/25"
                         >
-                            Save Details
+                            Update Profile
                         </button>
-                        <button onClick={handleLogout} className="w-full text-slate-400 hover:text-white transition-colors text-sm mt-4">Logout</button>
                     </form>
+                    <div className="mt-6 pt-6 border-t border-slate-800 text-center">
+                        <button onClick={handleLogout} className="text-slate-500 hover:text-white transition-colors text-sm font-medium">Log Out</button>
+                    </div>
                 </div>
             </div>
         );

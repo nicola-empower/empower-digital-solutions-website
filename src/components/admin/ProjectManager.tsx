@@ -11,7 +11,7 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
     const [project, setProject] = useState<any>(null);
     const [documents, setDocuments] = useState<any[]>([]);
     const [uploading, setUploading] = useState(false);
-    const [activeTab, setActiveTab] = useState('files'); // files, messages, credentials
+    const [activeTab, setActiveTab] = useState('overview'); // overview, files, messages, credentials
 
     // Link Modal State
     const [showLinkModal, setShowLinkModal] = useState(false);
@@ -26,6 +26,12 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
     const [messages, setMessages] = useState<any[]>([]);
     const [newMessage, setNewMessage] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // Tasks State & Brief Logic
+    const [tasks, setTasks] = useState<any[]>([]);
+    const [isEditingBrief, setIsEditingBrief] = useState(false);
+    const [briefForm, setBriefForm] = useState({ description: '', actionPlan: '', clientReqs: '' });
+    const [savingBrief, setSavingBrief] = useState(false);
 
     // Credentials State
     const [credentials, setCredentials] = useState<any[]>([]);
@@ -89,6 +95,15 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
             .eq('project_id', projectId)
             .order('created_at', { ascending: false });
         setDocuments(docs || []);
+
+        // 3. Fetch Tasks for Brief
+        const { data: taskData } = await supabase
+            .from('tasks')
+            .select('*')
+            .eq('project_id', projectId)
+            .order('order_index', { ascending: true })
+            .order('created_at', { ascending: true });
+        setTasks(taskData || []);
 
         setLoading(false);
     };
@@ -275,6 +290,88 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
         }
     };
 
+    // --- BRIEF / TASK LOGIC ---
+
+    const handleEditBrief = () => {
+        // Populate form from current tasks
+        const adminTasks = tasks.filter(t => t.type === 'admin_task').map(t => t.title).join('\n');
+        const clientTasks = tasks.filter(t => t.type === 'client_task').map(t => t.title).join('\n');
+
+        setBriefForm({
+            description: project.description || '', // Assuming description column exists or we just use it for UI
+            actionPlan: adminTasks,
+            clientReqs: clientTasks
+        });
+        setIsEditingBrief(true);
+    };
+
+    const handleSaveBrief = async () => {
+        setSavingBrief(true);
+        try {
+            // Update Project Description (if we had a column, skipping for now as explicit col not requested, using name)
+            // But user screenshot shows "Project Description" field. 
+            // We'll skip validating description persistence for now unless we add column.
+
+            // Sync Tasks
+            // 1. Delete all existing tasks (or smart sync blocks implementation size). 
+            //    "Smart sync" matching strings is complex. 
+            //    Delete all + Insert new is safest for "Text area source of truth" but wipes completion status.
+            //    BETTER: Match by title.
+
+            const processLines = async (text: string, type: 'admin_task' | 'client_task') => {
+                const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+
+                // Get existing of this type
+                const existing = tasks.filter(t => t.type === type);
+
+                // Find removed
+                const toDelete = existing.filter(t => !lines.includes(t.title));
+                if (toDelete.length > 0) {
+                    await supabase.from('tasks').delete().in('id', toDelete.map(t => t.id));
+                }
+
+                // Upsert (Add new, keep existing status)
+                let order = 0;
+                for (const line of lines) {
+                    const match = existing.find(t => t.title === line);
+                    if (match) {
+                        // Update order only
+                        if (match.order_index !== order) {
+                            await supabase.from('tasks').update({ order_index: order }).eq('id', match.id);
+                        }
+                    } else {
+                        // Insert new
+                        await supabase.from('tasks').insert({
+                            project_id: projectId,
+                            title: line,
+                            type: type,
+                            is_completed: false,
+                            order_index: order
+                        });
+                    }
+                    order++;
+                }
+            };
+
+            await processLines(briefForm.actionPlan, 'admin_task');
+            await processLines(briefForm.clientReqs, 'client_task');
+
+            // Log
+            await supabase.from('activity_logs').insert({
+                project_id: projectId,
+                message: 'Admin updated project brief and scope.'
+            });
+
+            setIsEditingBrief(false);
+            fetchData(); // Refresh
+
+        } catch (error: any) {
+            alert('Error saving brief: ' + error.message);
+        } finally {
+            setSavingBrief(false);
+        }
+    };
+
     if (loading) return <div className="text-white">Loading Project Details...</div>;
     if (!project) return <div className="text-white">Project not found.</div>;
 
@@ -315,6 +412,12 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
             {/* Tabs */}
             <div className="flex gap-4 border-b border-slate-800 bg-slate-900/50 p-2 rounded-t-xl overflow-x-auto">
                 <button
+                    onClick={() => setActiveTab('overview')}
+                    className={`pb-2 px-4 text-sm font-bold uppercase tracking-wider transition-colors border-b-2 whitespace-nowrap ${activeTab === 'overview' ? 'border-purple-500 text-purple-400' : 'border-transparent text-slate-500 hover:text-slate-300'}`}
+                >
+                    Overview
+                </button>
+                <button
                     onClick={() => setActiveTab('files')}
                     className={`pb-2 px-4 text-sm font-bold uppercase tracking-wider transition-colors border-b-2 whitespace-nowrap ${activeTab === 'files' ? 'border-purple-500 text-purple-400' : 'border-transparent text-slate-500 hover:text-slate-300'}`}
                 >
@@ -336,6 +439,123 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
 
             {/* CONTENT AREA */}
             <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden min-h-[400px]">
+
+                {activeTab === 'overview' && (
+                    <div className="p-6">
+                        <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+                            <div className="flex justify-between items-start mb-6">
+                                <div>
+                                    <h2 className="text-xl font-bold text-white mb-1">Project Brief</h2>
+                                    <p className="text-slate-400 text-sm">Define scope and requirements</p>
+                                </div>
+                                {!isEditingBrief ? (
+                                    <button
+                                        onClick={handleEditBrief}
+                                        className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-purple-400 rounded-lg transition-colors text-xs font-bold uppercase tracking-wider border border-slate-700"
+                                    >
+                                        <Pencil className="w-4 h-4" /> Edit Scope
+                                    </button>
+                                ) : (
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => setIsEditingBrief(false)}
+                                            className="px-4 py-2 text-slate-400 hover:text-white text-sm"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            onClick={handleSaveBrief}
+                                            disabled={savingBrief}
+                                            className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors text-sm font-bold"
+                                        >
+                                            <Save className="w-4 h-4" /> {savingBrief ? 'Saving...' : 'Save'}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+
+                            {!isEditingBrief ? (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    {/* Action Plan View */}
+                                    <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800/50">
+                                        <div className="flex items-center gap-2 mb-4 text-amber-500 font-bold uppercase text-xs tracking-wider">
+                                            <div className="w-2 h-4 bg-amber-500 rounded-full"></div>
+                                            My Action Plan
+                                        </div>
+                                        <ul className="space-y-3">
+                                            {tasks.filter(t => t.type === 'admin_task').map(task => (
+                                                <li key={task.id} className="flex items-start gap-3 text-slate-300 text-sm">
+                                                    {task.is_completed ? (
+                                                        <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
+                                                    ) : (
+                                                        <Clock className="w-5 h-5 text-slate-600 shrink-0" />
+                                                    )}
+                                                    <span className={task.is_completed ? 'line-through text-slate-500' : ''}>{task.title}</span>
+                                                </li>
+                                            ))}
+                                            {tasks.filter(t => t.type === 'admin_task').length === 0 && <li className="text-slate-600 italic">No tasks defined.</li>}
+                                        </ul>
+                                    </div>
+
+                                    {/* Client Req View */}
+                                    <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800/50">
+                                        <div className="flex items-center gap-2 mb-4 text-blue-400 font-bold uppercase text-xs tracking-wider">
+                                            <div className="w-2 h-4 bg-blue-500 rounded-full"></div>
+                                            Client Requirements
+                                        </div>
+                                        <ul className="space-y-3">
+                                            {tasks.filter(t => t.type === 'client_task').map(task => (
+                                                <li key={task.id} className="flex items-start gap-3 text-slate-300 text-sm">
+                                                    <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${task.is_completed ? 'bg-emerald-500' : 'bg-slate-600'}`}></div>
+                                                    <span className={task.is_completed ? 'line-through text-slate-500' : ''}>{task.title}</span>
+                                                </li>
+                                            ))}
+                                            {tasks.filter(t => t.type === 'client_task').length === 0 && <li className="text-slate-600 italic">No requirements defined.</li>}
+                                        </ul>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    {/* Edit Mode */}
+                                    <div>
+                                        <label className="block text-xs font-bold text-amber-500 uppercase tracking-wider mb-2">My Action Plan (One per line)</label>
+                                        <textarea
+                                            className="w-full h-[300px] bg-slate-900 border border-slate-700 rounded-xl p-4 text-slate-300 focus:outline-none focus:border-amber-500 font-mono text-sm leading-relaxed"
+                                            value={briefForm.actionPlan}
+                                            onChange={e => setBriefForm({ ...briefForm, actionPlan: e.target.value })}
+                                            placeholder="- Create Homepage Design&#10;- Setup Database&#10;- API Integration"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Client Requirements (One per line)</label>
+                                        <textarea
+                                            className="w-full h-[300px] bg-slate-900 border border-slate-700 rounded-xl p-4 text-slate-300 focus:outline-none focus:border-blue-500 font-mono text-sm leading-relaxed"
+                                            value={briefForm.clientReqs}
+                                            onChange={e => setBriefForm({ ...briefForm, clientReqs: e.target.value })}
+                                            placeholder="- Brand Guidelines PDF&#10;- Logo (SVG)&#10;- Content for About Us"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Progress Bar */}
+                            {!isEditingBrief && (
+                                <div className="mt-8 bg-slate-900/50 rounded-xl p-6 border border-slate-800/50">
+                                    <div className="flex justify-between items-end mb-2">
+                                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Overall Progress</span>
+                                        <span className="text-2xl font-bold text-white">{Math.round((tasks.filter(t => t.is_completed).length / (tasks.length || 1)) * 100)}%</span>
+                                    </div>
+                                    <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full bg-gradient-to-r from-purple-600 to-indigo-600"
+                                            style={{ width: `${(tasks.filter(t => t.is_completed).length / (tasks.length || 1)) * 100}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {activeTab === 'files' && (
                     <>
