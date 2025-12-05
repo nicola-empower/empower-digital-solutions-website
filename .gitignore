@@ -26,3 +26,5 @@ pnpm-debug.log*
 .idea/
 .env.local
 .vercel
+# Local Netlify folder
+.netlify
