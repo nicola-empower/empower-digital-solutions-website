@@ -7,6 +7,9 @@ import {
   Phone,
   Download,
 } from "lucide-react";
+import { Image } from "astro:assets";
+import logoImage from "../assets/images/logo.jpg";
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -16,10 +19,12 @@ const currentYear = new Date().getFullYear();
       <!-- Column 1: Brand -->
       <div>
         <div class="flex items-center gap-3 mb-6">
-          <img
-            src="/images/logo.jpg"
+          <Image
+            src={logoImage}
             alt="Empower Digital Solutions"
             class="h-12 w-12 rounded-full border-2 border-empower-pink"
+            width={96}
+            height={96}
           />
           <span class="font-heading font-bold text-xl"
             >Empower Digital Solutions</span
@@ -35,6 +40,7 @@ const currentYear = new Date().getFullYear();
             target="_blank"
             rel="noopener noreferrer"
             class="bg-slate-800 p-2 rounded-full hover:bg-empower-pink transition-colors group"
+            aria-label="Follow us on LinkedIn"
           >
             <Linkedin
               className="w-5 h-5 text-gray-300 group-hover:text-white"
@@ -43,6 +49,7 @@ const currentYear = new Date().getFullYear();
           <a
             href="mailto:nicola@empowerdigitalsolutions.co.uk"
             class="bg-slate-800 p-2 rounded-full hover:bg-empower-pink transition-colors group"
+            aria-label="Email Us"
           >
             <Mail className="w-5 h-5 text-gray-300 group-hover:text-white" />
           </a>

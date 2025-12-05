@@ -1,5 +1,7 @@
 ---
 import { ArrowRight, Layout, Shield, FileText } from "lucide-react";
+import { Image } from "astro:assets";
+import empowerThumbnail from "../assets/images/empowervathumbnail.png";
 ---
 
 <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
@@ -100,9 +102,10 @@ import { ArrowRight, Layout, Shield, FileText } from "lucide-react";
           class="relative bg-slate-800 rounded-2xl border border-white/10 overflow-hidden shadow-2xl aspect-4/3 flex items-center justify-center group-hover:scale-[1.02] transition-transform duration-500"
         >
           <!-- Dashboard Screenshot -->
-          <img
-            src="images/empowervathumbnail.png"
+          <Image
+            src={empowerThumbnail}
             alt="Empower Virtual Assistant Operating System Dashboard"
+            width={800}
             class="w-full h-full object-cover"
           />
 

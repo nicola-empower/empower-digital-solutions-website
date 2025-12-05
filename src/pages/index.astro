@@ -25,6 +25,16 @@ import TechStackCard from "../components/TechStackCard.astro";
 import FeaturedBuild from "../components/FeaturedBuild.astro";
 import Testimonials from "../components/Testimonials.astro";
 import HomepagePortalSection from "../components/HomepagePortalSection.astro";
+import { Image } from "astro:assets";
+
+// Images
+import heroBg from "../assets/images/hero-bg.png";
+import urbanStayThumbnail from "../assets/images/urbanstaythumbnail.png";
+import zenDenThumbnail from "../assets/images/Zendenthumbnail.png";
+import cairnThumbnail from "../assets/images/cairnthumbnail.png";
+import bistro44Thumbnail from "../assets/images/bistro44thumbnail.png";
+import auraThumbnail from "../assets/images/aurathumbnail.png";
+import echoChamberThumbnail from "../assets/vault/echo-chamber.png";
 
 export const prerender = true;
 
@@ -74,37 +84,37 @@ const projects = [
     title: "Urban Stay",
     category: "Property Booking Platform",
     href: "https://urban-stay-seven.vercel.app/",
-    image: "/images/urbanstaythumbnail.png",
+    image: urbanStayThumbnail,
   },
   {
     title: "The Zen Den",
     category: "Wellness Studio",
     href: "https://zen-den-azure.vercel.app/",
-    image: "/images/Zendenthumbnail.png",
+    image: zenDenThumbnail,
   },
   {
     title: "Cairn Architects",
     category: "Architecture Portfolio",
     href: "https://cairn-architects.vercel.app/",
-    image: "/images/cairnthumbnail.png",
+    image: cairnThumbnail,
   },
   {
     title: "Bistro 44",
     category: "Restaurant Website",
     href: "https://portfolio-nicola-berry.vercel.app/?project=bistro-44",
-    image: "/images/bistro44thumbnail.png",
+    image: bistro44Thumbnail,
   },
   {
     title: "Aura",
     category: "Luxury Brand",
     href: "https://aura-nine-ochre.vercel.app/",
-    image: "/images/aurathumbnail.png",
+    image: auraThumbnail,
   },
   {
     title: "The Aesthetic Vault",
     category: "Design Systems",
     href: "/aesthetic-vault",
-    image: "/vault/echo-chamber.png",
+    image: echoChamberThumbnail,
     linkText: "View More Designs",
   },
 ];
@@ -119,10 +129,13 @@ const projects = [
   >
     <!-- Hero Background -->
     <div class="absolute inset-0 z-0">
-      <img
-        src="/images/hero-bg.png"
+      <Image
+        src={heroBg}
         alt="Digital Horizon Hero"
         class="w-full h-full object-cover"
+        width={1920}
+        quality="high"
+        loading="eager"
       />
       <div class="absolute inset-0 bg-dark-violet/60 mix-blend-multiply"></div>
     </div>

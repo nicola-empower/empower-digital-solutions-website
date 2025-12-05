@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import logoImage from "../assets/images/logo.jpg";
+
 const links = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -15,10 +18,12 @@ const links = [
 >
   <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
     <a href="/" class="flex items-center gap-2 group">
-      <img
-        src="/images/logo.jpg"
+      <Image
+        src={logoImage}
         alt="Empower Digital Solutions"
         style="height: 40px; width: auto; border-radius: 9999px;"
+        width={80}
+        height={80}
       />
       <span
         class="font-heading font-bold text-xl text-dark-violet dark:text-white group-hover:text-empower-pink transition-colors"
@@ -79,6 +84,7 @@ const links = [
     <button
       id="mobile-menu-btn"
       class="text-gray-700 dark:text-gray-200 focus:outline-none"
+      aria-label="Open Mobile Menu"
     >
       <svg
         class="w-6 h-6"
