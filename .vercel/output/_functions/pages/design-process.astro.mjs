@@ -1,7 +1,7 @@
 import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BVdSWecw.mjs';
 import 'piccolore';
 import { Search, CheckCircle, LayoutTemplate, Code, Rocket, Atom, Palette, FileCode, Server, Cloud, ArrowRight } from 'lucide-react';
-import { $ as $$Layout } from '../chunks/Layout_BWhIpZcS.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CSuFWMWx.mjs';
 import { $ as $$TechStackCard } from '../chunks/TechStackCard_CsTd0AZA.mjs';
 export { renderers } from '../renderers.mjs';
 
