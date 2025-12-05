@@ -2,7 +2,7 @@
 
 A modern, high-performance website for **Empower Digital Solutions**, built to showcase custom web applications, digital services, and the founder's expertise. This project replaces the legacy HTML site with a robust **Astro** architecture, integrated with **React** for interactivity and **Tailwind CSS** for styling.
 
-##  Tech Stack
+## ⚡ Tech Stack
 
 -   **Framework:** [Astro](https://astro.build) (v5)
 -   **UI Library:** [React](https://react.dev) (v19)
@@ -12,35 +12,44 @@ A modern, high-performance website for **Empower Digital Solutions**, built to s
 -   **Fonts:** Montserrat (Headings), Open Sans (Body) via Google Fonts
 -   **Deployment:** Vercel
 
-##  Key Features
+## ✨ Key Features
 
 -   **High Performance:** Static Site Generation (SSG) with Astro for lightning-fast load times.
 -   **Modern Design:** Custom dark/light theme, glassmorphism effects, and responsive layouts.
 -   **Fully Responsive:** Optimised for all devices, from mobile phones to large desktops.
 -   **Client Portal:** Secure login for clients to view project status, tasks, and files (Supabase Auth).
--   **Admin Dashboard:** Internal tool for managing projects and clients.
+-   **Admin Dashboard:** Comprehensive internal tool for managing the business.
+    -   **Task Triage:** Eisenhower Matrix for task prioritization.
+    -   **Timekeeper:** Built-in stopwatch and logger for generating timesheets.
+    -   **Document Generators:** Automated PDF creation for Proposals, Contracts, and Invoices.
 -   **Production Ready:**
     -   **SEO:** Sitemap and Robots.txt configured.
     -   **Analytics:** Integrated Vercel Analytics.
     -   **PWA:** Installable as a native app with Web Manifest.
--   **Custom Components:**
-    -   Interactive **Project Showcase** with filtering.
-    -   **"Inbox Zero" Terminal Demo** (React).
-    -   **Theme Toggle** for dark/light mode preference.
-    -   **Auto-Scrolling Carousels** for feature showcases.
--   **Dedicated Pages:**
-    -   **Home:** Hero section, portfolio grid, testimonials, and trust signals.
-    -   **Services:** "Fork in the Road" gateway to Web Design or Consulting.
-    -   **Web Design:** Bespoke website and platform development.
-    -   **Consulting:** Digital strategy, fractional CTO, and audits.
-    -   **MVP Development:** Tiered pricing for internal tools and SaaS products.
-    -   **Client Portal:** Secure area for client project management.
-    -   **About:** Founder's story and core values.
-    -   **Contact:** Integrated contact form.
-    -   **Migration Guide:** Digital protocol for domain migration (Web & PDF).
-    -   **404:** Custom "Lost in the Digital Void" error page.
+    -   **Interactive Components:**
+        -   **"Inbox Zero" Terminal Demo** (React).
+        -   **Theme Toggle** for dark/light mode preference.
+        -   **Auto-Scrolling Carousels** for feature showcases.
 
-##  Project Structure
+## 🚀 Featured Projects & Case Studies
+
+### 1. Empower Virtual Assistant Services
+*A Featured Build / Operational Architecture Case Study*
+
+A full-stack "Virtual Assistant Operating System" that redefines the portfolio from a brochure to a command centre.
+-   **Concept:** SaaS-style aesthetic moving away from typical "admin support" branding.
+-   **Key Tech:** React, Framer Motion, React PDF.
+-   **Calculators:** Custom ROI "Overwhelm Calculator".
+
+### 2. The "Nicola" Digital Journal
+*Digital Planner Case Study*
+
+A bespoke web application transforming a traditional paper-based planning system into a comprehensive digital solution.
+-   **Concept:** Personal "Operating System" for productivity and wellness.
+-   **Key Features:** Monthly/Daily/Weekly views, Habit Tracking, Mood Logging, Meal Planning.
+-   **Tech:** Complex state management with React & Supabase.
+
+## 📂 Project Structure
 
 ```text
 /
@@ -50,12 +59,18 @@ A modern, high-performance website for **Empower Digital Solutions**, built to s
 │   ├── data/           # Static data files (projects.ts)
 │   ├── layouts/        # Page layouts (Layout.astro)
 │   ├── lib/            # Utility functions (supabase.ts)
-│   ├── pages/          # Route definitions (index.astro, about.astro, etc.)
+│   ├── pages/          # Route definitions
+│   │   ├── admin/      # Admin Suite (protected)
+│   │   ├── portal/     # Client Portal (protected)
+│   │   ├── featured-build.astro  # VA Case Study
+│   │   ├── digitalplanner.astro  # Planner Case Study
+│   │   ├── index.astro           # Home
+│   │   └── ...
 │   └── styles/         # Global CSS and Tailwind configuration
 └── package.json        # Project dependencies and scripts
 ```
 
-## Environment Variables
+## 🔐 Environment Variables
 
 Create a `.env` file in the root directory with the following keys:
 
@@ -64,7 +79,7 @@ PUBLIC_SUPABASE_URL=your_supabase_url
 PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-##  Commands
+## 🛠️ Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -75,6 +90,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run build`   | Build your production site to `./dist/`      |
 | `npm run preview` | Preview your build locally, before deploying |
 
-##  License
+## 📄 License
 
 © 2025 Empower Digital Solutions. All Rights Reserved.
