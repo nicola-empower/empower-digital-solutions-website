@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import netlify from '@astrojs/netlify';
 
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
@@ -15,5 +15,5 @@ export default defineConfig({
 
     integrations: [react(), sitemap()],
     output: 'server',
-    adapter: vercel(),
+    adapter: netlify(),
 });

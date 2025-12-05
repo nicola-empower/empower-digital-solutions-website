@@ -20,7 +20,95 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/admin/dashboard/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/admin/project/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/aesthetic-vault/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/analyze/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/clientportal/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/consulting/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/contact/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/customwebapps/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/design-process/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/digitalplanner/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/inbox-zero/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/mvp-development/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/pdf/migration-guide/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/portal/dashboard/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/portal/onboarding/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/portal/signup/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/portal/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/projects/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/services/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/vaassist/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/web-design/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/website-health-checker/?$",
 			"dest": "_render"
 		},
 		{
