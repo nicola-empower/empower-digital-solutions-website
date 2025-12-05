@@ -398,19 +398,6 @@ export default function ClientDashboard({ demoMode = false }) {
         phone: ''
     });
 
-    // ... (This logic is fine to keep, but for brevity I will omit re-writing unrelated profile logic if not changing,
-    // BUT I must output the FULL FILE content. I'll include the profile logic placeholder logic from previous version or minimal logic.)
-    // Wait, I need to include the profile logic again because I am overwriting the file.
-
-    // Re-implementing profile logic:
-    // Actually, I can't put useEffect inside if.
-    // I need to structure this properly.
-
-    // Let's assume the profile fetching was part of the component.
-    // I need to fetch profile if NO PROJECT is found because maybe they are just created.
-
-    // I'll keep the profile setup return early check.
-
     const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
         const { data: { user } } = await supabase.auth.getUser();
