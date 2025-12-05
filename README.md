@@ -18,7 +18,11 @@ A modern, high-performance website for **Empower Digital Solutions**, built to s
 -   **Modern Design:** Custom dark/light theme, glassmorphism effects, and responsive layouts.
 -   **Fully Responsive:** Optimised for all devices, from mobile phones to large desktops.
 -   **Client Portal:** Secure login for clients to view project status, tasks, and files (Supabase Auth).
+    -   **Direct Messaging:** Built-in chat system to replace email, with persistent history.
+    -   **The Vault:** Secure credential sharing for sensitive logins.
 -   **Admin Dashboard:** Comprehensive internal tool for managing the business.
+    -   **Project Management:** Create, Edit, Delete projects and assign clients.
+    -   **Messaging & Vault:** Admin view for all client communications and credentials.
     -   **Task Triage:** Eisenhower Matrix for task prioritization.
     -   **Timekeeper:** Built-in stopwatch and logger for generating timesheets.
     -   **Document Generators:** Automated PDF creation for Proposals, Contracts, and Invoices.

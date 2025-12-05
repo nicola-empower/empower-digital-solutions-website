@@ -93,34 +93,46 @@ import Layout from "../../layouts/Layout.astro";
     const form = document.getElementById("signup-form");
     const msg = document.getElementById("msg");
 
-    if (form) {
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const email = (document.getElementById("email") as HTMLInputElement)
-                .value;
-            const password = (
-                document.getElementById("password") as HTMLInputElement
-            ).value;
+    function handleSignup() {
+        if (!form) return;
 
-            const { data, error } = await supabase.auth.signUp({
+        const emailInput = document.getElementById("email") as HTMLInputElement;
+        const passwordInput = document.getElementById(
+            "password",
+        ) as HTMLInputElement;
+
+        if (!emailInput || !passwordInput) return;
+
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        supabase.auth
+            .signUp({
                 email,
                 password,
-            });
-
-            if (msg) {
-                msg.classList.remove("hidden");
-                if (error) {
-                    msg.textContent = error.message;
-                    msg.classList.add("text-red-400");
-                } else {
-                    msg.textContent =
-                        "Account created! Redirecting to onboarding...";
-                    msg.classList.add("text-green-400");
-                    setTimeout(() => {
-                        window.location.href = "/portal/onboarding";
-                    }, 1500);
+            })
+            .then(({ data, error }) => {
+                if (msg) {
+                    msg.classList.remove("hidden");
+                    if (error) {
+                        msg.textContent = error.message;
+                        msg.classList.add("text-red-400");
+                    } else {
+                        msg.textContent =
+                            "Account created! Redirecting to onboarding...";
+                        msg.classList.add("text-green-400");
+                        setTimeout(() => {
+                            window.location.href = "/portal/onboarding";
+                        }, 1500);
+                    }
                 }
-            }
+            });
+    }
+
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            handleSignup();
         });
     }
 </script>
