@@ -75,7 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
                 - Do not use "Hello" or generic intros. Start directly with the insight.
                 - Example tone: "A 4.2-second load time on mobile means you are likely losing ~40% of traffic..."`;
 
-                const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+                const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
