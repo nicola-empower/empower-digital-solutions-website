@@ -1,4 +1,5 @@
 // @ts-check
+// Force Vercel Rebuild: 2025-12-05
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
 
