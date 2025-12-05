@@ -9,3 +9,10 @@ ALTER TABLE profiles ADD COLUMN IF NOT EXISTS last_seen_at TIMESTAMPTZ;
 
 -- Add description to projects for the Brief UI
 ALTER TABLE projects ADD COLUMN IF NOT EXISTS description TEXT;
+
+-- Add profile columns for Client Edit persistence (just in case they are missing)
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS full_name TEXT;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS company_name TEXT;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS phone TEXT;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS address TEXT;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS email TEXT;
