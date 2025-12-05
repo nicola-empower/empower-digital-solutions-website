@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import DocumentGenerator from './admin/DocumentGenerator';
+import { FileText, Upload, Link as LinkIcon, Trash2, ExternalLink, File, CheckCircle, Clock, Pencil, User, Building } from 'lucide-react';
 
 export default function AdminDashboard() {
     interface Client {
         id: string;
         full_name: string;
         email: string;
+        company_name?: string;
+        phone?: string;
+        address?: string;
     }
 
     interface Project {
@@ -60,6 +64,12 @@ export default function AdminDashboard() {
     const [selectedProjectToAssign, setSelectedProjectToAssign] = useState<string | null>(null);
     const [assignClientId, setAssignClientId] = useState('');
 
+    // Client Edit State
+    const [editingClient, setEditingClient] = useState<Client | null>(null);
+    const [showClientModal, setShowClientModal] = useState(false);
+    const [clientForm, setClientForm] = useState({ full_name: '', company_name: '', email: '', phone: '', address: '' });
+
+
     useEffect(() => {
         checkAuthAndFetchData();
     }, []);
@@ -106,7 +116,7 @@ export default function AdminDashboard() {
         setRecentDocs(docsData || []);
 
         // Fetch Clients for Assignment
-        const { data: profiles } = await supabase.from('profiles').select('id, full_name, email');
+        const { data: profiles } = await supabase.from('profiles').select('*');
         setClients(profiles || []);
         setLoading(false);
     };
@@ -177,7 +187,7 @@ export default function AdminDashboard() {
     };
 
     const openNewClientModal = async () => {
-        const { data: profiles } = await supabase.from('profiles').select('id, full_name, email');
+        const { data: profiles } = await supabase.from('profiles').select('*');
         setClients(profiles || []);
         setShowModal(true);
     };
@@ -230,15 +240,67 @@ export default function AdminDashboard() {
         }
     };
 
+    const handleDeleteProject = async (id: string, name: string) => {
+        if (!confirm(`Are you sure you want to delete project: ${name}? This action cannot be undone.`)) return;
+
+        const { error } = await supabase.from('projects').delete().eq('id', id);
+        if (error) {
+            alert("Error deleting project: " + error.message);
+        } else {
+            setProjects(projects.filter(p => p.id !== id));
+            checkAuthAndFetchData();
+        }
+    };
+
+    const handleDeleteClient = async (id: string, name: string) => {
+        if (!confirm(`Are you sure you want to delete client: ${name}? This will also delete their assigned projects.`)) return;
+
+        const { error } = await supabase.from('profiles').delete().eq('id', id);
+        if (error) {
+            alert("Error deleting client: " + error.message);
+        } else {
+            setClients(clients.filter(c => c.id !== id));
+            checkAuthAndFetchData();
+        }
+    };
+
+    const openEditClient = (client: Client) => {
+        setEditingClient(client);
+        setClientForm({
+            full_name: client.full_name || '',
+            company_name: client.company_name || '',
+            email: client.email || '',
+            phone: client.phone || '',
+            address: client.address || ''
+        });
+        setShowClientModal(true);
+    };
+
+    const handleUpdateClient = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!editingClient) return;
+
+        const { error } = await supabase.from('profiles').update(clientForm).eq('id', editingClient.id);
+
+        if (error) {
+            alert("Error updating client: " + error.message);
+        } else {
+            setShowClientModal(false);
+            setEditingClient(null);
+            checkAuthAndFetchData();
+        }
+    };
+
+
     if (loading) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">Loading Dashboard...</div>;
 
     return (
         <div className="min-h-screen bg-slate-950 flex">
             <div className="flex-1 p-8 overflow-y-auto">
-                {/* ... Header ... */}
+                {/* Header */}
                 <div className="flex justify-between items-center mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-white">Client Portal</h1>
+                        <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
                         <p className="text-slate-400">Welcome back, Administrator.</p>
                     </div>
                     <div className="flex gap-4">
@@ -250,14 +312,20 @@ export default function AdminDashboard() {
                                 Dashboard
                             </button>
                             <button
+                                onClick={() => setActiveTab('clients')}
+                                className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'clients' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
+                            >
+                                Clients
+                            </button>
+                            <button
                                 onClick={() => setActiveTab('documents')}
                                 className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'documents' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
                             >
-                                Document Generator
+                                Documents
                             </button>
                         </div>
                         <button onClick={handleLogout} className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700 transition-colors">Logout</button>
-                        <button onClick={openNewClientModal} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-bold">+ New Client</button>
+                        <button onClick={openNewClientModal} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-bold">+ New Project</button>
                     </div>
                 </div>
 
@@ -404,16 +472,17 @@ export default function AdminDashboard() {
                                                         {project.status}
                                                     </span>
                                                 </td>
-                                                <td className="p-6 text-right">
-                                                    <a href={`/admin/project/${project.id}`} className="text-purple-400 hover:text-purple-300 font-medium text-sm mr-4">Manage &rarr;</a>
+                                                <td className="p-6 text-right flex justify-end gap-3 items-center">
+                                                    <a href={`/admin/project/${project.id}`} className="text-purple-400 hover:text-purple-300 font-medium text-sm">Manage &rarr;</a>
                                                     {!project.client_id && (
                                                         <button
                                                             onClick={() => openAssignModal(project.id)}
                                                             className="text-emerald-400 hover:text-emerald-300 font-medium text-sm"
                                                         >
-                                                            Assign User
+                                                            Assign
                                                         </button>
                                                     )}
+                                                    <button onClick={() => handleDeleteProject(project.id, project.name)} className="text-red-400 hover:text-red-300 ml-2" title="Delete Project"><Trash2 className="w-4 h-4" /></button>
                                                 </td>
                                             </tr>
                                         ))}
@@ -427,6 +496,40 @@ export default function AdminDashboard() {
                             </div>
                         </div>
                     </>
+                ) : activeTab === 'clients' ? (
+                    <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+                        <div className="p-6 border-b border-slate-800 flex justify-between items-center">
+                            <h2 className="text-xl font-bold text-white">Client Management</h2>
+                        </div>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left">
+                                <thead>
+                                    <tr className="bg-slate-950/50 text-slate-400 text-xs uppercase tracking-wider">
+                                        <th className="p-6 font-medium">Name</th>
+                                        <th className="p-6 font-medium">Company</th>
+                                        <th className="p-6 font-medium">Contact</th>
+                                        <th className="p-6 font-medium text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-slate-800">
+                                    {clients.map(client => (
+                                        <tr key={client.id} className="hover:bg-slate-800/50">
+                                            <td className="p-6 font-bold text-white">{client.full_name || 'N/A'}</td>
+                                            <td className="p-6 text-slate-300">{client.company_name || '-'}</td>
+                                            <td className="p-6 text-slate-400">
+                                                <div className="text-sm">{client.email}</div>
+                                                <div className="text-xs">{client.phone}</div>
+                                            </td>
+                                            <td className="p-6 text-right flex justify-end gap-3">
+                                                <button onClick={() => openEditClient(client)} className="p-2 bg-slate-800 hover:bg-slate-700 rounded text-blue-400" title="Edit Client"><Pencil className="w-4 h-4" /></button>
+                                                <button onClick={() => handleDeleteClient(client.id, client.full_name)} className="p-2 bg-slate-800 hover:bg-red-900/20 rounded text-red-400" title="Delete Client"><Trash2 className="w-4 h-4" /></button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 ) : (
                     <DocumentGenerator />
                 )}
@@ -456,7 +559,7 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {/* New Client Modal */}
+            {/* New Project Modal */}
             {showModal && (
                 <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
                     <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 w-full max-w-lg shadow-2xl">
@@ -544,6 +647,41 @@ export default function AdminDashboard() {
                             <div className="flex gap-4 pt-4">
                                 <button type="button" onClick={() => setShowAssignModal(false)} className="flex-1 bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-700 transition-colors">Cancel</button>
                                 <button type="submit" className="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition-colors">Assign</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Client Modal */}
+            {showClientModal && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
+                    <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 w-full max-w-lg shadow-2xl">
+                        <h2 className="text-2xl font-bold text-white mb-6">Edit Client Profile</h2>
+                        <form onSubmit={handleUpdateClient} className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Full Name</label>
+                                <input value={clientForm.full_name} onChange={e => setClientForm({ ...clientForm, full_name: e.target.value })} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Company Name</label>
+                                <input value={clientForm.company_name} onChange={e => setClientForm({ ...clientForm, company_name: e.target.value })} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Email</label>
+                                <input value={clientForm.email} onChange={e => setClientForm({ ...clientForm, email: e.target.value })} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Phone</label>
+                                <input value={clientForm.phone} onChange={e => setClientForm({ ...clientForm, phone: e.target.value })} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Address</label>
+                                <input value={clientForm.address} onChange={e => setClientForm({ ...clientForm, address: e.target.value })} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div className="flex gap-4 pt-4">
+                                <button type="button" onClick={() => setShowClientModal(false)} className="flex-1 bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-700 transition-colors">Cancel</button>
+                                <button type="submit" className="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition-colors">Save Changes</button>
                             </div>
                         </form>
                     </div>

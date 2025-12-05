@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { FileText, Upload, Link as LinkIcon, Trash2, ExternalLink, File, CheckCircle, Clock } from 'lucide-react';
+import { FileText, Upload, Link as LinkIcon, Trash2, ExternalLink, File, CheckCircle, Clock, Pencil, Save, X } from 'lucide-react';
 
 interface ProjectManagerProps {
     projectId: string;
@@ -11,12 +11,25 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
     const [project, setProject] = useState<any>(null);
     const [documents, setDocuments] = useState<any[]>([]);
     const [uploading, setUploading] = useState(false);
+
+    // Link Modal State
     const [showLinkModal, setShowLinkModal] = useState(false);
     const [linkData, setLinkData] = useState({ name: '', url: '' });
 
+    // Edit Project State
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editForm, setEditForm] = useState({ name: '', status: '', workflow_type: '', client_id: '' });
+    const [clients, setClients] = useState<any[]>([]);
+
     useEffect(() => {
         fetchData();
+        fetchClients();
     }, [projectId]);
+
+    const fetchClients = async () => {
+        const { data } = await supabase.from('profiles').select('id, full_name, email');
+        if (data) setClients(data);
+    };
 
     const fetchData = async () => {
         // 1. Fetch Project Details
@@ -26,6 +39,14 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
             .eq('id', projectId)
             .single();
         setProject(proj);
+        if (proj) {
+            setEditForm({
+                name: proj.name,
+                status: proj.status,
+                workflow_type: proj.workflow_type || 'Social Media',
+                client_id: proj.client_id || ''
+            });
+        }
 
         // 2. Fetch Documents
         const { data: docs } = await supabase
@@ -103,20 +124,50 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
         }
     };
 
-    const handleDelete = async (id: string, path?: string) => {
+    const handleDeleteDocument = async (id: string) => {
         if (!confirm('Are you sure you want to delete this item?')) return;
 
         try {
-            // Delete from DB
             await supabase.from('documents').delete().eq('id', id);
-
-            // If file, delete from storage (optional, but good hygiene)
-            // Note: We'd need the storage path, which we might not have stored directly if we only stored publicUrl.
-            // For now, just DB delete is fine for the UI.
-
             fetchData();
         } catch (error: any) {
             alert('Error deleting item: ' + error.message);
+        }
+    };
+
+    const handleUpdateProject = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const { error } = await supabase
+                .from('projects')
+                .update({
+                    name: editForm.name,
+                    status: editForm.status,
+                    workflow_type: editForm.workflow_type,
+                    client_id: editForm.client_id || null
+                })
+                .eq('id', projectId);
+
+            if (error) throw error;
+
+            setShowEditModal(false);
+            fetchData();
+        } catch (error: any) {
+            alert('Error updating project: ' + error.message);
+        }
+    };
+
+    const handleDeleteProject = async () => {
+        if (!confirm('Are you sure you want to delete this ENTIRE project? This cannot be undone.')) return;
+
+        try {
+            const { error } = await supabase.from('projects').delete().eq('id', projectId);
+            if (error) throw error;
+
+            // Redirect to dashboard
+            window.location.href = '/admin/dashboard';
+        } catch (error: any) {
+            alert('Error deleting project: ' + error.message);
         }
     };
 
@@ -128,15 +179,32 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
             {/* Header */}
             <div className="flex justify-between items-start">
                 <div>
-                    <h1 className="text-3xl font-bold text-white mb-2">{project.name}</h1>
+                    <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
+                        {project.name}
+                        <button onClick={() => setShowEditModal(true)} className="p-1 text-slate-400 hover:text-white transition-colors">
+                            <Pencil className="w-5 h-5" />
+                        </button>
+                    </h1>
                     <div className="flex items-center gap-4 text-slate-400">
-                        <span>{project.profiles?.full_name}</span>
+                        <span>{project.profiles?.full_name || 'Unassigned'}</span>
                         <span>•</span>
-                        <span>{project.profiles?.company_name}</span>
+                        <span>{project.profiles?.company_name || '-'}</span>
                         <span>•</span>
-                        <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 rounded text-xs border border-emerald-500/20 uppercase font-bold">{project.status}</span>
+                        <span className={`px-2 py-0.5 rounded text-xs border uppercase font-bold ${project.status === 'Active' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' :
+                                project.status === 'Pending' ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' :
+                                    'bg-slate-800 text-slate-400 border-slate-700'
+                            }`}>
+                            {project.status}
+                        </span>
                     </div>
                 </div>
+                <button
+                    onClick={handleDeleteProject}
+                    className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-500 border border-red-500/20 rounded-lg hover:bg-red-500/20 transition-colors text-sm font-bold"
+                >
+                    <Trash2 className="w-4 h-4" />
+                    Delete Project
+                </button>
             </div>
 
             {/* File Centre */}
@@ -205,7 +273,7 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
                                             <ExternalLink className="w-4 h-4" />
                                         </a>
                                         <button
-                                            onClick={() => handleDelete(doc.id)}
+                                            onClick={() => handleDeleteDocument(doc.id)}
                                             className="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition-colors"
                                             title="Delete"
                                         >
@@ -221,8 +289,8 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
 
             {/* Link Modal */}
             {showLinkModal && (
-                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-                    <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 w-full max-w-md">
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+                    <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 w-full max-w-md shadow-2xl">
                         <h3 className="text-xl font-bold text-white mb-4">Add External Link</h3>
                         <form onSubmit={handleAddLink} className="space-y-4">
                             <div>
@@ -260,6 +328,86 @@ export default function ProjectManager({ projectId }: ProjectManagerProps) {
                                     className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-bold"
                                 >
                                     Add Link
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Project Modal */}
+            {showEditModal && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+                    <div className="bg-slate-900 rounded-xl border border-slate-800 p-8 w-full max-w-lg shadow-2xl">
+                        <div className="flex justify-between items-center mb-6">
+                            <h3 className="text-2xl font-bold text-white">Edit Project Details</h3>
+                            <button onClick={() => setShowEditModal(false)} className="text-slate-400 hover:text-white"><X className="w-6 h-6" /></button>
+                        </div>
+                        <form onSubmit={handleUpdateProject} className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Project Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                                    value={editForm.name}
+                                    onChange={e => setEditForm({ ...editForm, name: e.target.value })}
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Assigned Client</label>
+                                <select
+                                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                                    value={editForm.client_id}
+                                    onChange={e => setEditForm({ ...editForm, client_id: e.target.value })}
+                                >
+                                    <option value="">Unassigned</option>
+                                    {clients.map(c => (
+                                        <option key={c.id} value={c.id}>{c.full_name} ({c.email})</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-400 mb-1">Workflow Type</label>
+                                    <select
+                                        className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                                        value={editForm.workflow_type}
+                                        onChange={e => setEditForm({ ...editForm, workflow_type: e.target.value })}
+                                    >
+                                        <option>Social Media</option>
+                                        <option>Web Design</option>
+                                        <option>Consulting</option>
+                                        <option>Automation</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-400 mb-1">Status</label>
+                                    <select
+                                        className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+                                        value={editForm.status}
+                                        onChange={e => setEditForm({ ...editForm, status: e.target.value })}
+                                    >
+                                        <option>Pending</option>
+                                        <option>Active</option>
+                                        <option>Completed</option>
+                                        <option>Paused</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="flex gap-4 pt-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowEditModal(false)}
+                                    className="flex-1 bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-700 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2"
+                                >
+                                    <Save className="w-4 h-4" /> Save Changes
                                 </button>
                             </div>
                         </form>
