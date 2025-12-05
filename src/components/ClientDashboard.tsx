@@ -98,46 +98,67 @@ export default function ClientDashboard({ demoMode = false }) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    const [error, setError] = useState<string | null>(null);
+
     const fetchProjectData = async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
-            window.location.href = "/portal";
-            return;
-        }
+        try {
+            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
 
-        // 1. Get Project for this client
-        const { data: projects } = await supabase
-            .from('projects')
-            .select('*')
-            .eq('client_id', session.user.id)
-            .limit(1);
+            if (sessionError) throw sessionError;
 
-        if (projects && projects.length > 0) {
-            const currentProject = projects[0];
-            setProject(currentProject);
-            setCurrentUserId(session.user.id);
+            if (!session) {
+                window.location.href = "/portal";
+                return;
+            }
 
-            // Update Last Viewed (Tracking)
-            // We don't await this to avoid blocking UI
-            supabase.from('projects').update({ last_viewed_at: new Date().toISOString() }).eq('id', currentProject.id).then();
-
-            // 2. Get Tasks
-            const { data: projectTasks } = await supabase
-                .from('tasks')
+            // 1. Get Project for this client
+            const { data: projects, error: projectError } = await supabase
+                .from('projects')
                 .select('*')
-                .eq('project_id', currentProject.id)
-                .order('created_at', { ascending: true });
-            setTasks(projectTasks || []);
+                .eq('client_id', session.user.id)
+                .limit(1);
 
-            // 3. Get Documents
-            const { data: projectDocs } = await supabase
-                .from('documents')
-                .select('*')
-                .eq('project_id', currentProject.id)
-                .order('created_at', { ascending: false });
-            setDocuments(projectDocs || []);
+            if (projectError) throw projectError;
+
+            if (projects && projects.length > 0) {
+                const currentProject = projects[0];
+                setProject(currentProject);
+                setCurrentUserId(session.user.id);
+
+                // Update Last Viewed (Tracking) - Catch error to prevent UI block
+                supabase.from('projects')
+                    .update({ last_viewed_at: new Date().toISOString() })
+                    .eq('id', currentProject.id)
+                    .then(({ error }) => {
+                        if (error) console.error("Tracking caught error:", error);
+                    });
+
+                // 2. Get Tasks
+                const { data: projectTasks, error: taskError } = await supabase
+                    .from('tasks')
+                    .select('*')
+                    .eq('project_id', currentProject.id)
+                    .order('created_at', { ascending: true });
+
+                if (taskError) throw taskError;
+                setTasks(projectTasks || []);
+
+                // 3. Get Documents
+                const { data: projectDocs, error: docError } = await supabase
+                    .from('documents')
+                    .select('*')
+                    .eq('project_id', currentProject.id)
+                    .order('created_at', { ascending: false });
+
+                if (docError) throw docError;
+                setDocuments(projectDocs || []);
+            }
+        } catch (err: any) {
+            console.error("Dashboard Load Error:", err);
+            setError(err.message || "Failed to load project data.");
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const fetchMessages = async () => {
@@ -357,6 +378,16 @@ export default function ClientDashboard({ demoMode = false }) {
         setSigningDoc(doc);
         setSignModalOpen(true);
     };
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 text-center">
+                <div className="text-red-500 text-xl font-bold mb-4">⚠️ Unable to Load Dashboard</div>
+                <p className="text-slate-400 mb-4">{error}</p>
+                <button onClick={() => window.location.reload()} className="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700">Retry</button>
+            </div>
+        );
+    }
 
     if (loading) return <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">Loading Project...</div>;
 
