@@ -7,7 +7,7 @@ export const projects = [
         thumbnail: '/images/vowsuitethumbnail.png', // Placeholder or use existing if available
         techStack: ['React', 'Node.js', 'PostgreSQL'],
         year: '2024',
-        liveUrl: 'https://empowervaservices.co.uk/wedding-webapp/',
+        liveUrl: 'https://vowsuite-theta.vercel.app//',
         status: 'live'
     },
     {
@@ -17,7 +17,7 @@ export const projects = [
         thumbnail: '/images/Vaassistthumbnail.png',
         techStack: ['Vue.js', 'Firebase', 'Tailwind'],
         year: '2024',
-        liveUrl: '/vaassist',
+        liveUrl: 'https://vaassist-app.vercel.app/dashboard',
         status: 'beta'
     },
     {
@@ -27,7 +27,7 @@ export const projects = [
         thumbnail: '/images/clientportalthumbnail.png',
         techStack: ['React', 'Supabase', 'Stripe'],
         year: '2025',
-        liveUrl: '/clientportal',
+        liveUrl: 'https://client-portal-pearl-eight.vercel.app/',
         status: 'dev'
     },
     {
@@ -37,7 +37,7 @@ export const projects = [
         thumbnail: '/images/Danathumbnail.png',
         techStack: ['Next.js', 'AWS', 'Python'],
         year: '2025',
-        liveUrl: '/digitalplanner',
+        liveUrl: 'https://nicola-empower.github.io/dana-demo/',
         status: 'concept'
     },
     {
@@ -67,7 +67,7 @@ export const projects = [
         thumbnail: '/images/Medisyncthumbnail.png',
         techStack: ['React', 'Node.js', 'MongoDB'],
         year: '2024',
-        liveUrl: '#',
+        liveUrl: 'https://medisync-app.vercel.app/',
         status: 'concept'
     },
 
@@ -79,7 +79,7 @@ export const projects = [
         thumbnail: '/images/Weddingthumbnail.png',
         techStack: ['OpenAI API', 'Python', 'React'],
         year: '2025',
-        liveUrl: '#',
+        liveUrl: 'https://wedding-planner-lyart.vercel.app/',
         status: 'beta'
     },
     {
@@ -89,7 +89,7 @@ export const projects = [
         thumbnail: '/images/Voyagerthumbnail.png',
         techStack: ['LangChain', 'Next.js', 'Mapbox'],
         year: '2025',
-        liveUrl: '#',
+        liveUrl: 'https://voyager-next.vercel.app/',
         status: 'dev'
     },
     {
@@ -99,7 +99,7 @@ export const projects = [
         thumbnail: '/images/Tradeprothumbnail.png',
         techStack: ['React Native', 'Firebase', 'Stripe'],
         year: '2024',
-        liveUrl: 'https://empowervaservices.co.uk/uber-for-trades/',
+        liveUrl: 'https://trades-app-lyart.vercel.app/',
         status: 'live'
     },
 
@@ -111,7 +111,7 @@ export const projects = [
         thumbnail: '/images/Financeninjathumbnail.png',
         techStack: ['Vue.js', 'D3.js', 'Plaid API'],
         year: '2024',
-        liveUrl: '#',
+        liveUrl: 'https://finance-ninja-5183.vercel.app/',
         status: 'beta'
     },
     {
@@ -121,7 +121,7 @@ export const projects = [
         thumbnail: '/images/Isathumbnail.png',
         techStack: ['React', 'Chart.js', 'Math.js'],
         year: '2024',
-        liveUrl: '#',
+        liveUrl: 'https://isa-time-machine.vercel.app',
         status: 'live'
     },
     {
@@ -131,7 +131,7 @@ export const projects = [
         thumbnail: '/images/quotecommandthumbnail.png',
         techStack: ['Next.js', 'Puppeteer', 'Stripe'],
         year: '2024',
-        liveUrl: '#',
+        liveUrl: 'https://nicola-empower.github.io/quote-command/',
         status: 'live'
     },
     {
@@ -193,7 +193,7 @@ export const projects = [
         thumbnail: '/images/empowerautothumbnail.png',
         techStack: ['Astro', 'React', 'Tailwind'],
         year: '2024',
-        liveUrl: 'https://empower-automation.vercel.app/',
+        liveUrl: 'https://empowerautomation.co.uk/',
         status: 'live'
     },
     {
@@ -203,7 +203,7 @@ export const projects = [
         thumbnail: '/images/empowervathumbnail.png',
         techStack: ['Astro', 'React', 'Tailwind'],
         year: '2024',
-        liveUrl: 'https://virtual-assistant-services-7ynr.vercel.app/',
+        liveUrl: 'https://empowervaservices.co.uk/',
         status: 'live'
     },
 ];
