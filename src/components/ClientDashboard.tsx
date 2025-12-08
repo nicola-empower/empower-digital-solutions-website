@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, Component, ErrorInfo, ReactNode } from 'react';
 import { supabase } from '../lib/supabase';
-import { FileText, Upload, CheckCircle, Circle, Download, Folder, ExternalLink, Send, Key, Eye, EyeOff, Plus, Trash2 } from 'lucide-react';
+import { FileText, Upload, CheckCircle, Circle, Download, Folder, ExternalLink, Send, Key, Eye, EyeOff, Plus, Trash2, Settings, User } from 'lucide-react';
 
 // --- Error Boundary Component ---
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean, error: Error | null, errorInfo: ErrorInfo | null }> {
@@ -161,6 +161,30 @@ function ClientDashboardContent({ demoMode = false }) {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    useEffect(() => {
+        if (project && !demoMode) {
+            const channel = supabase
+                .channel('public:project_updates')
+                // Listen for Task Changes
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks', filter: `project_id=eq.${project.id}` }, (payload) => {
+                    console.log('Realtime task update:', payload);
+                    fetchProjectData(); // Simplest way to sync is re-fetch to ensure order and consistency
+                })
+                // Listen for Document Changes
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'documents', filter: `project_id=eq.${project.id}` }, (payload) => {
+                    console.log('Realtime doc update:', payload);
+                    fetchProjectData();
+                })
+                // Listen for Profile Changes (if admin updates it)
+                .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles', filter: `id=eq.${currentUserId}` }, () => {
+                    // Optionally re-fetch profile if we displayed it
+                })
+                .subscribe();
+
+            return () => { supabase.removeChannel(channel); };
+        }
+    }, [project, demoMode, currentUserId]); // Add dependency for currentUserId
+
     const fetchProjectData = async () => {
         try {
             console.log("Fetching project data...");
@@ -189,6 +213,16 @@ function ClientDashboardContent({ demoMode = false }) {
                 setProject(currentProject);
                 setCurrentUserId(session.user.id);
 
+                // Fetch Profile Data for Edit Modal
+                const { data: profile } = await supabase.from('profiles').select('*').eq('id', session.user.id).single();
+                if (profile) {
+                    setProfileData({
+                        full_name: profile.full_name || '',
+                        company_name: profile.company_name || '',
+                        phone: profile.phone || ''
+                    });
+                }
+
                 // Update Last Viewed
                 supabase.from('projects')
                     .update({ last_viewed_at: new Date().toISOString() })
@@ -202,7 +236,8 @@ function ClientDashboardContent({ demoMode = false }) {
                     .from('tasks')
                     .select('*')
                     .eq('project_id', currentProject.id)
-                    .order('created_at', { ascending: true });
+                    .order('order_index', { ascending: true }) // Changed to order_index per recent SQL
+                    .order('created_at', { ascending: true }); // Fallback
 
                 if (taskError) throw taskError;
                 setTasks(projectTasks || []);
@@ -220,6 +255,15 @@ function ClientDashboardContent({ demoMode = false }) {
                 console.log("No project found for user.");
                 // Ensure project is null so we show pending screen
                 setProject(null);
+                // Still fetch profile even if no project, so they can edit it
+                const { data: profile } = await supabase.from('profiles').select('*').eq('id', session.user.id).single();
+                if (profile) {
+                    setProfileData({
+                        full_name: profile.full_name || '',
+                        company_name: profile.company_name || '',
+                        phone: profile.phone || ''
+                    });
+                }
             }
         } catch (err: any) {
             console.error("Dashboard Load Error:", err);
@@ -521,6 +565,9 @@ function ClientDashboardContent({ demoMode = false }) {
         );
     }
 
+    const [showProfileModal, setShowProfileModal] = useState(false);
+
+    // If demo mode or project exists:
     const myActionPlan = tasks.filter(t => t.type === 'admin_task');
     const clientRequirements = tasks.filter(t => t.type === 'client_task');
     const projName = project?.name || "Demo Project";
@@ -533,9 +580,16 @@ function ClientDashboardContent({ demoMode = false }) {
                         <h1 className="text-3xl font-bold text-white">{projName}</h1>
                         <p className="text-slate-400 mt-2">Status: <span className="text-empower-pink font-bold">{project?.status}</span></p>
                     </div>
-                    <button onClick={handleLogout} className="text-slate-400 hover:text-white transition-colors">Logout</button>
+                    <div className="flex items-center gap-4">
+                        <button onClick={() => setShowProfileModal(true)} className="flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-700 text-slate-300 rounded-lg hover:text-white hover:border-purple-500 transition-colors text-sm font-medium">
+                            <Settings className="w-4 h-4" />
+                            My Profile
+                        </button>
+                        <button onClick={handleLogout} className="text-slate-400 hover:text-white transition-colors">Logout</button>
+                    </div>
                 </div>
 
+                {/* Tabs */}
                 <div className="flex gap-8 border-b border-slate-800 mb-8 overflow-x-auto bg-slate-900/50 p-2 rounded-t-xl">
                     <button onClick={() => setActiveTab('overview')} className={`pb-4 text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap ${activeTab === 'overview' ? 'text-empower-pink border-b-2 border-empower-pink' : 'text-slate-500 hover:text-slate-300'}`}>Overview</button>
                     <button onClick={() => setActiveTab('messages')} className={`pb-4 text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap ${activeTab === 'messages' ? 'text-empower-pink border-b-2 border-empower-pink' : 'text-slate-500 hover:text-slate-300'}`}>Messages</button>
@@ -682,6 +736,37 @@ function ClientDashboardContent({ demoMode = false }) {
                         <form onSubmit={handleSignDocument} className="space-y-4">
                             <div><label className="block text-sm font-medium text-slate-400 mb-1">Type Full Name to Sign</label><input type="text" required className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 font-mono" placeholder="e.g. Jane Doe" value={signatureName} onChange={e => setSignatureName(e.target.value)} /></div>
                             <div className="flex justify-end gap-3 pt-4"><button type="button" onClick={() => setSignModalOpen(false)} className="px-4 py-2 text-slate-400 hover:text-white transition-colors">Cancel</button><button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-bold">Confirm & Sign</button></div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Profile Edit Modal (Main Dashboard) */}
+            {showProfileModal && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+                    <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 w-full max-w-md shadow-2xl">
+                        <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                            <User className="w-5 h-5 text-purple-500" />
+                            Edit Your Profile
+                        </h3>
+                        <p className="text-slate-400 text-sm mb-6">Ensure your details are correct for legal invoicing.</p>
+                        <form onSubmit={(e) => { handleUpdateProfile(e); setShowProfileModal(false); }} className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Full Name</label>
+                                <input type="text" required value={profileData.full_name} onChange={e => setProfileData({ ...profileData, full_name: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Company Name</label>
+                                <input type="text" value={profileData.company_name} onChange={e => setProfileData({ ...profileData, company_name: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-400 mb-1">Phone</label>
+                                <input type="tel" value={profileData.phone} onChange={e => setProfileData({ ...profileData, phone: e.target.value })} className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500" />
+                            </div>
+                            <div className="flex justify-end gap-3 pt-4">
+                                <button type="button" onClick={() => setShowProfileModal(false)} className="px-4 py-2 text-slate-400 hover:text-white transition-colors">Cancel</button>
+                                <button type="submit" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-bold">Save Changes</button>
+                            </div>
                         </form>
                     </div>
                 </div>
