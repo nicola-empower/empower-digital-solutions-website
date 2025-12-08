@@ -2,6 +2,9 @@
 
 A modern, high-performance website for **Empower Digital Solutions**, built to showcase custom web applications, digital services, and the founder's expertise. This project replaces the legacy HTML site with a robust **Astro** architecture, integrated with **React** for interactivity and **Tailwind CSS** for styling.
 
+<img width="2840" height="1513" alt="image" src="https://github.com/user-attachments/assets/624ce0e8-805f-45af-8d7e-838ab7d02985" />
+
+
 ## ⚡ Tech Stack
 
 -   **Framework:** [Astro](https://astro.build) (v5)
