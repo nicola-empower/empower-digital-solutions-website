@@ -10,6 +10,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
     site: 'https://empowerdigitalsolutions.co.uk',
     vite: {
+        // @ts-ignore
         plugins: [tailwindcss()]
     },
 
