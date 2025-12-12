@@ -1,0 +1,1726 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TriageWidget from "../components/TriageWidget.astro";
+import { Image } from "astro:assets";
+import {
+    Check,
+    X,
+    Shield,
+    Clock,
+    Zap,
+    Settings,
+    ArrowRight,
+    MousePointerClick,
+    Star,
+    Quote,
+} from "lucide-react";
+
+// Import images
+import landscaperImg from "../assets/trades/landscaper.png";
+import builderImg from "../assets/trades/builder.png";
+import dmJoineryImg from "../assets/trades/dm-joinery.png";
+import electricianImg from "../assets/trades/electrician.png";
+import chromaDecorImg from "../assets/trades/chroma-decor.png";
+import gasEngineerImg from "../assets/trades/gas-engineer.png";
+import elitePlumbingImg from "../assets/trades/elite-plumbing.png";
+import treeSurgeonImg from "../assets/trades/tree-surgeon.jpg";
+import joinerImg from "../assets/trades/joiner.png";
+import cleanerImg from "../assets/trades/cleaner.png";
+import locksmithImg from "../assets/trades/locksmith.png";
+import rooferImg from "../assets/trades/roofer.png";
+import heroPlaceholderImg from "../assets/trades/hero-placeholder.png";
+
+// Image Configuration
+const heroImages = [
+    // Column 1
+    landscaperImg,
+    builderImg,
+    dmJoineryImg,
+    electricianImg,
+
+    // Column 2
+    chromaDecorImg,
+    gasEngineerImg,
+    elitePlumbingImg,
+    treeSurgeonImg,
+
+    // Column 3
+    joinerImg,
+    cleanerImg,
+    locksmithImg,
+    rooferImg,
+];
+
+// Content for the grid
+const gridItems = [
+    {
+        title: "Tree Surgeon",
+        src: treeSurgeonImg,
+        href: "https://tree-surgeon-demo.vercel.app/",
+    },
+    {
+        title: "Roofer",
+        src: rooferImg,
+        href: "https://roofer-demo.vercel.app/",
+    },
+    {
+        title: "Painter & Decorator",
+        src: chromaDecorImg,
+        href: "https://painter-decorator-demo.vercel.app/",
+    },
+    {
+        title: "Locksmith",
+        src: locksmithImg,
+        href: "https://locksmith-demo-one.vercel.app/",
+    },
+    {
+        title: "Landscaper",
+        src: landscaperImg,
+        href: "https://landscaper-demo.vercel.app/",
+    },
+    {
+        title: "Joiner",
+        src: joinerImg,
+        href: "https://joiner-demo.vercel.app/",
+    },
+    {
+        title: "Electrician",
+        src: electricianImg,
+        href: "https://electrician-demo-mu.vercel.app/",
+    },
+    {
+        title: "Commercial Cleaner",
+        src: cleanerImg,
+        href: "https://commercial-cleaner-demo.vercel.app/",
+    },
+    {
+        title: "Gas Engineer",
+        src: gasEngineerImg,
+        href: "https://gas-engineer-demo.vercel.app/",
+    },
+    {
+        title: "Builder",
+        src: builderImg,
+        href: "https://builder-demo-seven.vercel.app/",
+    },
+    {
+        title: "Plumber",
+        src: elitePlumbingImg,
+        href: "#",
+    },
+    // Adding placeholder/dummy for Hero use if needed, but not in grid
+];
+
+// Helper to chunk array
+const chunk = (arr: any[], size: number) =>
+    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+        arr.slice(i * size, i * size + size),
+    );
+
+const columns = chunk(heroImages, 4);
+---
+
+<Layout
+    title="Trades | Empower Digital Solutions"
+    description="Specialist web design for trades and construction. We build high-performance revenue systems for plumbers, builders, and electricians. No templates, just results."
+>
+    <!-- Hero Section -->
+    <section
+        class="relative w-full h-screen overflow-hidden bg-slate-950 flex items-center justify-center font-body"
+    >
+        {/* Background Content / Hero Text */}
+        <div
+            class="absolute z-10 text-white text-left pointer-events-none mix-blend-screen left-16 top-[60%]"
+        >
+            <h1
+                class="text-8xl font-bold font-heading tracking-tighter mb-6 text-glow"
+            >
+                ELEVATE
+            </h1>
+            <p
+                class="text-2xl opacity-90 text-glow-subtle leading-relaxed ml-2 mb-8"
+            >
+                Stop competing on price.<br />Start winning on brand.
+            </p>
+            <a
+                href="#pricing"
+                class="inline-block bg-white text-slate-950 px-8 py-3 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all duration-300"
+            >
+                View Packages
+            </a>
+        </div>
+
+        {/* The Angled Container */}
+        <div class="angled-container flex gap-6 p-4">
+            {
+                columns.map((colImages, i) => (
+                    <div
+                        class={`col flex flex-col gap-6 ${i === 0 ? "animate-scroll-slow" : i === 1 ? "animate-scroll-medium" : "animate-scroll-fast"} ${i === 1 ? "pt-12" : ""}`}
+                    >
+                        {colImages.map((imgSrc: any, j: number) => (
+                            <div class="device-mockup">
+                                <Image
+                                    src={imgSrc}
+                                    alt={`Hero ${i}-${j}`}
+                                    class="w-full h-auto rounded-lg"
+                                    width={250}
+                                />
+                            </div>
+                        ))}
+                        {/* Duplicate for infinite scroll loop effect */}
+                        {colImages.map((imgSrc: any, j: number) => (
+                            <div class="device-mockup" aria-hidden="true">
+                                <Image
+                                    src={imgSrc}
+                                    alt={`Hero ${i}-${j}-duplicate`}
+                                    class="w-full h-auto rounded-lg"
+                                    width={250}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- 1. The Hook (The "Tool" Analogy) -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2
+                    class="text-4xl md:text-6xl font-bold font-heading mb-8 leading-tight"
+                >
+                    You wouldn't buy a <span
+                        class="text-transparent bg-clip-text bg-linear-to-r from-red-500 to-orange-500"
+                        >plastic drill</span
+                    > to build a house.
+                    <br />
+                    <span class="text-white"
+                        >So why build your business on a £500 template?</span
+                    >
+                </h2>
+                <div
+                    class="text-xl md:text-2xl text-gray-300 space-y-6 leading-relaxed"
+                >
+                    <p>
+                        Most web designers sell you a "digital brochure." It
+                        looks okay, but it sits on a slow, insecure server,
+                        waiting for customers to find it.
+                    </p>
+                    <p class="font-bold text-white">
+                        We don't build brochures. We build <span
+                            class="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400"
+                            >Revenue Systems</span
+                        >.
+                    </p>
+                    <p>
+                        Our custom-coded platforms are engineered to rank higher
+                        on Google, capture leads automatically, and filter out
+                        the time-wasters before they even call you.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Subtle background grid or effect -->
+        <div
+            class="absolute inset-0 bg-[url('/grid.svg')] opacity-5 pointer-events-none"
+        >
+        </div>
+    </section>
+
+    <!-- 2. The Comparison (The "Us vs. Them" Table) -->
+    <section class="py-20 bg-slate-950 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold font-heading mb-4">
+                    The Difference Between "Expense" and "Investment"
+                </h2>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full max-w-5xl mx-auto border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-800">
+                            <th
+                                class="p-1 md:p-3 text-left text-xs md:text-lg font-heading text-gray-400 w-1/4"
+                                >Feature</th
+                            >
+                            <th
+                                class="p-1 md:p-3 text-center text-xs md:text-lg font-heading text-red-400 w-1/3"
+                                >WP Template</th
+                            >
+                            <th
+                                class="p-1 md:p-3 text-center text-xs md:text-lg font-heading text-green-400 w-1/3"
+                                >Custom Build</th
+                            >
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm md:text-lg">
+                        <tr
+                            class="border-b border-slate-800 hover:bg-slate-900/50 transition-colors"
+                        >
+                            <td
+                                class="p-1 md:p-3 font-bold text-white text-xs md:text-lg"
+                                >Speed</td
+                            >
+                            <td
+                                class="p-1 md:p-3 text-gray-400 text-center text-xs md:text-base"
+                            >
+                                <Clock
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-red-400"
+                                />
+                                <strong>Slow.</strong>
+                                <span class="hidden md:inline"
+                                    >Bloated with plugins.</span
+                                >
+                            </td>
+                            <td
+                                class="p-1 md:p-3 text-white text-center text-xs md:text-base"
+                            >
+                                <Zap
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-green-400"
+                                />
+                                <strong>Instant.</strong>
+                                <span class="hidden md:inline"
+                                    >Scores 99/100. Google loves this.</span
+                                >
+                            </td>
+                        </tr>
+                        <tr
+                            class="border-b border-slate-800 hover:bg-slate-900/50 transition-colors"
+                        >
+                            <td
+                                class="p-1 md:p-3 font-bold text-white text-xs md:text-lg"
+                                >Security</td
+                            >
+                            <td
+                                class="p-1 md:p-3 text-gray-400 text-center text-xs md:text-base"
+                            >
+                                <Shield
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-red-400"
+                                />
+                                <strong>Vulnerable.</strong>
+                                <span class="hidden md:inline"
+                                    >#1 target for hackers.</span
+                                >
+                            </td>
+                            <td
+                                class="p-1 md:p-3 text-white text-center text-xs md:text-base"
+                            >
+                                <Shield
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-green-400"
+                                />
+                                <strong>Fortress.</strong>
+                                <span class="hidden md:inline"
+                                    >Enterprise-grade security.</span
+                                >
+                            </td>
+                        </tr>
+                        <tr
+                            class="border-b border-slate-800 hover:bg-slate-900/50 transition-colors"
+                        >
+                            <td
+                                class="p-1 md:p-3 font-bold text-white text-xs md:text-lg"
+                                >Leads</td
+                            >
+                            <td
+                                class="p-1 md:p-3 text-gray-400 text-center text-xs md:text-base"
+                            >
+                                <X
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-gray-500"
+                                />
+                                <strong>No Filter.</strong>
+                                <span class="hidden md:inline"
+                                    >"How much?" texts at 9pm.</span
+                                >
+                            </td>
+                            <td
+                                class="p-1 md:p-3 text-white text-center text-xs md:text-base"
+                            >
+                                <MousePointerClick
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-green-400"
+                                />
+                                <strong>Pre-Qualified.</strong>
+                                <span class="hidden md:inline"
+                                    >Filters by budget.</span
+                                >
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/50 transition-colors">
+                            <td
+                                class="p-1 md:p-3 font-bold text-white text-xs md:text-lg"
+                                >Maintenance</td
+                            >
+                            <td
+                                class="p-1 md:p-3 text-gray-400 text-center text-xs md:text-base"
+                            >
+                                <Settings
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-gray-500"
+                                />
+                                <strong>Constant Noise.</strong>
+                                <span class="hidden md:inline"
+                                    >Weekly plugin emails. Panic over updates.</span
+                                >
+                            </td>
+                            <td
+                                class="p-1 md:p-3 text-white text-center text-xs md:text-base"
+                            >
+                                <Check
+                                    className="w-4 h-4 md:w-6 md:h-6 mx-auto mb-1 md:mb-1 text-green-400"
+                                />
+                                <strong>Silent & Managed.</strong>
+                                <span class="hidden md:inline"
+                                    >We patch vulnerabilities instantly. You
+                                    sleep soundly.</span
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-8 text-center">
+                <a
+                    href="#pricing"
+                    class="inline-block text-white border-b border-blue-500 pb-1 hover:text-blue-400 transition-colors"
+                >
+                    See Pricing & Packages <ArrowRight
+                        className="w-4 h-4 inline ml-1"
+                    />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The Tech Pitch -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2
+                        class="text-4xl md:text-5xl font-bold font-heading mb-8"
+                    >
+                        Engineered for <span class="text-blue-500"
+                            >Unfair Speed</span
+                        >.
+                    </h2>
+                    <div class="space-y-6 text-lg text-gray-300">
+                        <p>
+                            We use the same technology stack as Netflix and
+                            Uber. Why? Because <strong class="text-white"
+                                >Speed = Trust.</strong
+                            >
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <Check
+                                    className="w-5 h-5 text-blue-500 mt-1 shrink-0"
+                                />
+                                <div>
+                                    <strong class="text-white"
+                                        >0.5 Second Load Times:</strong
+                                    > If your site takes 3 seconds to load on 4G,
+                                    50% of customers leave. Our sites load instantly.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 text-xl">✓</span>
+                                <div>
+                                    <strong class="text-white"
+                                        >Works Offline:</strong
+                                    > Your portfolio loads even if the client has
+                                    bad signal in a basement.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 text-xl">✓</span>
+                                <div>
+                                    <strong class="text-white"
+                                        >No "Maintenance Mode":</strong
+                                    > Unlike WordPress, your site never goes down
+                                    for updates. It is always open for business.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Visual/Image placeholder or code snippet illustration -->
+                <div
+                    class="bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
+                >
+                    <div class="flex gap-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <details class="group">
+                        <summary
+                            class="flex items-center gap-3 cursor-pointer text-blue-400 hover:text-blue-300 transition-colors mb-4 font-mono text-sm"
+                        >
+                            <Settings className="w-4 h-4" />
+                            <span
+                                >⚙️ Click to view the code that powers this
+                                speed (Devs Only)</span
+                            >
+                        </summary>
+                        <pre
+                            class="font-mono text-sm text-blue-300 overflow-x-auto bg-slate-900/50 p-4 rounded-lg border border-slate-700/50"><code>{`
+// The engine behind the speed
+const performance = {
+  score: 100,
+  interactive: "0.2s",
+  blockingTime: "0ms",
+  seo: "Optimised"
+};
+
+export function dominateMarket(competitors) {
+  return competitors.filter(site => site.speed < 100).length === 0 
+    ? "Market Leader" 
+    : "Unbeatable";
+}
+`}</code></pre>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Watchdog Merged into Pricing -->
+
+    <!-- 5. The Pricing Model -->
+    <section id="pricing" class="py-24 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold font-heading mb-6">
+                    A Business Asset. <br /><span class="text-green-400"
+                        >Not an Expense.</span
+                    >
+                </h2>
+                <p class="text-xl text-gray-300">
+                    To sell at this level, pricing must be transparent. You
+                    aren't paying for "hours coded"; you are investing in a <strong
+                        >Revenue Generating Machine.</strong
+                    >
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <!-- Tier 1 -->
+                <div
+                    class="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-gray-600 transition-colors relative"
+                >
+                    <h3 class="text-2xl font-bold font-heading text-white mb-2">
+                        The Brand Authority
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Static Site Architecture
+                    </p>
+                    <div class="text-4xl font-bold text-white mb-2">£2,495</div>
+                    <div class="text-sm text-blue-400 font-bold mb-6">
+                        + £99/mo Watchdog Plan
+                    </div>
+                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">
+                        Stop losing leads to competitors who look more
+                        professional. A high-performance marketing site that
+                        ranks high and loads instantly.
+                    </p>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                        <li class="flex gap-3">
+                            <Check
+                                className="w-5 h-5 text-green-400 shrink-0"
+                            />
+                            <strong>Astro/React Architecture</strong> (100 Speed Score)
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-400">✓</span>
+                            <strong>5-Page Custom Build</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-400">✓</span>
+                            <strong>Professional Copywriting</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-400">✓</span>
+                            <strong>Trust Badges & Reviews</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-green-400">✓</span>
+                            <strong>Local SEO Schema</strong>
+                        </li>
+
+                        <!-- Watchdog Inclusion -->
+                        <li class="pt-4 mt-4 border-t border-slate-800">
+                            <div
+                                class="flex gap-3 text-blue-400 mb-2 font-bold"
+                            >
+                                <Shield className="w-5 h-5 shrink-0" />
+                                <span>Includes Watchdog:</span>
+                            </div>
+                            <ul class="space-y-2 pl-8 text-xs text-gray-400">
+                                <li>• Enterprise Hosting (AWS)</li>
+                                <li>• Daily Security Patches</li>
+                                <li>• 24/7 Uptime Monitoring</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a
+                        href="#triage-widget"
+                        class="block w-full py-4 text-center border border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-colors"
+                        >Start Your Build</a
+                    >
+                </div>
+
+                <!-- Tier 2 -->
+                <div
+                    class="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-blue-500 transition-colors relative"
+                >
+                    <h3 class="text-2xl font-bold font-heading text-white mb-2">
+                        The Operations Engine
+                    </h3>
+                    <p class="text-blue-400 text-sm mb-6">Custom Web App</p>
+                    <div class="text-4xl font-bold text-white mb-2">£3,495</div>
+                    <div class="text-sm text-blue-400 font-bold mb-6">
+                        + £99/mo Watchdog Plan
+                    </div>
+                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">
+                        Your personal digital office manager. Automate the
+                        boring stuff so you can get off the tools and get your
+                        weekends back.
+                    </p>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                        <li class="flex gap-3">
+                            <Check className="w-5 h-5 text-blue-500 shrink-0" />
+                            <strong>Custom Ruby/Node Backend</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-blue-500">✓</span>
+                            <strong>"Quote Command" Dashboard</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-blue-500">✓</span>
+                            <strong>Job Scheduling Board</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-blue-500">✓</span>
+                            <strong>Client Portal</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-blue-500">✓</span>
+                            <strong>Mobile Admin Web-App</strong>
+                        </li>
+                        <!-- Watchdog Inclusion -->
+                        <li class="pt-4 mt-4 border-t border-slate-800">
+                            <div
+                                class="flex gap-3 text-blue-400 mb-2 font-bold"
+                            >
+                                <Shield className="w-5 h-5 shrink-0" />
+                                <span>Includes Watchdog:</span>
+                            </div>
+                            <ul class="space-y-2 pl-8 text-xs text-gray-400">
+                                <li>• Enterprise Hosting (AWS)</li>
+                                <li>• Daily Security Patches</li>
+                                <li>• 24/7 Uptime Monitoring</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a
+                        href="#triage-widget"
+                        class="block w-full py-4 text-center bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-500 transition-colors"
+                        >Start Your Build</a
+                    >
+                </div>
+
+                <!-- Tier 3 -->
+                <div
+                    class="bg-slate-800 p-8 rounded-2xl border-2 border-purple-500 relative shadow-2xl scale-105 z-10"
+                >
+                    <div
+                        class="absolute top-0 right-0 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
+                    >
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading text-white mb-2">
+                        The Full Ecosystem
+                    </h3>
+                    <p class="text-purple-400 text-sm mb-6">
+                        Hybrid Build (Flagship)
+                    </p>
+                    <div class="text-4xl font-bold text-white mb-2">£4,995</div>
+                    <div class="text-sm text-blue-400 font-bold mb-6">
+                        + £99/mo Watchdog Plan
+                    </div>
+                    <div class="text-xs text-gray-400 mb-6 line-through">
+                        Value: £6,000+
+                    </div>
+                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">
+                        The complete digital transformation. A lead-generating
+                        front end perfectly synced with an automated back end. <strong
+                            >This is how you scale.</strong
+                        >
+                    </p>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                        <li class="flex gap-3">
+                            <Check
+                                className="w-5 h-5 text-purple-400 shrink-0"
+                            />
+                            <strong>EVERYTHING in Tier 1 + Tier 2</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <Check
+                                className="w-5 h-5 text-purple-400 shrink-0"
+                            />
+                            <strong>Seamless Data Integration</strong>
+                        </li>
+                        <li class="flex gap-3">
+                            <Check
+                                className="w-5 h-5 text-purple-400 shrink-0"
+                            />
+                            <strong>Smart Customer Estimator Tool</strong>
+                        </li>
+
+                        <!-- Watchdog Inclusion -->
+                        <li class="pt-4 mt-4 border-t border-slate-700">
+                            <div
+                                class="flex gap-3 text-purple-400 mb-2 font-bold"
+                            >
+                                <Shield className="w-5 h-5 shrink-0" />
+                                <span>Includes Watchdog:</span>
+                            </div>
+                            <ul class="space-y-2 pl-8 text-xs text-gray-400">
+                                <li>• Priority Support Channel</li>
+                                <li>• Enterprise Hosting (AWS)</li>
+                                <li>• Daily Security Patches</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a
+                        href="#triage-widget"
+                        class="block w-full py-4 text-center bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/50"
+                        >Start Your Build</a
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Watchdog Merged into Pricing -->
+
+    <!-- 7. How We Work (Process) -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
+                    How We Work: <br />A Partnership, Not a Subscription.
+                </h2>
+                <p class="text-xl text-gray-300">
+                    We believe in complete transparency. You know exactly what
+                    you are paying and when.
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative max-w-5xl mx-auto mb-20">
+                <div
+                    class="absolute top-1/2 left-0 w-full h-1 bg-slate-800 -translate-y-1/2 hidden md:block z-0"
+                >
+                </div>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10"
+                >
+                    <!-- Step 1 (New) -->
+                    <div
+                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
+                    >
+                        <div
+                            class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
+                        >
+                            1
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">
+                            Discovery & Strategy
+                        </h4>
+                        <div class="text-purple-400 font-bold mb-4 text-sm">
+                            PAYMENT: 0%
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            We discuss your business goals, target audience, and
+                            workflow needs before writing a single line of code.
+                        </p>
+                        <div
+                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
+                        >
+                            <strong>Status:</strong> Consultation
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
+                    >
+                        <div
+                            class="w-12 h-12 bg-slate-800 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
+                        >
+                            2
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">
+                            Mobilisation
+                        </h4>
+                        <div class="text-green-400 font-bold mb-4 text-sm">
+                            PAYMENT: 50% DEPOSIT
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            Covers server setup, design architecture, and
+                            creates your dedicated repo.
+                        </p>
+                        <div
+                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
+                        >
+                            <strong>Status:</strong> Production Slot Secured
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
+                    >
+                        <div
+                            class="w-12 h-12 bg-blue-900 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
+                        >
+                            3
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">
+                            The Build & Review
+                        </h4>
+                        <div class="text-gray-500 font-bold mb-4 text-sm">
+                            PAYMENT: 0%
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            We build on a private <strong>Staging Server</strong
+                            >. You watch the build in real-time.
+                        </p>
+                        <div
+                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
+                        >
+                            <strong>Status:</strong> Visible, but not live
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div
+                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
+                    >
+                        <div
+                            class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
+                        >
+                            4
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">
+                            Launch & Handover
+                        </h4>
+                        <div class="text-green-400 font-bold mb-4 text-sm">
+                            PAYMENT: FINAL 50%
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            We trigger the "Go Live" sequence, connect your
+                            domain, and transfer IP rights to you.
+                        </p>
+                        <div
+                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
+                        >
+                            <strong>Status:</strong> Business Open
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div
+                class="max-w-3xl mx-auto bg-slate-950 p-8 rounded-2xl border border-slate-800"
+            >
+                <h3
+                    class="text-2xl font-bold text-white font-heading mb-8 text-center"
+                >
+                    Ownership & Safety
+                </h3>
+
+                <div class="space-y-6">
+                    <div>
+                        <h4
+                            class="font-bold text-white mb-2 flex items-center gap-2"
+                        >
+                            <HelpCircle
+                                className="w-6 h-6 text-blue-500 shrink-0"
+                            /> Who owns the website?
+                        </h4>
+                        <p
+                            class="text-gray-400 text-sm leading-relaxed pl-6 border-l-2 border-slate-800"
+                        >
+                            <strong>You do.</strong> Unlike agencies that lock you
+                            into proprietary "rented" platforms, once you pay the
+                            final balance, you own the code. If you ever decide to
+                            leave us, we will package up your code and hand it over.
+                            No hostages.
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-bold text-white mb-2 flex items-center gap-2"
+                        >
+                            <HelpCircle
+                                className="w-6 h-6 text-blue-500 shrink-0"
+                            /> Why do I see the site on a "Staging Link" first?
+                        </h4>
+                        <p
+                            class="text-gray-400 text-sm leading-relaxed pl-6 border-l-2 border-slate-800"
+                        >
+                            We build on a secure testing server first. This
+                            protects both of us. It allows you to test every
+                            button and feature without the public seeing a
+                            "Under Construction" sign. We only flip the switch
+                            to your live domain once the final balance is
+                            settled.
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-bold text-white mb-2 flex items-center gap-2"
+                        >
+                            <HelpCircle
+                                className="w-6 h-6 text-blue-500 shrink-0"
+                            /> What does the £99/mo cover if I own the site?
+                        </h4>
+                        <p
+                            class="text-gray-400 text-sm leading-relaxed pl-6 border-l-2 border-slate-800"
+                        >
+                            High-performance cars need premium fuel and
+                            servicing. Your monthly fee covers the <strong
+                                >AWS/Vercel Enterprise Hosting</strong
+                            >. It also pays for us to monitor vulnerabilities
+                            and apply <strong>critical security patches</strong> (like
+                            React updates) instantly. With WordPress, you'd be drowning
+                            in plugin update emails. With us, it's silence. You get
+                            1 hour of my time every month to make any changes you
+                            want. You'll never see a line of code.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. The Backend Sell -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <!-- Abstract representation of a dashboard -->
+                    <div class="bg-white rounded-xl p-6 shadow-2xl relative">
+                        <div
+                            class="absolute top-0 left-0 w-full h-full bg-slate-900/10 rounded-xl z-0"
+                        >
+                        </div>
+                        <div class="relative z-10">
+                            <!-- Fake UI Elements -->
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="h-4 w-32 bg-slate-200 rounded">
+                                </div>
+                                <div class="h-8 w-8 bg-blue-500 rounded-full">
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="h-16 bg-slate-50 rounded border border-slate-100 p-4 flex items-center justify-between"
+                                >
+                                    <div>
+                                        <div
+                                            class="h-3 w-24 bg-slate-200 rounded mb-2"
+                                        >
+                                        </div>
+                                        <div
+                                            class="h-2 w-16 bg-slate-100 rounded"
+                                        >
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="h-6 w-16 bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center rounded"
+                                    >
+                                        PAID
+                                    </div>
+                                </div>
+                                <div
+                                    class="h-16 bg-slate-50 rounded border border-slate-100 p-4 flex items-center justify-between"
+                                >
+                                    <div>
+                                        <div
+                                            class="h-3 w-24 bg-slate-200 rounded mb-2"
+                                        >
+                                        </div>
+                                        <div
+                                            class="h-2 w-16 bg-slate-100 rounded"
+                                        >
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="h-6 w-16 bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center rounded"
+                                    >
+                                        SENT
+                                    </div>
+                                </div>
+                                <div
+                                    class="h-16 bg-slate-50 rounded border border-slate-100 p-4 flex items-center justify-between"
+                                >
+                                    <div>
+                                        <div
+                                            class="h-3 w-24 bg-slate-200 rounded mb-2"
+                                        >
+                                        </div>
+                                        <div
+                                            class="h-2 w-16 bg-slate-100 rounded"
+                                        >
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="h-6 w-16 bg-orange-100 text-orange-700 text-xs font-bold flex items-center justify-center rounded"
+                                    >
+                                        PENDING
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2
+                        class="text-4xl md:text-5xl font-bold font-heading mb-6"
+                    >
+                        The Office Manager <br /><span class="text-purple-400"
+                            >You Don't Have to Pay.</span
+                        >
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        The real value isn't just the pretty front end. It's the
+                        engine room in the back.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div
+                                class="bg-purple-500/20 text-purple-400 w-12 h-12 flex items-center justify-center rounded-full shrink-0"
+                            >
+                                <FileText className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">
+                                    Automated Quoting
+                                </h4>
+                                <p class="text-gray-400">
+                                    Customers answer questions; the system
+                                    generates a price range (that you control).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="bg-purple-500/20 text-purple-400 w-12 h-12 flex items-center justify-center rounded-full shrink-0"
+                            >
+                                <CreditCard className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">
+                                    Digital Invoicing
+                                </h4>
+                                <p class="text-gray-400">
+                                    Send professional PDFs instantly. Get paid
+                                    faster and track everything.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="bg-purple-500/20 text-purple-400 w-12 h-12 flex items-center justify-center rounded-full shrink-0"
+                            >
+                                <Search className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">
+                                    Job Tracking
+                                </h4>
+                                <p class="text-gray-400">
+                                    See exactly which stage every lead is at,
+                                    from "Enquiry" to "Paid."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Portfolio Grid (Restructured) -->
+    <section class="py-24 bg-slate-950 text-white border-t border-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold font-heading mb-6">
+                    Explore What’s Possible
+                </h2>
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    The examples below are concepts, not constraints. We don't
+                    use rigid templates. We use these high-performance
+                    frameworks as a foundation, then custom-code every pixel to
+                    match your unique brand, business goals, and workflow.
+                    <br /><br />
+                    <span class="text-white font-bold"
+                        >See the quality. Then let's design yours.</span
+                    >
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            >
+                {
+                    gridItems.map((item, index) => (
+                        <a
+                            href={item.href}
+                            target={item.href !== "#" ? "_blank" : "_self"}
+                            rel={
+                                item.href !== "#"
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
+                            class="group relative bg-slate-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block border border-slate-800"
+                        >
+                            <div class="aspect-video overflow-hidden bg-slate-800 relative">
+                                <Image
+                                    src={item.src}
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                                    width={400}
+                                />
+                                {item.href !== "#" && (
+                                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="text-white font-semibold border-2 border-white px-6 py-2 rounded-full uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-colors">
+                                            View Demo
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white mb-1 font-heading">
+                                    {item.title}
+                                </h3>
+                                <div class="h-1 w-12 bg-blue-500 rounded mt-2 mb-3" />
+                                <p class="text-gray-400 text-sm">
+                                    Full-Stack Package
+                                </p>
+                            </div>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Design Consultation Banner -->
+        <div
+            class="mt-16 bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center max-w-4xl mx-auto relative overflow-hidden"
+        >
+            <div class="absolute inset-0 bg-blue-500/5 z-0"></div>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-2">
+                    Don't see exactly what you need?
+                </h3>
+                <p class="text-gray-400 mb-6">
+                    Every project includes a full <strong
+                        >Design Consultation</strong
+                    >. We can mix and match features, build custom tools, or
+                    create a completely new aesthetic just for you.
+                </p>
+                <a
+                    href="/aesthetic-vault"
+                    class="inline-block bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold py-2 px-6 rounded-lg transition-colors text-sm"
+                >
+                    Browse The Aesthetic Vault
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. Social Proof / Reviews -->
+    <section class="py-24 bg-slate-950 border-t border-slate-900 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-3xl md:text-5xl font-bold font-heading mb-6 text-white"
+                >
+                    Trusted by <span
+                        class="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400"
+                        >Real Businesses.</span
+                    >
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    No fluff. Just business owners getting their time back.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Review 1 -->
+                <div
+                    class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative hover:border-slate-700 transition-colors"
+                >
+                    <Quote
+                        class="absolute top-8 right-8 w-8 h-8 text-slate-800"
+                    />
+                    <div class="flex gap-1 mb-6">
+                        {
+                            [1, 2, 3, 4, 5].map((_) => (
+                                <Star class="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                            ))
+                        }
+                    </div>
+                    <p
+                        class="text-gray-300 text-lg mb-6 leading-relaxed italic"
+                    >
+                        "This is genius! I was spending my entire day on a
+                        Sunday trying to decipher my handwriting from the back
+                        of envelopes, now my website is an app on my phone, a
+                        few taps and I'm done."
+                    </p>
+                    <div>
+                        <div class="font-bold text-white">Chris H</div>
+                        <div
+                            class="text-sm text-empower-pink font-mono uppercase tracking-wider"
+                        >
+                            Joiner, Kirknewton
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div
+                    class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative hover:border-slate-700 transition-colors"
+                >
+                    <Quote
+                        class="absolute top-8 right-8 w-8 h-8 text-slate-800"
+                    />
+                    <div class="flex gap-1 mb-6">
+                        {
+                            [1, 2, 3, 4, 5].map((_) => (
+                                <Star class="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                            ))
+                        }
+                    </div>
+                    <p
+                        class="text-gray-300 text-lg mb-6 leading-relaxed italic"
+                    >
+                        "Nicola has a keen eye for detail. I fully believe she
+                        can do her job with her eyes closed. The processes she
+                        implemented are far more efficient than what we had
+                        previously. The time I’m saving every day is
+                        incredible."
+                    </p>
+                    <div>
+                        <div class="font-bold text-white">Margaret H</div>
+                        <div
+                            class="text-sm text-empower-pink font-mono uppercase tracking-wider"
+                        >
+                            Insurance Broker, Kirkintilloch
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div
+                    class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative hover:border-slate-700 transition-colors"
+                >
+                    <Quote
+                        class="absolute top-8 right-8 w-8 h-8 text-slate-800"
+                    />
+                    <div class="flex gap-1 mb-6">
+                        {
+                            [1, 2, 3, 4, 5].map((_) => (
+                                <Star class="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                            ))
+                        }
+                    </div>
+                    <p
+                        class="text-gray-300 text-lg mb-6 leading-relaxed italic"
+                    >
+                        "It's been a bit of a shock to not be bombarded with
+                        questions everyday. My website answers them all, now the
+                        only people I need to speak to are genuine customers
+                        ready to get their job done."
+                    </p>
+                    <div>
+                        <div class="font-bold text-white">Matt A</div>
+                        <div
+                            class="text-sm text-empower-pink font-mono uppercase tracking-wider"
+                        >
+                            Saltcoats
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div
+                    class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative hover:border-slate-700 transition-colors"
+                >
+                    <Quote
+                        class="absolute top-8 right-8 w-8 h-8 text-slate-800"
+                    />
+                    <div class="flex gap-1 mb-6">
+                        {
+                            [1, 2, 3, 4, 5].map((_) => (
+                                <Star class="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                            ))
+                        }
+                    </div>
+                    <p
+                        class="text-gray-300 text-lg mb-6 leading-relaxed italic"
+                    >
+                        "Nicola understood my business process very quickly, I
+                        was worried about change but the system I have now is so
+                        much easier and quicker."
+                    </p>
+                    <div>
+                        <div class="font-bold text-white">Paul N</div>
+                        <div
+                            class="text-sm text-empower-pink font-mono uppercase tracking-wider"
+                        >
+                            Cumbernauld
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. The Closer -->
+    <section
+        class="py-24 bg-linear-to-br from-slate-900 to-slate-800 text-white text-center"
+    >
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-bold font-heading mb-8">
+                One Good Job Pays for the <br />Whole System.
+            </h2>
+            <p class="text-2xl text-gray-300 mb-12 leading-relaxed">
+                A £5,000 website feels expensive until it lands you a <strong
+                    class="text-white">£50,000 commercial contract</strong
+                > because you looked like the safest choice.
+                <br /><br />
+                Stop competing on price with the "man in a van." Start looking like
+                the market leader.
+            </p>
+        </div>
+    </section>
+
+    <!-- 11. Triage Widget Section -->
+    <section id="triage-widget" class="py-24 bg-white dark:bg-slate-950">
+        <div class="container mx-auto px-6">
+            <TriageWidget />
+        </div>
+    </section>
+
+    <style>
+        .angled-container {
+            /* Rotating negative Z creates a Top-Left to Bottom-Right diagonal (\) 
+       Positioning it to start from Top-Middle */
+            transform: rotateX(20deg) rotateY(10deg) rotateZ(-30deg) scale(1.2);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+
+            position: absolute;
+            /* Start near the top middle and flow to right edge */
+            top: -20%; /* Adjusted up slightly to fit taller columns */
+            left: 45%;
+            right: auto;
+        }
+
+        .device-mockup {
+            background: #1a1a1a;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            box-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.5),
+                0 8px 10px -6px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 250px; /* Adjust size generally */
+        }
+
+        /* Optional Scroll Animations */
+        @keyframes scroll {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .animate-scroll-slow {
+            animation: scroll 15s ease-in-out infinite;
+        }
+        .animate-scroll-medium {
+            animation: scroll 12s ease-in-out infinite reverse;
+        }
+        .animate-scroll-fast {
+            animation: scroll 18s ease-in-out infinite;
+        }
+
+        .text-glow {
+            text-shadow:
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(100, 100, 255, 0.4);
+        }
+
+        .text-glow-subtle {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+
+    <!-- 12. The Founder's Pledge -->
+    <section
+        class="py-24 bg-slate-950 border-t border-slate-900 overflow-hidden relative"
+    >
+        <div
+            class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-empower-pink/30 to-transparent"
+        >
+        </div>
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left: The Pledge -->
+                <div class="relative z-10">
+                    <div
+                        class="inline-block px-4 py-1 rounded-full bg-slate-900 border border-slate-700 text-empower-pink text-xs font-bold tracking-widest uppercase mb-6"
+                    >
+                        Integrity Proof
+                    </div>
+                    <h2
+                        class="text-4xl md:text-5xl font-bold font-heading text-white mb-6 leading-tight"
+                    >
+                        The "No-Outsource" <br />
+                        <span
+                            class="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400"
+                            >Guarantee.</span
+                        >
+                    </h2>
+                    <div
+                        class="space-y-6 text-lg text-gray-300 leading-relaxed font-light"
+                    >
+                        <p>
+                            <strong class="text-white font-bold"
+                                >I don't use templates. I don't farm work out to
+                                cheap offshore teams. I don't cut corners.</strong
+                            >
+                        </p>
+                        <p>
+                            When you hire Empower Digital Solutions, you are
+                            hiring <em class="text-white">me</em>. I personally
+                            architect every database, write every line of code,
+                            and configure every server.
+                        </p>
+                        <p>
+                            This ensures that the person you speak to on the
+                            phone is the same person building your business’s
+                            future.
+                        </p>
+                        <div
+                            class="flex items-center gap-8 pt-4 border-t border-slate-800 mt-8"
+                        >
+                            <div class="flex items-center gap-3">
+                                <Shield className="w-5 h-5 text-green-400" />
+                                <span
+                                    class="text-white font-bold text-sm tracking-wide"
+                                    >100% ACCOUNTABILITY</span
+                                >
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <Shield className="w-5 h-5 text-green-400" />
+                                <span
+                                    class="text-white font-bold text-sm tracking-wide"
+                                    >100% TRANSPARENCY</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: The "Why" Story -->
+                <div class="relative">
+                    <div
+                        class="absolute -inset-4 bg-empower-pink/5 rounded-full blur-3xl opacity-30"
+                    >
+                    </div>
+                    <div
+                        class="relative bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl"
+                    >
+                        <div class="flex items-center gap-6 mb-6">
+                            <div class="relative">
+                                <div
+                                    class="w-20 h-20 rounded-full overflow-hidden border-2 border-empower-pink shadow-lg"
+                                >
+                                    <img
+                                        src="/images/portfolio.jpg"
+                                        alt="Nicola - Founder"
+                                        class="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div
+                                    class="absolute -bottom-1 -right-1 bg-green-500 w-5 h-5 rounded-full border-4 border-slate-900"
+                                >
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">
+                                    Nicola
+                                </h4>
+                                <p class="text-gray-400 text-sm">
+                                    Founder & Lead Developer
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="text-gray-400 text-sm leading-relaxed space-y-4 font-body italic"
+                        >
+                            <p>
+                                "I started building websites when I became a
+                                Virtual Assistant. Like everyone else, I started
+                                with WordPress. <strong
+                                    >I quickly hated it.</strong
+                                >"
+                            </p>
+                            <p>
+                                "I felt boxed in. Customising it kept me up all
+                                night. Plugins for SEO, security, themes, it was
+                                a bloated mess. I was paying subscriptions for
+                                Monday.com, ClickUp, Asana... just to do my
+                                job."
+                            </p>
+                            <p>
+                                "So I learned to code. <strong
+                                    >Real code.</strong
+                                > I built my own internal tools to replace those costs.
+                                Now, I run my entire business on custom platforms
+                                I built myself. I found my perfect solution and I
+                                can build yours too."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ / Objection Handling (The "CEO to CEO" Chat) -->
+    <section class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-3xl md:text-5xl font-bold font-heading mb-6 text-white"
+                >
+                    Straight Talk. <br /><span
+                        class="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400"
+                        >CEO to CEO.</span
+                    >
+                </h2>
+                <p class="text-xl text-gray-400">
+                    You build homes and systems. We build the engine that runs
+                    them.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Q1: Complexity barrier -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >I'm good with my hands, not computers. Is this too
+                            complex?</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            That's exactly why you need this. Complex systems
+                            are for engineers; <strong class="text-white"
+                                >simple dashboards are for owners.</strong
+                            >
+                        </p>
+                        <p class="mt-4">
+                            We strip away the noise. You get a clean panel that
+                            shows you: <em
+                                >Leads In, Quotes Sent, Invoices Paid.</em
+                            > If you can use a smartphone, you can use our systems.
+                            You maintain total control without needing to understand
+                            the code.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Q2: The Portal / ROI / Admin Time -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >Do I really need a "Client Portal"? I'm just a
+                            trade.</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            Let me ask you this: <strong class="text-white"
+                                >How much is your evening worth?</strong
+                            >
+                        </p>
+                        <p class="mt-4">
+                            You could hire an admin assistant for £25k/year to
+                            chase emails and book appointments. Or you can have
+                            a built-in Portal that costs a fraction of that and
+                            works 24/7.
+                        </p>
+                        <p class="mt-4">
+                            It allows customers to book quotes, view invoices,
+                            and approve jobs while you are at the pub or
+                            spending time with your family. It's not about
+                            "tech": it's about <strong class="text-white"
+                                >buying back your time.</strong
+                            >
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Q3: SEO / Competition -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >My mate has a Wix site. Why is this better?</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            Wix and Squarespace are "rentals". They are bloated,
+                            slow, and Google struggles to read them.
+                        </p>
+                        <p class="mt-4">
+                            We build <strong class="text-white"
+                                >Custom Assets.</strong
+                            > Our code is lean and fast, which Google loves. This
+                            means you rank higher for "Plumber in [Your City]" without
+                            paying for ads. It's the difference between buying a plastic
+                            drill and a Hilti. One breaks, the other builds a business.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Q4: Maintenance -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >What if something breaks?</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            With our <strong class="text-white"
+                                >Empower Watchdog</strong
+                            > (included in every package), we know about it before
+                            you do.
+                        </p>
+                        <p class="mt-4">
+                            We monitor your site 24/7. We handle the updates,
+                            the security patches, and the server management. You
+                            don't need to be IT support. You just focus on the
+                            job site, we handle digital site.
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+</Layout>

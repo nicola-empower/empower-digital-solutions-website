@@ -37,6 +37,8 @@ A modern, high-performance website for **Empower Digital Solutions**, built to s
         -   **"Inbox Zero" Terminal Demo** (React).
         -   **Theme Toggle** for dark/light mode preference.
         -   **Auto-Scrolling Carousels** for feature showcases.
+    -   **Specialised Sales Pages:**
+        -   **Trades & Construction:** High-conversion landing page with comparisons, pricing, and automated lead triage.
 
 ## 🚀 Featured Projects & Case Studies
 
@@ -71,6 +73,7 @@ A bespoke web application transforming a traditional paper-based planning system
 │   │   ├── portal/     # Client Portal (protected)
 │   │   ├── featured-build.astro  # VA Case Study
 │   │   ├── digitalplanner.astro  # Planner Case Study
+│   │   ├── trades.astro          # Trades & Construction Landing Page
 │   │   ├── index.astro           # Home
 │   │   └── ...
 │   └── styles/         # Global CSS and Tailwind configuration

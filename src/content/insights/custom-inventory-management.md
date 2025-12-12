@@ -1,6 +1,6 @@
 ---
 title: "From Spreadsheets to a Single Source of Truth: Custom Data Management"
-description: "Growing businesses often drown in data. Learn how to move from messy Excel sheets to a centralized, custom database."
+description: "Growing businesses often drown in data. Learn how to move from messy Excel sheets to a centralised, custom database."
 pubDate: 2025-10-25
 tags: ["Data", "Operations", "Scaling"]
 image: "/images/blog/data-management.jpg"

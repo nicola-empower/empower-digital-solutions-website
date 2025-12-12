@@ -6,6 +6,7 @@ import {
   MapPin,
   Phone,
   Download,
+  Clock,
 } from "lucide-react";
 import { Image } from "astro:assets";
 import logoImage from "../assets/images/logo.jpg";
@@ -142,6 +143,13 @@ const currentYear = new Date().getFullYear();
               >Custom Web Applications</a
             >
           </li>
+          <li>
+            <a
+              href="/trades"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Trades & Construction</a
+            >
+          </li>
 
           <li>
             <a
@@ -180,8 +188,24 @@ const currentYear = new Date().getFullYear();
             >
           </li>
           <li class="flex items-start gap-3 text-gray-400">
+            <a
+              href="https://portfolio-nicola-berry.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <span class="w-2 h-2 rounded-full bg-empower-pink inline-block"
+              ></span>
+              View Our Portfolio
+            </a>
+          </li>
+          <li class="flex items-start gap-3 text-gray-400">
             <MapPin className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
             <span>Stenhousemuir, Scotland</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-400">
+            <Clock className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
+            <span>10am - 6pm, Mon - Fri</span>
           </li>
         </ul>
       </div>

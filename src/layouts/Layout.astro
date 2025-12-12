@@ -8,12 +8,16 @@ import { Analytics } from "@vercel/analytics/react";
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
 }
 
 const {
 	title,
 	description = "Empower Digital Solutions - Custom Web Development & Digital Strategy",
+	image = "/images/og-image.jpg",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -23,10 +27,26 @@ const {
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalURL} />
 		<link rel="icon" type="image/jpeg" href="/favicon.jpg" />
 		<link rel="manifest" href="/manifest.json" />
 		<meta name="theme-color" content="#8b5cf6" />
 		<link rel="apple-touch-icon" href="/icon-192.png" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+		<meta property="og:site_name" content="Empower Digital Solutions" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 		<script is:inline>
 			if ("serviceWorker" in navigator) {
 				window.addEventListener("load", () => {

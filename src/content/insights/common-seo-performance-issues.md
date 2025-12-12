@@ -1,6 +1,6 @@
 ---
 title: "The 7 Most Common Website Performance Issues (And How to Fix Them)"
-description: "We analyzed 100+ small business websites. Here are the most common errors killing their Google rankings."
+description: "We analysed 100+ small business websites. Here are the most common errors killing their Google rankings."
 pubDate: 2025-10-10
 tags: ["SEO", "Performance", "Technical"]
 image: "/images/blog/seo-issues.jpg"

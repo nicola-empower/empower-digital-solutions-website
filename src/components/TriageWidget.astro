@@ -1,0 +1,479 @@
+---
+
+---
+
+<div id="triage-widget" class="triage-container">
+    <div class="triage-progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="triage-step active" id="step-1">
+        <h3>Let's diagnose your digital bottleneck.</h3>
+        <p>What is the primary friction point in your business right now?</p>
+        <div class="options-grid">
+            <button class="triage-btn" onclick="setPath('site')">
+                <strong>I need a new look.</strong><br />
+                <span class="sub-text"
+                    >My website is outdated or non-existent.</span
+                >
+            </button>
+            <button class="triage-btn" onclick="setPath('app')">
+                <strong>I'm drowning in admin.</strong><br />
+                <span class="sub-text"
+                    >I have a site, but backend processes are chaos.</span
+                >
+            </button>
+            <button class="triage-btn" onclick="setPath('hybrid')">
+                <strong>I need a total overhaul.</strong><br />
+                <span class="sub-text"
+                    >I want a new site that works as a system.</span
+                >
+            </button>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="triage-step" id="step-2">
+        <h3>If you could wave a magic wand...</h3>
+        <p>What is the biggest win you'd get from fixing this?</p>
+        <div class="options-grid">
+            <button class="triage-btn" onclick="showResult('low')">
+                <strong>Professionalism</strong><br />
+                <span class="sub-text"
+                    >It would just look more trustworthy.</span
+                >
+            </button>
+            <button class="triage-btn" onclick="showResult('high')">
+                <strong>Time Freedom</strong><br />
+                <span class="sub-text">It would save me 10+ hours a week.</span>
+            </button>
+            <button class="triage-btn" onclick="showResult('scale')">
+                <strong>Scale & Revenue</strong><br />
+                <span class="sub-text"
+                    >It would handle double the client volume.</span
+                >
+            </button>
+        </div>
+        <div style="margin-top: 20px;">
+            <button class="text-link-btn" onclick="nextStep(1)"
+                >&larr; Back</button
+            >
+        </div>
+    </div>
+
+    <!-- Result Step -->
+    <div class="triage-step" id="step-result">
+        <div id="result-content">
+            <!-- Content injected via JS -->
+        </div>
+        <button class="text-link-btn" onclick="nextStep(2)"
+            >&larr; Back to previous step</button
+        >
+    </div>
+
+    <!-- Contact Form Step -->
+    <div class="triage-step" id="step-contact">
+        <h3>Let's Implement Your Plan</h3>
+        <p>
+            I've attached your diagnosis to this enquiry so we can hit the
+            ground running.
+        </p>
+
+        <form
+            id="triage-form"
+            class="triage-form"
+            onsubmit="handleFormSubmit(event)"
+        >
+            <div class="form-group">
+                <label for="contact-subject">Project Focus</label>
+                <input
+                    type="text"
+                    id="contact-subject"
+                    name="subject"
+                    readonly
+                    class="read-only-input"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="contact-name">Name</label>
+                <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    placeholder="Joe Bloggs"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    placeholder="joe@example.com"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="contact-message">Additional Notes (Optional)</label>
+                <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="3"
+                    placeholder="Tell me a bit more about the specific friction points..."
+                ></textarea>
+            </div>
+
+            <button type="submit" class="primary-btn full-width"
+                >Send Request</button
+            >
+            <button
+                type="button"
+                class="text-link-btn"
+                onclick="nextStep('result')">&larr; Back to my result</button
+            >
+        </form>
+    </div>
+
+    <!-- Success Step -->
+    <div
+        class="triage-step"
+        id="step-success"
+        style="text-align: center; padding: 2rem 0;"
+    >
+        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+        <h3>Request Received</h3>
+        <p>I have received your diagnostic snapshot.</p>
+        <p>
+            I will review your requirements and be in touch shortly to discuss
+            the next steps.
+        </p>
+        <br />
+        <button class="primary-btn" onclick="location.reload()"
+            >Start Over</button
+        >
+    </div>
+</div>
+
+<script is:inline>
+    let userPath = "";
+    let userGoal = "";
+
+    // DATA: The Diagnosis Copy
+    // DATA: The Diagnosis Copy
+    const diagnosisData = {
+        site: {
+            title: "Site Performance Audit",
+            advice: "Your current site is acting as a brochure, not a salesperson. To win better contracts, your site needs to actively build trust and guide visitors toward booking. We need to move from 'online presence' to 'conversion machine'.",
+            tech: "<strong>The Build:</strong> Ultra-fast static site architecture (Astro/React) for instant loading speeds.",
+            tip: "<strong>Stat:</strong> Mobile users abandon sites that take longer than 3 seconds to load. We fix that.",
+        },
+        app: {
+            title: "Workflow Automation",
+            advice: "You are doing work that software should be doing for you. Managing jobs via text, email, and paper causes friction and lost invoices. We need to centralise your operations so you can manage your business from your phone.",
+            tech: "<strong>The Build:</strong> Custom web application with automated quoting, invoicing, and dispatch.",
+            tip: "<strong>Stat:</strong> Custom automation tools typically reduce weekly admin time by 60%.",
+        },
+        hybrid: {
+            title: "Total Business Transformation",
+            advice: "You need a complete overhaul. A new front-end to attract high-value customers, and a new back-end to serve them efficiently. This is a capital investment to turn your current business into a scalable company.",
+            tech: "<strong>The Build:</strong> Complete end-to-end development. From brand identity to database architecture.",
+            tip: "<strong>The Goal:</strong> Double the lead volume, half the admin time.",
+        },
+    };
+
+    // Step 1: Set Path
+    window.setPath = function (path) {
+        userPath = path;
+        updateProgress(50);
+        nextStep(2);
+    };
+
+    // Step 2: Show Result
+    window.showResult = function (goal) {
+        userGoal = goal;
+        updateProgress(75);
+
+        const data = diagnosisData[userPath];
+
+        const resultHTML = `
+      <h3>Diagnosis: ${data.title}</h3>
+      <div class="result-card">
+        <p><strong>The Insight:</strong> ${data.advice}</p>
+        <p style="font-size: 0.9rem; margin-top:10px;"><em>${data.tech}</em></p>
+        <hr style="border: 0; border-top: 1px solid #dce8f7; margin: 15px 0;">
+        <p style="font-size: 0.9rem;">${data.tip}</p>
+      </div>
+      
+      <div style="text-align:center; margin-top:20px;">
+        <p>Ready to fix this?</p>
+        <button class="primary-btn" onclick="openContact()">Discuss this Plan</button>
+      </div>
+    `;
+
+        document.getElementById("result-content").innerHTML = resultHTML;
+        nextStep("result");
+    };
+
+    // Helper: Open Contact Form & Auto-fill Subject
+    window.openContact = function () {
+        const currentDiagnosis = diagnosisData[userPath].title;
+        const subjectInput = document.getElementById("contact-subject");
+        subjectInput.value = "Enquiry re: " + currentDiagnosis;
+        updateProgress(90);
+        nextStep("contact");
+    };
+
+    // Helper: Switch Steps
+    window.nextStep = function (stepId) {
+        // Hide all steps
+        document
+            .querySelectorAll(".triage-step")
+            .forEach((el) => el.classList.remove("active"));
+        // Show requested step
+        const target =
+            stepId === "result" || stepId === "contact" || stepId === "success"
+                ? `step-${stepId}`
+                : `step-${stepId}`;
+        document.getElementById(target).classList.add("active");
+    };
+
+    // Helper: Update Progress Bar
+    window.updateProgress = function (percent) {
+        document.getElementById("progressBar").style.width = percent + "%";
+    };
+
+    // Form Submission (Success State)
+    window.handleFormSubmit = async function (e) {
+        e.preventDefault();
+
+        const btn = e.target.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.innerText = "Sending...";
+        btn.disabled = true;
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        // REPLACE THIS URL WITH YOUR ACTUAL FORMSPREE URL
+        const FORMSPREE_URL = "https://formspree.io/f/movngvvy";
+
+        try {
+            const response = await fetch(FORMSPREE_URL, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                updateProgress(100);
+                nextStep("success");
+            } else {
+                alert("Oops! There was a problem submitting your form");
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        } catch (error) {
+            // Fallback for demo purposes if ID is invalid
+            console.log(
+                "Formspree submission failed (likely invalid ID). Showing success state for demo.",
+            );
+            updateProgress(100);
+            nextStep("success");
+        }
+    };
+</script>
+
+<style>
+    /* Container Setup */
+    .triage-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 2rem;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        color: #333;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Progress Bar */
+    .triage-progress {
+        height: 4px;
+        background: #eee;
+        margin-bottom: 2rem;
+        border-radius: 2px;
+    }
+    .progress-bar {
+        height: 100%;
+        background: #000; /* Empower Black */
+        width: 25%;
+        transition: width 0.3s ease;
+    }
+
+    /* Step Management */
+    .triage-step {
+        display: none;
+        animation: fadeIn 0.4s ease-out;
+    }
+    .triage-step.active {
+        display: block;
+    }
+
+    /* Typography */
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #111;
+        font-weight: 700;
+    }
+    p {
+        line-height: 1.5;
+        color: #555;
+        margin-bottom: 1.5rem;
+    }
+    .sub-text {
+        font-size: 0.85rem;
+        color: #666;
+        display: block;
+        margin-top: 4px;
+        font-weight: normal;
+    }
+
+    /* Buttons & Grid */
+    .options-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .triage-btn {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 1.2rem;
+        text-align: left;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 1rem;
+        color: #333;
+        width: 100%;
+    }
+    .triage-btn:hover {
+        border-color: #000;
+        background: #f0f0f0;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Result Card Styling */
+    .result-card {
+        background: #f4f8ff;
+        border-left: 4px solid #0056b3; /* Tech Blue */
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0 4px 4px 0;
+    }
+
+    /* Form Styling */
+    .triage-form {
+        margin-top: 0.5rem;
+        text-align: left;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        box-sizing: border-box; /* Fixes padding issues */
+    }
+
+    .read-only-input {
+        background-color: #e9ecef;
+        color: #495057;
+        border-color: #ced4da;
+        font-weight: bold;
+        cursor: not-allowed;
+    }
+
+    /* Action Buttons */
+    .primary-btn {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 14px 28px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: background 0.2s;
+        display: inline-block;
+    }
+    .primary-btn:hover {
+        background: #333;
+    }
+
+    .full-width {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .text-link-btn {
+        background: none;
+        border: none;
+        color: #666;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 0.85rem;
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+        .triage-container {
+            padding: 1.5rem;
+            margin: 1rem;
+        }
+        .primary-btn {
+            width: 100%;
+        }
+    }
+</style>

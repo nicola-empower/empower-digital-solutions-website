@@ -434,31 +434,60 @@ const projects = [
           </div>
         </div>
 
-        <!-- Item 3: Digital Engine Consulting (Full width or split) -->
+        <!-- Item 3: Trades & Construction (New - 7/12) -->
         <div
-          class="md:col-span-12 bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group flex flex-col md:flex-row items-center gap-8"
+          class="md:col-span-7 bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-empower-pink/50 transition-all duration-300 group relative overflow-hidden"
         >
-          <div class="flex-shrink-0">
-            <div
-              class="w-20 h-20 bg-empower-pink/20 rounded-full flex items-center justify-center"
-            >
-              <Lightbulb className="w-10 h-10 text-empower-pink" />
-            </div>
+          <div
+            class="absolute inset-0 bg-[url('/grid.svg')] opacity-10 pointer-events-none"
+          >
           </div>
+          <div
+            class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"
+          >
+            <Wrench className="w-32 h-32" />
+          </div>
+          <div class="relative z-10">
+            <Wrench
+              className="w-12 h-12 text-empower-pink mb-6 group-hover:rotate-12 transition-transform"
+            />
+            <h3 class="text-2xl font-bold mb-4 text-white">Built for Trades</h3>
+            <p class="text-gray-400 leading-relaxed mb-6">
+              From automated quoting engines to job tracking dashboards. We
+              specialise in high-performance digital systems for the
+              construction and trade industries.
+            </p>
+            <a
+              href="/trades"
+              class="inline-flex items-center text-empower-pink font-bold hover:text-white transition-colors"
+            >
+              View Trade Solutions <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Item 4: Digital Engine Consulting (Modified - 5/12) -->
+        <div
+          class="md:col-span-5 bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group flex flex-col justify-between"
+        >
           <div>
-            <h3 class="text-2xl font-bold mb-2">Digital Engine Consulting</h3>
-            <p class="text-purple-100 leading-relaxed">
-              Not sure what you need? We analyse your current processes and tech
-              stack to identify bottlenecks and opportunities for automation. We
-              don't just build software; we build your digital growth engine.
+            <div
+              class="w-16 h-16 bg-empower-pink/20 rounded-full flex items-center justify-center mb-6"
+            >
+              <Lightbulb className="w-8 h-8 text-empower-pink" />
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Digital Consulting</h3>
+            <p class="text-purple-100 leading-relaxed mb-6">
+              Not sure what you need? We analyse your current processes to
+              identify bottlenecks and build your digital growth engine.
             </p>
           </div>
-          <div class="md:ml-auto flex-shrink-0">
+          <div>
             <a
               href="/contact"
-              class="inline-flex items-center border border-white/30 text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-dark-violet transition-colors"
+              class="inline-flex items-center border border-white/30 text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-dark-violet transition-colors w-full justify-center"
             >
-              Book a Strategy Call
+              Book Strategy Call
             </a>
           </div>
         </div>
