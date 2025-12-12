@@ -22,48 +22,84 @@ const timeline = [
     phase: "Phase 1: Discovery & Strategy",
     title: "The Blueprint",
     icon: Search,
-    desc: "Before opening a code editor, we sit down to understand your business. We don't just ask what you want it to look like; we ask what you need it to do.",
+    desc: "We don't guess. We research. We dive deep into your business model, competitors, and target audience to define exactly what success looks like.",
     details: [
-      "Competitor Analysis & Market Research",
-      "SEO Audit of your current presence",
-      "Definition of User Personas",
-      "Sitemap & Information Architecture planning",
+      "Competitor Analysis & Market Gaps",
+      "Keyword Research & SEO Strategy",
+      "Brand Positioning Workshop",
+      "Technical Requirements Scope",
     ],
   },
   {
-    phase: "Phase 2: Design & Prototyping",
-    title: "The Visuals",
+    phase: "Phase 2: User Journey Mapping",
+    title: "The Path",
+    icon: ArrowRight,
+    desc: "We map out every click. We design the flow to ensure your visitors don't just browse, but actually convert into paying customers.",
+    details: [
+      "User Persona Creation",
+      "Conversion Funnel Design",
+      "Call-to-Action Strategy",
+      "Content Hierarchy Planning",
+    ],
+  },
+  {
+    phase: "Phase 3: Architecture & Wireframing",
+    title: "The Skeleton",
     icon: LayoutTemplate,
-    desc: "We move into high-fidelity design using modern tools like Figma. You will see exactly how your site will look on mobile, tablet, and desktop before a single line of code is written.",
+    desc: "We build the structural framework. No colours, no distractions. Just a solid, logical layout that ensures information is easy to find.",
     details: [
-      "Wireframing (The skeleton of the site)",
-      "High-Fidelity UI Design",
+      "Low-Fidelity Wireframes",
+      "Sitemap Construction",
+      "Navigation Logic",
+      "Mobile-First Layout Planning",
+    ],
+  },
+  {
+    phase: "Phase 4: High-Fidelity Design",
+    title: "The Skin",
+    icon: Palette,
+    desc: "Now we bring it to life. We apply your brand identity to create a stunning, premium visual experience that builds trust instantly.",
+    details: [
+      "Custom UI Design (Figma)",
+      "Typography & Color Systems",
       "Interactive Prototypes",
-      "Feedback Loops & Revisions",
+      "Design System Creation",
     ],
   },
   {
-    phase: "Phase 3: Development & Engineering",
-    title: "The Engine Room",
+    phase: "Phase 5: Development",
+    title: "The Engine",
     icon: Code,
-    desc: "This is where we differ from the rest. We don't rely on bloated drag-and-drop builders. We hand-code your site using modern frameworks to ensure it is lightning fast, secure, and accessible.",
+    desc: "We hand-code your site. No bloated builders. Just clean, semantic code that Google loves and hackers hate.",
     details: [
-      "Custom Development (HTML5, Tailwind CSS, Astro/React)",
-      "Performance Optimization (Targeting 100/100 Google Lighthouse scores)",
-      "Accessibility Compliance (WCAG 2.1)",
+      "Astro / React Development",
       "CMS Integration",
+      "Performance Optimization",
+      "Accessibility Implementation",
     ],
   },
   {
-    phase: "Phase 4: Launch & Growth",
+    phase: "Phase 6: QA & Watchdog Audit",
+    title: "The Shield",
+    icon: CheckCircle,
+    desc: "Nothing goes live until it's perfect. We rigorously test heavily to ensure security, speed, and compatibility across all devices.",
+    details: [
+      "Cross-Browser Testing",
+      "Mobile Responsiveness Check",
+      "Security Pentesting",
+      "Speed Performance Tuning",
+    ],
+  },
+  {
+    phase: "Phase 7: Launch & Growth",
     title: "The Liftoff",
     icon: Rocket,
-    desc: "Launch day is just the beginning. We rigorously test across devices and browsers to ensure a flawless experience. Once live, we hand you the keys and the training manual.",
+    desc: "We handle the technical launch, but we don't just leave you there. We ensure you are trained, and your site is indexed and ready to grow.",
     details: [
-      "Cross-browser & Mobile Testing",
-      "Search Engine Indexing",
-      "Security Headers & SSL Setup",
-      "Client Training Session & Handoff",
+      "DNS & SSL Configuration",
+      "Google Search Console Setup",
+      "Client Training & Handoff",
+      "30-Day Post-Launch Support",
     ],
   },
 ];
@@ -72,7 +108,7 @@ const faqs = [
   {
     question: "How long does a typical project take?",
     answer:
-      "A bespoke brochure website typically takes 2-4 weeks. Complex web applications vary based on scope. We provide a strict timeline during our Discovery phase.",
+      "A bespoke brochure website typically takes 2-4 weeks. However, our 'Launchpad' package can be live in as little as 1 week. Complex web applications vary based on scope.",
   },
   {
     question: "Will I be able to update the text myself?",
@@ -519,12 +555,20 @@ const faqs = [
       <h2 class="text-3xl md:text-4xl font-bold mb-6">
         Ready to build something better?
       </h2>
-      <a
-        href="/contact"
-        class="inline-flex items-center bg-empower-pink text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-pink-700 hover:scale-105 transition-all text-lg tracking-wide"
-      >
-        Start Your Discovery Phase <ArrowRight className="w-5 h-5 ml-2" />
-      </a>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a
+          href="/contact"
+          class="inline-flex items-center bg-empower-pink text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-pink-700 hover:scale-105 transition-all text-lg tracking-wide"
+        >
+          Start Your Discovery Phase <ArrowRight className="w-5 h-5 ml-2" />
+        </a>
+        <a
+          href="/pricing"
+          class="inline-flex items-center bg-transparent border-2 border-white text-white font-bold py-4 px-10 rounded-full hover:bg-white hover:text-purple-900 hover:scale-105 transition-all text-lg tracking-wide"
+        >
+          View Packages
+        </a>
+      </div>
     </div>
   </section>
 </Layout>

@@ -82,80 +82,16 @@ const currentYear = new Date().getFullYear();
           </li>
           <li>
             <a
+              href="/pricing"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Pricing</a
+            >
+          </li>
+          <li>
+            <a
               href="/aesthetic-vault"
               class="text-gray-400 hover:text-white transition-colors"
               >The Aesthetic Vault</a
-            >
-          </li>
-          <li>
-            <a
-              href="/customwebapps"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Custom Apps</a
-            >
-          </li>
-          <li>
-            <a
-              href="/contact"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Contact</a
-            >
-          </li>
-          <li>
-            <a
-              href="/portal"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Client Portal</a
-            >
-          </li>
-          <li>
-            <a
-              href="/admin"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Admin Login</a
-            >
-          </li>
-          <li>
-            <a
-              href="/digitalplanner"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Digital Planner Case Study</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <!-- Column 3: Services -->
-      <div>
-        <h3 class="font-bold text-lg mb-6 text-empower-pink">Our Services</h3>
-        <ul class="space-y-3">
-          <li>
-            <a
-              href="/web-design"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Bespoke Web Design</a
-            >
-          </li>
-          <li>
-            <a
-              href="/customwebapps"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Custom Web Applications</a
-            >
-          </li>
-          <li>
-            <a
-              href="/trades"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Trades & Construction</a
-            >
-          </li>
-
-          <li>
-            <a
-              href="/website-health-checker"
-              class="text-gray-400 hover:text-white transition-colors"
-              >Website Health Checker</a
             >
           </li>
           <li>
@@ -167,9 +103,65 @@ const currentYear = new Date().getFullYear();
           </li>
           <li>
             <a
+              href="/digitalplanner"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Case Study: Planner</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Services -->
+      <div>
+        <h3 class="font-bold text-lg mb-6 text-empower-pink">Our Services</h3>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="/trades"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Trades & Construction</a
+            >
+          </li>
+          <li>
+            <a
+              href="/web-design"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Bespoke Web Design</a
+            >
+          </li>
+          <li>
+            <a
+              href="/mvp-development"
+              class="text-gray-400 hover:text-white transition-colors"
+              >MVP Development</a
+            >
+          </li>
+          <li>
+            <a
+              href="/customwebapps"
+              class="text-gray-400 hover:text-white transition-colors"
+              >Custom Web Applications</a
+            >
+          </li>
+          <li>
+            <a
               href="/consulting"
               class="text-gray-400 hover:text-white transition-colors"
               >Digital Consulting</a
+            >
+          </li>
+          <li>
+            <a
+              href="/website-health-checker"
+              class="text-gray-400 hover:text-white transition-colors text-xs opacity-70"
+              >Free Health Checker</a
             >
           </li>
         </ul>
@@ -183,11 +175,21 @@ const currentYear = new Date().getFullYear();
             <Mail className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
             <a
               href="mailto:nicola@empowerdigitalsolutions.co.uk"
-              class="hover:text-white transition-colors"
+              class="hover:text-white transition-colors break-all"
               >nicola@empowerdigitalsolutions.co.uk</a
             >
           </li>
           <li class="flex items-start gap-3 text-gray-400">
+            <MapPin className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
+            <span>Stenhousemuir, Scotland</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-400">
+            <Clock className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
+            <span>10am - 6pm, Mon - Fri</span>
+          </li>
+          <li
+            class="flex items-start gap-3 text-gray-400 pt-2 border-t border-slate-800 mt-2"
+          >
             <a
               href="https://portfolio-nicola-berry.vercel.app/"
               target="_blank"
@@ -199,13 +201,21 @@ const currentYear = new Date().getFullYear();
               View Our Portfolio
             </a>
           </li>
-          <li class="flex items-start gap-3 text-gray-400">
-            <MapPin className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
-            <span>Stenhousemuir, Scotland</span>
+          <li>
+            <a
+              href="/admin"
+              class="text-gray-500 hover:text-white transition-colors text-xs flex items-center gap-2"
+            >
+              Admin Login
+            </a>
           </li>
-          <li class="flex items-start gap-3 text-gray-400">
-            <Clock className="w-5 h-5 text-empower-pink mt-1 shrink-0" />
-            <span>10am - 6pm, Mon - Fri</span>
+          <li>
+            <a
+              href="/portal"
+              class="text-gray-500 hover:text-white transition-colors text-xs flex items-center gap-2"
+            >
+              Client Portal
+            </a>
           </li>
         </ul>
       </div>

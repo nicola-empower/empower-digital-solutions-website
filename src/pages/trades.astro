@@ -134,20 +134,20 @@ const columns = chunk(heroImages, 4);
     >
         {/* Background Content / Hero Text */}
         <div
-            class="absolute z-10 text-white text-left pointer-events-none mix-blend-screen left-16 top-[60%]"
+            class="absolute z-10 text-white text-left pointer-events-none mix-blend-screen left-6 md:left-16 top-[60%]"
         >
             <h1
-                class="text-8xl font-bold font-heading tracking-tighter mb-6 text-glow"
+                class="text-5xl md:text-8xl font-bold font-heading tracking-tighter mb-6 text-glow"
             >
                 ELEVATE
             </h1>
             <p
-                class="text-2xl opacity-90 text-glow-subtle leading-relaxed ml-2 mb-8"
+                class="text-lg md:text-2xl opacity-90 text-glow-subtle leading-relaxed ml-2 mb-8"
             >
                 Stop competing on price.<br />Start winning on brand.
             </p>
             <a
-                href="#pricing"
+                href="/pricing#trades"
                 class="inline-block bg-white text-slate-950 px-8 py-3 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all duration-300"
             >
                 View Packages
@@ -385,7 +385,7 @@ const columns = chunk(heroImages, 4);
             </div>
             <div class="mt-8 text-center">
                 <a
-                    href="#pricing"
+                    href="/pricing#trades"
                     class="inline-block text-white border-b border-blue-500 pb-1 hover:text-blue-400 transition-colors"
                 >
                     See Pricing & Packages <ArrowRight
@@ -493,422 +493,53 @@ export function dominateMarket(competitors) {
 
     <!-- 5. The Pricing Model -->
     <section id="pricing" class="py-24 bg-slate-900 text-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-bold font-heading mb-6">
-                    A Business Asset. <br /><span class="text-green-400"
-                        >Not an Expense.</span
-                    >
-                </h2>
-                <p class="text-xl text-gray-300">
-                    To sell at this level, pricing must be transparent. You
-                    aren't paying for "hours coded"; you are investing in a <strong
-                        >Revenue Generating Machine.</strong
-                    >
-                </p>
-            </div>
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold font-heading mb-6">
+                Transparent, Fixed-Price Packages
+            </h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-12">
+                We believe in complete transparency. No hidden fees, no surprise
+                bills. Just clear, up-front pricing for high-performance builds.
+            </p>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <!-- Tier 1 -->
-                <div
-                    class="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-gray-600 transition-colors relative"
-                >
-                    <h3 class="text-2xl font-bold font-heading text-white mb-2">
-                        The Brand Authority
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Static Site Architecture
-                    </p>
-                    <div class="text-4xl font-bold text-white mb-2">£2,495</div>
-                    <div class="text-sm text-blue-400 font-bold mb-6">
-                        + £99/mo Watchdog Plan
-                    </div>
-                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">
-                        Stop losing leads to competitors who look more
-                        professional. A high-performance marketing site that
-                        ranks high and loads instantly.
-                    </p>
-                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
-                        <li class="flex gap-3">
-                            <Check
-                                className="w-5 h-5 text-green-400 shrink-0"
-                            />
-                            <strong>Astro/React Architecture</strong> (100 Speed Score)
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-green-400">✓</span>
-                            <strong>5-Page Custom Build</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-green-400">✓</span>
-                            <strong>Professional Copywriting</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-green-400">✓</span>
-                            <strong>Trust Badges & Reviews</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-green-400">✓</span>
-                            <strong>Local SEO Schema</strong>
-                        </li>
-
-                        <!-- Watchdog Inclusion -->
-                        <li class="pt-4 mt-4 border-t border-slate-800">
-                            <div
-                                class="flex gap-3 text-blue-400 mb-2 font-bold"
-                            >
-                                <Shield className="w-5 h-5 shrink-0" />
-                                <span>Includes Watchdog:</span>
-                            </div>
-                            <ul class="space-y-2 pl-8 text-xs text-gray-400">
-                                <li>• Enterprise Hosting (AWS)</li>
-                                <li>• Daily Security Patches</li>
-                                <li>• 24/7 Uptime Monitoring</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a
-                        href="#triage-widget"
-                        class="block w-full py-4 text-center border border-white text-white font-bold rounded-lg hover:bg-white hover:text-black transition-colors"
-                        >Start Your Build</a
-                    >
-                </div>
-
-                <!-- Tier 2 -->
-                <div
-                    class="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-blue-500 transition-colors relative"
-                >
-                    <h3 class="text-2xl font-bold font-heading text-white mb-2">
-                        The Operations Engine
-                    </h3>
-                    <p class="text-blue-400 text-sm mb-6">Custom Web App</p>
-                    <div class="text-4xl font-bold text-white mb-2">£3,495</div>
-                    <div class="text-sm text-blue-400 font-bold mb-6">
-                        + £99/mo Watchdog Plan
-                    </div>
-                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">
-                        Your personal digital office manager. Automate the
-                        boring stuff so you can get off the tools and get your
-                        weekends back.
-                    </p>
-                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
-                        <li class="flex gap-3">
-                            <Check className="w-5 h-5 text-blue-500 shrink-0" />
-                            <strong>Custom Ruby/Node Backend</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-blue-500">✓</span>
-                            <strong>"Quote Command" Dashboard</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-blue-500">✓</span>
-                            <strong>Job Scheduling Board</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-blue-500">✓</span>
-                            <strong>Client Portal</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-blue-500">✓</span>
-                            <strong>Mobile Admin Web-App</strong>
-                        </li>
-                        <!-- Watchdog Inclusion -->
-                        <li class="pt-4 mt-4 border-t border-slate-800">
-                            <div
-                                class="flex gap-3 text-blue-400 mb-2 font-bold"
-                            >
-                                <Shield className="w-5 h-5 shrink-0" />
-                                <span>Includes Watchdog:</span>
-                            </div>
-                            <ul class="space-y-2 pl-8 text-xs text-gray-400">
-                                <li>• Enterprise Hosting (AWS)</li>
-                                <li>• Daily Security Patches</li>
-                                <li>• 24/7 Uptime Monitoring</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a
-                        href="#triage-widget"
-                        class="block w-full py-4 text-center bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-500 transition-colors"
-                        >Start Your Build</a
-                    >
-                </div>
-
-                <!-- Tier 3 -->
-                <div
-                    class="bg-slate-800 p-8 rounded-2xl border-2 border-purple-500 relative shadow-2xl scale-105 z-10"
-                >
-                    <div
-                        class="absolute top-0 right-0 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
-                    >
-                        MOST POPULAR
-                    </div>
-                    <h3 class="text-2xl font-bold font-heading text-white mb-2">
-                        The Full Ecosystem
-                    </h3>
-                    <p class="text-purple-400 text-sm mb-6">
-                        Hybrid Build (Flagship)
-                    </p>
-                    <div class="text-4xl font-bold text-white mb-2">£4,995</div>
-                    <div class="text-sm text-blue-400 font-bold mb-6">
-                        + £99/mo Watchdog Plan
-                    </div>
-                    <div class="text-xs text-gray-400 mb-6 line-through">
-                        Value: £6,000+
-                    </div>
-                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">
-                        The complete digital transformation. A lead-generating
-                        front end perfectly synced with an automated back end. <strong
-                            >This is how you scale.</strong
-                        >
-                    </p>
-                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
-                        <li class="flex gap-3">
-                            <Check
-                                className="w-5 h-5 text-purple-400 shrink-0"
-                            />
-                            <strong>EVERYTHING in Tier 1 + Tier 2</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <Check
-                                className="w-5 h-5 text-purple-400 shrink-0"
-                            />
-                            <strong>Seamless Data Integration</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <Check
-                                className="w-5 h-5 text-purple-400 shrink-0"
-                            />
-                            <strong>Smart Customer Estimator Tool</strong>
-                        </li>
-
-                        <!-- Watchdog Inclusion -->
-                        <li class="pt-4 mt-4 border-t border-slate-700">
-                            <div
-                                class="flex gap-3 text-purple-400 mb-2 font-bold"
-                            >
-                                <Shield className="w-5 h-5 shrink-0" />
-                                <span>Includes Watchdog:</span>
-                            </div>
-                            <ul class="space-y-2 pl-8 text-xs text-gray-400">
-                                <li>• Priority Support Channel</li>
-                                <li>• Enterprise Hosting (AWS)</li>
-                                <li>• Daily Security Patches</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a
-                        href="#triage-widget"
-                        class="block w-full py-4 text-center bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/50"
-                        >Start Your Build</a
-                    >
-                </div>
-            </div>
+            <a
+                href="/pricing#trades"
+                class="inline-flex items-center bg-white text-slate-950 font-bold py-4 px-10 rounded-full hover:bg-slate-200 hover:scale-105 transition-all shadow-lg text-lg"
+            >
+                View Pricing Packages <ArrowRight className="w-5 h-5 ml-2" />
+            </a>
         </div>
     </section>
 
     <!-- 6. Watchdog Merged into Pricing -->
 
     <!-- 7. How We Work (Process) -->
-    <section class="py-24 bg-slate-900 text-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 max-w-4xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
-                    How We Work: <br />A Partnership, Not a Subscription.
-                </h2>
-                <p class="text-xl text-gray-300">
-                    We believe in complete transparency. You know exactly what
-                    you are paying and when.
-                </p>
-            </div>
-
-            <!-- Timeline -->
-            <div class="relative max-w-5xl mx-auto mb-20">
-                <div
-                    class="absolute top-1/2 left-0 w-full h-1 bg-slate-800 -translate-y-1/2 hidden md:block z-0"
-                >
-                </div>
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10"
-                >
-                    <!-- Step 1 (New) -->
-                    <div
-                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
-                    >
-                        <div
-                            class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
-                        >
-                            1
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">
-                            Discovery & Strategy
-                        </h4>
-                        <div class="text-purple-400 font-bold mb-4 text-sm">
-                            PAYMENT: 0%
-                        </div>
-                        <p class="text-gray-400 text-sm">
-                            We discuss your business goals, target audience, and
-                            workflow needs before writing a single line of code.
-                        </p>
-                        <div
-                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
-                        >
-                            <strong>Status:</strong> Consultation
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div
-                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
-                    >
-                        <div
-                            class="w-12 h-12 bg-slate-800 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
-                        >
-                            2
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">
-                            Mobilisation
-                        </h4>
-                        <div class="text-green-400 font-bold mb-4 text-sm">
-                            PAYMENT: 50% DEPOSIT
-                        </div>
-                        <p class="text-gray-400 text-sm">
-                            Covers server setup, design architecture, and
-                            creates your dedicated repo.
-                        </p>
-                        <div
-                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
-                        >
-                            <strong>Status:</strong> Production Slot Secured
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div
-                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
-                    >
-                        <div
-                            class="w-12 h-12 bg-blue-900 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
-                        >
-                            3
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">
-                            The Build & Review
-                        </h4>
-                        <div class="text-gray-500 font-bold mb-4 text-sm">
-                            PAYMENT: 0%
-                        </div>
-                        <p class="text-gray-400 text-sm">
-                            We build on a private <strong>Staging Server</strong
-                            >. You watch the build in real-time.
-                        </p>
-                        <div
-                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
-                        >
-                            <strong>Status:</strong> Visible, but not live
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div
-                        class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center"
-                    >
-                        <div
-                            class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border-4 border-slate-900 relative"
-                        >
-                            4
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">
-                            Launch & Handover
-                        </h4>
-                        <div class="text-green-400 font-bold mb-4 text-sm">
-                            PAYMENT: FINAL 50%
-                        </div>
-                        <p class="text-gray-400 text-sm">
-                            We trigger the "Go Live" sequence, connect your
-                            domain, and transfer IP rights to you.
-                        </p>
-                        <div
-                            class="mt-4 pt-4 border-t border-slate-800 text-xs text-gray-500"
-                        >
-                            <strong>Status:</strong> Business Open
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ -->
+    <section
+        id="process"
+        class="py-24 bg-slate-900/50 text-white border-t border-slate-800"
+    >
+        <div class="container mx-auto px-6 text-center">
             <div
-                class="max-w-3xl mx-auto bg-slate-950 p-8 rounded-2xl border border-slate-800"
+                class="inline-block bg-purple-900/30 text-purple-300 px-4 py-1 rounded-full text-sm font-bold mb-4 border border-purple-500/30"
             >
-                <h3
-                    class="text-2xl font-bold text-white font-heading mb-8 text-center"
-                >
-                    Ownership & Safety
-                </h3>
-
-                <div class="space-y-6">
-                    <div>
-                        <h4
-                            class="font-bold text-white mb-2 flex items-center gap-2"
-                        >
-                            <HelpCircle
-                                className="w-6 h-6 text-blue-500 shrink-0"
-                            /> Who owns the website?
-                        </h4>
-                        <p
-                            class="text-gray-400 text-sm leading-relaxed pl-6 border-l-2 border-slate-800"
-                        >
-                            <strong>You do.</strong> Unlike agencies that lock you
-                            into proprietary "rented" platforms, once you pay the
-                            final balance, you own the code. If you ever decide to
-                            leave us, we will package up your code and hand it over.
-                            No hostages.
-                        </p>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-bold text-white mb-2 flex items-center gap-2"
-                        >
-                            <HelpCircle
-                                className="w-6 h-6 text-blue-500 shrink-0"
-                            /> Why do I see the site on a "Staging Link" first?
-                        </h4>
-                        <p
-                            class="text-gray-400 text-sm leading-relaxed pl-6 border-l-2 border-slate-800"
-                        >
-                            We build on a secure testing server first. This
-                            protects both of us. It allows you to test every
-                            button and feature without the public seeing a
-                            "Under Construction" sign. We only flip the switch
-                            to your live domain once the final balance is
-                            settled.
-                        </p>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-bold text-white mb-2 flex items-center gap-2"
-                        >
-                            <HelpCircle
-                                className="w-6 h-6 text-blue-500 shrink-0"
-                            /> What does the £99/mo cover if I own the site?
-                        </h4>
-                        <p
-                            class="text-gray-400 text-sm leading-relaxed pl-6 border-l-2 border-slate-800"
-                        >
-                            High-performance cars need premium fuel and
-                            servicing. Your monthly fee covers the <strong
-                                >AWS/Vercel Enterprise Hosting</strong
-                            >. It also pays for us to monitor vulnerabilities
-                            and apply <strong>critical security patches</strong> (like
-                            React updates) instantly. With WordPress, you'd be drowning
-                            in plugin update emails. With us, it's silence. You get
-                            1 hour of my time every month to make any changes you
-                            want. You'll never see a line of code.
-                        </p>
-                    </div>
-                </div>
+                The Revenue System
             </div>
+            <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
+                How We Build Your Business
+            </h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-12">
+                We don't just dump code. We follow a 7-step revenue engineering
+                process to ensure your site actually converts traffic into cash.
+            </p>
+
+            <a
+                href="/design-process"
+                class="inline-flex items-center text-white border-b-2 border-purple-500 hover:text-purple-400 transition-colors text-lg font-bold pb-1"
+            >
+                Explore the 7-Step Process <ArrowRight
+                    className="w-5 h-5 ml-2"
+                />
+            </a>
         </div>
     </section>
 
@@ -1677,6 +1308,130 @@ export function dominateMarket(competitors) {
                             means you rank higher for "Plumber in [Your City]" without
                             paying for ads. It's the difference between buying a plastic
                             drill and a Hilti. One breaks, the other builds a business.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Q4: Ownership -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >Who owns the website?</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            <strong class="text-white">You do.</strong> Unlike agencies
+                            that lock you into proprietary "rented" platforms, once
+                            you pay the final balance, you own the code. If you ever
+                            decide to leave us, we will package up your code and hand
+                            it over. No hostages.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Q5: Staging -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >Why do I see the site on a "Staging Link" first?</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            We build on a secure testing server first. This
+                            protects both of us. It allows you to test every
+                            button and feature without the public seeing a
+                            "Under Construction" sign. We only flip the switch
+                            to your live domain once the final balance is
+                            settled.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Q6: Maintenance -->
+                <details
+                    class="group bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300 open:border-empower-pink/50"
+                >
+                    <summary
+                        class="flex justify-between items-center p-6 cursor-pointer list-none"
+                    >
+                        <span class="font-bold text-lg text-white"
+                            >What does the £99/mo cover if I own the site?</span
+                        >
+                        <span
+                            class="transform group-open:rotate-180 transition-transform duration-300 text-empower-pink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><polyline points="6 9 12 15 18 9"
+                                ></polyline></svg
+                            >
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <p>
+                            High-performance cars need premium fuel and
+                            servicing. Your monthly fee covers the <strong
+                                class="text-white"
+                                >AWS/Vercel Enterprise Hosting</strong
+                            >. It also pays for us to monitor vulnerabilities
+                            and apply <strong class="text-white"
+                                >critical security patches</strong
+                            > (like React updates) instantly. With WordPress, you'd
+                            be drowning in plugin update emails. With us, it's silence.
+                            You get 1 hour of my time every month to make any changes
+                            you want. You'll never see a line of code.
                         </p>
                     </div>
                 </details>

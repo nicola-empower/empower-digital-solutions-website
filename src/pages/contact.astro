@@ -172,6 +172,23 @@ import Layout from "../layouts/Layout.astro";
   const submitBtn = document.getElementById("submit-btn");
   const statusMsg = document.getElementById("form-status");
 
+  // Pre-fill message based on package selection
+  const urlParams = new URLSearchParams(window.location.search);
+  const pkg = urlParams.get("package");
+  const messageBox = document.getElementById("message") as HTMLTextAreaElement;
+
+  if (pkg && messageBox) {
+    const packages: Record<string, string> = {
+      launchpad: "The Launchpad Package (£1,295)",
+      "brand-authority": "The Brand Authority Package",
+      "ops-engine": "The Operations Engine Package",
+      "full-ecosystem": "The Full Ecosystem Package",
+    };
+
+    const pkgName = packages[pkg] || pkg;
+    messageBox.value = `Hi, I'm interested in ${pkgName}.`;
+  }
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
