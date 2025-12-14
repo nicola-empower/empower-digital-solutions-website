@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { AlertTriangle } from 'lucide-react';
 
 export default function AdminLogin() {
     const [email, setEmail] = useState('');
@@ -12,6 +13,23 @@ export default function AdminLogin() {
         setReady(true);
         console.log("AdminLogin component mounted and ready");
     }, []);
+
+    if (!isSupabaseConfigured()) {
+        return (
+            <div className="w-full text-center">
+                <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+                    <AlertTriangle className="w-8 h-8 text-red-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Login Disabled</h3>
+                <p className="text-slate-400 text-sm mb-6">
+                    The admin panel cannot connect to the database. Check server logs.
+                </p>
+                <div className="bg-red-900/20 border border-red-500/30 p-3 rounded text-xs text-red-300 font-mono">
+                    MISSING_ENV_VARIABLES
+                </div>
+            </div>
+        )
+    }
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();

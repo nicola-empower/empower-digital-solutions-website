@@ -25,7 +25,11 @@ const formatDate = (date: Date) => {
 };
 ---
 
-<Layout title={`${post.data.title} | Empower Digital Solutions`}>
+<Layout
+	title={`${post.data.title} | Empower Digital Solutions`}
+	description={post.data.description}
+	image={post.data.image}
+>
 	<main
 		class="pt-32 pb-20 px-4 md:px-6 bg-white dark:bg-slate-950 min-h-screen"
 	>

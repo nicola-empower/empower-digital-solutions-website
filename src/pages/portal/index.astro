@@ -74,14 +74,34 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <script>
-    import { supabase } from "../../lib/supabase";
+    import { supabase, isSupabaseConfigured } from "../../lib/supabase";
 
-    const form = document.getElementById("portal-login-form");
+    const form = document.getElementById(
+        "portal-login-form",
+    ) as HTMLFormElement;
     const errorMsg = document.getElementById("error-msg");
+    const inputs = form?.querySelectorAll("input, button");
+
+    if (!isSupabaseConfigured()) {
+        if (errorMsg) {
+            errorMsg.textContent =
+                "System Offline: Missing Database Configuration.";
+            errorMsg.classList.remove("hidden");
+            errorMsg.classList.add("font-bold");
+        }
+        if (inputs) {
+            inputs.forEach((input) => {
+                (input as HTMLInputElement).disabled = true;
+                input.classList.add("opacity-50", "cursor-not-allowed");
+            });
+        }
+    }
 
     if (form) {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
+            if (!isSupabaseConfigured()) return;
+
             const email = (document.getElementById("email") as HTMLInputElement)
                 .value;
             const password = (

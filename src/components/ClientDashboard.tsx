@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef, Component, ErrorInfo, ReactNode } from 'react';
-import { supabase } from '../lib/supabase';
-import { FileText, Upload, CheckCircle, Circle, Download, Folder, ExternalLink, Send, Key, Eye, EyeOff, Plus, Trash2, Settings, User } from 'lucide-react';
+import React, { useEffect, useState, useRef, Component } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { FileText, Upload, CheckCircle, Circle, Download, Folder, ExternalLink, Send, Key, Eye, EyeOff, Plus, Trash2, Settings, User, AlertTriangle } from 'lucide-react';
 
 // --- Error Boundary Component ---
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean, error: Error | null, errorInfo: ErrorInfo | null }> {
@@ -77,6 +78,25 @@ interface Project {
 
 // --- Main Wrapper ---
 export default function ClientDashboard(props: any) {
+    if (!isSupabaseConfigured()) {
+        return (
+            <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-8 text-center text-white">
+                <div className="bg-slate-900 border border-amber-500/30 p-8 rounded-2xl max-w-md w-full shadow-2xl">
+                    <div className="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <AlertTriangle className="w-8 h-8 text-amber-500" />
+                    </div>
+                    <h1 className="text-2xl font-bold text-white mb-2">System Maintenance</h1>
+                    <p className="text-slate-400 mb-6">
+                        The client portal is currently undergoing scheduled maintenance. Please check back shortly.
+                    </p>
+                    <p className="text-xs text-slate-600 font-mono bg-slate-950 p-2 rounded">
+                        Error: Missing Configuration
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <ErrorBoundary>
             <ClientDashboardContent {...props} />

@@ -1,12 +1,26 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { supabase } from '../../lib/supabase';
-import { FileText, Upload, Link as LinkIcon, Trash2, ExternalLink, File, CheckCircle, Clock, Pencil, Save, X, MessageSquare, Key, Eye, EyeOff, Send, Plus } from 'lucide-react';
+import { supabase, isSupabaseConfigured } from '../../lib/supabase';
+import { FileText, Upload, Link as LinkIcon, Trash2, ExternalLink, File, CheckCircle, Clock, Pencil, Save, X, MessageSquare, Key, Eye, EyeOff, Send, Plus, AlertTriangle } from 'lucide-react';
 
 interface ProjectManagerProps {
     projectId: string;
 }
 
 export default function ProjectManager({ projectId }: ProjectManagerProps) {
+    if (!isSupabaseConfigured()) {
+        return (
+            <div className="p-8 text-center text-white bg-slate-900 rounded-xl border border-slate-800">
+                <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <AlertTriangle className="w-6 h-6 text-amber-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Systems Offline</h3>
+                <p className="text-slate-400">
+                    Database connection missing. Unable to load project data.
+                </p>
+            </div>
+        )
+    }
+
     const [loading, setLoading] = useState(true);
     const [project, setProject] = useState<any>(null);
     const [documents, setDocuments] = useState<any[]>([]);
