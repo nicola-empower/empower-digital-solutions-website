@@ -47,6 +47,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+		<!-- Partytown Analytics -->
+		<script
+			type="text/partytown"
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-PZZTSKPBF0"
+			is:inline></script>
+		<script type="text/partytown" is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-PZZTSKPBF0");
+		</script>
+
 		<script is:inline>
 			if ("serviceWorker" in navigator) {
 				window.addEventListener("load", () => {

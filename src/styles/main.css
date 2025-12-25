@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @source "../pages/**/*.astro";
 @source "../components/**/*.astro";
 @source "../layouts/**/*.astro";

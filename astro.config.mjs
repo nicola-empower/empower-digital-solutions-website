@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
+import partytown from '@astrojs/partytown';
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://empowerdigitalsolutions.co.uk',
@@ -14,7 +16,15 @@ export default defineConfig({
         plugins: [tailwindcss()]
     },
 
-    integrations: [react(), sitemap()],
+    integrations: [
+        react(),
+        sitemap(),
+        partytown({
+            config: {
+                forward: ["dataLayer.push"],
+            },
+        }),
+    ],
     output: 'server',
     adapter: netlify(),
 });
