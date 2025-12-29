@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import logoImage from "../assets/images/logo.jpg";
+import Search from "./Search.astro";
 
 const links = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Insights", href: "/insights" },
-  { name: "Contact", href: "/contact" },
 ];
 ---
 
@@ -52,11 +52,7 @@ const links = [
         >Insights</a
       >
 
-      <a
-        href="/contact"
-        class="text-gray-700 dark:text-gray-200 hover:text-empower-pink dark:hover:text-empower-pink font-semibold transition-colors"
-        >Contact</a
-      >
+      <Search />
 
       <a
         href="/contact"

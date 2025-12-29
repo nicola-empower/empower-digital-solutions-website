@@ -15,7 +15,9 @@ import {
   ArrowRight,
   Palette,
   Zap,
+  TrendingUp,
 } from "lucide-astro";
+import TriageWidget from "../components/TriageWidget.astro";
 ---
 
 <Layout title="Digital Services | Empower Digital Solutions">
@@ -528,6 +530,39 @@ import {
         </div>
       </section>
 
+      <!-- ROI Calculator Section -->
+      <section class="mt-20 max-w-5xl mx-auto">
+        <a
+          href="/roi-calculator"
+          class="group block bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-empower-pink transition-all duration-300 relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-empower-pink rounded-full blur-3xl opacity-10 -translate-y-1/2 translate-x-1/2"
+          >
+          </div>
+
+          <div class="relative z-10 flex items-center gap-6">
+            <div class="bg-slate-800 p-4 rounded-xl text-empower-pink">
+              <TrendingUp className="w-8 h-8" />
+            </div>
+            <div>
+              <h3
+                class="text-2xl font-bold text-white group-hover:text-empower-pink transition-colors"
+              >
+                New: Automation ROI Calculator
+              </h3>
+              <p class="text-slate-400 mt-2">
+                See exactly how much money your current manual processes are
+                costing you.
+              </p>
+            </div>
+            <ArrowRight
+              className="w-6 h-6 text-slate-500 group-hover:text-empower-pink ml-auto transition-colors"
+            />
+          </div>
+        </a>
+      </section>
+
       <!-- FAQ Section -->
       <section class="mt-20 max-w-3xl mx-auto">
         <div class="text-center mb-8">
@@ -572,25 +607,72 @@ import {
       </section>
 
       <section
-        class="mt-20 bg-slate-900 text-center p-12 rounded-2xl shadow-xl mb-12 border border-slate-800 relative overflow-hidden"
+        class="mt-20 bg-white dark:bg-slate-900 text-center p-12 rounded-2xl shadow-xl mb-12 border border-slate-100 dark:border-slate-800 relative overflow-hidden"
       >
         <div class="absolute inset-0 bg-empower-pink/5 pointer-events-none">
         </div>
-        <h3 class="text-3xl font-bold text-white relative z-10">
-          Ready to Build Your Digital Future?
-        </h3>
-        <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-300 relative z-10">
-          Whether you need a brand new web application or expert support for
-          your existing site, let's talk. I'm here to build the digital tools
-          you need to succeed.
-        </p>
-        <a
-          href="/contact"
-          class="mt-8 inline-block bg-white text-slate-900 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition-colors text-lg relative z-10"
-        >
-          Start Your Project
-        </a>
+
+        <div class="relative z-10 mb-10">
+          <h3
+            class="text-3xl font-bold text-slate-900 dark:text-white relative z-10"
+          >
+            Still Not Sure What You Need?
+          </h3>
+          <p
+            class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-300 relative z-10"
+          >
+            Don't guess. Use our diagnostic tool to find the exact right
+            strategy for your business in under 30 seconds.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-left">
+          <TriageWidget />
+        </div>
       </section>
     </div>
   </main>
 </Layout>
+
+<script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Web Development",
+    "provider": {
+      "@type": "Organization",
+      "name": "Empower Digital Solutions"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Digital Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "MVP Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Web App Building"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Digital Consulting"
+          }
+        }
+      ]
+    }
+  }
+</script>

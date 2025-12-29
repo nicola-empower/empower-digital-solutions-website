@@ -170,6 +170,23 @@ const formatDate = (date: Date) => {
 			</div>
 		</article>
 	</main>
+	<script
+		type="application/ld+json"
+		set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Article",
+			headline: post.data.title,
+			image: [new URL(post.data.image, Astro.site).toString()],
+			datePublished: new Date(post.data.pubDate).toISOString(),
+			author: [
+				{
+					"@type": "Organization",
+					name: "Empower Digital Solutions",
+					url: "https://empowerdigitalsolutions.co.uk",
+				},
+			],
+		})}
+	/>
 </Layout>
 
 <style is:global>

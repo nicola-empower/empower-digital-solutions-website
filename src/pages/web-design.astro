@@ -7,6 +7,10 @@ import {
   Database,
   CheckCircle2,
   ArrowRight,
+  ClipboardList,
+  LayoutTemplate,
+  Hammer,
+  Gem,
 } from "lucide-astro";
 import TechComparison from "../components/TechComparison.astro";
 
@@ -46,8 +50,8 @@ export const prerender = true;
       <p
         class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto font-light mb-10"
       >
-        We don't use templates. We write code that <span
-          class="text-white font-semibold">ranks, converts, and scales.</span
+        We build assets that <span class="text-white font-semibold"
+          >rank, convert, and scale.</span
         >
       </p>
 
@@ -67,6 +71,40 @@ export const prerender = true;
       </div>
     </div>
   </section>
+
+  <!-- Who This Is For Strip -->
+  <div class="bg-indigo-950 border-y border-indigo-900/50 py-4">
+    <div class="container mx-auto px-6">
+      <div
+        class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base text-indigo-100 font-medium tracking-wide"
+      >
+        <span
+          class="text-indigo-300 font-bold uppercase tracking-wider text-xs border border-indigo-700/50 px-3 py-1 rounded-full bg-indigo-900/30 whitespace-nowrap"
+          >Who This Is For:</span
+        >
+        <span class="flex items-center gap-2 whitespace-nowrap">
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-empower-pink shadow-[0_0_10px_rgba(236,72,153,0.5)]"
+          ></span>
+          Service Businesses
+        </span>
+        <span class="hidden md:block text-indigo-800">•</span>
+        <span class="flex items-center gap-2 whitespace-nowrap">
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-empower-pink shadow-[0_0_10px_rgba(236,72,153,0.5)]"
+          ></span>
+          Consultants & Coaches
+        </span>
+        <span class="hidden md:block text-indigo-800">•</span>
+        <span class="flex items-center gap-2 whitespace-nowrap">
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-empower-pink shadow-[0_0_10px_rgba(236,72,153,0.5)]"
+          ></span>
+          Scaling Companies
+        </span>
+      </div>
+    </div>
+  </div>
 
   <!-- Section 1: The Hook -->
   <section class="py-20 px-6 bg-white dark:bg-slate-900">
@@ -88,10 +126,11 @@ export const prerender = true;
         >
           <Zap class="w-10 h-10 text-empower-pink mb-4" />
           <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
-            Zero Bloat
+            Instant Performance
           </h3>
           <p class="text-slate-600 dark:text-slate-400">
-            Hand-coded using modern frameworks like Astro. It loads instantly.
+            Hand-coded for Google's latest Core Web Vitals. No loading spinners,
+            just instant content.
           </p>
         </div>
         <div
@@ -99,11 +138,11 @@ export const prerender = true;
         >
           <Lock class="w-10 h-10 text-empower-pink mb-4" />
           <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
-            Unhackable
+            Ironclad Security
           </h3>
           <p class="text-slate-600 dark:text-slate-400">
-            Static architecture means there is no database for hackers to break
-            into.
+            A locked‑down setup that dramatically reduces your risk of being
+            hacked.
           </p>
         </div>
         <div
@@ -111,12 +150,60 @@ export const prerender = true;
         >
           <Database class="w-10 h-10 text-empower-pink mb-4" />
           <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
-            Yours Forever
+            Full Ownership
           </h3>
           <p class="text-slate-600 dark:text-slate-400">
-            You own the code. No monthly platform fees or subscriptions.
+            You own the code and the IP. No trapped data, no monthly platform
+            rental fees.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section
+    class="py-10 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800"
+  >
+    <div class="container mx-auto px-6 text-center">
+      <p
+        class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6"
+      >
+        Trusted by ambitious brands
+      </p>
+      <div
+        class="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-70 hover:opacity-100 transition-opacity duration-300"
+      >
+        <a
+          href="https://urban-stay-seven.vercel.app/"
+          target="_blank"
+          class="text-xl font-heading font-bold text-slate-700 dark:text-slate-300 hover:text-empower-pink transition-colors"
+          >Urban Stay</a
+        >
+        <a
+          href="https://zen-den-azure.vercel.app/"
+          target="_blank"
+          class="text-xl font-heading font-bold text-slate-700 dark:text-slate-300 hover:text-empower-pink transition-colors"
+          >The Zen Den</a
+        >
+        <a
+          href="https://cairn-architects.vercel.app/"
+          target="_blank"
+          class="text-xl font-heading font-bold text-slate-700 dark:text-slate-300 hover:text-empower-pink transition-colors"
+          >Cairn Architects</a
+        >
+        <a
+          href="https://aura-nine-ochre.vercel.app/"
+          target="_blank"
+          class="text-xl font-heading font-bold text-slate-700 dark:text-slate-300 hover:text-empower-pink transition-colors"
+          >Aura</a
+        >
+        <a
+          href="https://portfolio-nicola-berry.vercel.app/?project=bistro-44"
+          target="_blank"
+          class="text-xl font-heading font-bold text-slate-700 dark:text-slate-300 hover:text-empower-pink transition-colors"
+          >Bistro 44</a
+        >
       </div>
     </div>
   </section>
@@ -320,7 +407,7 @@ export const prerender = true;
         Not sure what you want?
       </h2>
       <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-        Explore "The Aesthetic Vault"—our curated collection of premium design
+        Explore "The Aesthetic Vault", our curated collection of premium design
         systems. Find the vibe that speaks your language before we write a
         single line of code.
       </p>
@@ -415,6 +502,169 @@ export const prerender = true;
         </div>
       </div>
     </div>
+
+    <div class="mt-16 text-center">
+      <a
+        href="/design-process"
+        class="inline-flex items-center gap-2 text-empower-pink font-bold hover:text-pink-600 transition-colors border-b-2 border-empower-pink/20 hover:border-empower-pink pb-1"
+      >
+        Explore our detailed Design Process <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Quick Links Strip -->
+  <section
+    class="py-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800"
+  >
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div
+        class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+      >
+        <div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+            Project Tools & Resources
+          </h3>
+          <p class="text-slate-500 dark:text-slate-400">
+            Explore the ecosystem we build your success on.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <!-- Planner -->
+        <a
+          href="/digitalplanner"
+          class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-empower-pink/50 transition-all duration-300 hover:shadow-2xl hover:shadow-empower-pink/10 hover:-translate-y-1 overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-empower-pink/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-empower-pink group-hover:text-white transition-colors duration-300 text-slate-600 dark:text-slate-400"
+            >
+              <ClipboardList class="w-6 h-6" />
+            </div>
+            <h4
+              class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-empower-pink transition-colors"
+            >
+              Case Study Planner
+            </h4>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+              Map out your content strategy before we build.
+            </p>
+            <div
+              class="flex items-center text-xs font-bold text-slate-400 group-hover:text-empower-pink transition-colors"
+            >
+              LAUNCH TOOL <ArrowRight
+                class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </div>
+          </div>
+        </a>
+
+        <!-- Portal -->
+        <a
+          href="/clientportal"
+          class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1 overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300 text-slate-600 dark:text-slate-400"
+            >
+              <LayoutTemplate class="w-6 h-6" />
+            </div>
+            <h4
+              class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-blue-500 transition-colors"
+            >
+              Client Portal Demo
+            </h4>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+              Experience the onboarding flow for yourself.
+            </p>
+            <div
+              class="flex items-center text-xs font-bold text-slate-400 group-hover:text-blue-500 transition-colors"
+            >
+              VIEW DEMO <ArrowRight
+                class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </div>
+          </div>
+        </a>
+
+        <!-- Trades -->
+        <a
+          href="/trades"
+          class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10 hover:-translate-y-1 overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300 text-slate-600 dark:text-slate-400"
+            >
+              <Hammer class="w-6 h-6" />
+            </div>
+            <h4
+              class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-orange-500 transition-colors"
+            >
+              Trade Solutions
+            </h4>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+              Specific engines for high-volume trade businesses.
+            </p>
+            <div
+              class="flex items-center text-xs font-bold text-slate-400 group-hover:text-orange-500 transition-colors"
+            >
+              EXPLORE TRADES <ArrowRight
+                class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </div>
+          </div>
+        </a>
+
+        <!-- Vault -->
+        <a
+          href="/aesthetic-vault"
+          class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-1 overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+          >
+          </div>
+          <div class="relative z-10">
+            <div
+              class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300 text-slate-600 dark:text-slate-400"
+            >
+              <Gem class="w-6 h-6" />
+            </div>
+            <h4
+              class="font-bold text-lg text-slate-900 dark:text-white mb-1 group-hover:text-purple-500 transition-colors"
+            >
+              The Aesthetic Vault
+            </h4>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+              Curated premium designs. Find your vibe.
+            </p>
+            <div
+              class="flex items-center text-xs font-bold text-slate-400 group-hover:text-purple-500 transition-colors"
+            >
+              OPEN VAULT <ArrowRight
+                class="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- Section 5: Migration Guarantee -->
@@ -439,6 +689,14 @@ export const prerender = true;
         >
           Download Migration Protocol <ArrowRight class="w-4 h-4 ml-2" />
         </a>
+        <div class="mt-4">
+          <a
+            href="/website-health-checker"
+            class="text-sm text-slate-500 hover:text-empower-pink underline decoration-dotted underline-offset-4"
+          >
+            Run a free health check on your current site
+          </a>
+        </div>
       </div>
       <div class="flex-1 flex justify-center">
         <div
@@ -471,6 +729,141 @@ export const prerender = true;
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Links: Outcome Pathways -->
+  <section class="py-20 px-6 bg-white dark:bg-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+          Go Beyond a Brochure
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400">
+          If you need more than a static site, we have specific engines for
+          that.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <a
+          href="/customwebapps"
+          class="group block p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent hover:border-empower-pink transition-all"
+        >
+          <h3
+            class="font-bold text-xl text-slate-900 dark:text-white mb-2 group-hover:text-empower-pink"
+          >
+            Custom Web Apps
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            For businesses outgrowing spreadsheets. Client portals, booking
+            engines, internal tools.
+          </p>
+        </a>
+        <a
+          href="/mvp-development"
+          class="group block p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent hover:border-empower-pink transition-all"
+        >
+          <h3
+            class="font-bold text-xl text-slate-900 dark:text-white mb-2 group-hover:text-empower-pink"
+          >
+            MVP Development
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            For SaaS founders & startups. Get your product to market fast with
+            scalable architecture.
+          </p>
+        </a>
+        <a
+          href="/consulting"
+          class="group block p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent hover:border-empower-pink transition-all"
+        >
+          <h3
+            class="font-bold text-xl text-slate-900 dark:text-white mb-2 group-hover:text-empower-pink"
+          >
+            Digital Strategy
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            For discovery-first clients. We map your improved digital future
+            before building.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
+    <div class="max-w-3xl mx-auto">
+      <h2
+        class="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12"
+      >
+        Common Questions
+      </h2>
+      <div class="space-y-6">
+        <details
+          class="group bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 open:border-empower-pink/50 transition-all"
+        >
+          <summary
+            class="flex justify-between items-center cursor-pointer font-bold text-slate-900 dark:text-white list-none"
+          >
+            How long does a typical project take?
+            <span
+              class="text-empower-pink group-open:rotate-180 transition-transform"
+              ><ArrowRight class="w-4 h-4 rotate-90" /></span
+            >
+          </summary>
+          <p
+            class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm"
+          >
+            Our <strong>Essential</strong> builds typically launch in 2-3 weeks. Larger
+            <strong>Growth Engine</strong> projects take 4-6 weeks depending on content
+            readiness. We adhere to strict timelines—no ghosting, ever.
+          </p>
+        </details>
+
+        <details
+          class="group bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 open:border-empower-pink/50 transition-all"
+        >
+          <summary
+            class="flex justify-between items-center cursor-pointer font-bold text-slate-900 dark:text-white list-none"
+          >
+            Can you migrate my existing WordPress content?
+            <span
+              class="text-empower-pink group-open:rotate-180 transition-transform"
+              ><ArrowRight class="w-4 h-4 rotate-90" /></span
+            >
+          </summary>
+          <p
+            class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm"
+          >
+            Yes. We use our "Zero-Downtime Protocol" to export your blog posts,
+            images, and SEO metadata, transferring them to your new high-speed
+            site so you don't lose your hard-earned traffic.
+          </p>
+        </details>
+
+        <details
+          class="group bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 open:border-empower-pink/50 transition-all"
+        >
+          <summary
+            class="flex justify-between items-center cursor-pointer font-bold text-slate-900 dark:text-white list-none"
+          >
+            Do I need to write my own copy?
+            <span
+              class="text-empower-pink group-open:rotate-180 transition-transform"
+              ><ArrowRight class="w-4 h-4 rotate-90" /></span
+            >
+          </summary>
+          <p
+            class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm"
+          >
+            It depends. In the <strong>Essential</strong> tier, you provide the core
+            text. In <strong>Standard</strong> and <strong>Premium</strong>, we
+            can partner with copywriters to craft high-converting messaging that
+            speaks to your audience.
+          </p>
+        </details>
       </div>
     </div>
   </section>

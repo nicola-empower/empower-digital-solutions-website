@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RoiCalculator from "../components/RoiCalculator";
+import { TrendingUp, Clock, Zap } from "lucide-astro";
+---
+
+<Layout title="Business Automation ROI Calculator | Save Time & Money">
+    <div class="relative pt-32 pb-20 px-6 bg-slate-950 min-h-screen">
+        {/* Background Effects */}
+        <div
+            class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-slate-950 pointer-events-none"
+        >
+        </div>
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-empower-pink/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"
+        >
+        </div>
+
+        <div class="container mx-auto max-w-6xl relative z-10">
+            {/* Header */}
+            <div class="text-center mb-16">
+                <div
+                    class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-full px-4 py-1.5 text-xs font-bold text-empower-pink uppercase tracking-wider mb-6"
+                >
+                    <TrendingUp class="w-4 h-4" /> The "Cash Fire" Calculator
+                </div>
+                <h1
+                    class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6"
+                >
+                    Stop Setting Fire to <br />
+                    <span
+                        class="text-transparent bg-clip-text bg-linear-to-r from-empower-pink to-purple-600"
+                        >Your Profit Margin</span
+                    >
+                </h1>
+                <p
+                    class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+                >
+                    Admin isn't free. It costs you billable hours, focus, and
+                    opportunity. Use this calculator to see exactly how much
+                    your "quick 10-minute tasks" are actually costing your
+                    business annually.
+                </p>
+            </div>
+
+            {/* The Calculator */}
+            <div class="mb-24">
+                <RoiCalculator client:load />
+            </div>
+
+            {/* Value Props */}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div
+                    class="bg-slate-900/50 p-8 rounded-2xl border border-slate-800"
+                >
+                    <div
+                        class="bg-blue-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 text-blue-500"
+                    >
+                        <Clock class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3">
+                        Reclaim Your Time
+                    </h3>
+                    <p class="text-slate-400">
+                        Stop being a data-entry clerk in your own business.
+                        Automate the boring stuff so you can focus on strategy
+                        and sales.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-slate-900/50 p-8 rounded-2xl border border-slate-800"
+                >
+                    <div
+                        class="bg-empower-pink/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 text-empower-pink"
+                    >
+                        <TrendingUp class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3">
+                        Scale Without Staff
+                    </h3>
+                    <p class="text-slate-400">
+                        Grow your capacity without hiring more admin staff. Our
+                        systems handle infinite volume without complaining or
+                        taking sick days.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-slate-900/50 p-8 rounded-2xl border border-slate-800"
+                >
+                    <div
+                        class="bg-purple-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 text-purple-500"
+                    >
+                        <Zap class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3">
+                        No Monthly Fees
+                    </h3>
+                    <p class="text-slate-400">
+                        Unlike Zapier or SaaS tools that charge you forever, our
+                        custom scripts are one-off builds. You own the code. You
+                        keep the profit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -38,7 +38,9 @@ A modern, high-performance website for **Empower Digital Solutions**, built to s
         -   **Theme Toggle** for dark/light mode preference.
         -   **Auto-Scrolling Carousels** for feature showcases.
     -   **Specialised Sales Pages:**
+        -   **Web Design & Engineering:** Premium service page with interactive pricing tiers and process map.
         -   **Trades & Construction:** High-conversion landing page with comparisons, pricing, and automated lead triage.
+        -   **The Aesthetic Vault:** Interactive gallery of premium design systems.
 
 ## 🚀 Featured Projects & Case Studies
 

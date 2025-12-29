@@ -64,32 +64,46 @@ const HealthChecker = () => {
         // Use the single set of scores
         const scores = [data.score, data.seoScore, data.accessibilityScore];
         const minScore = Math.min(...scores);
+        const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length;
 
         // Base Package Logic
         let recommendation = {};
-        if (minScore < 50) {
+
+        if (minScore >= 96) {
+            // 96-100: Honest "No Sale"
             recommendation = {
-                title: "Critical Site Rescue",
-                description: "Your site has foundational issues affecting ranking and user experience. Immediate rescue work is recommended.",
-                package: "Rescue Package",
-                basePrice: 300,
-                action: "Book Rescue"
+                title: "World Class Performance",
+                description: "To be honest? You don't need us. Your site is outperforming 99% of the web. Keep doing exactly what you're doing. We don't take money for work that doesn't need doing.",
+                package: "Health Certificate",
+                basePrice: 0,
+                action: "Download Report" // Logic to handle this differently in UI?
             };
-        } else if (minScore < 90) {
+        } else if (minScore >= 90) {
+            // 90-95: Optional Polish
             recommendation = {
-                title: "Full Optimisation",
-                description: "Your site is functional but losing ground to faster competitors. A comprehensive tune-up will push you into the green.",
-                package: "Optimisation Package",
-                basePrice: 150,
-                action: "Book Optimisation"
+                title: "Top Tier (With Room for 1%)",
+                description: "You're in the Green Zone, so relax—nothing is 'broken'. But if you're the type who demands perfection, a quick polish can squeeze out those final points for total dominance.",
+                package: "Proactive Polish",
+                basePrice: 49, // Very low barrier
+                action: "Book Polish"
+            };
+        } else if (minScore >= 50) {
+            // 50-89: Main Value Prop
+            recommendation = {
+                title: "Unrealised Potential",
+                description: "Your site is working, but it's running with the handbrake on. You're likely leaking leads to faster competitors. Let's release that brake and get you into the Green Zone.",
+                package: "Growth Optimisation",
+                basePrice: 149, // Fair mid-tier
+                action: "Unlock Growth"
             };
         } else {
+            // < 50: Rescue
             recommendation = {
-                title: "Perfectionist Polish",
-                description: "Excellent health! A final polish will clear any minor warnings and help you maintain that perfect 100.",
-                package: "Polish Package",
-                basePrice: 75,
-                action: "Book Polish"
+                title: "Emergency Rescue",
+                description: "We won't sugarcoat it: these scores are hurting your business. Google penalises scores this low. We need to perform an urgent overhaul to stop losing customers.",
+                package: "Site Rescue",
+                basePrice: 249, // Lowered from 300 to be "fairer" but still serious
+                action: "Start Rescue"
             };
         }
 
@@ -97,17 +111,21 @@ const HealthChecker = () => {
         let multiplier = 1;
 
         // Site Size Multiplier
-        if (siteSize === 'medium') multiplier *= 1.5;
+        if (siteSize === 'medium') multiplier *= 1.3; // Reduced from 1.5 to be fairer
         if (siteSize === 'large') {
             recommendation.priceDisplay = "Custom Quote";
             return recommendation; // Exit early for custom quote
         }
 
         // Platform Multiplier (Non-WordPress is cheaper/simpler)
-        if (platform !== 'wordpress') multiplier *= 0.75;
+        if (platform !== 'wordpress' && platform !== 'custom') multiplier *= 0.8; // e.g. Shopify/Wix distinct handling
 
-        const finalPrice = Math.round(recommendation.basePrice * multiplier);
-        recommendation.priceDisplay = `£${finalPrice}`;
+        if (recommendation.basePrice === 0) {
+            recommendation.priceDisplay = "Free";
+        } else {
+            const finalPrice = Math.round(recommendation.basePrice * multiplier);
+            recommendation.priceDisplay = `£${finalPrice}`;
+        }
 
         return recommendation;
     };
@@ -129,6 +147,35 @@ const HealthChecker = () => {
                 </span>
             </div>
         );
+    };
+
+    const handleLeadSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        // Google Apps Script URL
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzhiU_8s301iFJBTekADqnUMN0J-JcYgSz4rCeT0aVuzAL-kN3EEw2yJ2XecsHct5GMeg/exec";
+
+        try {
+            const response = await fetch(GAS_URL, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+            });
+
+            if (response.ok) {
+                // Determine user name for feedback if available
+                const name = data.name || "there";
+                alert(`Thanks ${name}! We've received your request and will follow up shortly.`);
+                setShowModal(false);
+            } else {
+                throw new Error("GAS submission failed");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("There was a problem submitting your request. Please try again.");
+        }
     };
 
     const recommendation = result ? calculatePackage(result) : null;
@@ -353,7 +400,7 @@ const HealthChecker = () => {
                                 Enter your email to request the <strong>{recommendation.package}</strong> for <strong>{url}</strong>.
                             </p>
 
-                            <form action="https://formspree.io/f/movngvvy" method="POST" className="space-y-4">
+                            <form onSubmit={handleLeadSubmit} className="space-y-4">
                                 <input type="hidden" name="subject" value={`New Lead: ${recommendation.package}`} />
                                 <input type="hidden" name="url" value={url} />
                                 <input type="hidden" name="platform" value={platform} />
@@ -383,6 +430,20 @@ const HealthChecker = () => {
                                     />
                                 </div>
 
+                                <div>
+                                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1 uppercase tracking-wider">Message</label>
+                                    <textarea
+                                        name="message"
+                                        rows="3"
+                                        defaultValue={
+                                            recommendation.basePrice === 0
+                                                ? `Hi, I scored ${Math.round(result.score)}/100! Please send me my official Health Certificate.`
+                                                : `Hi, I'm interested in the ${recommendation.package} for ${url}.\n\nPlease analyze my site's ${Math.round(result.score)} speed score and help me improve it.`
+                                        }
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-empower-pink outline-none resize-none"
+                                    ></textarea>
+                                </div>
+
                                 <button type="submit" className="w-full bg-empower-pink text-white font-bold py-4 rounded-lg hover:bg-pink-700 transition-colors shadow-lg mt-2">
                                     Confirm Request
                                 </button>
@@ -392,10 +453,10 @@ const HealthChecker = () => {
                             We'll analyse your report and get back to you within 24 hours.
                         </div>
                     </div>
-                </div>
+                </div >
             )}
 
-        </div>
+        </div >
     );
 };
 

@@ -135,13 +135,13 @@ export const projects = [
         status: 'live'
     },
     {
-        slug: 'automation-roi-calculator',
+        slug: 'roi-calculator',
         title: 'Automation ROI Calc',
         shortTagline: 'Calculate the value of automating your workflows.',
         thumbnail: '/images/autoroithumbnail.png',
         techStack: ['React', 'Tailwind'],
         year: '2023',
-        liveUrl: '#',
+        liveUrl: '/roi-calculator',
         status: 'live'
     },
     {

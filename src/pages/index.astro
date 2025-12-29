@@ -20,11 +20,13 @@ import {
   FileCode,
   Server,
   Cloud,
+  TrendingUp,
 } from "lucide-react";
 import TechStackCard from "../components/TechStackCard.astro";
 import FeaturedBuild from "../components/FeaturedBuild.astro";
 import Testimonials from "../components/Testimonials.astro";
 import HomepagePortalSection from "../components/HomepagePortalSection.astro";
+import TriageWidget from "../components/TriageWidget.astro";
 import { Image } from "astro:assets";
 
 // Images
@@ -247,7 +249,22 @@ const projects = [
   </section>
 
   <section class="py-20 container mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <a
+        href="/roi-calculator"
+        class="group block bg-white p-8 rounded-lg shadow-lg h-full hover:-translate-y-2 hover:shadow-xl hover:border-empower-pink border-2 border-transparent transition-all duration-300"
+      >
+        <TrendingUp className="w-12 h-12 text-empower-pink mb-4" />
+        <h3
+          class="text-2xl font-bold text-deep-purple group-hover:text-empower-pink transition-colors"
+        >
+          ROI Calculator
+        </h3>
+        <p class="text-gray-600 mt-2">
+          Stop guessing. Calculate exactly how much manual admin is costing your
+          business annually.
+        </p>
+      </a>
       <a
         href="/customwebapps"
         class="group block bg-white p-8 rounded-lg shadow-lg h-full hover:-translate-y-2 hover:shadow-xl hover:border-empower-pink border-2 border-transparent transition-all duration-300"
@@ -335,6 +352,29 @@ const projects = [
     </div>
   </section>
 
+  <!-- Interactive Triage Section -->
+  <section
+    class="py-20 bg-white dark:bg-slate-800 transition-colors duration-300"
+  >
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-dark-violet dark:text-white mb-4"
+        >
+          Not Sure Where to Start?
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Take our 30-second diagnostic to find the perfect digital strategy for
+          your business.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <TriageWidget />
+      </div>
+    </div>
+  </section>
+
   <!-- Bespoke Services Grid -->
   <section
     id="solutions"
@@ -379,7 +419,7 @@ const projects = [
           </p>
           <a
             href="/design-process"
-            class="inline-flex items-center text-empower-pink font-bold hover:text-white transition-colors"
+            class="inline-flex items-center bg-empower-pink text-white font-bold py-3 px-8 rounded-lg hover:bg-vibrant-magenta transition-colors shadow-lg"
           >
             See Our Design Process <ArrowRight className="w-4 h-4 ml-2" />
           </a>
@@ -459,7 +499,7 @@ const projects = [
             </p>
             <a
               href="/trades"
-              class="inline-flex items-center text-empower-pink font-bold hover:text-white transition-colors"
+              class="inline-flex items-center bg-empower-pink text-white font-bold py-3 px-8 rounded-lg hover:bg-vibrant-magenta transition-colors shadow-lg"
             >
               View Trade Solutions <ArrowRight className="w-4 h-4 ml-2" />
             </a>
@@ -487,7 +527,7 @@ const projects = [
               href="/consulting"
               class="inline-flex items-center border border-white/30 text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-dark-violet transition-colors w-full justify-center"
             >
-              Book Strategy Call
+              View Consultancy
             </a>
           </div>
         </div>

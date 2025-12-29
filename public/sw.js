@@ -1,13 +1,43 @@
-self.addEventListener('install', (e) => {
-    self.skipWaiting();
+const CACHE_NAME = "empower-cache-v1";
+const urlsToCache = [
+    "/",
+    "/manifest.json",
+    "/icon-192.png",
+    "/icon-512.png",
+    "/favicon.jpg",
+];
+
+self.addEventListener("install", (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(urlsToCache);
+        })
+    );
 });
 
-self.addEventListener('activate', (e) => {
-    e.waitUntil(self.clients.claim());
+self.addEventListener("fetch", (event) => {
+    event.respondWith(
+        caches.match(event.request).then((response) => {
+            // Cache hit - return response
+            if (response) {
+                return response;
+            }
+            return fetch(event.request);
+        })
+    );
 });
 
-self.addEventListener('fetch', (e) => {
-    // Basic pass-through fetch handler
-    // In a real PWA, you would handle caching here
-    e.respondWith(fetch(e.request));
+self.addEventListener("activate", (event) => {
+    const cacheWhitelist = [CACHE_NAME];
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
 });

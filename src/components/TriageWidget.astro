@@ -85,6 +85,9 @@
             class="triage-form"
             onsubmit="handleFormSubmit(event)"
         >
+            <input type="hidden" id="selected-path" name="path" value="" />
+            <input type="hidden" id="selected-goal" name="goal" value="" />
+
             <div class="form-group">
                 <label for="contact-subject">Project Focus</label>
                 <input
@@ -123,7 +126,7 @@
                 <textarea
                     id="contact-message"
                     name="message"
-                    rows="3"
+                    rows="4"
                     placeholder="Tell me a bit more about the specific friction points..."
                 ></textarea>
             </div>
@@ -209,9 +212,9 @@
         <p style="font-size: 0.9rem;">${data.tip}</p>
       </div>
       
-      <div style="text-align:center; margin-top:20px;">
-        <p>Ready to fix this?</p>
-        <button class="primary-btn" onclick="openContact()">Discuss this Plan</button>
+      <div style="text-align:center; margin-top:30px;">
+        <p style="font-weight:bold; margin-bottom:15px;">Ready to fix this?</p>
+        <button class="primary-btn" onclick="openContact()">Discuss this Plan &rarr;</button>
       </div>
     `;
 
@@ -221,9 +224,21 @@
 
     // Helper: Open Contact Form & Auto-fill Subject
     window.openContact = function () {
-        const currentDiagnosis = diagnosisData[userPath].title;
+        const currentDiagnosis = diagnosisData[userPath];
         const subjectInput = document.getElementById("contact-subject");
-        subjectInput.value = "Enquiry re: " + currentDiagnosis;
+        const messageInput = document.getElementById("contact-message");
+        const pathInput = document.getElementById("selected-path");
+        const goalInput = document.getElementById("selected-goal");
+
+        subjectInput.value = "Enquiry re: " + currentDiagnosis.title;
+        pathInput.value = userPath;
+        goalInput.value = userGoal;
+
+        // Strip HTML tags for the textarea
+        const stripHtml = (html) => html.replace(/<[^>]*>?/gm, "");
+
+        messageInput.value = `Hi,\n\nI'm interested in fixing my "${currentDiagnosis.title}".\n\nDiagnosis Summary:\n- Insight: ${currentDiagnosis.advice}\n- Tech Strategy: ${stripHtml(currentDiagnosis.tech)}\n- Goal: ${stripHtml(currentDiagnosis.tip)}`;
+
         updateProgress(90);
         nextStep("contact");
     };
@@ -235,10 +250,7 @@
             .querySelectorAll(".triage-step")
             .forEach((el) => el.classList.remove("active"));
         // Show requested step
-        const target =
-            stepId === "result" || stepId === "contact" || stepId === "success"
-                ? `step-${stepId}`
-                : `step-${stepId}`;
+        const target = `step-${stepId}`;
         document.getElementById(target).classList.add("active");
     };
 
@@ -259,15 +271,16 @@
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
 
-        // REPLACE THIS URL WITH YOUR ACTUAL FORMSPREE URL
-        const FORMSPREE_URL = "https://formspree.io/f/movngvvy";
+        // GOOGLE APPS SCRIPT URL
+        const GAS_URL =
+            "https://script.google.com/macros/s/AKfycbzhiU_8s301iFJBTekADqnUMN0J-JcYgSz4rCeT0aVuzAL-kN3EEw2yJ2XecsHct5GMeg/exec";
 
         try {
-            const response = await fetch(FORMSPREE_URL, {
+            const response = await fetch(GAS_URL, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "text/plain;charset=utf-8",
                 },
             });
 
@@ -280,18 +293,16 @@
                 btn.disabled = false;
             }
         } catch (error) {
-            // Fallback for demo purposes if ID is invalid
-            console.log(
-                "Formspree submission failed (likely invalid ID). Showing success state for demo.",
-            );
-            updateProgress(100);
-            nextStep("success");
+            console.log("Submission error", error);
+            alert("Connection error. Please try again.");
+            btn.innerText = originalText;
+            btn.disabled = false;
         }
     };
 </script>
 
-<style>
-    /* Container Setup */
+<style is:global>
+    /* Container Setup - Scoped Wrapper */
     .triage-container {
         max-width: 600px;
         margin: 2rem auto;
@@ -307,13 +318,13 @@
     }
 
     /* Progress Bar */
-    .triage-progress {
+    .triage-container .triage-progress {
         height: 4px;
         background: #eee;
         margin-bottom: 2rem;
         border-radius: 2px;
     }
-    .progress-bar {
+    .triage-container .progress-bar {
         height: 100%;
         background: #000; /* Empower Black */
         width: 25%;
@@ -321,27 +332,28 @@
     }
 
     /* Step Management */
-    .triage-step {
+    .triage-container .triage-step {
         display: none;
         animation: fadeIn 0.4s ease-out;
     }
-    .triage-step.active {
+    .triage-container .triage-step.active {
         display: block;
     }
 
-    /* Typography */
-    h3 {
+    /* Typography - STRICTLY SCOPED */
+    .triage-container h3 {
         margin-top: 0;
         margin-bottom: 0.5rem;
         color: #111;
         font-weight: 700;
+        font-size: 1.5rem; /* Ensure consistent size */
     }
-    p {
+    .triage-container p {
         line-height: 1.5;
         color: #555;
         margin-bottom: 1.5rem;
     }
-    .sub-text {
+    .triage-container .sub-text {
         font-size: 0.85rem;
         color: #666;
         display: block;
@@ -350,33 +362,35 @@
     }
 
     /* Buttons & Grid */
-    .options-grid {
+    .triage-container .options-grid {
         display: grid;
         gap: 1rem;
         margin-top: 1rem;
     }
 
-    .triage-btn {
-        background: #f9f9f9;
-        border: 1px solid #ddd;
+    .triage-container .triage-btn {
+        background: #f0f9ff; /* Lightest Blue */
+        border: 1px solid #bae6fd; /* Light Blue Border */
         padding: 1.2rem;
         text-align: left;
         border-radius: 6px;
         cursor: pointer;
         transition: all 0.2s;
         font-size: 1rem;
-        color: #333;
+        color: #0c4a6e; /* Darker Blue Text */
         width: 100%;
     }
-    .triage-btn:hover {
-        border-color: #000;
-        background: #f0f0f0;
+    .triage-container .triage-btn:hover {
+        border-color: #0284c7; /* Sky Blue */
+        background: #e0f2fe; /* Slightly darker blue */
         transform: translateY(-2px);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
     /* Result Card Styling */
-    .result-card {
+    .triage-container .result-card {
         background: #f4f8ff;
         border-left: 4px solid #0056b3; /* Tech Blue */
         padding: 1.5rem;
@@ -385,15 +399,15 @@
     }
 
     /* Form Styling */
-    .triage-form {
+    .triage-container .triage-form {
         margin-top: 0.5rem;
         text-align: left;
     }
-    .form-group {
+    .triage-container .form-group {
         margin-bottom: 1rem;
     }
 
-    label {
+    .triage-container label {
         display: block;
         font-size: 0.85rem;
         font-weight: bold;
@@ -401,8 +415,8 @@
         color: #333;
     }
 
-    input,
-    textarea {
+    .triage-container input,
+    .triage-container textarea {
         width: 100%;
         padding: 12px;
         border: 1px solid #ccc;
@@ -410,9 +424,11 @@
         font-family: inherit;
         font-size: 1rem;
         box-sizing: border-box; /* Fixes padding issues */
+        color: #333;
+        background-color: #fff;
     }
 
-    .read-only-input {
+    .triage-container .read-only-input {
         background-color: #e9ecef;
         color: #495057;
         border-color: #ced4da;
@@ -421,7 +437,7 @@
     }
 
     /* Action Buttons */
-    .primary-btn {
+    .triage-container .primary-btn {
         background: #000;
         color: #fff;
         border: none;
@@ -433,16 +449,16 @@
         transition: background 0.2s;
         display: inline-block;
     }
-    .primary-btn:hover {
+    .triage-container .primary-btn:hover {
         background: #333;
     }
 
-    .full-width {
+    .triage-container .full-width {
         width: 100%;
         margin-top: 10px;
     }
 
-    .text-link-btn {
+    .triage-container .text-link-btn {
         background: none;
         border: none;
         color: #666;
@@ -472,7 +488,7 @@
             padding: 1.5rem;
             margin: 1rem;
         }
-        .primary-btn {
+        .triage-container .primary-btn {
             width: 100%;
         }
     }

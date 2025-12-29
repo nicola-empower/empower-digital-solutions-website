@@ -27,7 +27,7 @@ const categories = [
         icon: Calculator,
         description: 'ROI calculators, tax forecasting, and financial modeling.',
         projects: [
-            'finance-ninja', 'isa-time-machine', 'quote-command', 'automation-roi-calculator', 'automation-grader'
+            'finance-ninja', 'isa-time-machine', 'quote-command', 'roi-calculator', 'automation-grader'
         ]
     },
     {

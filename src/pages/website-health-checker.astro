@@ -31,14 +31,6 @@ import { Gauge, CheckCircle2, MousePointerClick } from "lucide-astro";
       </div>
     </div>
 
-    <!-- Tool Section -->
-    <section class="py-12 px-4 bg-white dark:bg-slate-950">
-      <HealthChecker client:load />
-      <p class="text-center text-sm text-slate-400 mt-8">
-        Powered by Google PageSpeed Insights API v5
-      </p>
-    </section>
-
     <!-- SEO Content Section -->
     <section class="py-20 bg-slate-50 dark:bg-slate-900">
       <div class="container mx-auto px-6 max-w-4xl">
@@ -111,6 +103,14 @@ import { Gauge, CheckCircle2, MousePointerClick } from "lucide-astro";
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section class="py-12 px-4 bg-white dark:bg-slate-950">
+      <HealthChecker client:load />
+      <p class="text-center text-sm text-slate-400 mt-8">
+        Powered by Google PageSpeed Insights API v5
+      </p>
     </section>
   </section>
 </Layout>

@@ -55,7 +55,11 @@ export const POST: APIRoute = async ({ request }) => {
 
         if (geminiKey) {
             try {
-                const prompt = `Act as a Senior Developer. Explain to a non-technical business owner why these website performance scores are hurting their revenue.
+                const toneInstruction = score >= 90
+                    ? "Tone: Elite Performance Coach. Validate their excellence. Be professional, approving, and authoritative."
+                    : "Tone: Direct, Business-Centric. Focus on opportunity cost.";
+
+                const prompt = `Act as a high-value Virtual CTO. The business owner has just run a speed test.
                 
                 Metrics:
                 - Overall Score: ${Math.round(score)}/100
@@ -64,16 +68,18 @@ export const POST: APIRoute = async ({ request }) => {
                 - Speed Index: ${metrics.speedIndex}
                 
                 Context:
-                - A score under 50 is critical (Red Zone).
-                - A score under 90 needs improvement (Amber Zone).
-                - A score over 90 is good (Green Zone).
+                - <50: Critical Issues (User Barrier).
+                - 50-89: Room for Growth (Missed Opportunities).
+                - 90+: Elite Performance.
                 
                 Instructions:
-                - Use UK English (e.g. "optimisation", "analysing").
-                - Keep it under 80 words.
-                - Be factual, direct, and focus on revenue/user impact.
-                - Do not use "Hello" or generic intros. Start directly with the insight.
-                - Example tone: "A 4.2-second load time on mobile means you are likely losing ~40% of traffic..."`;
+                - ${toneInstruction}
+                - Use UK English.
+                - Focus on "User Trust", "Brand Authority", and "Lead Retention".
+                - DO NOT use visceral or medical metaphors (e.g., "bleed", "hemorrhage", "pain").
+                - DO NOT assume they sell physical products. Avoid "add to cart" language.
+                - Be specific but professional: "A 4s load time creates friction that sends potential clients to competitors."
+                - Keep it under 60 words. Punchy. No fluff.`;
 
                 const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
                     method: 'POST',
