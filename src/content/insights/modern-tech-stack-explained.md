@@ -1,7 +1,7 @@
 ---
 title: "Astro, React, Tailwind & TypeScript: Why Your Tech Stack Matters"
 description: "Tech jargon explained in plain English. Why we use modern tools instead of WordPress, and how they make your website faster, safer, and cheaper to maintain."
-pubDate: 2025-11-05
+pubDate: 2025-04-20
 tags: ["Technology", "Performance", "Astro", "React"]
 image: "/images/blog/tech-stack.jpg"
 author: "Empower Digital Team"

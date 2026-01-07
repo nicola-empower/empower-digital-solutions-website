@@ -1,7 +1,7 @@
 ---
 title: "Why \"Done-For-You\" Platforms Still Leave You Dependent"
 description: "'Done for you' sounds ideal until you realise you're renting your own business. We explore the hidden costs of platform dependency."
-pubDate: 2025-12-25
+pubDate: 2025-11-20
 tags: ["Business Strategy", "SaaS", "Ownership", "Risk"]
 image: "/images/blog/dependency-trap.jpg"
 author: "Empower Digital Solutions"

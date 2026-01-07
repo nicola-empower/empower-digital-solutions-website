@@ -1,7 +1,7 @@
 ---
 title: "How Architects & Creatives Use Portfolio Sites to Justify Premium Pricing"
 description: "Your website sets the price anchor before you even speak to a client. Learn how high-end design signals value and builds trust."
-pubDate: 2025-10-20
+pubDate: 2025-01-25
 tags: ["Design", "Branding", "Sales", "Psychology"]
 image: "/images/blog/premium-pricing.png"
 author: "Empower Digital Team"

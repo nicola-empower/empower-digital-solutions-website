@@ -1,7 +1,7 @@
 ---
 title: "Do I Really Need GoHighLevel?"
 description: "Looking beyond the buzz: pricing, value, and long-term cost."
-pubDate: 2025-12-25
+pubDate: 2025-10-25
 tags: ["SaaS", "Cost Analysis", "Business Strategy", "GoHighLevel"]
 image: "/images/blog/dependency-trap.jpg"
 

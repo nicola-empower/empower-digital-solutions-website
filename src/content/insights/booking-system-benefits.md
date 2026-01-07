@@ -1,7 +1,7 @@
 ---
 title: "5 Ways an Automated Booking System Saves You 10+ Hours a Week"
 description: "For wellness studios, salons, and therapists: Stop playing phone tag. Discover how a self-service booking engine can eliminate admin work and increase revenue."
-pubDate: 2025-10-30
+pubDate: 2025-03-15
 tags: ["Automation", "Booking", "Wellness", "Efficiency"]
 image: "/images/blog/booking-system.jpg"
 author: "Empower Digital Team"

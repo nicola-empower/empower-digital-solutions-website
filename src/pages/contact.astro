@@ -160,6 +160,31 @@ import Layout from "../layouts/Layout.astro";
           </button>
           <p id="form-status" class="text-center text-sm font-semibold hidden">
           </p>
+
+          <div class="mt-6 pt-6 border-t border-slate-100 text-center">
+            <p
+              class="text-xs text-slate-400 max-w-xs mx-auto flex items-center justify-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-slate-400"
+                ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"
+                ></path></svg
+              >
+              <span
+                ><strong>Zero Spam Promise:</strong> We only use your details to reply
+                to your enquiry. No newsletters, no marketing lists, no nonsense.</span
+              >
+            </p>
+          </div>
         </form>
       </div>
     </div>
@@ -171,14 +196,14 @@ import Layout from "../layouts/Layout.astro";
   const GAS_URL =
     "https://script.google.com/macros/s/AKfycbzhiU_8s301iFJBTekADqnUMN0J-JcYgSz4rCeT0aVuzAL-kN3EEw2yJ2XecsHct5GMeg/exec";
 
-  const form = document.getElementById("contact-form");
+  const form = document.getElementById("contact-form") as HTMLFormElement;
   const submitBtn = document.getElementById("submit-btn");
   const statusMsg = document.getElementById("form-status");
 
   // Pre-fill message based on package selection
   const urlParams = new URLSearchParams(window.location.search);
   const pkg = urlParams.get("package");
-  const messageBox = document.getElementById("message");
+  const messageBox = document.getElementById("message") as HTMLTextAreaElement;
 
   if (pkg && messageBox) {
     const packages = {

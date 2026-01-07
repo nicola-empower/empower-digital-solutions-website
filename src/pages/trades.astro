@@ -385,7 +385,9 @@ const columns = chunk(heroImages, 4);
                     </tbody>
                 </table>
             </div>
-            <div class="mt-8 text-center">
+            <div
+                class="mt-8 text-center flex flex-col md:flex-row gap-4 justify-center items-center"
+            >
                 <a
                     href="/pricing#trades"
                     class="inline-block text-white border-b border-blue-500 pb-1 hover:text-blue-400 transition-colors"
@@ -393,6 +395,13 @@ const columns = chunk(heroImages, 4);
                     See Pricing & Packages <ArrowRight
                         className="w-4 h-4 inline ml-1"
                     />
+                </a>
+                <a
+                    href="/insights/trade-portal-case-study"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm text-slate-300 hover:text-white hover:border-slate-500 transition-all font-mono"
+                >
+                    <FileText className="w-4 h-4" /> Read Case Study: The "Tradie
+                    Trap"
                 </a>
             </div>
         </div>

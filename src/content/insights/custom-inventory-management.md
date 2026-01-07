@@ -1,7 +1,7 @@
 ---
 title: "From Spreadsheets to a Single Source of Truth: The Power of Custom Data Management"
 description: "Growing businesses often drown in data. Learn why Excel is holding you back and how moving to a centralised, custom database can revolutionize your operations."
-pubDate: 2025-10-25
+pubDate: 2025-02-10
 tags: ["Data", "Operations", "Scaling", "Database"]
 image: "/images/blog/data-management.png"
 author: "Empower Digital Team"

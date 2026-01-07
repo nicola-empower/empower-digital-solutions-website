@@ -1,0 +1,5 @@
+Contact: mailto:nicola@empowerdigitalsolutions.co.uk
+Contact: https://empowerdigitalsolutions.co.uk/contact
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://empowerdigitalsolutions.co.uk/.well-known/security.txt

@@ -1,7 +1,7 @@
 ---
 title: "The 7 Most Common Website Performance & SEO Issues (And How to Fix Them)"
 description: "We analysed 100+ small business websites. Here are the most common technical errors killing their Google rankings and frustrating their users."
-pubDate: 2025-10-10
+pubDate: 2024-11-20
 tags: ["SEO", "Performance", "Technical", "Web Design"]
 image: "/images/blog/seo-issues.jpg"
 author: "Empower Digital Team"

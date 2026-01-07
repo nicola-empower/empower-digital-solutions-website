@@ -1,7 +1,7 @@
 ---
 title: "Inside My Bespoke Web Design Process: Strategy to Launch"
 description: "A behind-the-scenes look at how we craft award-winning websites. We don't use templates or shortcuts, just pure engineering, psychology, and design."
-pubDate: 2025-11-15
+pubDate: 2025-06-25
 tags: ["Design", "Process", "Development", "Strategy"]
 image: "/images/blog/design-process.png"
 author: "Empower Digital Team"

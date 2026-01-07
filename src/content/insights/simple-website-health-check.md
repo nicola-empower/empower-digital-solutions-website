@@ -1,7 +1,7 @@
 ---
 title: "How to Run a Simple Website Health Check (And What to Fix First)"
 description: "Is your website sick? Learn how to diagnose speed, SEO, and usability issues in under 5 minutes using free tools."
-pubDate: 2025-10-15
+pubDate: 2024-12-15
 tags: ["SEO", "Performance", "Audit", "Maintenance"]
 image: "/images/blog/health-check.png"
 author: "Empower Digital Team"

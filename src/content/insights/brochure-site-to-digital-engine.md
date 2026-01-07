@@ -1,7 +1,7 @@
 ---
 title: "From Brochure Site to Digital Engine: Turn Your Website into a Team Member"
 description: "Is your website just a digital business card? Learn how to transform it into a 24/7 employee that captures leads, onboards clients, and drives revenue while you sleep."
-pubDate: 2025-11-28
+pubDate: 2025-08-15
 tags: ["Digital Strategy", "Automation", "Growth", "Web Design"]
 image: "/images/blog/digital-engine.png"
 author: "Empower Digital Team"

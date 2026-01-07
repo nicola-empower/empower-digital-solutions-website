@@ -9,6 +9,8 @@ export async function GET(context) {
         { title: 'GoHighLevel Alternative', slug: '/ghl-alternative', description: 'Stop Renting Your Website', type: 'page' },
         { title: 'Contact', slug: '/contact', description: 'Get in Touch', type: 'page' },
         { title: 'MVP Development', slug: '/mvp-development', description: 'Turn your idea into a working app', type: 'page' },
+        { title: 'Information for Trades', slug: '/trades', description: 'Web design for Builders, Plumbers & Electricians', type: 'page' },
+        { title: 'Pricing', slug: '/pricing', description: 'Transparent Project Pricing', type: 'page' },
         { title: 'Aesthetic Vault', slug: '/aesthetic-vault', description: 'Premium Design Systems', type: 'page' },
     ];
 

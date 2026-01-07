@@ -1,7 +1,7 @@
 ---
 title: "How to Brief a Developer for a Custom Portal (So You Don't Waste Budget)"
 description: "Writing a clear brief is the difference between a project that launches on time and one that burns cash and drags on forever. Here is your ultimate checklist."
-pubDate: 2025-11-10
+pubDate: 2025-05-15
 tags: ["Project Management", "Development", "Budget", "Guide"]
 image: "/images/blog/briefing-developer.jpg"
 author: "Empower Digital Team"

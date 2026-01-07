@@ -1,7 +1,7 @@
 ---
 title: "Custom Web Apps vs. Off-the-Shelf Software: The Build vs. Buy Dilemma"
 description: "Is your business trapped in 'Excel Hell' or paying for features you don't use? We break down exactly when it makes financial sense to build your own software asset."
-pubDate: 2025-11-25
+pubDate: 2025-09-20
 tags: ["SaaS", "Custom Development", "Business Strategy", "ROI"]
 image: "/images/blog/custom-vs-saas.jpg"
 author: "Empower Digital Team"

@@ -1,7 +1,7 @@
 ---
 title: "3 Automation Ideas You Can Implement This Month to Reclaim Your Time"
 description: "Stop drowning in busy work. Here are three high-impact automations you can set up this weekend: from auto-replying to missed leads to streamlining your entire invoicing process."
-pubDate: 2025-10-05
+pubDate: 2024-10-15
 tags: ["Automation", "Productivity", "Business Growth", "Tech Tips"]
 image: "/images/blog/automation-ideas.png"
 author: "Empower Digital Team"

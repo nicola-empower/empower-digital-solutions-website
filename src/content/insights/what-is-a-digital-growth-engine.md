@@ -1,7 +1,7 @@
 ---
 title: "What a 'Digital Growth Engine' Actually Looks Like (And Why You Need One)"
 description: "Stop treating your website like a digital billboard. Learn how to transform it into a predictable system that captures leads, qualifies prospects, and drives revenue 24/7."
-pubDate: 2025-11-20
+pubDate: 2025-07-10
 tags: ["Growth", "Systems", "Consulting", "Automation"]
 image: "/images/blog/growth-engine.jpg"
 author: "Empower Digital Team"

@@ -1,0 +1,17 @@
+/* TEAM */
+  Founder: Nicola Berry
+  Site: Empower Digital Solutions
+  Location: Falkirk, Scotland, UK
+  Contact: nicola@empowerdigitalsolutions.co.uk
+
+/* SITE */
+  Last update: 2026/01/07
+  Standards: HTML5, CSS3, ES6+
+  Components: React, Astro Components, Lucide
+  Software: VS Code
+
+/* TECH STACK */
+  Framework: Astro
+  Styling: Tailwind CSS
+  Deployment: Netlify
+  Analytics: Partytown
