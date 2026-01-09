@@ -82,7 +82,7 @@ const HealthChecker = () => {
             // 90-95: Optional Polish
             recommendation = {
                 title: "Top Tier (With Room for 1%)",
-                description: "You're in the Green Zone, so relax—nothing is 'broken'. But if you're the type who demands perfection, a quick polish can squeeze out those final points for total dominance.",
+                description: "You're in the Green Zone, so relax, nothing is 'broken'. But if you're the type who demands perfection, a quick polish can squeeze out those final points for total dominance.",
                 package: "Proactive Polish",
                 basePrice: 49, // Very low barrier
                 action: "Book Polish"

@@ -132,7 +132,7 @@ export default function InboxZeroDemo() {
                             <div className="w-3 h-3 rounded-full bg-amber-500"></div>
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        <div className="ml-4 text-xs font-mono text-slate-400">run_inbox_zero.js — Node — 84x24</div>
+                        <div className="ml-4 text-xs font-mono text-slate-400">run_inbox_zero.js — Node —  84x24</div>
                     </div>
 
                     {/* Terminal Body */}
