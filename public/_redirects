@@ -1,0 +1,2 @@
+# Sitemap Redirect for dumb scanners
+/sitemap.xml /sitemap-index.xml 301

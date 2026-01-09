@@ -27,6 +27,7 @@ import FeaturedBuild from "../components/FeaturedBuild.astro";
 import Testimonials from "../components/Testimonials.astro";
 import HomepagePortalSection from "../components/HomepagePortalSection.astro";
 import TriageWidget from "../components/TriageWidget.astro";
+import CommandCentreTeaser from "../components/CommandCentreTeaser.astro";
 import { Image } from "astro:assets";
 
 // Images
@@ -190,6 +191,49 @@ const projects = [
             </div>
           ))
         }
+      </div>
+    </div>
+  </section>
+
+  <!-- WordPress vs Custom Code Section -->
+  <section
+    class="py-24 bg-white dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden"
+  >
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2
+          class="text-4xl md:text-5xl font-bold font-heading mb-8 text-dark-violet dark:text-white leading-tight"
+        >
+          Stop fighting with Elementor. <br />
+          <span
+            class="text-transparent bg-clip-text bg-linear-to-r from-empower-pink to-purple-600"
+            >Start converting with Code.</span
+          >
+        </h2>
+        <p
+          class="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
+        >
+          Tired of WordPress sites that get slow, hacked, or need constant
+          updates?
+        </p>
+        <div
+          class="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-xl"
+        >
+          <p
+            class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
+          >
+            I don't use bloated page builders. I build <strong
+              class="text-empower-pink">custom, code-based websites</strong
+            > (using modern tech like Astro) that load instantly, rank higher on Google,
+            and don't require expensive monthly 'repair' contracts.
+          </p>
+          <p
+            class="text-lg text-gray-700 dark:text-gray-300 font-medium italic"
+          >
+            "Clean code from the first line. It does exactly what you want it
+            to."
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -540,6 +584,8 @@ const projects = [
   <FeaturedBuild />
 
   <Testimonials />
+
+  <CommandCentreTeaser />
 
   <section
     class="py-20 bg-gray-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden"
