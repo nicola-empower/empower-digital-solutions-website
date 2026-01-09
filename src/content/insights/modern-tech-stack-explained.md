@@ -32,7 +32,7 @@ We pre-build your site before the user even arrives. The pages are ready and wai
 
 **The Business Benefit:**
 *   **Instant Loading:** Your site loads in milliseconds, not seconds.
-*   **Higher Google Rankings:** Google explicitly prioritizes fast websites (Core Web Vitals).
+*   **Higher Google Rankings:** Google explicitly prioritises fast websites (Core Web Vitals).
 *   **Lower Hosting Costs:** You don't need expensive servers to handle traffic spikes.
 
 ## 2. React: The Interactive Layer (The Dashboard)

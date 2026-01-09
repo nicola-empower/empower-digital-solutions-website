@@ -22,7 +22,7 @@ Here is a simple 5-minute health check you can run right now, for free.
 ## 1. The Speed Pulse (Google PageSpeed)
 
 **The Tool:** [PageSpeed Insights](https://pagespeed.web.dev/)
-**The Test:** Enter your URL and hit Analyze.
+**The Test:** Enter your URL and hit Analyse.
 
 **What to look for:**
 *   **The Score:** Anything under 50 is critical. 50-80 is okay. 90+ is excellent.
@@ -85,4 +85,4 @@ If you found red flags in this audit, don't panic. Most of these issues are solv
 
 Set a reminder to run this check once a quarter. Your digital engine needs oil changes just like your car.
 
-*Want a professional to dive deeper? We offer a comprehensive technical audit that goes into code quality, accessibility, and conversion rate optimization. [Check your website health now](/website-health-checker).*
+*Want a professional to dive deeper? We offer a comprehensive technical audit that goes into code quality, accessibility, and conversion rate optimisation. [Check your website health now](/website-health-checker).*

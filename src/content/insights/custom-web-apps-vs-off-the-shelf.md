@@ -22,7 +22,7 @@ In this article, we’ll explore the "**Build vs. Buy**" decision framework to h
 ## The Case for Off-the-Shelf (SaaS)
 
 **When to Buy:**
-If your problem is a solved, generic business function, you should buy software. Do not build your own email client. Do not build your own accounting ledger. These are standardized problems with standardized solutions.
+If your problem is a solved, generic business function, you should buy software. Do not build your own email client. Do not build your own accounting ledger. These are standardised problems with standardised solutions.
 
 **The Pros:**
 *   **Speed:** You can sign up and start using it in 5 minutes.

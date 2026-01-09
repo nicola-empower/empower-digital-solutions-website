@@ -9,7 +9,7 @@ author: "Empower Digital Team"
 
 Imagine you have two meetings today with potential architects for your dream home.
 
-**Architect A:** Meets you at a Starbucks. They pull out a crumpled folder of printed photos. They are loose and disorganized.
+**Architect A:** Meets you at a Starbucks. They pull out a crumpled folder of printed photos. They are loose and disorganised.
 **Architect B:** Invites you to their studio. They hand you a bound, hardcover book of their previous work. The photos are crisp, professional, and tell a story.
 
 Who are you willing to pay more?
@@ -70,7 +70,7 @@ These micro-interactions signal attention to detail. If you care this much about
 We recently worked with a boutique architecture firm. Their old site was functional but generic.
 We rebuilt it with:
 *   Full-screen cinematic imagery.
-*   A dark, sophisticated color palette.
+*   A dark, sophisticated colour palette.
 *   "Silent" video backgrounds of the team working.
 *   Deep-dive case studies.
 

@@ -61,7 +61,7 @@ You can program logic directly into your data:
 *   *"If Invoice is 7 days overdue, SMS Client."*
 *   *"If Project Status = Complete, Generate PDF Warranty."*
 
-#### 4. Specialized Views (Dashboards)
+#### 4. Specialised Views (Dashboards)
 Instead of a wall of 5,000 rows, you can build custom interfaces for different team members.
 *   **The Owner:** Sees a high-level graph of monthly revenue.
 *   **The Warehouse:** Sees a simple list of "Items to Pack Today."
