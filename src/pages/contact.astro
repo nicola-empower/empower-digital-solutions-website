@@ -161,27 +161,36 @@ import Layout from "../layouts/Layout.astro";
           <p id="form-status" class="text-center text-sm font-semibold hidden">
           </p>
 
-          <div class="mt-6 pt-6 border-t border-slate-100 text-center">
+          <div
+            class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-center"
+          >
             <p
-              class="text-xs text-slate-400 max-w-xs mx-auto flex items-center justify-center gap-2"
+              class="text-xs text-slate-400 max-w-xs mx-auto flex flex-col items-center justify-center gap-2"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="text-slate-400"
-                ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"
-                ></path></svg
-              >
-              <span
-                ><strong>Zero Spam Promise:</strong> We only use your details to reply
-                to your enquiry. No newsletters, no marketing lists, no nonsense.</span
+              <div class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-slate-400"
+                  ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"
+                  ></path></svg
+                >
+                <span
+                  ><strong>Zero Spam Promise:</strong> We only use your details to
+                  reply to your enquiry.</span
+                >
+              </div>
+              <a
+                href="/privacy"
+                class="text-[10px] text-slate-300 hover:text-empower-pink transition-colors"
+                >Privacy Policy</a
               >
             </p>
           </div>
@@ -281,9 +290,8 @@ import Layout from "../layouts/Layout.astro";
       },
       network: {
         ip: ipAddress, // Using external service to verify
-        // @ts-ignore
-        connectionType: navigator.connection
-          ? navigator.connection.effectiveType
+        connectionType: (navigator as any).connection
+          ? (navigator as any).connection.effectiveType
           : "unknown",
       },
       behavior: {
