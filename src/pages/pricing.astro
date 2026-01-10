@@ -130,12 +130,12 @@ export const prerender = true;
                         </li>
                         <li class="flex gap-3">
                             <div
-                                class="w-5 h-5 flex items-center justify-center shrink-0 text-gray-500 font-bold"
+                                class="w-5 h-5 flex items-center justify-center shrink-0 text-blue-500 font-bold"
                             >
-                                !
+                                <Shield className="w-4 h-4" />
                             </div>
-                            <span class="text-gray-400"
-                                >Updates: £100/hr (Ad-hoc)</span
+                            <span class="text-gray-300"
+                                ><strong>Active Threat Monitoring</strong></span
                             >
                         </li>
                     </ul>
@@ -703,8 +703,8 @@ export const prerender = true;
                 <p class="text-xl text-gray-300 leading-relaxed">
                     We believe in fairness. You own the code, so you can host it
                     yourself. However, high-performance engines require premium
-                    fuel and servicing. Most clients choose our Watchdog plan
-                    for total peace of mind.
+                    fuel and servicing. Most clients choose our Mission Control
+                    plan for total peace of mind.
                 </p>
             </div>
 
@@ -798,54 +798,69 @@ export const prerender = true;
                                 >/mo</span
                             >
                         </div>
-                        <p class="text-sm text-indigo-300">
-                            You own the strategy. We handle the warfare.
+                        <p class="text-sm text-indigo-200">
+                            We handle everything. You just grow.
                         </p>
                     </div>
 
                     <ul
-                        class="space-y-4 mb-8 text-sm text-gray-200 flex-1 relative z-10"
+                        class="space-y-4 mb-8 text-sm text-gray-300 flex-1 relative z-10"
                     >
                         <li class="flex gap-3">
-                            <CheckCircle
-                                className="w-5 h-5 text-green-400 shrink-0"
+                            <Server
+                                className="w-5 h-5 text-indigo-400 shrink-0"
                             />
-                            <strong
-                                >Enterprise-Grade Infrastructure (AWS)</strong
+                            <span
+                                ><strong>Enterprise-Grade Infrastructure</strong
+                                > (AWS/Vercel)</span
+                            >
+                        </li>
+                        <li class="flex gap-3">
+                            <Shield
+                                className="w-5 h-5 text-indigo-400 shrink-0"
+                            />
+                            <span
+                                ><strong
+                                    >Active Threat Monitoring & Shield</strong
+                                ></span
+                            >
+                        </li>
+                        <li class="flex gap-3">
+                            <Database
+                                className="w-5 h-5 text-indigo-400 shrink-0"
+                            />
+                            <span
+                                ><strong>Daily 'Digital Twin' Backups</strong
+                                ></span
+                            >
+                        </li>
+                        <li class="flex gap-3">
+                            <Zap className="w-5 h-5 text-indigo-400 shrink-0" />
+                            <span
+                                ><strong>Rapid Response Unit</strong> (1hr/mo Included)</span
                             >
                         </li>
                         <li class="flex gap-3">
                             <CheckCircle
-                                className="w-5 h-5 text-green-400 shrink-0"
+                                className="w-5 h-5 text-indigo-400 shrink-0"
                             />
-                            <strong>Active Threat Monitoring & Shield</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <CheckCircle
-                                className="w-5 h-5 text-green-400 shrink-0"
-                            />
-                            <strong>Daily 'Digital Twin' Backups</strong>
-                        </li>
-                        <li class="flex gap-3">
-                            <CheckCircle
-                                className="w-5 h-5 text-green-400 shrink-0"
-                            />
-                            <strong
-                                >Dedicated Developer Allocation (1hr Included)</strong
+                            <span
+                                ><strong
+                                    >Quarterly Deep Scan Intelligence Report</strong
+                                ></span
                             >
-                        </li>
-                        <li class="flex gap-3">
-                            <CheckCircle
-                                className="w-5 h-5 text-green-400 shrink-0"
-                            />
-                            <span>Quarterly Deep Scan Intelligence Report</span>
                         </li>
                     </ul>
 
                     <div
-                        class="relative z-10 mt-auto pt-6 border-t border-indigo-500/30 text-center text-indigo-300 text-sm font-bold"
+                        class="mt-auto pt-6 border-t border-indigo-500/30 text-center relative z-10"
                     >
-                        Best for: Growth-First Business Owners
+                        <a
+                            href="/contact?package=mission-control"
+                            class="block w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg transition-colors shadow-lg shadow-indigo-500/25"
+                        >
+                            Activate Mission Control
+                        </a>
                     </div>
                 </div>
             </div>
