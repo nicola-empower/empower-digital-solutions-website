@@ -199,11 +199,37 @@ import Layout from "../layouts/Layout.astro";
   const form = document.getElementById("contact-form") as HTMLFormElement;
   const submitBtn = document.getElementById("submit-btn");
   const statusMsg = document.getElementById("form-status");
+  const messageBox = document.getElementById("message") as HTMLTextAreaElement;
+
+  // --- TYPOMETRY & BEHAVIOR TRACKING ---
+  let typingStats = {
+    keystrokes: 0,
+    backspaces: 0,
+    pastes: 0,
+    startTime: 0,
+    endTime: 0,
+    firstKeyTime: 0,
+  };
+
+  if (messageBox) {
+    messageBox.addEventListener("keydown", (e) => {
+      typingStats.keystrokes++;
+      if (!typingStats.firstKeyTime) typingStats.firstKeyTime = Date.now();
+      typingStats.endTime = Date.now();
+
+      if (e.key === "Backspace") {
+        typingStats.backspaces++;
+      }
+    });
+
+    messageBox.addEventListener("paste", () => {
+      typingStats.pastes++;
+    });
+  }
 
   // Pre-fill message based on package selection
   const urlParams = new URLSearchParams(window.location.search);
   const pkg = urlParams.get("package");
-  const messageBox = document.getElementById("message") as HTMLTextAreaElement;
 
   if (pkg && messageBox) {
     const packages = {
@@ -217,22 +243,81 @@ import Layout from "../layouts/Layout.astro";
     messageBox.value = `Hi, I'm interested in ${pkgName}.`;
   }
 
+  // --- FINGERPRINTING FUNCTION ---
+  async function getDigitalFingerprint() {
+    let ipAddress = "Unknown";
+    try {
+      const ipRes = await fetch("https://api.ipify.org?format=json");
+      const ipJson = await ipRes.json();
+      ipAddress = ipJson.ip;
+    } catch (e) {
+      console.warn("Could not fetch IP", e);
+    }
+
+    // High-Resolution Time To First Byte (approx)
+    const perf = window.performance.timing;
+
+    return {
+      identity: {
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        platform: navigator.platform,
+        cookiesEnabled: navigator.cookieEnabled,
+        doNotTrack: navigator.doNotTrack,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      },
+      hardware: {
+        screenW: screen.width,
+        screenH: screen.height,
+        availW: screen.availWidth,
+        availH: screen.availHeight,
+        pixelRatio: window.devicePixelRatio,
+        // @ts-ignore
+        cores: navigator.hardwareConcurrency || "unknown",
+        // @ts-ignore
+        ram: navigator.deviceMemory || "unknown",
+        touchPoints: navigator.maxTouchPoints,
+      },
+      network: {
+        ip: ipAddress, // Using external service to verify
+        // @ts-ignore
+        connectionType: navigator.connection
+          ? navigator.connection.effectiveType
+          : "unknown",
+      },
+      behavior: {
+        ...typingStats,
+        msgLength: messageBox ? messageBox.value.length : 0,
+        submissionTime: new Date().toISOString(),
+        timeOnPage:
+          (Date.now() - (perf ? perf.navigationStart : Date.now())) / 1000,
+        // @ts-ignore
+        webdriver: navigator.webdriver || false, // Bot detection
+      },
+    };
+  }
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       if (submitBtn) {
         submitBtn.setAttribute("disabled", "true");
-        submitBtn.innerHTML = "Sending...";
+        submitBtn.innerHTML = "Securing & Sending...";
       }
 
       const formData = new FormData(form);
+
+      // GENERATE FINGERPRINT
+      const fingerprint = await getDigitalFingerprint();
+
       const data = {
         name: formData.get("name"),
         email: formData.get("email"),
         message: formData.get("message"),
-        subject: "New Contact Form Submission",
+        subject: "New Contact Form Submission (Tracked)",
         sourceUrl: window.location.href,
+        fingerprint: JSON.stringify(fingerprint, null, 2), // Pretty print for easier reading in the sheet
       };
 
       try {
@@ -246,11 +331,20 @@ import Layout from "../layouts/Layout.astro";
 
         if (response.ok) {
           if (statusMsg) {
-            statusMsg.textContent = "Message sent! We'll be in touch soon.";
+            statusMsg.textContent = "Message sent successfully.";
             statusMsg.className =
               "text-center text-sm font-semibold text-green-600 mt-4 block";
           }
           form.reset();
+          // Reset typing stats
+          typingStats = {
+            keystrokes: 0,
+            backspaces: 0,
+            pastes: 0,
+            startTime: 0,
+            endTime: 0,
+            firstKeyTime: 0,
+          };
         } else {
           throw new Error("GAS Network response was not ok");
         }
